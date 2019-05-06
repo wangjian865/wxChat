@@ -6,9 +6,29 @@
 //  Copyright © 2019 WDX. All rights reserved.
 //
 
+
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
+/*
+ 引用
+ */
+#import "MomentMacros.h"
+#import "MomentConstant.h"
+#import "UIView+Geometry.h"
+#import "JKDBModel/JKDBModel.h"
+#import "MLLabelUtil.h"
+#import "UIScrollView+Category.h"
+#import "MMTableView.h"
+#import "Utility.h"
+#import "AppDelegate.h"
 
+#import <MLLabel/NSAttributedString+MLExpression.h>
+#import <MLLabel/MLExpressionManager.h>
+#import <MLLabel/MLTextAttachment.h>
+#import <MLLabel/MLLinkLabel.h>
+#import <UIImageView+WebCache.h>
+#import <UUActionSheet.h>
+#import <MJRefresh.h>
 /*
  颜色
  */
@@ -16,5 +36,7 @@
 #define RGB(r,g,b,a) [UIColor colorWithRed:(float)r / 255.0f green:(float)g / 255.0f blue:(float)b / 255.0f alpha:a]
 
 #define rgbHEX(rgbValue) ([UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0])
+
+
 
 #endif /* PrefixHeader_pch */

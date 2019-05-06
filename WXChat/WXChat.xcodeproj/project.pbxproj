@@ -7,6 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A042CDC2277EA3E0075582B /* WXFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A042CDB2277EA3E0075582B /* WXFriendViewController.m */; };
+		2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B14822802B1100B224F4 /* MomentUtil.m */; };
+		2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B14922802B1100B224F4 /* MomentConstant.m */; };
+		2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B14A22802B1100B224F4 /* MLLabelUtil.m */; };
+		2A28B17022802B1100B224F4 /* WKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15122802B1100B224F4 /* WKWebViewController.m */; };
+		2A28B17122802B1100B224F4 /* MMLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15322802B1100B224F4 /* MMLocationViewController.m */; };
+		2A28B17222802B1100B224F4 /* MomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15522802B1100B224F4 /* MomentViewController.m */; };
+		2A28B17322802B1100B224F4 /* Moment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15822802B1100B224F4 /* Moment.m */; };
+		2A28B17422802B1100B224F4 /* MPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15A22802B1100B224F4 /* MPicture.m */; };
+		2A28B17522802B1100B224F4 /* MUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15B22802B1100B224F4 /* MUser.m */; };
+		2A28B17622802B1100B224F4 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15C22802B1100B224F4 /* Comment.m */; };
+		2A28B17722802B1100B224F4 /* MLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B15F22802B1100B224F4 /* MLocation.m */; };
+		2A28B17822802B1100B224F4 /* MMImageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B16422802B1100B224F4 /* MMImageListView.m */; };
+		2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B16722802B1100B224F4 /* MMCommentInputView.m */; };
+		2A28B17A22802B1100B224F4 /* MMImagePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B16822802B1100B224F4 /* MMImagePreviewView.m */; };
+		2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B16922802B1100B224F4 /* MomentCell.m */; };
+		2A28B17C22802B1100B224F4 /* MMOperateMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B16B22802B1100B224F4 /* MMOperateMenuView.m */; };
+		2A28B17D22802B1100B224F4 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B16C22802B1100B224F4 /* DiscoverViewController.m */; };
+		2A28B18322802C9500B224F4 /* JKDBModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B17F22802C9500B224F4 /* JKDBModel.m */; };
+		2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B18022802C9500B224F4 /* JKDBHelper.m */; };
+		2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B1882280311400B224F4 /* NSString+Letter.m */; };
+		2A28B1902280311500B224F4 /* UIView+Geometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B18A2280311500B224F4 /* UIView+Geometry.m */; };
+		2A28B1912280311500B224F4 /* UIScrollView+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B18C2280311500B224F4 /* UIScrollView+Category.m */; };
+		2A28B1922280311500B224F4 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B18D2280311500B224F4 /* Utility.m */; };
+		2A28B1932280311500B224F4 /* JPinYinUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B18E2280311500B224F4 /* JPinYinUtil.m */; };
+		2A28B197228034C600B224F4 /* MMTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B196228034C500B224F4 /* MMTableView.m */; };
 		2ACD5EB12271539400A24BF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD5EB02271539400A24BF6 /* AppDelegate.m */; };
 		2ACD5EB42271539400A24BF6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD5EB32271539400A24BF6 /* ViewController.m */; };
 		2ACD5EB72271539400A24BF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACD5EB52271539400A24BF6 /* Main.storyboard */; };
@@ -41,6 +67,59 @@
 
 /* Begin PBXFileReference section */
 		1819C161891D6A6D3180248E /* Pods-WXChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXChat.release.xcconfig"; path = "Target Support Files/Pods-WXChat/Pods-WXChat.release.xcconfig"; sourceTree = "<group>"; };
+		2A042CDA2277EA3E0075582B /* WXFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXFriendViewController.h; sourceTree = "<group>"; };
+		2A042CDB2277EA3E0075582B /* WXFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXFriendViewController.m; sourceTree = "<group>"; };
+		2A28B14522802B1100B224F4 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		2A28B14822802B1100B224F4 /* MomentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentUtil.m; sourceTree = "<group>"; };
+		2A28B14922802B1100B224F4 /* MomentConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentConstant.m; sourceTree = "<group>"; };
+		2A28B14A22802B1100B224F4 /* MLLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabelUtil.m; sourceTree = "<group>"; };
+		2A28B14B22802B1100B224F4 /* MomentMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentMacros.h; sourceTree = "<group>"; };
+		2A28B14C22802B1100B224F4 /* MomentUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentUtil.h; sourceTree = "<group>"; };
+		2A28B14D22802B1100B224F4 /* MLLabelUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLLabelUtil.h; sourceTree = "<group>"; };
+		2A28B14E22802B1100B224F4 /* MomentConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentConstant.h; sourceTree = "<group>"; };
+		2A28B15022802B1100B224F4 /* MMLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLocationViewController.h; sourceTree = "<group>"; };
+		2A28B15122802B1100B224F4 /* WKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewController.m; sourceTree = "<group>"; };
+		2A28B15222802B1100B224F4 /* MomentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentViewController.h; sourceTree = "<group>"; };
+		2A28B15322802B1100B224F4 /* MMLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLocationViewController.m; sourceTree = "<group>"; };
+		2A28B15422802B1100B224F4 /* WKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewController.h; sourceTree = "<group>"; };
+		2A28B15522802B1100B224F4 /* MomentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentViewController.m; sourceTree = "<group>"; };
+		2A28B15722802B1100B224F4 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		2A28B15822802B1100B224F4 /* Moment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moment.m; sourceTree = "<group>"; };
+		2A28B15922802B1100B224F4 /* MLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLocation.h; sourceTree = "<group>"; };
+		2A28B15A22802B1100B224F4 /* MPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPicture.m; sourceTree = "<group>"; };
+		2A28B15B22802B1100B224F4 /* MUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUser.m; sourceTree = "<group>"; };
+		2A28B15C22802B1100B224F4 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		2A28B15D22802B1100B224F4 /* MUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUser.h; sourceTree = "<group>"; };
+		2A28B15E22802B1100B224F4 /* MPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPicture.h; sourceTree = "<group>"; };
+		2A28B15F22802B1100B224F4 /* MLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLocation.m; sourceTree = "<group>"; };
+		2A28B16022802B1100B224F4 /* Moment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moment.h; sourceTree = "<group>"; };
+		2A28B16222802B1100B224F4 /* MMImagePreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMImagePreviewView.h; sourceTree = "<group>"; };
+		2A28B16322802B1100B224F4 /* MMCommentInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCommentInputView.h; sourceTree = "<group>"; };
+		2A28B16422802B1100B224F4 /* MMImageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMImageListView.m; sourceTree = "<group>"; };
+		2A28B16522802B1100B224F4 /* MomentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentCell.h; sourceTree = "<group>"; };
+		2A28B16622802B1100B224F4 /* MMOperateMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMOperateMenuView.h; sourceTree = "<group>"; };
+		2A28B16722802B1100B224F4 /* MMCommentInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCommentInputView.m; sourceTree = "<group>"; };
+		2A28B16822802B1100B224F4 /* MMImagePreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMImagePreviewView.m; sourceTree = "<group>"; };
+		2A28B16922802B1100B224F4 /* MomentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentCell.m; sourceTree = "<group>"; };
+		2A28B16A22802B1100B224F4 /* MMImageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMImageListView.h; sourceTree = "<group>"; };
+		2A28B16B22802B1100B224F4 /* MMOperateMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMOperateMenuView.m; sourceTree = "<group>"; };
+		2A28B16C22802B1100B224F4 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		2A28B17F22802C9500B224F4 /* JKDBModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKDBModel.m; sourceTree = "<group>"; };
+		2A28B18022802C9500B224F4 /* JKDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKDBHelper.m; sourceTree = "<group>"; };
+		2A28B18122802C9500B224F4 /* JKDBModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKDBModel.h; sourceTree = "<group>"; };
+		2A28B18222802C9500B224F4 /* JKDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKDBHelper.h; sourceTree = "<group>"; };
+		2A28B1852280311400B224F4 /* UIView+Geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Geometry.h"; sourceTree = "<group>"; };
+		2A28B1862280311400B224F4 /* NSString+Letter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Letter.h"; sourceTree = "<group>"; };
+		2A28B1872280311400B224F4 /* UIScrollView+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Category.h"; sourceTree = "<group>"; };
+		2A28B1882280311400B224F4 /* NSString+Letter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Letter.m"; sourceTree = "<group>"; };
+		2A28B1892280311500B224F4 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		2A28B18A2280311500B224F4 /* UIView+Geometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Geometry.m"; sourceTree = "<group>"; };
+		2A28B18B2280311500B224F4 /* JPinYinUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPinYinUtil.h; sourceTree = "<group>"; };
+		2A28B18C2280311500B224F4 /* UIScrollView+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Category.m"; sourceTree = "<group>"; };
+		2A28B18D2280311500B224F4 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		2A28B18E2280311500B224F4 /* JPinYinUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JPinYinUtil.m; sourceTree = "<group>"; };
+		2A28B195228034C500B224F4 /* MMTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTableView.h; sourceTree = "<group>"; };
+		2A28B196228034C500B224F4 /* MMTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTableView.m; sourceTree = "<group>"; };
 		2ACD5EAC2271539400A24BF6 /* WXChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ACD5EAF2271539400A24BF6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2ACD5EB02271539400A24BF6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -104,6 +183,118 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2A042CD92277E9E50075582B /* WXFriend */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B14422802B1100B224F4 /* Discover */,
+				2A042CDA2277EA3E0075582B /* WXFriendViewController.h */,
+				2A042CDB2277EA3E0075582B /* WXFriendViewController.m */,
+			);
+			path = WXFriend;
+			sourceTree = SOURCE_ROOT;
+		};
+		2A28B14422802B1100B224F4 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B14522802B1100B224F4 /* DiscoverViewController.h */,
+				2A28B16C22802B1100B224F4 /* DiscoverViewController.m */,
+				2A28B14622802B1100B224F4 /* Moment */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		2A28B14622802B1100B224F4 /* Moment */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B14722802B1100B224F4 /* Utils */,
+				2A28B14F22802B1100B224F4 /* Controller */,
+				2A28B15622802B1100B224F4 /* Model */,
+				2A28B16122802B1100B224F4 /* View */,
+			);
+			path = Moment;
+			sourceTree = "<group>";
+		};
+		2A28B14722802B1100B224F4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B14822802B1100B224F4 /* MomentUtil.m */,
+				2A28B14922802B1100B224F4 /* MomentConstant.m */,
+				2A28B14A22802B1100B224F4 /* MLLabelUtil.m */,
+				2A28B14B22802B1100B224F4 /* MomentMacros.h */,
+				2A28B14C22802B1100B224F4 /* MomentUtil.h */,
+				2A28B14D22802B1100B224F4 /* MLLabelUtil.h */,
+				2A28B14E22802B1100B224F4 /* MomentConstant.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2A28B14F22802B1100B224F4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B15022802B1100B224F4 /* MMLocationViewController.h */,
+				2A28B15122802B1100B224F4 /* WKWebViewController.m */,
+				2A28B15222802B1100B224F4 /* MomentViewController.h */,
+				2A28B15322802B1100B224F4 /* MMLocationViewController.m */,
+				2A28B15422802B1100B224F4 /* WKWebViewController.h */,
+				2A28B15522802B1100B224F4 /* MomentViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2A28B15622802B1100B224F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B15722802B1100B224F4 /* Comment.h */,
+				2A28B15822802B1100B224F4 /* Moment.m */,
+				2A28B15922802B1100B224F4 /* MLocation.h */,
+				2A28B15A22802B1100B224F4 /* MPicture.m */,
+				2A28B15B22802B1100B224F4 /* MUser.m */,
+				2A28B15C22802B1100B224F4 /* Comment.m */,
+				2A28B15D22802B1100B224F4 /* MUser.h */,
+				2A28B15E22802B1100B224F4 /* MPicture.h */,
+				2A28B15F22802B1100B224F4 /* MLocation.m */,
+				2A28B16022802B1100B224F4 /* Moment.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2A28B16122802B1100B224F4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B16222802B1100B224F4 /* MMImagePreviewView.h */,
+				2A28B16322802B1100B224F4 /* MMCommentInputView.h */,
+				2A28B16422802B1100B224F4 /* MMImageListView.m */,
+				2A28B16522802B1100B224F4 /* MomentCell.h */,
+				2A28B16622802B1100B224F4 /* MMOperateMenuView.h */,
+				2A28B16722802B1100B224F4 /* MMCommentInputView.m */,
+				2A28B16822802B1100B224F4 /* MMImagePreviewView.m */,
+				2A28B16922802B1100B224F4 /* MomentCell.m */,
+				2A28B16A22802B1100B224F4 /* MMImageListView.h */,
+				2A28B16B22802B1100B224F4 /* MMOperateMenuView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2A28B17E22802C9500B224F4 /* JKDBModel */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B17F22802C9500B224F4 /* JKDBModel.m */,
+				2A28B18022802C9500B224F4 /* JKDBHelper.m */,
+				2A28B18122802C9500B224F4 /* JKDBModel.h */,
+				2A28B18222802C9500B224F4 /* JKDBHelper.h */,
+			);
+			path = JKDBModel;
+			sourceTree = "<group>";
+		};
+		2A28B1942280348800B224F4 /* BaseUI */ = {
+			isa = PBXGroup;
+			children = (
+				2A28B195228034C500B224F4 /* MMTableView.h */,
+				2A28B196228034C500B224F4 /* MMTableView.m */,
+			);
+			path = BaseUI;
+			sourceTree = SOURCE_ROOT;
+		};
 		2ACD5EA32271539400A24BF6 = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +323,10 @@
 				2ACD5EAF2271539400A24BF6 /* AppDelegate.h */,
 				2ACD5EB02271539400A24BF6 /* AppDelegate.m */,
 				2ACD5EEA2271673D00A24BF6 /* Other */,
+				2A28B1942280348800B224F4 /* BaseUI */,
 				2ACD5EE322715D1800A24BF6 /* Main */,
 				2ACD5EEF227544DF00A24BF6 /* WXChatListModule */,
+				2A042CD92277E9E50075582B /* WXFriend */,
 				2ACD5EB22271539400A24BF6 /* ViewController.h */,
 				2ACD5EB32271539400A24BF6 /* ViewController.m */,
 				2ACD5EB52271539400A24BF6 /* Main.storyboard */,
@@ -178,6 +371,17 @@
 			isa = PBXGroup;
 			children = (
 				2ACD5EEB2271675300A24BF6 /* PrefixHeader.pch */,
+				2A28B17E22802C9500B224F4 /* JKDBModel */,
+				2A28B18B2280311500B224F4 /* JPinYinUtil.h */,
+				2A28B18E2280311500B224F4 /* JPinYinUtil.m */,
+				2A28B1862280311400B224F4 /* NSString+Letter.h */,
+				2A28B1882280311400B224F4 /* NSString+Letter.m */,
+				2A28B1872280311400B224F4 /* UIScrollView+Category.h */,
+				2A28B18C2280311500B224F4 /* UIScrollView+Category.m */,
+				2A28B1852280311400B224F4 /* UIView+Geometry.h */,
+				2A28B18A2280311500B224F4 /* UIView+Geometry.m */,
+				2A28B1892280311500B224F4 /* Utility.h */,
+				2A28B18D2280311500B224F4 /* Utility.m */,
 			);
 			path = Other;
 			sourceTree = SOURCE_ROOT;
@@ -362,6 +566,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-resources.sh",
+				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/EaseUI/EaseUI/resources/EaseUIResource.bundle",
 				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
@@ -370,6 +575,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EaseUIResource.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
@@ -408,13 +614,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A28B17C22802B1100B224F4 /* MMOperateMenuView.m in Sources */,
+				2A28B1912280311500B224F4 /* UIScrollView+Category.m in Sources */,
 				2ACD5EF22275452100A24BF6 /* WXConversationListViewController.m in Sources */,
+				2A28B17522802B1100B224F4 /* MUser.m in Sources */,
+				2A042CDC2277EA3E0075582B /* WXFriendViewController.m in Sources */,
 				2ACD5EB42271539400A24BF6 /* ViewController.m in Sources */,
 				2ACD5EBF2271539600A24BF6 /* main.m in Sources */,
+				2A28B1932280311500B224F4 /* JPinYinUtil.m in Sources */,
+				2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */,
+				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
 				2ACD5EEE227197A700A24BF6 /* WXNavigationController.m in Sources */,
+				2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */,
+				2A28B17622802B1100B224F4 /* Comment.m in Sources */,
+				2A28B1922280311500B224F4 /* Utility.m in Sources */,
+				2A28B197228034C600B224F4 /* MMTableView.m in Sources */,
+				2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */,
 				2ACD5EE622715D3A00A24BF6 /* WXTabBarController.m in Sources */,
 				2ACD5EF52275455200A24BF6 /* WXChatViewController.m in Sources */,
 				2ACD5EB12271539400A24BF6 /* AppDelegate.m in Sources */,
+				2A28B17222802B1100B224F4 /* MomentViewController.m in Sources */,
+				2A28B17D22802B1100B224F4 /* DiscoverViewController.m in Sources */,
+				2A28B17A22802B1100B224F4 /* MMImagePreviewView.m in Sources */,
+				2A28B17122802B1100B224F4 /* MMLocationViewController.m in Sources */,
+				2A28B18322802C9500B224F4 /* JKDBModel.m in Sources */,
+				2A28B17722802B1100B224F4 /* MLocation.m in Sources */,
+				2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */,
+				2A28B1902280311500B224F4 /* UIView+Geometry.m in Sources */,
+				2A28B17822802B1100B224F4 /* MMImageListView.m in Sources */,
+				2A28B17022802B1100B224F4 /* WKWebViewController.m in Sources */,
+				2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */,
+				2A28B17422802B1100B224F4 /* MPicture.m in Sources */,
+				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
+				2A28B17322802B1100B224F4 /* Moment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

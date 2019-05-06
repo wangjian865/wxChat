@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA886D3431E12FFD551062A93D3284B3"
+               BlueprintIdentifier = "D8B92693D6714EA18C9E86B4719632EB"
                BuildableName = "libPods-WXChat.a"
                BlueprintName = "Pods-WXChat"
                ReferencedContainer = "container:Pods.xcodeproj">

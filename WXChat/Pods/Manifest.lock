@@ -1,12 +1,20 @@
 PODS:
+  - AMap3DMap (6.8.1):
+    - AMapFoundation (~> 1.5)
+  - AMapFoundation (1.5.6)
   - DACircularProgress (2.3.1)
   - EaseUI (3.5.3):
     - Hyphenate (~> 3.5.3)
     - MJRefresh (~> 3.1.0)
     - MWPhotoBrowser (~> 2.1.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - Hyphenate (3.5.4)
   - MBProgressHUD (0.9.2)
   - MJRefresh (3.1.16)
+  - MLLabel (1.10.5)
+  - MMWebView (1.2)
   - MWPhotoBrowser (2.1.2):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -14,18 +22,36 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - UUActionSheet (1.8)
+  - UUButton (1.1)
+  - YYText (1.0.7)
 
 DEPENDENCIES:
+  - AMap3DMap
   - EaseUI (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`)
+  - FMDB
+  - MLLabel
+  - MMWebView
+  - UUActionSheet
+  - UUButton
+  - YYText
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AMap3DMap
+    - AMapFoundation
     - DACircularProgress
+    - FMDB
     - Hyphenate
     - MBProgressHUD
     - MJRefresh
+    - MLLabel
+    - MMWebView
     - MWPhotoBrowser
     - SDWebImage
+    - UUActionSheet
+    - UUButton
+    - YYText
 
 EXTERNAL SOURCES:
   EaseUI:
@@ -37,14 +63,22 @@ CHECKOUT OPTIONS:
     :git: https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git
 
 SPEC CHECKSUMS:
+  AMap3DMap: 9fa4ec6ab230bfbd3f0c0834f757fbd7038efe53
+  AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EaseUI: 3bb4554d25fbbac5f7369e4393a9bab9ea09a689
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Hyphenate: 8fc5dd5176bf80d3a74383deb26a383e7f1b9c34
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  MLLabel: d76124055a2205e7f76878e62cd06ba925ba0c97
+  MMWebView: e316971fbd8fb9c7fdc02b96c35d450f77961002
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  UUActionSheet: cde48ec5db6699f20f5b7f72517e4bb6294398e0
+  UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 1c685103b5d2c6b6f9979eae7d15397e9188bbb1
+PODFILE CHECKSUM: 4ab65c69256a42158451863ebf9da445d991a308
 
 COCOAPODS: 1.6.1

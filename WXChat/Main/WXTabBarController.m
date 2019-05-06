@@ -10,7 +10,7 @@
 #import "WXNavigationController.h"
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"EaseUsersListViewController"
-#define Controller_Third         @"EaseViewController"
+#define Controller_Third         @"DiscoverViewController"
 #define Controller_Fourth        @"ViewController"
 @interface WXTabBarController ()
 /**
@@ -60,6 +60,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tabBar.backgroundColor = [UIColor whiteColor];
+    self.tabBar.translucent = NO;
     [self setUpAllChildVC];
 }
 

@@ -15,6 +15,10 @@
 
 @implementation AppDelegate
 
++ (AppDelegate *)sharedInstance
+{
+    return ((AppDelegate *)[[UIApplication sharedApplication] delegate]);
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window.rootViewController = [[WXTabBarController alloc] init];
