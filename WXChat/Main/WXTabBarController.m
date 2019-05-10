@@ -9,7 +9,7 @@
 #import "WXTabBarController.h"
 #import "WXNavigationController.h"
 #define Controller_First         @"WXConversationListViewController"
-#define Controller_Second        @"EaseUsersListViewController"
+#define Controller_Second        @"WXUsersListViewController"
 #define Controller_Third         @"DiscoverViewController"
 #define Controller_Fourth        @"ViewController"
 @interface WXTabBarController ()

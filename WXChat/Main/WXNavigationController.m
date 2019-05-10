@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.navigationBar.translucent = NO;
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
