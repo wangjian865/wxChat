@@ -21,12 +21,24 @@
     self.delegate = self;
 }
 // delegate
-- (void)userListViewController:(EaseUsersListViewController *)userListViewController
-            didSelectUserModel:(id<IUserModel>)userModel{
-    
-}
+//- (void)userListViewController:(EaseUsersListViewController *)userListViewController
+//            didSelectUserModel:(id<IUserModel>)userModel{
+//    
+//}
 // dataSource
-- (NSInteger)numberOfRowInUserListViewController:(EaseUsersListViewController *)userListViewController;{
-    return 2;
+//- (NSInteger)numberOfRowInUserListViewController:(EaseUsersListViewController *)userListViewController;{
+//    return 2;
+//}
+//- (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
+//                   userModelForIndexPath:(NSIndexPath *)indexPath{
+//
+//}
+- (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
+                           modelForBuddy:(NSString *)buddy
+{
+    //用户可以根据自己的用户体系，根据buddy设置用户昵称和头像
+    id<IUserModel> model = nil;
+    model = [[EaseUserModel alloc] initWithBuddy:buddy];
+    return model;
 }
 @end

@@ -220,13 +220,13 @@
 		2A28B14722802B1100B224F4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2A28B14C22802B1100B224F4 /* MomentUtil.h */,
 				2A28B14822802B1100B224F4 /* MomentUtil.m */,
+				2A28B14E22802B1100B224F4 /* MomentConstant.h */,
 				2A28B14922802B1100B224F4 /* MomentConstant.m */,
+				2A28B14D22802B1100B224F4 /* MLLabelUtil.h */,
 				2A28B14A22802B1100B224F4 /* MLLabelUtil.m */,
 				2A28B14B22802B1100B224F4 /* MomentMacros.h */,
-				2A28B14C22802B1100B224F4 /* MomentUtil.h */,
-				2A28B14D22802B1100B224F4 /* MLLabelUtil.h */,
-				2A28B14E22802B1100B224F4 /* MomentConstant.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -235,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				2A28B15022802B1100B224F4 /* MMLocationViewController.h */,
-				2A28B15122802B1100B224F4 /* WKWebViewController.m */,
-				2A28B15222802B1100B224F4 /* MomentViewController.h */,
 				2A28B15322802B1100B224F4 /* MMLocationViewController.m */,
 				2A28B15422802B1100B224F4 /* WKWebViewController.h */,
+				2A28B15122802B1100B224F4 /* WKWebViewController.m */,
+				2A28B15222802B1100B224F4 /* MomentViewController.h */,
 				2A28B15522802B1100B224F4 /* MomentViewController.m */,
 			);
 			path = Controller;
@@ -248,15 +248,15 @@
 			isa = PBXGroup;
 			children = (
 				2A28B15722802B1100B224F4 /* Comment.h */,
+				2A28B15C22802B1100B224F4 /* Comment.m */,
+				2A28B16022802B1100B224F4 /* Moment.h */,
 				2A28B15822802B1100B224F4 /* Moment.m */,
 				2A28B15922802B1100B224F4 /* MLocation.h */,
-				2A28B15A22802B1100B224F4 /* MPicture.m */,
-				2A28B15B22802B1100B224F4 /* MUser.m */,
-				2A28B15C22802B1100B224F4 /* Comment.m */,
-				2A28B15D22802B1100B224F4 /* MUser.h */,
-				2A28B15E22802B1100B224F4 /* MPicture.h */,
 				2A28B15F22802B1100B224F4 /* MLocation.m */,
-				2A28B16022802B1100B224F4 /* Moment.h */,
+				2A28B15E22802B1100B224F4 /* MPicture.h */,
+				2A28B15A22802B1100B224F4 /* MPicture.m */,
+				2A28B15D22802B1100B224F4 /* MUser.h */,
+				2A28B15B22802B1100B224F4 /* MUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,15 +265,15 @@
 			isa = PBXGroup;
 			children = (
 				2A28B16222802B1100B224F4 /* MMImagePreviewView.h */,
-				2A28B16322802B1100B224F4 /* MMCommentInputView.h */,
-				2A28B16422802B1100B224F4 /* MMImageListView.m */,
-				2A28B16522802B1100B224F4 /* MomentCell.h */,
-				2A28B16622802B1100B224F4 /* MMOperateMenuView.h */,
-				2A28B16722802B1100B224F4 /* MMCommentInputView.m */,
 				2A28B16822802B1100B224F4 /* MMImagePreviewView.m */,
-				2A28B16922802B1100B224F4 /* MomentCell.m */,
 				2A28B16A22802B1100B224F4 /* MMImageListView.h */,
+				2A28B16422802B1100B224F4 /* MMImageListView.m */,
+				2A28B16322802B1100B224F4 /* MMCommentInputView.h */,
+				2A28B16722802B1100B224F4 /* MMCommentInputView.m */,
+				2A28B16622802B1100B224F4 /* MMOperateMenuView.h */,
 				2A28B16B22802B1100B224F4 /* MMOperateMenuView.m */,
+				2A28B16522802B1100B224F4 /* MomentCell.h */,
+				2A28B16922802B1100B224F4 /* MomentCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,10 +281,10 @@
 		2A28B17E22802C9500B224F4 /* JKDBModel */ = {
 			isa = PBXGroup;
 			children = (
-				2A28B17F22802C9500B224F4 /* JKDBModel.m */,
-				2A28B18022802C9500B224F4 /* JKDBHelper.m */,
 				2A28B18122802C9500B224F4 /* JKDBModel.h */,
+				2A28B17F22802C9500B224F4 /* JKDBModel.m */,
 				2A28B18222802C9500B224F4 /* JKDBHelper.h */,
+				2A28B18022802C9500B224F4 /* JKDBHelper.m */,
 			);
 			path = JKDBModel;
 			sourceTree = "<group>";
@@ -904,6 +904,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GJPPNRS562;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WXChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -924,6 +925,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GJPPNRS562;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = WXChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

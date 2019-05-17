@@ -14,5 +14,5 @@ pod 'UUActionSheet'
 pod 'UUButton'
 pod 'MLLabel'
 pod 'AMap3DMap'
-
+pod 'CWLateralSlide', '~> 1.6.3'
 end

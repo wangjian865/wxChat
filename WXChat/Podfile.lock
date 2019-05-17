@@ -2,6 +2,7 @@ PODS:
   - AMap3DMap (6.8.1):
     - AMapFoundation (~> 1.5)
   - AMapFoundation (1.5.6)
+  - CWLateralSlide (1.6.4)
   - DACircularProgress (2.3.1)
   - EaseUI (3.5.3):
     - Hyphenate (~> 3.5.3)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AMap3DMap
+  - CWLateralSlide (~> 1.6.3)
   - EaseUI (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`)
   - FMDB
   - MLLabel
@@ -40,6 +42,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AMap3DMap
     - AMapFoundation
+    - CWLateralSlide
     - DACircularProgress
     - FMDB
     - Hyphenate
@@ -65,6 +68,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AMap3DMap: 9fa4ec6ab230bfbd3f0c0834f757fbd7038efe53
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
+  CWLateralSlide: b7933f4a03d652fbec6789bb45dc567011e892ca
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   EaseUI: 3bb4554d25fbbac5f7369e4393a9bab9ea09a689
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -79,6 +83,6 @@ SPEC CHECKSUMS:
   UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 4ab65c69256a42158451863ebf9da445d991a308
+PODFILE CHECKSUM: b5c82fd79ce5992be8bf6bc61f86d1eb421a5bbf
 
 COCOAPODS: 1.6.1

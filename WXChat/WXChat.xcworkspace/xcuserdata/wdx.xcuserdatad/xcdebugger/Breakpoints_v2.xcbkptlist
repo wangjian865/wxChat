@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/EaseUI/EaseUI/EMUIKit/ViewController/EaseMessageViewController.m"
-            timestampString = "578135403.794068"
+            timestampString = "579675813.695556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1685"
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WXFriend/Discover/Moment/Controller/MomentViewController.m"
-            timestampString = "579004298.030342"
+            filePath = "Pods/EaseUI/EaseUI/EMUIKit/ViewController/EaseMessageViewController.m"
+            timestampString = "579675813.6956559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "-tableView:numberOfRowsInSection:"
+            startingLineNumber = "1407"
+            endingLineNumber = "1407"
+            landmarkName = "-didSendText:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,29 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WXFriend/Discover/Moment/Controller/MomentViewController.m"
-            timestampString = "579004298.030447"
+            filePath = "Pods/EaseUI/EaseUI/EMUIKit/ViewController/EaseMessageViewController.m"
+            timestampString = "579675813.695701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "-configData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WXFriend/Discover/Moment/Utils/MomentUtil.m"
-            timestampString = "579004298.030517"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "+getMomentList:pageNum:"
+            startingLineNumber = "1401"
+            endingLineNumber = "1401"
+            landmarkName = "-didSendText:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
