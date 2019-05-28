@@ -9,7 +9,8 @@
 #import "WXConversationListViewController.h"
 #import "NSDate+Category.h"
 #import "WXChatViewController.h"
-@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate>
+#import "XTPopView.h"
+@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,selectIndexPathDelegate>
 /**
  * 用户数据模型,从自身数据库获取
  */
@@ -35,7 +36,24 @@
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
-    
+    [self setupNavi];
+}
+- (void)setupNavi{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"add" ofType:@"png"];
+    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn)];
+}
+- (void)clickRightBarBtn{
+    CGPoint point = CGPointMake(k_screen_width-25, k_top_height+2);
+    XTPopView *myView = [[XTPopView alloc] initWithOrigin:point Width:k_current_Width(100) Height:k_current_Height(40)*4 Type:XTTypeOfUpRight Color:[UIColor whiteColor]];
+    myView.dataArray = @[@"创建群组",@"新建会议",@"添加联系人",@"扫一扫"];
+    myView.images = @[@"message_group",@"message_meeting",@"message_contack",@"message_scan"];
+    myView.fontSize = k_current_Width(14);
+    myView.row_height = k_current_Width(40);
+    myView.titleTextColor = UIColor.blackColor;
+    myView.delegate = self;
+    [myView popView];
 }
 //处理用户数据的代理
 - (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
@@ -104,4 +122,9 @@
     
     self.isNeedReload = NO;
 }
+#pragma mark - selectIndexPathDelegate
+- (void)selectIndexPathRow:(NSInteger)index {
+    NSLog(@"%ld",index);
+}
+
 @end

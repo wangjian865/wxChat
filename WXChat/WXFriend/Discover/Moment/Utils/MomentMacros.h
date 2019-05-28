@@ -6,35 +6,7 @@
 //  Copyright © 2019 LEA. All rights reserved.
 //
 
-#pragma mark - ------------------ 全局 ------------------
-
-// 弱引用
-#define WS(wSelf)               __weak typeof(self) wSelf = self
-// RGB颜色
-#define MMRGBColor(r,g,b)       [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
-// 观察者
-#define kNotificationCenter     [NSNotificationCenter defaultCenter]
-
-// 屏幕物理尺寸宽度
-#define k_screen_width          [UIScreen mainScreen].bounds.size.width
-// 屏幕物理尺寸高度
-#define k_screen_height         [UIScreen mainScreen].bounds.size.height
-// 状态栏高度
-#define k_status_height         [[UIApplication sharedApplication] statusBarFrame].size.height
-// 导航栏高度
-#define k_nav_height            self.navigationController.navigationBar.height
-// 顶部整体高度
-#define k_top_height            (k_status_height + k_nav_height)
-// iPhone X系列
-#define k_iphone_x              (k_screen_height >= 812.0f)
-// tabbar高度
-#define k_bar_height            (k_iphone_x ? 83.0 : 49.0)
-// 背景颜色
-#define k_background_color      [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.0]
-
-
 #pragma mark - ------------------ 朋友圈 ------------------
-
 // 头像视图的宽、高
 #define kAvatarWidth            40
 // 名字视图高度

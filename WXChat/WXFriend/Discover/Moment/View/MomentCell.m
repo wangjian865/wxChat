@@ -258,8 +258,8 @@ CGFloat lineSpacing = 5;
     GCD_AFTER(0.3, ^{  // 延迟执行
         sender.titleLabel.backgroundColor = [UIColor clearColor];
         if (operateType == MMOperateTypeFull) {
-            _moment.isFullText = !_moment.isFullText;
-            [_moment update];
+            self->_moment.isFullText = !_moment.isFullText;
+            [self->_moment update];
         }
         if ([self.delegate respondsToSelector:@selector(didOperateMoment:operateType:)]) {
             [self.delegate didOperateMoment:self operateType:operateType];

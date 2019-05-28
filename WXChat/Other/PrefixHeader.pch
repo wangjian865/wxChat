@@ -29,6 +29,8 @@
 #import <UIImageView+WebCache.h>
 #import <UUActionSheet.h>
 #import <MJRefresh.h>
+#import "SDAutoLayout.h"
+//#import "WXChat-Swift.h"
 /*
  颜色
  */
@@ -36,7 +38,34 @@
 #define RGB(r,g,b,a) [UIColor colorWithRed:(float)r / 255.0f green:(float)g / 255.0f blue:(float)b / 255.0f alpha:a]
 
 #define rgbHEX(rgbValue) ([UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0])
+#define Global_tintColor [UIColor colorWithRed:0 green:(190 / 255.0) blue:(12 / 255.0) alpha:1]
+#pragma mark - ------------------ 全局 ------------------
 
+// 弱引用
+#define WS(wSelf)               __weak typeof(self) wSelf = self
+// RGB颜色
+#define MMRGBColor(r,g,b)       [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+// 观察者
+#define kNotificationCenter     [NSNotificationCenter defaultCenter]
 
+// 屏幕物理尺寸宽度
+#define k_screen_width          [UIScreen mainScreen].bounds.size.width
+// 屏幕物理尺寸高度
+#define k_screen_height         [UIScreen mainScreen].bounds.size.height
+// 状态栏高度
+#define k_status_height         [[UIApplication sharedApplication] statusBarFrame].size.height
+// 导航栏高度
+#define k_nav_height            self.navigationController.navigationBar.height
+// 顶部整体高度
+#define k_top_height            (k_status_height + k_nav_height)
+// iPhone X系列
+#define k_iphone_x              (k_screen_height >= 812.0f)
+// tabbar高度
+#define k_bar_height            (k_iphone_x ? 83.0 : 49.0)
+// 背景颜色
+#define k_background_color      [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.0]
+// 等比缩放宽高 根据UI图给的标准进行调整
+#define k_current_Width(_width)  _width / 375.0 * k_screen_width
+#define k_current_Height(_height)  _height / 667.0 * k_screen_height
 
 #endif /* PrefixHeader_pch */

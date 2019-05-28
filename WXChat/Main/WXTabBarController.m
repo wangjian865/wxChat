@@ -8,6 +8,7 @@
 
 #import "WXTabBarController.h"
 #import "WXNavigationController.h"
+#import "WXChat-Swift.h"
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXUsersListViewController"
 #define Controller_Third         @"DiscoverViewController"
@@ -62,6 +63,8 @@
     self.tabBar.backgroundColor = [UIColor whiteColor];
     self.tabBar.translucent = NO;
     [self setUpAllChildVC];
+    test *tt = [[test alloc] init];
+    [tt show];
 }
 
 - (void)setUpAllChildVC{
