@@ -66,6 +66,7 @@
 		2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BAB22857EEF00103A9E /* WXConversationListViewController.m */; };
 		2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BAC22857EEF00103A9E /* WXChatViewController.m */; };
 		2AEE8BBA2285819700103A9E /* WXUsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BB92285819700103A9E /* WXUsersListViewController.m */; };
+		CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */ = {isa = PBXBuildFile; fileRef = CE5B98EE22A56F6F00B608E4 /* todo.text */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +206,7 @@
 		2AEE8BB92285819700103A9E /* WXUsersListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListViewController.m; sourceTree = "<group>"; };
 		A46496228D8784C962820110 /* libPods-WXChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WXChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C680DD6B617232EA9969D4D2 /* Pods-WXChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXChat.debug.xcconfig"; path = "Target Support Files/Pods-WXChat/Pods-WXChat.debug.xcconfig"; sourceTree = "<group>"; };
+		CE5B98EE22A56F6F00B608E4 /* todo.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.text; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -392,6 +394,7 @@
 		2ACD5EA32271539400A24BF6 = {
 			isa = PBXGroup;
 			children = (
+				CE5B98EE22A56F6F00B608E4 /* todo.text */,
 				2ACD5EAE2271539400A24BF6 /* WXChat */,
 				2ACD5EC72271539600A24BF6 /* WXChatTests */,
 				2ACD5ED22271539600A24BF6 /* WXChatUITests */,
@@ -762,6 +765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACD5EBC2271539600A24BF6 /* LaunchScreen.storyboard in Resources */,
+				CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */,
 				2ACD5EB92271539600A24BF6 /* Assets.xcassets in Resources */,
 				2ACD5EB72271539400A24BF6 /* Main.storyboard in Resources */,
 				2A4D4742229D273E00D3FE2C /* WXFoldingCell.xib in Resources */,
