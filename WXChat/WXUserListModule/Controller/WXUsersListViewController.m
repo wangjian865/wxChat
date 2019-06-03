@@ -66,7 +66,7 @@
 //                   userModelForIndexPath:(NSIndexPath *)indexPath{
 //
 //}
-
+//根据buddy,即id  从后台获取相关信息
 - (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
                            modelForBuddy:(NSString *)buddy
 {

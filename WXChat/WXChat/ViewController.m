@@ -19,7 +19,7 @@
 @implementation ViewController
 - (UITableView *)tableView{
     if (_tableView == nil){
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height - k_nav_height - k_bar_height - 50) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height - k_top_height - k_bar_height) style:UITableViewStylePlain];
         _tableView.backgroundColor = UIColor.redColor;
         [_tableView registerNib:[UINib nibWithNibName:@"WXFoldingCell" bundle:nil] forCellReuseIdentifier:@"WXFoldingCell"];
     }

@@ -12,7 +12,7 @@
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXUsersListViewController"
 #define Controller_Third         @"DiscoverViewController"
-#define Controller_Fourth        @"EaseUsersListViewController"
+#define Controller_Fourth        @"ViewController"
 @interface WXTabBarController ()
 /**
  * 控制器集合
