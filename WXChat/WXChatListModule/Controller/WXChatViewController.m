@@ -18,10 +18,34 @@
     [super viewDidLoad];
     self.delegate = self;
     self.dataSource = self;
+    //设置聊天会话样式
+//    [self setChatAppearance];
     //添加文件传输按钮
-    [self addFileTransferbButton];
+    [self insetItemForChatBar];
 }
-- (void)addFileTransferbButton {
+//设置聊天会话样式
+- (void)setChatAppearance{
+    [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
+    
+    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
+    
+    [[EaseBaseMessageCell appearance] setAvatarSize:40.f];//设置头像大小
+    
+    [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];//设置头像圆角
+    
+    [[EaseMessageCell appearance] setMessageTextFont:[UIFont systemFontOfSize:15]];//消息显示字体
+    
+    [[EaseMessageCell appearance] setMessageTextColor:[UIColor blackColor]];//消息显示颜色
+    
+    [[EaseMessageCell appearance] setMessageLocationFont:[UIFont systemFontOfSize:12]];//位置消息显示字体
+    
+    [[EaseMessageCell appearance] setMessageLocationColor:[UIColor whiteColor]];//位置消息显示颜色
+    
+    [[EaseBaseMessageCell appearance] setSendMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_full"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_sender_audio_playing_003"]]];//发送者语音消息播放图片
+    
+    [[EaseBaseMessageCell appearance] setRecvMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"],[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing003"]]];//接收者语音消息播放图片
+}
+- (void)insetItemForChatBar {
     [self.chatBarMoreView insertItemWithImage:[UIImage imageNamed:@"tabbar_maillist_sel"] highlightedImage:[UIImage imageNamed:@"tabbar_maillist_sel"] title:@"文件传输"];
 }
 //自定义功能的回调

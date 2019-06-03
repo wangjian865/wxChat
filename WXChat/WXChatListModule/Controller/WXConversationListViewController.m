@@ -9,19 +9,58 @@
 #import "WXConversationListViewController.h"
 #import "NSDate+Category.h"
 #import "WXChatViewController.h"
-#import "XTPopView.h"
-@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,selectIndexPathDelegate>
+#import "YCMenuView.h"
+#import "EMInviteGroupMemberViewController.h"
+#import "WXPresentNavigationController.h"
+#import "WXUsersListViewController.h"
+#import "UIImage+ColorImage.h"
+@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
  */
 @property (nonatomic, strong) NSArray *imageAndNameArray;
-
+@property (nonatomic, strong) YCMenuView *menuView;
 @property (nonatomic) BOOL isViewAppear;
 @property (nonatomic) BOOL isNeedReload;
 @property (nonatomic) BOOL isNeedReloadSorted;
+/**
+ * 搜索框
+ */
+@property (nonatomic, strong) UISearchController *serachController;
 @end
 
 @implementation WXConversationListViewController
+
+#pragma mark -- getter
+- (UISearchController *)serachController{
+    if (_serachController == nil){
+        UIViewController *resultVC = [[UIViewController alloc] init];
+        resultVC.view.backgroundColor = UIColor.redColor;
+        _serachController = [[UISearchController alloc] initWithSearchResultsController:resultVC];
+        self.definesPresentationContext = YES;
+        _serachController.view.backgroundColor = UIColor.whiteColor;
+        _serachController.searchBar.placeholder = @"搜索";
+        // 默认为YES,设置开始搜索时背景显示与否
+        _serachController.dimsBackgroundDuringPresentation = YES;
+        // 默认为YES,控制搜索时，是否隐藏导航栏
+        _serachController.hidesNavigationBarDuringPresentation = YES;
+        _serachController.delegate = self;
+        UISearchBar *bar = _serachController.searchBar;
+        bar.barStyle = UISearchBarStyleDefault;
+        [bar setBackgroundImage:[UIImage getImageWithColor:[UIColor whiteColor]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+        //输入框背景色
+        for(UIView *subview in bar.subviews[0].subviews)
+        {
+            if ([subview isKindOfClass:NSClassFromString(@"UISearchBarTextField")])
+            {
+                subview.backgroundColor = rgb(237,237,239);
+                break;
+            }
+        }
+    }
+    return _serachController;
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self tableViewDidTriggerHeaderRefresh];
@@ -37,23 +76,36 @@
     self.delegate = self;
     self.dataSource = self;
     [self setupNavi];
+    [self.tableView setTableHeaderView:self.serachController.searchBar];
 }
 - (void)setupNavi{
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"add" ofType:@"png"];
-    UIImage *image = [UIImage imageWithContentsOfFile:path];
+    UIImage *image = [UIImage imageNamed:@"pop_add"];
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn:)];
 }
-- (void)clickRightBarBtn{
-    CGPoint point = CGPointMake(k_screen_width-25, k_top_height+2);
-    XTPopView *myView = [[XTPopView alloc] initWithOrigin:point Width:k_current_Width(100) Height:k_current_Height(40)*4 Type:XTTypeOfUpRight Color:[UIColor whiteColor]];
-    myView.dataArray = @[@"创建群组",@"新建会议",@"添加联系人",@"扫一扫"];
-    myView.images = @[@"message_group",@"message_meeting",@"message_contack",@"message_scan"];
-    myView.fontSize = k_current_Width(14);
-    myView.row_height = k_current_Width(40);
-    myView.titleTextColor = UIColor.blackColor;
-    myView.delegate = self;
-    [myView popView];
+- (void)clickRightBarBtn: (UIButton *)sender{
+    WS(weaklf);
+    YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"发起聊天" image:[UIImage imageNamed:@"pop_groupChat"] handler:^(YCMenuAction *action) {
+        EMInviteGroupMemberViewController *inviteGroupVC = [[EMInviteGroupMemberViewController alloc] init];
+        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:inviteGroupVC];
+        [weaklf presentViewController:nav animated:YES completion:nil];
+    }];
+    YCMenuAction *action2 = [YCMenuAction actionWithTitle:@"添加好友" image:[UIImage imageNamed:@"pop_addFriend"] handler:^(YCMenuAction *action) {
+        
+    }];
+    YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"加入公司" image:[UIImage imageNamed:@"pop_company"] handler:^(YCMenuAction *action) {
+        
+    }];
+    YCMenuAction *action4 = [YCMenuAction actionWithTitle:@"扫一扫" image:[UIImage imageNamed:@"pop_scan"] handler:^(YCMenuAction *action) {
+        
+    }];
+    NSArray *arr = @[action1,action2,action3,action4];
+    YCMenuView *view = [YCMenuView menuWithActions:arr width:140 relyonView:sender];
+    view.textFont = [UIFont systemFontOfSize:14];
+    view.textColor = UIColor.whiteColor;
+    view.maxDisplayCount = 7;
+    [view show];
+    self.menuView = view;
 }
 //处理用户数据的代理
 - (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController

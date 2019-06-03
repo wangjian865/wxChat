@@ -16,4 +16,5 @@ pod 'MLLabel'
 pod 'AMap3DMap'
 pod 'CWLateralSlide', '~> 1.6.3'
 pod 'SDAutoLayout'
+pod 'Masonry'
 end

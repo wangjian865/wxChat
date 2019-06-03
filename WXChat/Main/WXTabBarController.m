@@ -12,7 +12,7 @@
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXUsersListViewController"
 #define Controller_Third         @"DiscoverViewController"
-#define Controller_Fourth        @"ViewController"
+#define Controller_Fourth        @"EaseUsersListViewController"
 @interface WXTabBarController ()
 /**
  * 控制器集合
@@ -63,8 +63,6 @@
     self.tabBar.backgroundColor = [UIColor whiteColor];
     self.tabBar.translucent = NO;
     [self setUpAllChildVC];
-    test *tt = [[test alloc] init];
-    [tt show];
 }
 
 - (void)setUpAllChildVC{
@@ -89,8 +87,6 @@
     navC.tabBarItem.image = [UIImage imageNamed:image];
     navC.tabBarItem.selectedImage = [[UIImage imageNamed:selectImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [navC.tabBarItem setTitleTextAttributes:@{NSForegroundColorAttributeName:rgb(21, 104, 200)} forState:UIControlStateSelected];
-    
-    //    [navC.navigationBar setBackgroundImage:[UIImage imageNamed:@""] forBarMetrics:UIBarMetricsDefault];
     
     VC.navigationItem.title = navTitle;
     [self addChildViewController:navC];
