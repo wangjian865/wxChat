@@ -43,7 +43,7 @@
     // Do any additional setup after loading the view.
     self.selectedArray = [[NSMutableArray alloc] init];
     [self _setupSubviews];
-//    [self _fetchContactsWithIsShowHUD:YES];
+    [self _fetchContactsWithIsShowHUD:YES];
     self.showRefreshFooter = NO;
     self.showRefreshHeader = NO;
     
