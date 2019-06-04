@@ -9,6 +9,7 @@
 #import "WXTabBarController.h"
 #import "WXNavigationController.h"
 #import "WXChat-Swift.h"
+#import "WXUsersListViewController.h"
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXUsersListViewController"
 #define Controller_Third         @"DiscoverViewController"
@@ -68,8 +69,13 @@
 - (void)setUpAllChildVC{
     
     for (NSInteger index = 0; index < 4; index++) {
-        
-        UIViewController *childVC = [[NSClassFromString([self.childControllerArray objectAtIndex:index])alloc]init];
+        NSString *className = [self.childControllerArray objectAtIndex:index];
+        UIViewController *childVC;
+        if ([className isEqualToString:@"WXUsersListViewController"]){
+            childVC = [[WXUsersListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        }else{
+            childVC = [[NSClassFromString(className)alloc]init];
+        }
         [self setUpChildViewController:childVC
                                      image:[self.normalImageArray objectAtIndex:index]
                                selectImage:[self.selectedImageArray objectAtIndex:index]

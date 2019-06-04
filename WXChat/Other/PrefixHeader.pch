@@ -32,6 +32,7 @@
 #import "SDAutoLayout.h"
 #import <Hyphenate/Hyphenate.h>
 #import <Masonry.h>
+#import <EaseUI/EaseUI.h>
 //#import "WXChat-Swift.h"
 /*
  颜色

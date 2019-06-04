@@ -66,6 +66,7 @@
 		2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BAB22857EEF00103A9E /* WXConversationListViewController.m */; };
 		2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BAC22857EEF00103A9E /* WXChatViewController.m */; };
 		2AEE8BBA2285819700103A9E /* WXUsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BB92285819700103A9E /* WXUsersListViewController.m */; };
+		2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF962C122A65FF3005FAC61 /* WXUsersListService.m */; };
 		CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */ = {isa = PBXBuildFile; fileRef = CE5B98EE22A56F6F00B608E4 /* todo.text */; };
 /* End PBXBuildFile section */
 
@@ -204,6 +205,8 @@
 		2AEE8BAE22857EEF00103A9E /* WXChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXChatViewController.h; sourceTree = "<group>"; };
 		2AEE8BB82285819700103A9E /* WXUsersListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXUsersListViewController.h; sourceTree = "<group>"; };
 		2AEE8BB92285819700103A9E /* WXUsersListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListViewController.m; sourceTree = "<group>"; };
+		2AF962C022A65FF3005FAC61 /* WXUsersListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXUsersListService.h; sourceTree = "<group>"; };
+		2AF962C122A65FF3005FAC61 /* WXUsersListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListService.m; sourceTree = "<group>"; };
 		A46496228D8784C962820110 /* libPods-WXChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WXChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C680DD6B617232EA9969D4D2 /* Pods-WXChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXChat.debug.xcconfig"; path = "Target Support Files/Pods-WXChat/Pods-WXChat.debug.xcconfig"; sourceTree = "<group>"; };
 		CE5B98EE22A56F6F00B608E4 /* todo.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.text; sourceTree = "<group>"; };
@@ -621,6 +624,8 @@
 		2AEE8BB422857F1700103A9E /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2AF962C022A65FF3005FAC61 /* WXUsersListService.h */,
+				2AF962C122A65FF3005FAC61 /* WXUsersListService.m */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -881,6 +886,7 @@
 				2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */,
 				2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */,
 				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
+				2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */,
 				2ADDBA1322A4D22A0006C42A /* EMSearchResultController.m in Sources */,
 				2ACD5EEE227197A700A24BF6 /* WXNavigationController.m in Sources */,
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,

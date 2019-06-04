@@ -13,6 +13,8 @@
  * 搜索框
  */
 @property (nonatomic, strong) UISearchController *serachController;
+@property (nonatomic, strong) NSMutableArray *contactArr;
+@property (strong, nonatomic) NSMutableArray *sectionTitles;
 @end
 
 @implementation WXUsersListViewController
@@ -45,13 +47,85 @@
     }
     return _serachController;
 }
+- (void)tableViewDidFinishTriggerHeader:(BOOL)isHeader reload:(BOOL)reload{
+    //处理数据
+    WS(weakSelf);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self _sortDataArray:self.dataArray];
+        if (isHeader) {
+            [weakSelf.tableView.mj_header endRefreshing];
+        }
+        else{
+            [weakSelf.tableView.mj_footer endRefreshing];
+        }
+    });
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.showRefreshHeader = YES;
+//    self.showRefreshHeader = YES;
+    
+    _sectionTitles = [NSMutableArray array];
+    _contactArr = [NSMutableArray array];
     self.dataSource = self;
     self.delegate = self;
     [self.tableView setTableHeaderView:self.serachController.searchBar];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.contactArr == nil){
+        return 0;
+    }else{
+       return self.contactArr.count;
+    }
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [self.contactArr[section] count];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = [EaseUserCell cellIdentifierWithModel:nil];
+    EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    id<IUserModel> model = self.contactArr[indexPath.section][indexPath.row];
+    if (model) {
+        cell.model = model;
+    }
+        
+    return cell;
+}
+- (NSArray *)sectionTitlesAtIndexes:(NSIndexSet *)indexes{
+    return self.sectionTitles;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 22;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *contentView = [[UIView alloc] init];
+    [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
+    label.backgroundColor = [UIColor clearColor];
+    [label setText:[self.sectionTitles objectAtIndex:(section)]];
+    [contentView addSubview:label];
+    return contentView;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    return [UIView new];
+}
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return self.sectionTitles;
 }
 // delegate
 //- (void)userListViewController:(EaseUsersListViewController *)userListViewController
@@ -94,4 +168,63 @@
 - (void)presentSearchController:(UISearchController *)searchController{
     NSLog(@"presentSearchController");
 }
+
+#pragma mark - private data
+
+- (void)_sortDataArray:(NSArray *)buddyList
+{
+    [self.sectionTitles removeAllObjects];
+    [self.contactArr removeAllObjects];
+    //建立索引的核心, 返回27，是a－z和＃
+    UILocalizedIndexedCollation *indexCollation = [UILocalizedIndexedCollation currentCollation];
+    [self.sectionTitles addObjectsFromArray:[indexCollation sectionTitles]];
+    
+    NSInteger highSection = [self.sectionTitles count];
+    NSMutableArray *sortedArray = [NSMutableArray arrayWithCapacity:highSection];
+    for (int i = 0; i < highSection; i++) {
+        NSMutableArray *sectionArray = [NSMutableArray arrayWithCapacity:1];
+        [sortedArray addObject:sectionArray];
+    }
+    
+    //按首字母分组
+    for (EaseUserModel *model in buddyList) {
+        if (model) {
+//            model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
+            
+            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString: model.buddy];
+            NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
+            
+            NSMutableArray *array = [sortedArray objectAtIndex:section];
+            [array addObject:model];
+        }
+    }
+    
+    //每个section内的数组排序
+    for (int i = 0; i < [sortedArray count]; i++) {
+        NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(EaseUserModel *obj1, EaseUserModel *obj2) {
+            NSString *firstLetter1 = [EaseChineseToPinyin pinyinFromChineseString:obj1.buddy];
+            firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
+            
+            NSString *firstLetter2 = [EaseChineseToPinyin pinyinFromChineseString:obj2.buddy];
+            firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
+            
+            return [firstLetter1 caseInsensitiveCompare:firstLetter2];
+        }];
+        
+        
+        [sortedArray replaceObjectAtIndex:i withObject:[NSMutableArray arrayWithArray:array]];
+    }
+    
+    //去掉空的section
+    for (NSInteger i = [sortedArray count] - 1; i >= 0; i--) {
+        NSArray *array = [sortedArray objectAtIndex:i];
+        if ([array count] == 0) {
+            [sortedArray removeObjectAtIndex:i];
+            [self.sectionTitles removeObjectAtIndex:i];
+        }
+    }
+    [self.contactArr addObjectsFromArray:sortedArray];
+    [self.tableView reloadData];
+}
+
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <EaseUI/EaseUI.h>
 #import "WXTabBarController.h"
 @interface AppDelegate ()<EMChatManagerDelegate>
 
