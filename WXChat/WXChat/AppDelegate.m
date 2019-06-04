@@ -22,9 +22,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window.rootViewController = [[WXTabBarController alloc] init];
+    [self.window makeKeyAndVisible];
+    
     //easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
-    [self.window makeKeyAndVisible];
     //环信服务注册
     EMOptions *options = [EMOptions optionsWithAppkey:@"1128190420216118#testdemo"];
     // apnsCertName是证书名称，可以先传nil，等后期配置apns推送时在传入证书名称
@@ -48,7 +49,6 @@
             // 失败
         }
     });
-    
     // 注册APNS离线推送  iOS8 注册APNS
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
         [application registerForRemoteNotifications];

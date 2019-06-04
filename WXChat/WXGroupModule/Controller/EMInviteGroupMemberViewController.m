@@ -16,17 +16,10 @@
 
 @property (nonatomic, strong) NSMutableArray *selectedArray;
 @property (nonatomic, strong) UILabel *selectedLabel;
-@property (nonatomic, strong) NSArray *companyDataArray;
+
 @end
 
 @implementation EMInviteGroupMemberViewController
-
-- (NSArray *)companyDataArray {
-    if (_companyDataArray == nil){
-        _companyDataArray = [NSArray array];
-    }
-    return _companyDataArray;
-}
 
 - (instancetype)initWithBlocks:(NSArray *)aBlocks
 {
@@ -42,11 +35,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.selectedArray = [[NSMutableArray alloc] init];
+    
     [self _setupSubviews];
     [self _fetchContactsWithIsShowHUD:YES];
     self.showRefreshFooter = NO;
     self.showRefreshHeader = NO;
-    
 }
 
 #pragma mark - Subviews
@@ -119,7 +112,7 @@
     // Return the number of rows in the section.
     NSInteger count = 0;
     if (tableView == self.tableView) {
-        count = [self.companyDataArray count];
+        count = [self.dataArray count];
     } else {
         count = [self.searchResults count];
     }
@@ -144,6 +137,7 @@
         cell.accessoryView = checkButton;
     }
     
+//    [cell.avatarView sd_setImageWithURL:[NSURL URLWithString:]]
     UIButton *checkButton = (UIButton *)cell.accessoryView;
     
     return cell;
@@ -204,6 +198,9 @@
 
 - (void)_fetchContactsWithIsShowHUD:(BOOL)aIsShowHUD
 {
+    //逻辑补充
+    //1.去掉黑名单用户
+    //2.通过id获取用户详细数据(头像昵称等)
     [self showHudInView:self.view hint:@"获取联系人..."];
     __weak typeof(self) weakself = self;
     [[EMClient sharedClient].contactManager getContactsFromServerWithCompletion:^(NSArray *aList, EMError *aError) {
