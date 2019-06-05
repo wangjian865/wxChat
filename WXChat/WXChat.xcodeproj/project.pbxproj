@@ -36,6 +36,7 @@
 		2A4D473E229D26CC00D3FE2C /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D473D229D26CC00D3FE2C /* FoldingCell.swift */; };
 		2A4D4741229D273E00D3FE2C /* WXFoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D473F229D273E00D3FE2C /* WXFoldingCell.swift */; };
 		2A4D4742229D273E00D3FE2C /* WXFoldingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A4D4740229D273E00D3FE2C /* WXFoldingCell.xib */; };
+		2A8E781A22A7B3910020BC57 /* WXChatListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */; };
 		2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F476229BEE180041696E /* SDEyeAnimationView.m */; };
 		2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F478229BEE180041696E /* DiscoverViewController.m */; };
 		2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47C229BEEA60041696E /* SDShortVideoController.m */; };
@@ -143,6 +144,8 @@
 		2A4D473D229D26CC00D3FE2C /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldingCell.swift; path = ../Other/FoldingCell.swift; sourceTree = "<group>"; };
 		2A4D473F229D273E00D3FE2C /* WXFoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXFoldingCell.swift; sourceTree = "<group>"; };
 		2A4D4740229D273E00D3FE2C /* WXFoldingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXFoldingCell.xib; sourceTree = "<group>"; };
+		2A8E781822A7B3910020BC57 /* WXChatListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXChatListTableViewCell.h; sourceTree = "<group>"; };
+		2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXChatListTableViewCell.m; sourceTree = "<group>"; };
 		2AC1F475229BEE180041696E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		2AC1F476229BEE180041696E /* SDEyeAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDEyeAnimationView.m; path = ../SDEyeAnimationView.m; sourceTree = "<group>"; };
 		2AC1F477229BEE180041696E /* SDEyeAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDEyeAnimationView.h; path = ../SDEyeAnimationView.h; sourceTree = "<group>"; };
@@ -635,6 +638,8 @@
 			children = (
 				2ADDBA2222A4EE830006C42A /* YCMenuView.h */,
 				2ADDBA2322A4EE830006C42A /* YCMenuView.m */,
+				2A8E781822A7B3910020BC57 /* WXChatListTableViewCell.h */,
+				2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -877,6 +882,7 @@
 				2ADDBA0822A4D02F0006C42A /* EMInviteGroupMemberViewController.m in Sources */,
 				2ADDBA1522A4D22A0006C42A /* EMSearchViewController.m in Sources */,
 				2A28B1912280311500B224F4 /* UIScrollView+Category.m in Sources */,
+				2A8E781A22A7B3910020BC57 /* WXChatListTableViewCell.m in Sources */,
 				2A28B17522802B1100B224F4 /* MUser.m in Sources */,
 				2A042CDC2277EA3E0075582B /* WXFriendViewController.m in Sources */,
 				2ACD5EB42271539400A24BF6 /* ViewController.m in Sources */,

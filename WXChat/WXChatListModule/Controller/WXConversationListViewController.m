@@ -14,6 +14,7 @@
 #import "WXPresentNavigationController.h"
 #import "WXUsersListViewController.h"
 #import "UIImage+ColorImage.h"
+#import "WXChatListTableViewCell.h"
 @interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
@@ -83,6 +84,7 @@
     image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn:)];
 }
+//popMenu
 - (void)clickRightBarBtn: (UIButton *)sender{
     WS(weaklf);
     YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"发起聊天" image:[UIImage imageNamed:@"pop_groupChat"] handler:^(YCMenuAction *action) {
@@ -106,6 +108,69 @@
     view.maxDisplayCount = 7;
     [view show];
     self.menuView = view;
+}
+#pragma mark - 自定义列表cell
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *CellIdentifier = [WXChatListTableViewCell cellIdentifierWithModel:nil];
+    WXChatListTableViewCell *cell = (WXChatListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[WXChatListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+
+    if ([self.dataArray count] <= indexPath.row) {
+        return cell;
+    }
+
+    id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
+    cell.model = model;
+
+    cell.detailLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[self _latestMessageTitleForConversationModel:model]textFont:cell.detailLabel.font];
+
+    cell.timeLabel.text = [self conversationListViewController:self latestMessageTimeForConversationModel:model];
+
+    return cell;
+}
+/*!
+ @method
+ @brief 获取会话最近一条消息内容提示
+ @discussion
+ @param conversationModel  会话model
+ @result 返回传入会话model最近一条消息提示
+ */
+- (NSString *)_latestMessageTitleForConversationModel:(id<IConversationModel>)conversationModel
+{
+    NSString *latestMessageTitle = @"";
+    EMMessage *lastMessage = [conversationModel.conversation latestMessage];
+    if (lastMessage) {
+        EMMessageBody *messageBody = lastMessage.body;
+        switch (messageBody.type) {
+            case EMMessageBodyTypeImage:{
+                latestMessageTitle = @"[图片]";
+            } break;
+            case EMMessageBodyTypeText:{
+                NSString *didReceiveText = [EaseConvertToCommonEmoticonsHelper
+                                            convertToSystemEmoticons:((EMTextMessageBody *)messageBody).text];
+                latestMessageTitle = didReceiveText;
+            } break;
+            case EMMessageBodyTypeVoice:{
+                latestMessageTitle = @"[音频]";
+            } break;
+            case EMMessageBodyTypeLocation: {
+                latestMessageTitle = @"[位置]";
+            } break;
+            case EMMessageBodyTypeVideo: {
+                latestMessageTitle = @"[视频]";
+            } break;
+            case EMMessageBodyTypeFile: {
+                latestMessageTitle = @"[文件]";
+            } break;
+            default: {
+            } break;
+        }
+    }
+    return latestMessageTitle;
 }
 //处理用户数据的代理
 - (id<IConversationModel>)conversationListViewController:(EaseConversationListViewController *)conversationListViewController
