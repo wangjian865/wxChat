@@ -37,6 +37,9 @@
 		2A4D4741229D273E00D3FE2C /* WXFoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D473F229D273E00D3FE2C /* WXFoldingCell.swift */; };
 		2A4D4742229D273E00D3FE2C /* WXFoldingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A4D4740229D273E00D3FE2C /* WXFoldingCell.xib */; };
 		2A8E781A22A7B3910020BC57 /* WXChatListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */; };
+		2A8E781E22A8B35A0020BC57 /* WXAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E781D22A8B35A0020BC57 /* WXAccountTool.m */; };
+		2A8E782122A8B45B0020BC57 /* WXNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782022A8B45B0020BC57 /* WXNetWorkTool.m */; };
+		2A8E782422A8EAB10020BC57 /* WXUsersListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782322A8EAB10020BC57 /* WXUsersListCell.m */; };
 		2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F476229BEE180041696E /* SDEyeAnimationView.m */; };
 		2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F478229BEE180041696E /* DiscoverViewController.m */; };
 		2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47C229BEEA60041696E /* SDShortVideoController.m */; };
@@ -146,6 +149,12 @@
 		2A4D4740229D273E00D3FE2C /* WXFoldingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXFoldingCell.xib; sourceTree = "<group>"; };
 		2A8E781822A7B3910020BC57 /* WXChatListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXChatListTableViewCell.h; sourceTree = "<group>"; };
 		2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXChatListTableViewCell.m; sourceTree = "<group>"; };
+		2A8E781C22A8B35A0020BC57 /* WXAccountTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXAccountTool.h; sourceTree = "<group>"; };
+		2A8E781D22A8B35A0020BC57 /* WXAccountTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXAccountTool.m; sourceTree = "<group>"; };
+		2A8E781F22A8B45B0020BC57 /* WXNetWorkTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXNetWorkTool.h; sourceTree = "<group>"; };
+		2A8E782022A8B45B0020BC57 /* WXNetWorkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXNetWorkTool.m; sourceTree = "<group>"; };
+		2A8E782222A8EAB10020BC57 /* WXUsersListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXUsersListCell.h; sourceTree = "<group>"; };
+		2A8E782322A8EAB10020BC57 /* WXUsersListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListCell.m; sourceTree = "<group>"; };
 		2AC1F475229BEE180041696E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		2AC1F476229BEE180041696E /* SDEyeAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDEyeAnimationView.m; path = ../SDEyeAnimationView.m; sourceTree = "<group>"; };
 		2AC1F477229BEE180041696E /* SDEyeAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDEyeAnimationView.h; path = ../SDEyeAnimationView.h; sourceTree = "<group>"; };
@@ -367,6 +376,17 @@
 			path = BaseUI;
 			sourceTree = SOURCE_ROOT;
 		};
+		2A8E781B22A8B3390020BC57 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				2A8E781C22A8B35A0020BC57 /* WXAccountTool.h */,
+				2A8E781D22A8B35A0020BC57 /* WXAccountTool.m */,
+				2A8E781F22A8B45B0020BC57 /* WXNetWorkTool.h */,
+				2A8E782022A8B45B0020BC57 /* WXNetWorkTool.m */,
+			);
+			path = Tool;
+			sourceTree = SOURCE_ROOT;
+		};
 		2AC1F46E229BDADF0041696E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +445,7 @@
 			children = (
 				2ACD5EAF2271539400A24BF6 /* AppDelegate.h */,
 				2ACD5EB02271539400A24BF6 /* AppDelegate.m */,
+				2A8E781B22A8B3390020BC57 /* Tool */,
 				2ACD5EEA2271673D00A24BF6 /* Other */,
 				2A28B1942280348800B224F4 /* BaseUI */,
 				2ACD5EE322715D1800A24BF6 /* Main */,
@@ -620,6 +641,8 @@
 		2AEE8BB322857F1700103A9E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2A8E782222A8EAB10020BC57 /* WXUsersListCell.h */,
+				2A8E782322A8EAB10020BC57 /* WXUsersListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -879,6 +902,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A28B17C22802B1100B224F4 /* MMOperateMenuView.m in Sources */,
+				2A8E782122A8B45B0020BC57 /* WXNetWorkTool.m in Sources */,
 				2ADDBA0822A4D02F0006C42A /* EMInviteGroupMemberViewController.m in Sources */,
 				2ADDBA1522A4D22A0006C42A /* EMSearchViewController.m in Sources */,
 				2A28B1912280311500B224F4 /* UIScrollView+Category.m in Sources */,
@@ -918,6 +942,7 @@
 				2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */,
 				2ADDBA0522A4D0120006C42A /* WXGroupViewController.m in Sources */,
 				2AEE8BBA2285819700103A9E /* WXUsersListViewController.m in Sources */,
+				2A8E781E22A8B35A0020BC57 /* WXAccountTool.m in Sources */,
 				2A28B1902280311500B224F4 /* UIView+Geometry.m in Sources */,
 				2A4D473E229D26CC00D3FE2C /* FoldingCell.swift in Sources */,
 				2ADDBA1822A4D2850006C42A /* EMRefreshViewController.m in Sources */,
@@ -929,6 +954,7 @@
 				2ADDBA2122A4D4E70006C42A /* EMBadgeLabel.m in Sources */,
 				2A28B17422802B1100B224F4 /* MPicture.m in Sources */,
 				2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */,
+				2A8E782422A8EAB10020BC57 /* WXUsersListCell.m in Sources */,
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
 				2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,

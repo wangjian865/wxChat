@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
   - AMap3DMap (6.8.1):
     - AMapFoundation (~> 1.5)
   - AMapFoundation (1.5.6)
@@ -30,6 +45,7 @@ PODS:
   - YYText (1.0.7)
 
 DEPENDENCIES:
+  - AFNetworking
   - AMap3DMap
   - CWLateralSlide (~> 1.6.3)
   - EaseUI (from `https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git`)
@@ -44,6 +60,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AFNetworking
     - AMap3DMap
     - AMapFoundation
     - CWLateralSlide
@@ -72,6 +89,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git
 
 SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AMap3DMap: 9fa4ec6ab230bfbd3f0c0834f757fbd7038efe53
   AMapFoundation: 20fce2a12cd152e1092afdd04379cdac21932185
   CWLateralSlide: b7933f4a03d652fbec6789bb45dc567011e892ca
@@ -91,6 +109,6 @@ SPEC CHECKSUMS:
   UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: fdfd8eae656ebcbc1a860d4423b4e9b258b9efd5
+PODFILE CHECKSUM: 1972a58c68b34afd6ebb1a96392e5d0e5e963f60
 
 COCOAPODS: 1.6.1

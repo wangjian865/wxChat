@@ -73,6 +73,7 @@
         UIViewController *childVC;
         if ([className isEqualToString:@"WXUsersListViewController"]){
             childVC = [[WXUsersListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            ((WXUsersListViewController *)childVC).isEditing = NO;
         }else{
             childVC = [[NSClassFromString(className)alloc]init];
         }

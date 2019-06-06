@@ -8,6 +8,8 @@
 
 #import "WXUsersListViewController.h"
 #import "UIImage+ColorImage.h"
+#import "WXUsersListCell.h"
+#import "WXChatViewController.h"
 @interface WXUsersListViewController ()<EMUserListViewControllerDelegate,EMUserListViewControllerDataSource,UISearchControllerDelegate>
 /**
  * 搜索框
@@ -15,6 +17,11 @@
 @property (nonatomic, strong) UISearchController *serachController;
 @property (nonatomic, strong) NSMutableArray *contactArr;
 @property (strong, nonatomic) NSMutableArray *sectionTitles;
+
+/**
+ * 编辑模式下存储选中的数据模型
+ */
+@property (nonatomic, strong) NSMutableArray *selectedModelArray;
 @end
 
 @implementation WXUsersListViewController
@@ -47,6 +54,12 @@
     }
     return _serachController;
 }
+- (NSMutableArray *)selectedModelArray{
+    if (_selectedModelArray == nil){
+        _selectedModelArray = [NSMutableArray array];
+    }
+    return _selectedModelArray;
+}
 - (void)tableViewDidFinishTriggerHeader:(BOOL)isHeader reload:(BOOL)reload{
     //处理数据
     WS(weakSelf);
@@ -70,33 +83,80 @@
     self.dataSource = self;
     self.delegate = self;
     [self.tableView setTableHeaderView:self.serachController.searchBar];
+    if (_isEditing){//选取模式下才有
+        [self _setNaviBar];
+    }
 }
-
+- (void)_setNaviBar{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"close_gray"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(closeAction)];
+    UIButton *completeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    completeButton.size = CGSizeMake(52, 28);
+    completeButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    completeButton.backgroundColor = rgb(48, 134, 191);
+    [completeButton setTitle:@"转让" forState:UIControlStateNormal];
+    [completeButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:completeButton];
+    self.title = @"选择好友";
+}
+- (void)closeAction
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)doneAction
+{
+    EMError *error = nil;
+    EMGroupOptions *setting = [[EMGroupOptions alloc] init];
+    setting.maxUsersCount = 500;
+    setting.IsInviteNeedConfirm = NO; //邀请群成员时，是否需要发送邀请通知.若NO，被邀请的人自动加入群组
+    setting.style = EMGroupStylePublicOpenJoin;// 创建不同类型的群组，这里需要才传入不同的类型
+    EMGroup *group = [[EMClient sharedClient].groupManager createGroupWithSubject:@"群组" description:@"群组描述" invitees:self.selectedModelArray message:@"邀请您加入群组" setting:setting error:&error];
+    if(!error){
+        NSLog(@"创建成功 -- %@",group);
+        WS(wSelf);
+        [self dismissViewControllerAnimated:YES completion:^{
+            __strong typeof(wSelf) sSelf = wSelf;
+            if (sSelf.doneCompletion){
+                sSelf.doneCompletion(group);
+            }
+        }];
+    }else{
+        [self showHint:@"创建失败"];
+    }
+}
+#pragma mark -- delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (self.contactArr == nil){
         return 0;
     }else{
        return self.contactArr.count;
     }
-    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.contactArr[section] count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [EaseUserCell cellIdentifierWithModel:nil];
-    EaseUserCell *cell = (EaseUserCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *CellIdentifier = [WXUsersListCell cellIdentifierWithModel:nil];
+    WXUsersListCell *cell = (WXUsersListCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
     if (cell == nil) {
-        cell = [[EaseUserCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[WXUsersListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     id<IUserModel> model = self.contactArr[indexPath.section][indexPath.row];
     if (model) {
         cell.model = model;
     }
-        
+    cell.CellSelected = [self.selectedModelArray containsObject:model];
+    cell.isEditing = self.isEditing;
+    WS(weakSelf);
+    cell.chooseAction = ^(NSString *buddy) {
+        if ([weakSelf.selectedModelArray containsObject:buddy]){
+            [weakSelf.selectedModelArray removeObject:buddy];
+        }else{
+            [weakSelf.selectedModelArray addObject:buddy];
+        }
+    };
     return cell;
 }
 - (NSArray *)sectionTitlesAtIndexes:(NSIndexSet *)indexes{
@@ -225,6 +285,10 @@
     }
     [self.contactArr addObjectsFromArray:sortedArray];
     [self.tableView reloadData];
+}
+
+- (void)userListViewController:(EaseUsersListViewController *)userListViewController didSelectUserModel:(id<IUserModel>)userModel {
+    
 }
 
 @end

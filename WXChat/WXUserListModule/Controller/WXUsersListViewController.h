@@ -11,7 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXUsersListViewController : EaseUsersListViewController
-
+//编辑模式下存在
+//group用于业务逻辑中直接跳转群组会话页面
+@property (nonatomic, copy) void (^doneCompletion)(EMGroup *group);
+//
+@property (nonatomic, assign) BOOL isEditing;
 @end
 
 NS_ASSUME_NONNULL_END

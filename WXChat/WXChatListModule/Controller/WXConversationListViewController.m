@@ -15,6 +15,8 @@
 #import "WXUsersListViewController.h"
 #import "UIImage+ColorImage.h"
 #import "WXChatListTableViewCell.h"
+#import "WXUsersListViewController.h"
+
 @interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
@@ -93,7 +95,17 @@
         [weaklf presentViewController:nav animated:YES completion:nil];
     }];
     YCMenuAction *action2 = [YCMenuAction actionWithTitle:@"添加好友" image:[UIImage imageNamed:@"pop_addFriend"] handler:^(YCMenuAction *action) {
-        
+        WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        WS(wSelf);
+        userListVC.doneCompletion = ^(EMGroup * _Nonnull group) {
+            //跳转会话页面
+            WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
+            viewController.title = group.subject;
+            [wSelf.navigationController pushViewController:viewController animated:YES];
+        };
+        userListVC.isEditing = YES;
+        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:userListVC];
+        [weaklf presentViewController:nav animated:YES completion:nil];
     }];
     YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"加入公司" image:[UIImage imageNamed:@"pop_company"] handler:^(YCMenuAction *action) {
         
@@ -131,6 +143,10 @@
     cell.timeLabel.text = [self conversationListViewController:self latestMessageTimeForConversationModel:model];
 
     return cell;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 64;
 }
 /*!
  @method
@@ -207,7 +223,6 @@
     if (!self.isViewAppear) {
         self.isNeedReloadSorted = YES;
     } else {
-//        [self refreshAndSortView];
         [self tableViewDidTriggerHeaderRefresh];
     }
 }
