@@ -288,7 +288,32 @@
 }
 
 - (void)userListViewController:(EaseUsersListViewController *)userListViewController didSelectUserModel:(id<IUserModel>)userModel {
-    
+    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:userModel.buddy conversationType:EMConversationTypeChat];
+    viewController.title = userModel.nickname;
+    [self.navigationController pushViewController:viewController animated:YES];
 }
-
+/*
+ *
+ - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ [tableView deselectRowAtIndexPath:indexPath animated:YES];
+ 
+ id<IUserModel> model = nil;
+ if (_dataSource && [_dataSource respondsToSelector:@selector(userListViewController:userModelForIndexPath:)]) {
+ model = [_dataSource userListViewController:self userModelForIndexPath:indexPath];
+ }
+ else {
+ model = [self.dataArray objectAtIndex:indexPath.row];
+ }
+ 
+ if (model) {
+ if (_delegate && [_delegate respondsToSelector:@selector(userListViewController:didSelectUserModel:)]) {
+ [_delegate userListViewController:self didSelectUserModel:model];
+ } else {
+ EaseMessageViewController *viewController = [[EaseMessageViewController alloc] initWithConversationChatter:model.buddy conversationType:EMConversationTypeChat];
+ viewController.title = model.nickname;
+ [self.navigationController pushViewController:viewController animated:YES];
+ }
+ }}
+ */
 @end

@@ -16,8 +16,8 @@
 #import "UIImage+ColorImage.h"
 #import "WXChatListTableViewCell.h"
 #import "WXUsersListViewController.h"
-
-@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate>
+#import "WXSearchResultViewController.h"
+@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
  */
@@ -37,8 +37,8 @@
 #pragma mark -- getter
 - (UISearchController *)serachController{
     if (_serachController == nil){
-        UIViewController *resultVC = [[UIViewController alloc] init];
-        resultVC.view.backgroundColor = UIColor.redColor;
+        WXSearchResultViewController *resultVC = [[WXSearchResultViewController alloc] init];
+//        resultVC.view.backgroundColor = UIColor.whiteColor;
         _serachController = [[UISearchController alloc] initWithSearchResultsController:resultVC];
         self.definesPresentationContext = YES;
         _serachController.view.backgroundColor = UIColor.whiteColor;
@@ -48,7 +48,9 @@
         // 默认为YES,控制搜索时，是否隐藏导航栏
         _serachController.hidesNavigationBarDuringPresentation = YES;
         _serachController.delegate = self;
+        //searchController.view添加提示试图
         UISearchBar *bar = _serachController.searchBar;
+        resultVC.searchBar = bar;
         bar.barStyle = UISearchBarStyleDefault;
         [bar setBackgroundImage:[UIImage getImageWithColor:[UIColor whiteColor]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
         //输入框背景色
@@ -57,6 +59,7 @@
             if ([subview isKindOfClass:NSClassFromString(@"UISearchBarTextField")])
             {
                 subview.backgroundColor = rgb(237,237,239);
+                resultVC.searchBarTextField = (UITextField *)subview;
                 break;
             }
         }

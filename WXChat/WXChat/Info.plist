@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>请求访问您的日历</string>
+	<string>木简请求访问您的日历</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>请求访问您的相册</string>
+	<string>木简请求访问您的相册</string>
 	<key>NSCameraUsageDescription</key>
-	<string>请求访问您的相机</string>
+	<string>木简请求访问您的相机</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -40,6 +40,10 @@
 		2A8E781E22A8B35A0020BC57 /* WXAccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E781D22A8B35A0020BC57 /* WXAccountTool.m */; };
 		2A8E782122A8B45B0020BC57 /* WXNetWorkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782022A8B45B0020BC57 /* WXNetWorkTool.m */; };
 		2A8E782422A8EAB10020BC57 /* WXUsersListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782322A8EAB10020BC57 /* WXUsersListCell.m */; };
+		2A8E782722AE01140020BC57 /* WXSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782622AE01140020BC57 /* WXSearchResultViewController.m */; };
+		2A8E782A22AE101C0020BC57 /* WXResultViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782922AE101C0020BC57 /* WXResultViewCell.m */; };
+		2A8E782D22AE4E120020BC57 /* WXResultSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782C22AE4E120020BC57 /* WXResultSectionHeaderView.m */; };
+		2A8E783322AE5D310020BC57 /* WXResultBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E783222AE5D310020BC57 /* WXResultBottomCell.m */; };
 		2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F476229BEE180041696E /* SDEyeAnimationView.m */; };
 		2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F478229BEE180041696E /* DiscoverViewController.m */; };
 		2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47C229BEEA60041696E /* SDShortVideoController.m */; };
@@ -155,6 +159,14 @@
 		2A8E782022A8B45B0020BC57 /* WXNetWorkTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXNetWorkTool.m; sourceTree = "<group>"; };
 		2A8E782222A8EAB10020BC57 /* WXUsersListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXUsersListCell.h; sourceTree = "<group>"; };
 		2A8E782322A8EAB10020BC57 /* WXUsersListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListCell.m; sourceTree = "<group>"; };
+		2A8E782522AE01140020BC57 /* WXSearchResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSearchResultViewController.h; sourceTree = "<group>"; };
+		2A8E782622AE01140020BC57 /* WXSearchResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSearchResultViewController.m; sourceTree = "<group>"; };
+		2A8E782822AE101C0020BC57 /* WXResultViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXResultViewCell.h; sourceTree = "<group>"; };
+		2A8E782922AE101C0020BC57 /* WXResultViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXResultViewCell.m; sourceTree = "<group>"; };
+		2A8E782B22AE4E120020BC57 /* WXResultSectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXResultSectionHeaderView.h; sourceTree = "<group>"; };
+		2A8E782C22AE4E120020BC57 /* WXResultSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXResultSectionHeaderView.m; sourceTree = "<group>"; };
+		2A8E783122AE5D310020BC57 /* WXResultBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXResultBottomCell.h; sourceTree = "<group>"; };
+		2A8E783222AE5D310020BC57 /* WXResultBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXResultBottomCell.m; sourceTree = "<group>"; };
 		2AC1F475229BEE180041696E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		2AC1F476229BEE180041696E /* SDEyeAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDEyeAnimationView.m; path = ../SDEyeAnimationView.m; sourceTree = "<group>"; };
 		2AC1F477229BEE180041696E /* SDEyeAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDEyeAnimationView.h; path = ../SDEyeAnimationView.h; sourceTree = "<group>"; };
@@ -618,6 +630,8 @@
 				2AEE8BAC22857EEF00103A9E /* WXChatViewController.m */,
 				2AEE8BAD22857EEF00103A9E /* WXConversationListViewController.h */,
 				2AEE8BAB22857EEF00103A9E /* WXConversationListViewController.m */,
+				2A8E782522AE01140020BC57 /* WXSearchResultViewController.h */,
+				2A8E782622AE01140020BC57 /* WXSearchResultViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -663,6 +677,12 @@
 				2ADDBA2322A4EE830006C42A /* YCMenuView.m */,
 				2A8E781822A7B3910020BC57 /* WXChatListTableViewCell.h */,
 				2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */,
+				2A8E782822AE101C0020BC57 /* WXResultViewCell.h */,
+				2A8E782922AE101C0020BC57 /* WXResultViewCell.m */,
+				2A8E783122AE5D310020BC57 /* WXResultBottomCell.h */,
+				2A8E783222AE5D310020BC57 /* WXResultBottomCell.m */,
+				2A8E782B22AE4E120020BC57 /* WXResultSectionHeaderView.h */,
+				2A8E782C22AE4E120020BC57 /* WXResultSectionHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -915,8 +935,10 @@
 				2A28B1932280311500B224F4 /* JPinYinUtil.m in Sources */,
 				2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */,
 				2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */,
+				2A8E782A22AE101C0020BC57 /* WXResultViewCell.m in Sources */,
 				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
 				2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */,
+				2A8E782D22AE4E120020BC57 /* WXResultSectionHeaderView.m in Sources */,
 				2ADDBA1322A4D22A0006C42A /* EMSearchResultController.m in Sources */,
 				2ACD5EEE227197A700A24BF6 /* WXNavigationController.m in Sources */,
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,
@@ -928,6 +950,7 @@
 				2A28B1922280311500B224F4 /* Utility.m in Sources */,
 				2A28B197228034C600B224F4 /* MMTableView.m in Sources */,
 				2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */,
+				2A8E783322AE5D310020BC57 /* WXResultBottomCell.m in Sources */,
 				2ACD5EE622715D3A00A24BF6 /* WXTabBarController.m in Sources */,
 				2ACD5EB12271539400A24BF6 /* AppDelegate.m in Sources */,
 				2A28B17222802B1100B224F4 /* MomentViewController.m in Sources */,
@@ -937,6 +960,7 @@
 				2A28B18322802C9500B224F4 /* JKDBModel.m in Sources */,
 				2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */,
 				2A28B17722802B1100B224F4 /* MLocation.m in Sources */,
+				2A8E782722AE01140020BC57 /* WXSearchResultViewController.m in Sources */,
 				2ADDBA2722A4FF5A0006C42A /* WXPresentNavigationController.m in Sources */,
 				2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */,
 				2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */,
