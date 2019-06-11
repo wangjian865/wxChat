@@ -8,7 +8,7 @@
 
 #import "WXChatViewController.h"
 
-@interface WXChatViewController ()<EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource,UIDocumentPickerDelegate>
+@interface WXChatViewController ()<EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource,UIDocumentPickerDelegate,EMCallManagerDelegate>
 
 @end
 
@@ -22,6 +22,7 @@
 //    [self setChatAppearance];
     //添加文件传输按钮
     [self insetItemForChatBar];
+    [[EMClient sharedClient].callManager addDelegate:self delegateQueue:nil];
 }
 //设置聊天会话样式
 - (void)setChatAppearance{
@@ -50,7 +51,8 @@
 }
 //自定义功能的回调
 - (void)moreView:(EaseChatBarMoreView *)moreView didItemInMoreViewAtIndex:(NSInteger)index{
-    [self presentDocumentPicker];
+//    [self presentDocumentPicker];
+//    [EMClient sharedClient].callManager startCall:<#(EMCallType)#> remoteName:<#(NSString *)#> ext:<#(NSString *)#> completion:<#^(EMCallSession *aCallSession, EMError *aError)aCompletionBlock#>
 }
 //文件选择器
 - (void)presentDocumentPicker {

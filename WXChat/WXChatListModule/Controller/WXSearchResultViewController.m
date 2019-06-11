@@ -10,7 +10,8 @@
 #import "WXResultViewCell.h"
 #import "WXResultSectionHeaderView.h"
 #import "WXResultBottomCell.h"
-@interface WXSearchResultViewController ()<UITableViewDelegate,UITableViewDataSource>
+#import "WXTransitionDelegate.h"
+@interface WXSearchResultViewController ()<UITableViewDelegate,UITableViewDataSource,UIViewControllerAnimatedTransitioning>
 /**
  * 搜索结果展示按钮
  */
@@ -88,4 +89,14 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [_searchBar endEditing:YES];
 }
+#pragma mark -- transition
+
+- (void)animateTransition:(nonnull id<UIViewControllerContextTransitioning>)transitionContext {
+    
+}
+
+- (NSTimeInterval)transitionDuration:(nullable id<UIViewControllerContextTransitioning>)transitionContext {
+    return 0.3;
+}
+
 @end

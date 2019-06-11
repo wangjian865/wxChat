@@ -26,6 +26,7 @@
     //设置非根控制器的内容
     if (self.childViewControllers.count) { // 不是根控制器
         viewController.hidesBottomBarWhenPushed = YES ;
+//        viewController.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:@"" style:<#(UIBarButtonItemStyle)#> target:<#(nullable id)#> action:<#(nullable SEL)#>]
     }
     [super pushViewController:viewController animated:animated];
 }

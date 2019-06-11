@@ -8,6 +8,14 @@
 	<string>木简请求访问您的相册</string>
 	<key>NSCameraUsageDescription</key>
 	<string>木简请求访问您的相机</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>taobao</string>
+		<string>alisdkZhaopin</string>
+		<string>eleme</string>
+		<string>baidu</string>
+		<string>sky20170605</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

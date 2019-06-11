@@ -33,6 +33,8 @@
 #import <Hyphenate/Hyphenate.h>
 #import <Masonry.h>
 #import <EaseUI/EaseUI.h>
+#import "MBProgressHUD+NJ.h"
+#import "WXValidationTool.h"
 //#import "WXChat-Swift.h"
 /*
  颜色

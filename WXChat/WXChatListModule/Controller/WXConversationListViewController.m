@@ -17,6 +17,9 @@
 #import "WXChatListTableViewCell.h"
 #import "WXUsersListViewController.h"
 #import "WXSearchResultViewController.h"
+#import "WXAddFriendViewController.h"
+#import "WXChatListHeaderCell.h"
+#import "WXMessageAlertViewController.h"
 @interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
@@ -93,22 +96,23 @@
 - (void)clickRightBarBtn: (UIButton *)sender{
     WS(weaklf);
     YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"发起聊天" image:[UIImage imageNamed:@"pop_groupChat"] handler:^(YCMenuAction *action) {
-        EMInviteGroupMemberViewController *inviteGroupVC = [[EMInviteGroupMemberViewController alloc] init];
-        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:inviteGroupVC];
-        [weaklf presentViewController:nav animated:YES completion:nil];
-    }];
-    YCMenuAction *action2 = [YCMenuAction actionWithTitle:@"添加好友" image:[UIImage imageNamed:@"pop_addFriend"] handler:^(YCMenuAction *action) {
+//        EMInviteGroupMemberViewController *inviteGroupVC = [[EMInviteGroupMemberViewController alloc] init];
+//        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:inviteGroupVC];
+//        [weaklf presentViewController:nav animated:YES completion:nil];
         WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        WS(wSelf);
         userListVC.doneCompletion = ^(EMGroup * _Nonnull group) {
             //跳转会话页面
             WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
             viewController.title = group.subject;
-            [wSelf.navigationController pushViewController:viewController animated:YES];
+            [weaklf.navigationController pushViewController:viewController animated:YES];
         };
         userListVC.isEditing = YES;
         WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:userListVC];
         [weaklf presentViewController:nav animated:YES completion:nil];
+    }];
+    YCMenuAction *action2 = [YCMenuAction actionWithTitle:@"添加好友" image:[UIImage imageNamed:@"pop_addFriend"] handler:^(YCMenuAction *action) {
+        WXAddFriendViewController *addVC = [[WXAddFriendViewController alloc] init];
+        [weaklf.navigationController pushViewController:addVC animated:YES];
     }];
     YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"加入公司" image:[UIImage imageNamed:@"pop_company"] handler:^(YCMenuAction *action) {
         
@@ -124,21 +128,45 @@
     [view show];
     self.menuView = view;
 }
+#pragma mark - 是否存在新的消息提醒
+- (BOOL)existMessageAlert{
+    
+    return YES;
+}
 #pragma mark - 自定义列表cell
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    //补充逻辑是否存在新的消息提醒
+    NSInteger count = self.dataArray.count;
+    if ([self existMessageAlert]){
+        count += 1;
+    }
+    return count;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0 && [self existMessageAlert]){
+        //我来组成头部
+        NSString *CellIdentifier = [WXChatListHeaderCell cellIdentifierWithModel:nil];
+        WXChatListHeaderCell *cell = (WXChatListHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[WXChatListHeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.avatarView.image = [UIImage imageNamed:@"message_alert"];
+        cell.titleLabel.text = @"系统消息";
+        return cell;
+    }
+
     NSString *CellIdentifier = [WXChatListTableViewCell cellIdentifierWithModel:nil];
     WXChatListTableViewCell *cell = (WXChatListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
     // Configure the cell...
     if (cell == nil) {
         cell = [[WXChatListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
 
-    if ([self.dataArray count] <= indexPath.row) {
+    if ([self.dataArray count] <= indexPath.row - 1) {
         return cell;
     }
 
-    id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];
+    id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row - 1];
     cell.model = model;
 
     cell.detailLabel.attributedText =  [[EaseEmotionEscape sharedInstance] attStringFromTextForChatting:[self _latestMessageTitleForConversationModel:model]textFont:cell.detailLabel.font];
@@ -146,6 +174,17 @@
     cell.timeLabel.text = [self conversationListViewController:self latestMessageTimeForConversationModel:model];
 
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0){
+        //跳转到消息通知页面
+        [self.navigationController pushViewController:[[WXMessageAlertViewController alloc]init] animated:YES];
+        return;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    EaseConversationModel *model = [self.dataArray objectAtIndex:indexPath.row - 1];
+    [self conversationListViewController:self didSelectConversationModel:model];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

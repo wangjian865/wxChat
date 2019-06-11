@@ -33,14 +33,6 @@
     
     return self;
 }
-/*
- *
- imageView.badgeBackgroudColor = [UIColor redColor];
- imageView.badgeTextColor = [UIColor whiteColor];
- imageView.badgeFont = [UIFont boldSystemFontOfSize:11];
- imageView.imageCornerRadius = 0;
- imageView.badgeSize = 20;
- */
 - (void)_setWX_UI{
     _badgeLabel = [[UILabel alloc] init];
     _badgeLabel.translatesAutoresizingMaskIntoConstraints = NO;

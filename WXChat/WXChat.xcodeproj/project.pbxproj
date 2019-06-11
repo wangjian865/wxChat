@@ -44,6 +44,15 @@
 		2A8E782A22AE101C0020BC57 /* WXResultViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782922AE101C0020BC57 /* WXResultViewCell.m */; };
 		2A8E782D22AE4E120020BC57 /* WXResultSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E782C22AE4E120020BC57 /* WXResultSectionHeaderView.m */; };
 		2A8E783322AE5D310020BC57 /* WXResultBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E783222AE5D310020BC57 /* WXResultBottomCell.m */; };
+		2A8E783622AF434F0020BC57 /* WXAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E783522AF434F0020BC57 /* WXAnimatedTransitioning.m */; };
+		2A8E783922AF4EB00020BC57 /* WXInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E783822AF4EB00020BC57 /* WXInteractiveTransition.m */; };
+		2A8E783C22AF58290020BC57 /* WXTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E783B22AF58290020BC57 /* WXTransitionDelegate.m */; };
+		2A8E783F22AF5BF10020BC57 /* WXTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E783E22AF5BF10020BC57 /* WXTransitionAnimator.m */; };
+		2A8E784222AF78FE0020BC57 /* WXAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E784122AF78FE0020BC57 /* WXAddFriendViewController.m */; };
+		2A8E784B22AF8DAC0020BC57 /* MBProgressHUD+NJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E784922AF8DAC0020BC57 /* MBProgressHUD+NJ.m */; };
+		2A8E784E22AF8EDF0020BC57 /* WXValidationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E784D22AF8EDF0020BC57 /* WXValidationTool.m */; };
+		2A8E785122AF963E0020BC57 /* WXChatListHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E785022AF963E0020BC57 /* WXChatListHeaderCell.m */; };
+		2A8E785422AF9C9D0020BC57 /* WXMessageAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E785322AF9C9D0020BC57 /* WXMessageAlertViewController.m */; };
 		2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F476229BEE180041696E /* SDEyeAnimationView.m */; };
 		2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F478229BEE180041696E /* DiscoverViewController.m */; };
 		2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47C229BEEA60041696E /* SDShortVideoController.m */; };
@@ -167,6 +176,24 @@
 		2A8E782C22AE4E120020BC57 /* WXResultSectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXResultSectionHeaderView.m; sourceTree = "<group>"; };
 		2A8E783122AE5D310020BC57 /* WXResultBottomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXResultBottomCell.h; sourceTree = "<group>"; };
 		2A8E783222AE5D310020BC57 /* WXResultBottomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXResultBottomCell.m; sourceTree = "<group>"; };
+		2A8E783422AF434F0020BC57 /* WXAnimatedTransitioning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXAnimatedTransitioning.h; sourceTree = "<group>"; };
+		2A8E783522AF434F0020BC57 /* WXAnimatedTransitioning.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXAnimatedTransitioning.m; sourceTree = "<group>"; };
+		2A8E783722AF4EB00020BC57 /* WXInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXInteractiveTransition.h; sourceTree = "<group>"; };
+		2A8E783822AF4EB00020BC57 /* WXInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXInteractiveTransition.m; sourceTree = "<group>"; };
+		2A8E783A22AF58290020BC57 /* WXTransitionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXTransitionDelegate.h; sourceTree = "<group>"; };
+		2A8E783B22AF58290020BC57 /* WXTransitionDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXTransitionDelegate.m; sourceTree = "<group>"; };
+		2A8E783D22AF5BF10020BC57 /* WXTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXTransitionAnimator.h; sourceTree = "<group>"; };
+		2A8E783E22AF5BF10020BC57 /* WXTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXTransitionAnimator.m; sourceTree = "<group>"; };
+		2A8E784022AF78FE0020BC57 /* WXAddFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXAddFriendViewController.h; sourceTree = "<group>"; };
+		2A8E784122AF78FE0020BC57 /* WXAddFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXAddFriendViewController.m; sourceTree = "<group>"; };
+		2A8E784922AF8DAC0020BC57 /* MBProgressHUD+NJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+NJ.m"; sourceTree = "<group>"; };
+		2A8E784A22AF8DAC0020BC57 /* MBProgressHUD+NJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+NJ.h"; sourceTree = "<group>"; };
+		2A8E784C22AF8EDF0020BC57 /* WXValidationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXValidationTool.h; sourceTree = "<group>"; };
+		2A8E784D22AF8EDF0020BC57 /* WXValidationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXValidationTool.m; sourceTree = "<group>"; };
+		2A8E784F22AF963E0020BC57 /* WXChatListHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXChatListHeaderCell.h; sourceTree = "<group>"; };
+		2A8E785022AF963E0020BC57 /* WXChatListHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXChatListHeaderCell.m; sourceTree = "<group>"; };
+		2A8E785222AF9C9D0020BC57 /* WXMessageAlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMessageAlertViewController.h; sourceTree = "<group>"; };
+		2A8E785322AF9C9D0020BC57 /* WXMessageAlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMessageAlertViewController.m; sourceTree = "<group>"; };
 		2AC1F475229BEE180041696E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		2AC1F476229BEE180041696E /* SDEyeAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDEyeAnimationView.m; path = ../SDEyeAnimationView.m; sourceTree = "<group>"; };
 		2AC1F477229BEE180041696E /* SDEyeAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDEyeAnimationView.h; path = ../SDEyeAnimationView.h; sourceTree = "<group>"; };
@@ -395,6 +422,8 @@
 				2A8E781D22A8B35A0020BC57 /* WXAccountTool.m */,
 				2A8E781F22A8B45B0020BC57 /* WXNetWorkTool.h */,
 				2A8E782022A8B45B0020BC57 /* WXNetWorkTool.m */,
+				2A8E784C22AF8EDF0020BC57 /* WXValidationTool.h */,
+				2A8E784D22AF8EDF0020BC57 /* WXValidationTool.m */,
 			);
 			path = Tool;
 			sourceTree = SOURCE_ROOT;
@@ -402,6 +431,14 @@
 		2AC1F46E229BDADF0041696E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2A8E783422AF434F0020BC57 /* WXAnimatedTransitioning.h */,
+				2A8E783522AF434F0020BC57 /* WXAnimatedTransitioning.m */,
+				2A8E783722AF4EB00020BC57 /* WXInteractiveTransition.h */,
+				2A8E783822AF4EB00020BC57 /* WXInteractiveTransition.m */,
+				2A8E783A22AF58290020BC57 /* WXTransitionDelegate.h */,
+				2A8E783B22AF58290020BC57 /* WXTransitionDelegate.m */,
+				2A8E783D22AF5BF10020BC57 /* WXTransitionAnimator.h */,
+				2A8E783E22AF5BF10020BC57 /* WXTransitionAnimator.m */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -527,6 +564,8 @@
 				2ADDBA2C22A518F50006C42A /* UIImage+ColorImage.m */,
 				2A28B1892280311500B224F4 /* Utility.h */,
 				2A28B18D2280311500B224F4 /* Utility.m */,
+				2A8E784A22AF8DAC0020BC57 /* MBProgressHUD+NJ.h */,
+				2A8E784922AF8DAC0020BC57 /* MBProgressHUD+NJ.m */,
 			);
 			path = Other;
 			sourceTree = SOURCE_ROOT;
@@ -632,6 +671,10 @@
 				2AEE8BAB22857EEF00103A9E /* WXConversationListViewController.m */,
 				2A8E782522AE01140020BC57 /* WXSearchResultViewController.h */,
 				2A8E782622AE01140020BC57 /* WXSearchResultViewController.m */,
+				2A8E784022AF78FE0020BC57 /* WXAddFriendViewController.h */,
+				2A8E784122AF78FE0020BC57 /* WXAddFriendViewController.m */,
+				2A8E785222AF9C9D0020BC57 /* WXMessageAlertViewController.h */,
+				2A8E785322AF9C9D0020BC57 /* WXMessageAlertViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -677,6 +720,8 @@
 				2ADDBA2322A4EE830006C42A /* YCMenuView.m */,
 				2A8E781822A7B3910020BC57 /* WXChatListTableViewCell.h */,
 				2A8E781922A7B3910020BC57 /* WXChatListTableViewCell.m */,
+				2A8E784F22AF963E0020BC57 /* WXChatListHeaderCell.h */,
+				2A8E785022AF963E0020BC57 /* WXChatListHeaderCell.m */,
 				2A8E782822AE101C0020BC57 /* WXResultViewCell.h */,
 				2A8E782922AE101C0020BC57 /* WXResultViewCell.m */,
 				2A8E783122AE5D310020BC57 /* WXResultBottomCell.h */,
@@ -936,14 +981,19 @@
 				2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */,
 				2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */,
 				2A8E782A22AE101C0020BC57 /* WXResultViewCell.m in Sources */,
+				2A8E784B22AF8DAC0020BC57 /* MBProgressHUD+NJ.m in Sources */,
 				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
 				2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */,
+				2A8E785422AF9C9D0020BC57 /* WXMessageAlertViewController.m in Sources */,
+				2A8E785122AF963E0020BC57 /* WXChatListHeaderCell.m in Sources */,
+				2A8E783F22AF5BF10020BC57 /* WXTransitionAnimator.m in Sources */,
 				2A8E782D22AE4E120020BC57 /* WXResultSectionHeaderView.m in Sources */,
 				2ADDBA1322A4D22A0006C42A /* EMSearchResultController.m in Sources */,
 				2ACD5EEE227197A700A24BF6 /* WXNavigationController.m in Sources */,
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,
 				2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */,
 				2ADDBA2D22A518F50006C42A /* UIImage+ColorImage.m in Sources */,
+				2A8E784E22AF8EDF0020BC57 /* WXValidationTool.m in Sources */,
 				2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */,
 				2A28B17622802B1100B224F4 /* Comment.m in Sources */,
 				2ADDBA2022A4D4E70006C42A /* EMAvatarNameCell.m in Sources */,
@@ -959,6 +1009,7 @@
 				2ADDBA1422A4D22A0006C42A /* EMSearchBar.m in Sources */,
 				2A28B18322802C9500B224F4 /* JKDBModel.m in Sources */,
 				2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */,
+				2A8E783C22AF58290020BC57 /* WXTransitionDelegate.m in Sources */,
 				2A28B17722802B1100B224F4 /* MLocation.m in Sources */,
 				2A8E782722AE01140020BC57 /* WXSearchResultViewController.m in Sources */,
 				2ADDBA2722A4FF5A0006C42A /* WXPresentNavigationController.m in Sources */,
@@ -973,6 +1024,7 @@
 				2A4D4741229D273E00D3FE2C /* WXFoldingCell.swift in Sources */,
 				2A28B17822802B1100B224F4 /* MMImageListView.m in Sources */,
 				2ADDBA1B22A4D3CB0006C42A /* EMRealtimeSearch.m in Sources */,
+				2A8E783922AF4EB00020BC57 /* WXInteractiveTransition.m in Sources */,
 				2A28B17022802B1100B224F4 /* WKWebViewController.m in Sources */,
 				2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */,
 				2ADDBA2122A4D4E70006C42A /* EMBadgeLabel.m in Sources */,
@@ -982,6 +1034,8 @@
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
 				2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,
+				2A8E783622AF434F0020BC57 /* WXAnimatedTransitioning.m in Sources */,
+				2A8E784222AF78FE0020BC57 /* WXAddFriendViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

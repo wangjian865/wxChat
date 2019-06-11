@@ -62,7 +62,18 @@
     
     //环信添加监听在线推送消息
     [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-     
+    EMCallOptions *callOptions = [[EMClient sharedClient].callManager getCallOptions];
+    //当对方不在线时，是否给对方发送离线消息和推送，并等待对方回应
+    callOptions.isSendPushIfOffline = NO;
+    //设置视频分辨率：自适应分辨率、352 * 288、640 * 480、1280 * 720
+    callOptions.videoResolution = EMCallVideoResolutionAdaptive;
+    //最大视频码率，范围 50 < videoKbps < 5000, 默认0, 0为自适应，建议设置为0
+    callOptions.maxVideoKbps = 0;
+    //最小视频码率
+    callOptions.minVideoKbps = 0;
+    //是否固定视频分辨率，默认为NO
+    callOptions.isFixedVideoResolution = NO;
+    [[EMClient sharedClient].callManager setCallOptions:callOptions];
     return YES;
 }
 //监听环信在线推送消息
