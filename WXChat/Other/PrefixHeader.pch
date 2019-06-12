@@ -35,6 +35,7 @@
 #import <EaseUI/EaseUI.h>
 #import "MBProgressHUD+NJ.h"
 #import "WXValidationTool.h"
+#import "EMDefines.h"
 //#import "WXChat-Swift.h"
 /*
  颜色

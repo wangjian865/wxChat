@@ -99,7 +99,7 @@
 //        EMInviteGroupMemberViewController *inviteGroupVC = [[EMInviteGroupMemberViewController alloc] init];
 //        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:inviteGroupVC];
 //        [weaklf presentViewController:nav animated:YES completion:nil];
-        WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] initWithStyle:UITableViewStyleGrouped];
+        WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] init];
         userListVC.doneCompletion = ^(EMGroup * _Nonnull group) {
             //跳转会话页面
             WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];

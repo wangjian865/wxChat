@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "WXTabBarController.h"
+#import "DemoCallManager.h"
+#import "DemoConfManager.h"
 @interface AppDelegate ()<EMChatManagerDelegate>
 
 @end
@@ -34,6 +36,8 @@
     EMError *error = [[EMClient sharedClient] loginWithUsername:@"user2" password:@"123456"];
     if (!error) {
         NSLog(@"登录成功");
+        [DemoCallManager sharedManager];
+        [DemoConfManager sharedManager];
     }
     //环信推送
     EMPushOptions *pushOptions = [[EMClient sharedClient] pushOptions];

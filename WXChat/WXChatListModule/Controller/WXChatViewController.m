@@ -104,5 +104,16 @@
     model.nickname = nil;//用户昵称
     return model;
 }
+//easeUI中未实现群组语音方法
+- (void)moreViewCommunicationAction:(EaseChatBarMoreView *)moreView{
+    [self.chatToolbar endEditing:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CALL_MAKECONFERENCE object:@{CALL_TYPE:@(EMConferenceTypeLargeCommunication), CALL_MODEL:self.conversation, NOTIF_NAVICONTROLLER:self.navigationController}];
+}
 
+- (void)moreViewLiveAction:(EaseChatBarMoreView *)moreView{
+    [self.chatToolbar endEditing:YES];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:CALL_MAKECONFERENCE object:@{CALL_TYPE:@(EMConferenceTypeLive), CALL_MODEL:self.conversation, NOTIF_NAVICONTROLLER:self.navigationController}];
+}
 @end
