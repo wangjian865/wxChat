@@ -7,7 +7,7 @@
 //
 
 #import "WXMessageAlertViewController.h"
-
+#import "WXMessageAlertViewCell.h"
 @interface WXMessageAlertViewController ()
 
 @end
@@ -21,6 +21,7 @@
 }
 
 - (void)setupUI{
+    self.tableView.rowHeight = k_current_Height(74);
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"清空" forState:UIControlStateNormal];
     [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
@@ -41,10 +42,31 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return k_current_Height(30);
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"2019年5月28日 19:00";
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete){
+        //操作数据源
+        NSLog(@"delete %ld",indexPath.section);
+    }
+}
+// 定义编辑样式
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    WXMessageAlertViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WXMessageAlertViewCell"];
     if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[WXMessageAlertViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WXMessageAlertViewCell"];
     }
     return cell;
 }
