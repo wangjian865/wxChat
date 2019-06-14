@@ -8,8 +8,13 @@
 
 #import "WXMessageAlertViewController.h"
 #import "WXMessageAlertViewCell.h"
-@interface WXMessageAlertViewController ()
+#import "WXMessageAlertModel.h"
 
+@interface WXMessageAlertViewController ()
+/**
+ * 模型数组
+ */
+@property (nonatomic, strong) NSArray *modelArray;
 @end
 
 @implementation WXMessageAlertViewController
@@ -17,11 +22,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"消息";
+    [self getData];
     [self setupUI];
+    
 }
 
+- (void)getData{
+    NSArray *arr = @[
+  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+  ];
+    _modelArray = [NSArray yy_modelArrayWithClass:[WXMessageAlertModel class] json:arr];
+    NSLog(@"1");
+}
 - (void)setupUI{
-    self.tableView.rowHeight = k_current_Height(74);
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"清空" forState:UIControlStateNormal];
     [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
@@ -37,10 +55,13 @@
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return _modelArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return k_current_Height(74);
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return k_current_Height(30);
@@ -62,12 +83,16 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellEditingStyleDelete;
 }
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXMessageAlertViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WXMessageAlertViewCell"];
     if (cell == nil){
         cell = [[WXMessageAlertViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WXMessageAlertViewCell"];
     }
+    WXMessageAlertModel *model = _modelArray[indexPath.section];
+    [cell setModel:model];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

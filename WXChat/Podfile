@@ -18,4 +18,5 @@ pod 'CWLateralSlide', '~> 1.6.3'
 pod 'SDAutoLayout'
 pod 'Masonry'
 pod 'AFNetworking'
+pod 'YYModel'
 end

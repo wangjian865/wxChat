@@ -36,6 +36,7 @@
 #import "MBProgressHUD+NJ.h"
 #import "WXValidationTool.h"
 #import "EMDefines.h"
+#import <NSObject+YYModel.h>
 //#import "WXChat-Swift.h"
 /*
  颜色

@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef NS_ENUM(NSInteger,WXAddVCType){
+    WXAddVCTypeFriend = 0,//添加好友
+    WXAddVCTypeGroup//加入群组
+};
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXAddFriendViewController : UIViewController
-
+@property (nonatomic, assign) WXAddVCType type;
 @end
 
 NS_ASSUME_NONNULL_END

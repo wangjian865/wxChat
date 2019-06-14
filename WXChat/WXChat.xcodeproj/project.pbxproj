@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0EC326BF77638BE94DEAF94A /* libPods-WXChat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A46496228D8784C962820110 /* libPods-WXChat.a */; };
 		2A042CDC2277EA3E0075582B /* WXFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A042CDB2277EA3E0075582B /* WXFriendViewController.m */; };
+		2A06C57322B347F100F4164D /* WXMessageAlertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A06C57222B347F100F4164D /* WXMessageAlertModel.m */; };
 		2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B14822802B1100B224F4 /* MomentUtil.m */; };
 		2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B14922802B1100B224F4 /* MomentConstant.m */; };
 		2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A28B14A22802B1100B224F4 /* MLLabelUtil.m */; };
@@ -254,6 +255,8 @@
 		1819C161891D6A6D3180248E /* Pods-WXChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXChat.release.xcconfig"; path = "Target Support Files/Pods-WXChat/Pods-WXChat.release.xcconfig"; sourceTree = "<group>"; };
 		2A042CDA2277EA3E0075582B /* WXFriendViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXFriendViewController.h; sourceTree = "<group>"; };
 		2A042CDB2277EA3E0075582B /* WXFriendViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXFriendViewController.m; sourceTree = "<group>"; };
+		2A06C57122B347F100F4164D /* WXMessageAlertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WXMessageAlertModel.h; path = WXChatListModule/View/WXMessageAlertModel.h; sourceTree = SOURCE_ROOT; };
+		2A06C57222B347F100F4164D /* WXMessageAlertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WXMessageAlertModel.m; path = WXChatListModule/View/WXMessageAlertModel.m; sourceTree = SOURCE_ROOT; };
 		2A28B14822802B1100B224F4 /* MomentUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentUtil.m; sourceTree = "<group>"; };
 		2A28B14922802B1100B224F4 /* MomentConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentConstant.m; sourceTree = "<group>"; };
 		2A28B14A22802B1100B224F4 /* MLLabelUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLLabelUtil.m; sourceTree = "<group>"; };
@@ -1304,6 +1307,8 @@
 		2AEE8BB722857F3200103A9E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2A06C57122B347F100F4164D /* WXMessageAlertModel.h */,
+				2A06C57222B347F100F4164D /* WXMessageAlertModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1676,6 +1681,7 @@
 				2A8E785422AF9C9D0020BC57 /* WXMessageAlertViewController.m in Sources */,
 				2A8E785122AF963E0020BC57 /* WXChatListHeaderCell.m in Sources */,
 				2A8E7E8022B092A80020BC57 /* ConfInviteUserCell.m in Sources */,
+				2A06C57322B347F100F4164D /* WXMessageAlertModel.m in Sources */,
 				2A8E783F22AF5BF10020BC57 /* WXTransitionAnimator.m in Sources */,
 				2A8E782D22AE4E120020BC57 /* WXResultSectionHeaderView.m in Sources */,
 				2ADDBA1322A4D22A0006C42A /* EMSearchResultController.m in Sources */,

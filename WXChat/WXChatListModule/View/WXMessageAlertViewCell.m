@@ -7,6 +7,7 @@
 //
 
 #import "WXMessageAlertViewCell.h"
+#import "WXMessageAlertModel.h"
 @interface WXMessageAlertViewCell ()
 /**
  * 头像
@@ -20,6 +21,10 @@
  * 描述
  */
 @property (nonatomic, strong) UILabel *descriptionLabel;
+/**
+ * 功能按钮
+ */
+@property (nonatomic, strong) UIButton *button;
 @end
 @implementation WXMessageAlertViewCell
 
@@ -36,20 +41,27 @@
     [self.contentView addSubview:_avatarView];
     
     _nameLabel = [[UILabel alloc] init];
-    _nameLabel.text = @"this is name";
+    _nameLabel.text = @"周杰伦";
     [self.contentView addSubview:_nameLabel];
     
     _descriptionLabel = [[UILabel alloc] init];
-    _descriptionLabel.text = @"this is description";
+    _descriptionLabel.text = @"申请加入周杰伦唱片公司";
     [self.contentView addSubview:_descriptionLabel];
+    
+    _button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_button setTitle:@"同意" forState:UIControlStateNormal];
+    [_button setTitleColor:rgb(48,134,191) forState:UIControlStateNormal];
+    _button.titleLabel.font = [UIFont systemFontOfSize:12];
+    _button.layer.borderColor = rgb(48,134,191).CGColor;
+    _button.layer.borderWidth = 1;
+    [self.contentView addSubview:_button];
 }
 
 - (void)layoutSubviews{
     [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.left.offset(15);
-        make.top.offset(14);
-        make.width.equalTo(self.avatarView.mas_height);
+        make.width.height.equalTo(@47);
     }];
     
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,5 +73,16 @@
         make.left.equalTo(self.nameLabel);
         make.top.equalTo(self.contentView.mas_centerY).offset(2);
     }];
+    [_button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(k_current_Width(-14));
+        make.centerY.equalTo(self.contentView);
+        make.width.equalTo(@38);
+        make.height.equalTo(@24);
+    }];
+}
+- (void)setModel: (WXMessageAlertModel *)model{
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.avatarUrl]];
+    _nameLabel.text = model.name;
+    _descriptionLabel.text = model.descriptionText;
 }
 @end
