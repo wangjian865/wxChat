@@ -37,7 +37,7 @@
 #import "WXValidationTool.h"
 #import "EMDefines.h"
 #import <NSObject+YYModel.h>
-//#import "WXChat-Swift.h"
+#import "WXChat-Swift.h"
 /*
  颜色
  */
@@ -71,7 +71,7 @@
 // tabbar高度
 #define k_bar_height            (k_iphone_x ? 83.0 : 49.0)
 // 背景颜色
-#define k_background_color      [UIColor colorWithRed:0.94 green:0.94 blue:0.96 alpha:1.0]
+#define k_background_color      [UIColor colorWithRed:0.93 green:0.93 blue:0.93 alpha:1.0]
 //常用颜色
 #define kColor_LightGray [UIColor colorWithRed:245 / 255.0 green:245 / 255.0 blue:245 / 255.0 alpha:1.0]
 

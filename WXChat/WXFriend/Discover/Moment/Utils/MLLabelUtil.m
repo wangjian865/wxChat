@@ -88,5 +88,4 @@ NSMutableAttributedString *kMLLinkAttributedText(id object)
     }
     return attributedText;
 }
-
 @end

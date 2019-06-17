@@ -8,9 +8,9 @@
 
 #pragma mark - ------------------ 朋友圈 ------------------
 // 头像视图的宽、高
-#define kAvatarWidth            40
+#define kAvatarWidth            44
 // 名字视图高度
-#define kNameLabelH             20
+#define kNameLabelH             16
 // 时间视图高度
 #define kTimeLabelH             15
 

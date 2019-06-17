@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "WXChat-Swift.h"
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 

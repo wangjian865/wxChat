@@ -13,8 +13,8 @@
 #import "MMCommentInputView.h"
 #import "MomentCell.h"
 #import "MomentUtil.h"
-
-@interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate>
+#import "UIImage+ColorImage.h"
+@interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
 @property (nonatomic, strong) MMTableView * tableView; // 表格
@@ -35,14 +35,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"好友动态";
+    self.title = @"企业圈";
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"moment_camera"] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
-    
     [self configData];
     [self configUI];
+    //自定义导航栏
+    [self setNaviBarStyle];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setTranslucent:false];
+    UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+}
+#pragma mark - 设置导航栏样式
+- (void)setNaviBarStyle{
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    [self.navigationController.navigationBar setTranslucent:true];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"moment_camera"] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
+    
+}
 #pragma mark - 模拟数据
 - (void)configData
 {
@@ -72,6 +88,7 @@
     self.tableHeaderView = view;
     // 表格
     MMTableView * tableView = [[MMTableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height-k_top_height)];
+    tableView.showsVerticalScrollIndicator = false;
     tableView.separatorInset = UIEdgeInsetsZero;
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -98,7 +115,11 @@
     footer.stateLabel.font = [UIFont systemFontOfSize:14];
     self.tableView.mj_footer = footer;
 }
-
+- (void)viewDidLayoutSubviews{
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.offset(0);
+    }];
+}
 #pragma mark - 发布动态
 - (void)addMoment
 {
@@ -157,7 +178,6 @@
         }
     }
 }
-
 #pragma mark - MomentCellDelegate
 - (void)didOperateMoment:(MomentCell *)cell operateType:(MMOperateType)operateType;
 {
@@ -309,7 +329,6 @@
             break;
     }
 }
-
 #pragma mark - UUActionSheetDelegate
 - (void)actionSheet:(UUActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -396,6 +415,28 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [kNotificationCenter postNotificationName:@"ResetMenuView" object:nil];
+    NSLog(@"%f",self.tableView.contentOffset.y);
+    CGFloat offsetY = self.tableView.contentOffset.y;
+    if (offsetY < 80){
+        //透明
+        [self.navigationController.navigationBar setTranslucent:true];
+        UIImage *image = [UIImage getImageWithColor:UIColor.clearColor];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    }else if (offsetY > 120){
+        //完全显示
+        [self.navigationController.navigationBar setTranslucent:true];
+        UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }else{
+//        暂定变换区间未80-120
+        [self.navigationController.navigationBar setTranslucent:true];
+        CGFloat scale = (offsetY - 80)/40;
+        UIImage *image = [UIImage getImageWithColor:RGB(48,134,191,scale)];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }
 }
 
 #pragma mark - lazy load

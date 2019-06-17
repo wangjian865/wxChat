@@ -13,7 +13,7 @@
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXUsersListViewController"
 #define Controller_Third         @"DiscoverViewController"
-#define Controller_Fourth        @"WXSearchResultViewController"//@"ViewController"
+#define Controller_Fourth        @"LoinController"//@"ViewController"
 @interface WXTabBarController ()
 /**
  * 控制器集合
@@ -55,7 +55,7 @@
 }
 -(NSArray *)titleArray{
     if (_titleArray == nil) {
-        _titleArray = @[@"消息",@"通讯录",@"朋友圈",@"我的"];
+        _titleArray = @[@"消息",@"邮件",@"简问",@"人脉"];
     }
     return _titleArray;
 }
@@ -74,6 +74,9 @@
         if ([className isEqualToString:@"WXUsersListViewController"]){
             childVC = [[WXUsersListViewController alloc] init];
             ((WXUsersListViewController *)childVC).isEditing = NO;
+        }else if([className isEqualToString:@"LoinController"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
+            childVC = [storyboard instantiateViewControllerWithIdentifier:@"loginVC"];
         }else{
             childVC = [[NSClassFromString(className)alloc]init];
         }

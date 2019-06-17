@@ -68,8 +68,6 @@
 		2A8E7E7E22B092A80020BC57 /* ConfInviteUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7DE122B092A70020BC57 /* ConfInviteUsersViewController.m */; };
 		2A8E7E7F22B092A80020BC57 /* ConfInviteUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E7DE222B092A70020BC57 /* ConfInviteUserCell.xib */; };
 		2A8E7E8022B092A80020BC57 /* ConfInviteUserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7DE322B092A70020BC57 /* ConfInviteUserCell.m */; };
-		2A8E7E8122B092A80020BC57 /* libHyphenateAVRecorderPlugin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E7DEC22B092A70020BC57 /* libHyphenateAVRecorderPlugin.a */; };
-		2A8E7E8222B092A80020BC57 /* libffmpeg-ios-full.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A8E7DED22B092A70020BC57 /* libffmpeg-ios-full.a */; };
 		2A8E7E8322B092A80020BC57 /* bg_micro@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E7DEF22B092A70020BC57 /* bg_micro@3x.png */; };
 		2A8E7E8422B092A80020BC57 /* video_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E7DF022B092A70020BC57 /* video_gray@2x.png */; };
 		2A8E7E8522B092A80020BC57 /* floating_voice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2A8E7DF122B092A70020BC57 /* floating_voice@3x.png */; };
@@ -200,9 +198,6 @@
 		2A8E7F0822B093C90020BC57 /* EMConversationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F0622B093C90020BC57 /* EMConversationHelper.m */; };
 		2A8E7F1022B099080020BC57 /* WXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F0F22B099080020BC57 /* WXWebViewController.m */; };
 		2A8E7F1322B0AE9E0020BC57 /* WXMessageAlertViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F1222B0AE9E0020BC57 /* WXMessageAlertViewCell.m */; };
-		2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F476229BEE180041696E /* SDEyeAnimationView.m */; };
-		2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F478229BEE180041696E /* DiscoverViewController.m */; };
-		2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47C229BEEA60041696E /* SDShortVideoController.m */; };
 		2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47F229BEEA60041696E /* SDShortVideoProgressView.m */; };
 		2ACD5EB12271539400A24BF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD5EB02271539400A24BF6 /* AppDelegate.m */; };
 		2ACD5EB42271539400A24BF6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD5EB32271539400A24BF6 /* ViewController.m */; };
@@ -230,6 +225,13 @@
 		2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BAB22857EEF00103A9E /* WXConversationListViewController.m */; };
 		2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BAC22857EEF00103A9E /* WXChatViewController.m */; };
 		2AEE8BBA2285819700103A9E /* WXUsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE8BB92285819700103A9E /* WXUsersListViewController.m */; };
+		2AF0B92322B7411B00854BFE /* SDEyeAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0B92222B7411B00854BFE /* SDEyeAnimationView.m */; };
+		2AF0B92922B7412300854BFE /* SDShortVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0B92622B7412300854BFE /* SDShortVideoController.m */; };
+		2AF0B92A22B7412300854BFE /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0B92722B7412300854BFE /* DiscoverViewController.m */; };
+		2AF0B92D22B741B300854BFE /* WXDiscoverViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0B92C22B741B300854BFE /* WXDiscoverViewCell.m */; };
+		2AF0B93322B7762900854BFE /* LoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0B93022B7762900854BFE /* LoinController.swift */; };
+		2AF0B93422B7762900854BFE /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF0B93122B7762900854BFE /* UIView+extension.swift */; };
+		2AF0B93522B7762900854BFE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF0B93222B7762900854BFE /* Login.storyboard */; };
 		2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF962C122A65FF3005FAC61 /* WXUsersListService.m */; };
 		CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */ = {isa = PBXBuildFile; fileRef = CE5B98EE22A56F6F00B608E4 /* todo.text */; };
 /* End PBXBuildFile section */
@@ -370,9 +372,6 @@
 		2A8E7DE722B092A70020BC57 /* MeetingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingViewController.h; sourceTree = "<group>"; };
 		2A8E7DE822B092A70020BC57 /* Live2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Live2ViewController.h; sourceTree = "<group>"; };
 		2A8E7DE922B092A70020BC57 /* EMConferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMConferenceViewController.h; sourceTree = "<group>"; };
-		2A8E7DEB22B092A70020BC57 /* EMCallRecorderPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallRecorderPlugin.h; sourceTree = "<group>"; };
-		2A8E7DEC22B092A70020BC57 /* libHyphenateAVRecorderPlugin.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libHyphenateAVRecorderPlugin.a; sourceTree = "<group>"; };
-		2A8E7DED22B092A70020BC57 /* libffmpeg-ios-full.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libffmpeg-ios-full.a"; sourceTree = "<group>"; };
 		2A8E7DEF22B092A70020BC57 /* bg_micro@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_micro@3x.png"; sourceTree = "<group>"; };
 		2A8E7DF022B092A70020BC57 /* video_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_gray@2x.png"; sourceTree = "<group>"; };
 		2A8E7DF122B092A70020BC57 /* floating_voice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "floating_voice@3x.png"; sourceTree = "<group>"; };
@@ -514,12 +513,6 @@
 		2A8E7F0F22B099080020BC57 /* WXWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXWebViewController.m; sourceTree = "<group>"; };
 		2A8E7F1122B0AE9E0020BC57 /* WXMessageAlertViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMessageAlertViewCell.h; sourceTree = "<group>"; };
 		2A8E7F1222B0AE9E0020BC57 /* WXMessageAlertViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMessageAlertViewCell.m; sourceTree = "<group>"; };
-		2AC1F475229BEE180041696E /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		2AC1F476229BEE180041696E /* SDEyeAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDEyeAnimationView.m; path = ../SDEyeAnimationView.m; sourceTree = "<group>"; };
-		2AC1F477229BEE180041696E /* SDEyeAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDEyeAnimationView.h; path = ../SDEyeAnimationView.h; sourceTree = "<group>"; };
-		2AC1F478229BEE180041696E /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		2AC1F47B229BEEA60041696E /* SDShortVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDShortVideoController.h; sourceTree = "<group>"; };
-		2AC1F47C229BEEA60041696E /* SDShortVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDShortVideoController.m; sourceTree = "<group>"; };
 		2AC1F47E229BEEA60041696E /* SDShortVideoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDShortVideoProgressView.h; sourceTree = "<group>"; };
 		2AC1F47F229BEEA60041696E /* SDShortVideoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDShortVideoProgressView.m; sourceTree = "<group>"; };
 		2AC1F482229CE6B00041696E /* WXChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WXChat-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -576,6 +569,17 @@
 		2AEE8BAE22857EEF00103A9E /* WXChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXChatViewController.h; sourceTree = "<group>"; };
 		2AEE8BB82285819700103A9E /* WXUsersListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXUsersListViewController.h; sourceTree = "<group>"; };
 		2AEE8BB92285819700103A9E /* WXUsersListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListViewController.m; sourceTree = "<group>"; };
+		2AF0B92122B7411A00854BFE /* SDEyeAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDEyeAnimationView.h; sourceTree = "<group>"; };
+		2AF0B92222B7411B00854BFE /* SDEyeAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDEyeAnimationView.m; sourceTree = "<group>"; };
+		2AF0B92522B7412300854BFE /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
+		2AF0B92622B7412300854BFE /* SDShortVideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDShortVideoController.m; sourceTree = "<group>"; };
+		2AF0B92722B7412300854BFE /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		2AF0B92822B7412300854BFE /* SDShortVideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDShortVideoController.h; sourceTree = "<group>"; };
+		2AF0B92B22B741B300854BFE /* WXDiscoverViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXDiscoverViewCell.h; sourceTree = "<group>"; };
+		2AF0B92C22B741B300854BFE /* WXDiscoverViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXDiscoverViewCell.m; sourceTree = "<group>"; };
+		2AF0B93022B7762900854BFE /* LoinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoinController.swift; sourceTree = "<group>"; };
+		2AF0B93122B7762900854BFE /* UIView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
+		2AF0B93222B7762900854BFE /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		2AF962C022A65FF3005FAC61 /* WXUsersListService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXUsersListService.h; sourceTree = "<group>"; };
 		2AF962C122A65FF3005FAC61 /* WXUsersListService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXUsersListService.m; sourceTree = "<group>"; };
 		A46496228D8784C962820110 /* libPods-WXChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WXChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -588,8 +592,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A8E7E8222B092A80020BC57 /* libffmpeg-ios-full.a in Frameworks */,
-				2A8E7E8122B092A80020BC57 /* libHyphenateAVRecorderPlugin.a in Frameworks */,
 				0EC326BF77638BE94DEAF94A /* libPods-WXChat.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,7 +757,6 @@
 			children = (
 				2A8E7DCD22B092A70020BC57 /* 1v1 */,
 				2A8E7DDB22B092A70020BC57 /* Conference */,
-				2A8E7DEA22B092A70020BC57 /* plugin */,
 				2A8E7DEE22B092A70020BC57 /* CallImgs */,
 				2A8E7E6822B092A80020BC57 /* Helper */,
 			);
@@ -808,16 +809,6 @@
 				2A8E7DE522B092A70020BC57 /* ConfInviteUserCell.h */,
 			);
 			path = Invite;
-			sourceTree = "<group>";
-		};
-		2A8E7DEA22B092A70020BC57 /* plugin */ = {
-			isa = PBXGroup;
-			children = (
-				2A8E7DEB22B092A70020BC57 /* EMCallRecorderPlugin.h */,
-				2A8E7DEC22B092A70020BC57 /* libHyphenateAVRecorderPlugin.a */,
-				2A8E7DED22B092A70020BC57 /* libffmpeg-ios-full.a */,
-			);
-			path = plugin;
 			sourceTree = "<group>";
 		};
 		2A8E7DEE22B092A70020BC57 /* CallImgs */ = {
@@ -1006,10 +997,7 @@
 		2AC1F474229BEE180041696E /* main */ = {
 			isa = PBXGroup;
 			children = (
-				2AC1F475229BEE180041696E /* DiscoverViewController.h */,
-				2AC1F478229BEE180041696E /* DiscoverViewController.m */,
-				2AC1F47B229BEEA60041696E /* SDShortVideoController.h */,
-				2AC1F47C229BEEA60041696E /* SDShortVideoController.m */,
+				2AF0B92422B7412300854BFE /* Controller */,
 				2AC1F47D229BEEA60041696E /* Views */,
 			);
 			path = main;
@@ -1018,10 +1006,12 @@
 		2AC1F47D229BEEA60041696E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2AC1F477229BEE180041696E /* SDEyeAnimationView.h */,
-				2AC1F476229BEE180041696E /* SDEyeAnimationView.m */,
+				2AF0B92122B7411A00854BFE /* SDEyeAnimationView.h */,
+				2AF0B92222B7411B00854BFE /* SDEyeAnimationView.m */,
 				2AC1F47E229BEEA60041696E /* SDShortVideoProgressView.h */,
 				2AC1F47F229BEEA60041696E /* SDShortVideoProgressView.m */,
+				2AF0B92B22B741B300854BFE /* WXDiscoverViewCell.h */,
+				2AF0B92C22B741B300854BFE /* WXDiscoverViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1058,6 +1048,7 @@
 				2ACD5EEA2271673D00A24BF6 /* Other */,
 				2A28B1942280348800B224F4 /* BaseUI */,
 				2ACD5EE322715D1800A24BF6 /* Main */,
+				2AF0B92E22B7761C00854BFE /* WXLoginModule */,
 				2ACD5EEF227544DF00A24BF6 /* WXChatListModule */,
 				2A8E7F0A22B098CF0020BC57 /* WXMailModule */,
 				2AEE8BA922857ECA00103A9E /* WXUserListModule */,
@@ -1313,6 +1304,35 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2AF0B92422B7412300854BFE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2AF0B92522B7412300854BFE /* DiscoverViewController.h */,
+				2AF0B92622B7412300854BFE /* SDShortVideoController.m */,
+				2AF0B92722B7412300854BFE /* DiscoverViewController.m */,
+				2AF0B92822B7412300854BFE /* SDShortVideoController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2AF0B92E22B7761C00854BFE /* WXLoginModule */ = {
+			isa = PBXGroup;
+			children = (
+				2AF0B92F22B7762900854BFE /* Login */,
+			);
+			path = WXLoginModule;
+			sourceTree = SOURCE_ROOT;
+		};
+		2AF0B92F22B7762900854BFE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2AF0B93022B7762900854BFE /* LoinController.swift */,
+				2AF0B93122B7762900854BFE /* UIView+extension.swift */,
+				2AF0B93222B7762900854BFE /* Login.storyboard */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		DF216DE5B6F478A93DC3F217 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1429,6 +1449,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AF0B93522B7762900854BFE /* Login.storyboard in Resources */,
 				2A8E7EBB22B092A80020BC57 /* animate_00077.png in Resources */,
 				2A8E7E9D22B092A80020BC57 /* animate_00053.png in Resources */,
 				2A8E7ED822B092A80020BC57 /* recorder_gray@3x.png in Resources */,
@@ -1668,13 +1689,17 @@
 				2A042CDC2277EA3E0075582B /* WXFriendViewController.m in Sources */,
 				2ACD5EB42271539400A24BF6 /* ViewController.m in Sources */,
 				2ACD5EBF2271539600A24BF6 /* main.m in Sources */,
+				2AF0B92922B7412300854BFE /* SDShortVideoController.m in Sources */,
 				2ADDBA1222A4D22A0006C42A /* UIViewController+Search.m in Sources */,
 				2A28B1932280311500B224F4 /* JPinYinUtil.m in Sources */,
 				2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */,
 				2A8E7EFC22B092A80020BC57 /* EMCallViewController.m in Sources */,
+				2AF0B93422B7762900854BFE /* UIView+extension.swift in Sources */,
 				2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */,
+				2AF0B92A22B7412300854BFE /* DiscoverViewController.m in Sources */,
 				2A8E782A22AE101C0020BC57 /* WXResultViewCell.m in Sources */,
 				2A8E7EFD22B092A80020BC57 /* CallSettingViewController.m in Sources */,
+				2AF0B92322B7411B00854BFE /* SDEyeAnimationView.m in Sources */,
 				2A8E784B22AF8DAC0020BC57 /* MBProgressHUD+NJ.m in Sources */,
 				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
 				2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */,
@@ -1711,7 +1736,6 @@
 				2A28B17122802B1100B224F4 /* MMLocationViewController.m in Sources */,
 				2ADDBA1422A4D22A0006C42A /* EMSearchBar.m in Sources */,
 				2A28B18322802C9500B224F4 /* JKDBModel.m in Sources */,
-				2AC1F47A229BEE180041696E /* DiscoverViewController.m in Sources */,
 				2A8E783C22AF58290020BC57 /* WXTransitionDelegate.m in Sources */,
 				2A28B17722802B1100B224F4 /* MLocation.m in Sources */,
 				2A8E782722AE01140020BC57 /* WXSearchResultViewController.m in Sources */,
@@ -1739,12 +1763,12 @@
 				2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */,
 				2ADDBA2122A4D4E70006C42A /* EMBadgeLabel.m in Sources */,
 				2A28B17422802B1100B224F4 /* MPicture.m in Sources */,
-				2AC1F479229BEE180041696E /* SDEyeAnimationView.m in Sources */,
 				2A8E782422A8EAB10020BC57 /* WXUsersListCell.m in Sources */,
 				2A8E7E7B22B092A80020BC57 /* DemoConfManager.m in Sources */,
+				2AF0B92D22B741B300854BFE /* WXDiscoverViewCell.m in Sources */,
 				2A8E7EFF22B092A80020BC57 /* EMStreamView.m in Sources */,
+				2AF0B93322B7762900854BFE /* LoinController.swift in Sources */,
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
-				2AC1F480229BEEA60041696E /* SDShortVideoController.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,
 				2A8E783622AF434F0020BC57 /* WXAnimatedTransitioning.m in Sources */,
 				2A8E784222AF78FE0020BC57 /* WXAddFriendViewController.m in Sources */,

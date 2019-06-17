@@ -38,7 +38,7 @@ CGFloat lineSpacing = 5;
 {
     WS(wSelf);
     // 头像视图
-    _avatarImageView = [[MMImageView alloc] initWithFrame:CGRectMake(10, kBlank, kAvatarWidth, kAvatarWidth)];
+    _avatarImageView = [[MMImageView alloc] initWithFrame:CGRectMake(14, kBlank, kAvatarWidth, kAvatarWidth)];
     [_avatarImageView setClickHandler:^(MMImageView *imageView) {
         if ([wSelf.delegate respondsToSelector:@selector(didOperateMoment:operateType:)]) {
             [wSelf.delegate didOperateMoment:wSelf operateType:MMOperateTypeProfile];
