@@ -117,7 +117,7 @@
     }];
     YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"加入公司" image:[UIImage imageNamed:@"pop_company"] handler:^(YCMenuAction *action) {
         WXAddFriendViewController *addVC = [[WXAddFriendViewController alloc] init];
-        addVC.type = WXAddVCType;
+        addVC.type = WXAddVCTypeCompany;
         [weaklf.navigationController pushViewController:addVC animated:YES];
     }];
     YCMenuAction *action4 = [YCMenuAction actionWithTitle:@"扫一扫" image:[UIImage imageNamed:@"pop_scan"] handler:^(YCMenuAction *action) {

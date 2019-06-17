@@ -31,9 +31,9 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 {
     [super viewDidLoad];
     self.titles = [NSArray arrayWithObjects:
-                   @[@"朋友圈"],@[@"扫一扫",@"摇一摇"],
-                   @[@"附近的人",@"漂流瓶"],
-                   @[@"购物",@"游戏"],@[@"小程序"], nil];
+                   @[@"企业圈"],@[@"企业查询"],
+                   @[@"简问百科",@"竹简招聘"],
+                   @[@"购物",@"外卖"], nil];
     self.tableView.backgroundColor = k_background_color;
     [self.view addSubview:self.tableView];
     if (!self.eyeAnimationView) {
@@ -194,11 +194,30 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.section == 0 && indexPath.row == 0) {
+    if (indexPath.section == 0) {
         MomentViewController * controller = [[MomentViewController alloc] init];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
+    }else if (indexPath.section == 1){
+        //跳转天眼通
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sky20170605://"]];
+    }else if (indexPath.section == 2){
+        if (indexPath.row == 0){
+            //百度
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"com.baidu.BaiduMobile://"]];
+        }else{
+            //智联
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
+        }
+    }else if (indexPath.section == 3){
+        if (indexPath.row == 0){
+            //淘宝
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"taobao://"]];
+        }else{
+            //外卖
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"eleme://"]];
+        }
+        
     }
 }
 
