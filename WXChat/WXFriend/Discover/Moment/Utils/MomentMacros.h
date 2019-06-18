@@ -27,13 +27,13 @@
 #define kRightMargin            15
 
 // 内容视图宽度
-#define kTextWidth              (k_screen_width - 60 - 25)
+#define kTextWidth              (k_screen_width - 30)
 // 正文字体
-#define kTextFont               [UIFont systemFontOfSize:17.0]
+#define kTextFont               [UIFont systemFontOfSize:14.0]
 // 评论字体
-#define kComTextFont            [UIFont systemFontOfSize:16.0]
+#define kComTextFont            [UIFont systemFontOfSize:12.0]
 // 评论高亮字体
-#define kComHLTextFont          [UIFont boldSystemFontOfSize:16.0]
+#define kComHLTextFont          [UIFont boldSystemFontOfSize:12.0]
 // 主色调高亮颜色（暗蓝色）
 #define kHLTextColor            [UIColor colorWithRed:0.28 green:0.35 blue:0.54 alpha:1.0]
 // 正文高亮颜色（蓝色）
@@ -44,7 +44,7 @@
 // 图片间距
 #define kImagePadding           5
 // 图片宽度
-#define kImageWidth             75
+#define kImageWidth             111
 // 全文/收起按钮高度
 #define kMoreLabHeight          20
 // 视图之间的间距

@@ -128,7 +128,7 @@ CGFloat lineSpacing = 5;
     // 正文
     _showAllBtn.hidden = YES;
     _linkLabel.hidden = YES;
-    CGFloat bottom = _nicknameBtn.bottom + kPaddingValue;
+    CGFloat bottom = _avatarImageView.bottom + 15;
     CGFloat rowHeight = 0;
     if ([moment.text length])
     {
@@ -148,7 +148,7 @@ CGFloat lineSpacing = 5;
             _showAllBtn.hidden = NO;
             _showAllBtn.selected = _moment.isFullText;
         }
-        _linkLabel.frame = CGRectMake(_nicknameBtn.left, bottom, attrStrSize.width, labHeight);
+        _linkLabel.frame = CGRectMake(_avatarImageView.left, bottom, attrStrSize.width, labHeight);
         _showAllBtn.frame = CGRectMake(_nicknameBtn.left, _linkLabel.bottom + kArrowHeight, _showAllBtn.width, kMoreLabHeight);
         if (_showAllBtn.hidden) {
             bottom = _linkLabel.bottom + kPaddingValue;
@@ -164,7 +164,7 @@ CGFloat lineSpacing = 5;
     // 图片
     _imageListView.moment = moment;
     if ([moment.pictureList count] > 0) {
-        _imageListView.origin = CGPointMake(_nicknameBtn.left, bottom);
+        _imageListView.origin = CGPointMake(_avatarImageView.left, bottom);
         bottom = _imageListView.bottom + kPaddingValue;
     }
     // 位置
@@ -174,12 +174,12 @@ CGFloat lineSpacing = 5;
         [_locationBtn setTitle:moment.location.position forState:UIControlStateNormal];
         [_locationBtn sizeToFit];
         _locationBtn.hidden = NO;
-        _locationBtn.frame = CGRectMake(_nicknameBtn.left, bottom, _locationBtn.width, kTimeLabelH);
+        _locationBtn.frame = CGRectMake(_avatarImageView.left, bottom, _locationBtn.width, kTimeLabelH);
         bottom = _locationBtn.bottom + kPaddingValue;
     } else {
         _locationBtn.hidden = YES;
     }
-    _timeLabel.frame = CGRectMake(_nicknameBtn.left, bottom, _timeLabel.width, kTimeLabelH);
+    _timeLabel.frame = CGRectMake(_avatarImageView.left, bottom, _timeLabel.width, kTimeLabelH);
     _deleteBtn.frame = CGRectMake(_timeLabel.right + 25, _timeLabel.top, 30, kTimeLabelH);
     bottom = _timeLabel.bottom + kPaddingValue;
     // 操作视图
@@ -193,7 +193,7 @@ CGFloat lineSpacing = 5;
     [_commentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     // 处理赞
     CGFloat top = 0;
-    CGFloat width = k_screen_width - kRightMargin - _nicknameBtn.left;
+    CGFloat width = k_screen_width - kRightMargin - _avatarImageView.left;
     if ([moment.likeList count]) {
         MLLinkLabel * likeLabel = kMLLinkLabel(NO);
         likeLabel.delegate = self;
@@ -239,7 +239,7 @@ CGFloat lineSpacing = 5;
     if (top > 0) {
         _bgImageView.frame = CGRectMake(_nicknameBtn.left, bottom, width, top + kArrowHeight);
         _bgImageView.image = [[UIImage imageNamed:@"comment_bg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30];
-        _commentView.frame = CGRectMake(_nicknameBtn.left, bottom + kArrowHeight, width, top);
+        _commentView.frame = CGRectMake(_avatarImageView.left, bottom + kArrowHeight, width, top);
         rowHeight = _commentView.bottom + kBlank;
     } else {
         rowHeight = _timeLabel.bottom + kBlank;
