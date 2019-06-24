@@ -20,6 +20,7 @@
 #import "WXAddFriendViewController.h"
 #import "WXChatListHeaderCell.h"
 #import "WXMessageAlertViewController.h"
+#import "WXScanViewController.h"
 @interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
@@ -121,7 +122,8 @@
         [weaklf.navigationController pushViewController:addVC animated:YES];
     }];
     YCMenuAction *action4 = [YCMenuAction actionWithTitle:@"扫一扫" image:[UIImage imageNamed:@"pop_scan"] handler:^(YCMenuAction *action) {
-        
+        WXScanViewController *scanVC = [[WXScanViewController alloc] init];
+        [weaklf.navigationController pushViewController:scanVC animated:YES];
     }];
     NSArray *arr = @[action1,action2,action3,action4];
     YCMenuView *view = [YCMenuView menuWithActions:arr width:140 relyonView:sender];

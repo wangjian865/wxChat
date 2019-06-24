@@ -11,7 +11,7 @@
 #import "WXChat-Swift.h"
 #import "WXUsersListViewController.h"
 #define Controller_First         @"WXConversationListViewController"
-#define Controller_Second        @"WXUsersListViewController"
+#define Controller_Second        @"WXMailListViewController"
 #define Controller_Third         @"DiscoverViewController"
 #define Controller_Fourth        @"LoinController"//@"ViewController"
 @interface WXTabBarController ()

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -234,6 +234,20 @@
 		2AF0B93522B7762900854BFE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF0B93222B7762900854BFE /* Login.storyboard */; };
 		2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AF962C122A65FF3005FAC61 /* WXUsersListService.m */; };
 		CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */ = {isa = PBXBuildFile; fileRef = CE5B98EE22A56F6F00B608E4 /* todo.text */; };
+		CE5B9A2522BCD35B00B608E4 /* WXInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A1622BCD35A00B608E4 /* WXInboxViewController.m */; };
+		CE5B9A2622BCD35B00B608E4 /* WXMailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A1722BCD35A00B608E4 /* WXMailListViewController.m */; };
+		CE5B9A2722BCD35B00B608E4 /* WXMailListSectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A1D22BCD35A00B608E4 /* WXMailListSectionCell.m */; };
+		CE5B9A2822BCD35B00B608E4 /* WXMailListSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A2022BCD35A00B608E4 /* WXMailListSubCell.m */; };
+		CE5B9A2922BCD35B00B608E4 /* WXMailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A2122BCD35A00B608E4 /* WXMailCell.m */; };
+		CE5B9A2A22BCD35B00B608E4 /* WXMailListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A2222BCD35A00B608E4 /* WXMailListHeaderView.m */; };
+		CE5B9A2B22BCD35B00B608E4 /* WXMailBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A2422BCD35A00B608E4 /* WXMailBottomCell.m */; };
+		CE5B9A2E22C05D8300B608E4 /* WXScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A2D22C05D8200B608E4 /* WXScanViewController.m */; };
+		CE5B9A3922C05EED00B608E4 /* WSLCreateQRCodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A3022C05EEC00B608E4 /* WSLCreateQRCodeController.m */; };
+		CE5B9A3A22C05EED00B608E4 /* WSLScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A3222C05EEC00B608E4 /* WSLScanView.m */; };
+		CE5B9A3B22C05EED00B608E4 /* scanLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5B9A3422C05EEC00B608E4 /* scanLine@2x.png */; };
+		CE5B9A3C22C05EED00B608E4 /* WSLNativeScanTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A3522C05EEC00B608E4 /* WSLNativeScanTool.m */; };
+		CE5B9A3D22C05EED00B608E4 /* scanFlashlight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5B9A3722C05EED00B608E4 /* scanFlashlight@3x.png */; };
+		CE5B9A3E22C05EED00B608E4 /* scanFlashlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5B9A3822C05EED00B608E4 /* scanFlashlight@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -585,6 +599,31 @@
 		A46496228D8784C962820110 /* libPods-WXChat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WXChat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C680DD6B617232EA9969D4D2 /* Pods-WXChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXChat.debug.xcconfig"; path = "Target Support Files/Pods-WXChat/Pods-WXChat.debug.xcconfig"; sourceTree = "<group>"; };
 		CE5B98EE22A56F6F00B608E4 /* todo.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = todo.text; sourceTree = "<group>"; };
+		CE5B9A1622BCD35A00B608E4 /* WXInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXInboxViewController.m; sourceTree = "<group>"; };
+		CE5B9A1722BCD35A00B608E4 /* WXMailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMailListViewController.m; sourceTree = "<group>"; };
+		CE5B9A1822BCD35A00B608E4 /* WXInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXInboxViewController.h; sourceTree = "<group>"; };
+		CE5B9A1922BCD35A00B608E4 /* WXMailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMailListViewController.h; sourceTree = "<group>"; };
+		CE5B9A1B22BCD35A00B608E4 /* WXMailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMailCell.h; sourceTree = "<group>"; };
+		CE5B9A1C22BCD35A00B608E4 /* WXMailListSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMailListSubCell.h; sourceTree = "<group>"; };
+		CE5B9A1D22BCD35A00B608E4 /* WXMailListSectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMailListSectionCell.m; sourceTree = "<group>"; };
+		CE5B9A1E22BCD35A00B608E4 /* WXMailListHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMailListHeaderView.h; sourceTree = "<group>"; };
+		CE5B9A1F22BCD35A00B608E4 /* WXMailBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMailBottomCell.h; sourceTree = "<group>"; };
+		CE5B9A2022BCD35A00B608E4 /* WXMailListSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMailListSubCell.m; sourceTree = "<group>"; };
+		CE5B9A2122BCD35A00B608E4 /* WXMailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMailCell.m; sourceTree = "<group>"; };
+		CE5B9A2222BCD35A00B608E4 /* WXMailListHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMailListHeaderView.m; sourceTree = "<group>"; };
+		CE5B9A2322BCD35A00B608E4 /* WXMailListSectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXMailListSectionCell.h; sourceTree = "<group>"; };
+		CE5B9A2422BCD35A00B608E4 /* WXMailBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXMailBottomCell.m; sourceTree = "<group>"; };
+		CE5B9A2C22C05D8200B608E4 /* WXScanViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXScanViewController.h; sourceTree = "<group>"; };
+		CE5B9A2D22C05D8200B608E4 /* WXScanViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXScanViewController.m; sourceTree = "<group>"; };
+		CE5B9A3022C05EEC00B608E4 /* WSLCreateQRCodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLCreateQRCodeController.m; sourceTree = "<group>"; };
+		CE5B9A3122C05EEC00B608E4 /* WSLCreateQRCodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLCreateQRCodeController.h; sourceTree = "<group>"; };
+		CE5B9A3222C05EEC00B608E4 /* WSLScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLScanView.m; sourceTree = "<group>"; };
+		CE5B9A3322C05EEC00B608E4 /* WSLNativeScanTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLNativeScanTool.h; sourceTree = "<group>"; };
+		CE5B9A3422C05EEC00B608E4 /* scanLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanLine@2x.png"; sourceTree = "<group>"; };
+		CE5B9A3522C05EEC00B608E4 /* WSLNativeScanTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLNativeScanTool.m; sourceTree = "<group>"; };
+		CE5B9A3622C05EEC00B608E4 /* WSLScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLScanView.h; sourceTree = "<group>"; };
+		CE5B9A3722C05EED00B608E4 /* scanFlashlight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanFlashlight@3x.png"; sourceTree = "<group>"; };
+		CE5B9A3822C05EED00B608E4 /* scanFlashlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanFlashlight@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -973,6 +1012,7 @@
 		2A8E7F0A22B098CF0020BC57 /* WXMailModule */ = {
 			isa = PBXGroup;
 			children = (
+				CE5B9A1422BCD35A00B608E4 /* WXMailController */,
 				2A8E7F0E22B099080020BC57 /* WXWebViewController.h */,
 				2A8E7F0F22B099080020BC57 /* WXWebViewController.m */,
 			);
@@ -1127,6 +1167,7 @@
 			isa = PBXGroup;
 			children = (
 				2A8E7DCC22B092A70020BC57 /* Call */,
+				CE5B9A2F22C05EDA00B608E4 /* Scan */,
 				2AC1F46E229BDADF0041696E /* Resources */,
 				2AEE8BAA22857EEF00103A9E /* Controller */,
 				2AEE8BB722857F3200103A9E /* Model */,
@@ -1223,6 +1264,8 @@
 				2AEE8BAC22857EEF00103A9E /* WXChatViewController.m */,
 				2AEE8BAD22857EEF00103A9E /* WXConversationListViewController.h */,
 				2AEE8BAB22857EEF00103A9E /* WXConversationListViewController.m */,
+				CE5B9A2C22C05D8200B608E4 /* WXScanViewController.h */,
+				CE5B9A2D22C05D8200B608E4 /* WXScanViewController.m */,
 				2A8E782522AE01140020BC57 /* WXSearchResultViewController.h */,
 				2A8E782622AE01140020BC57 /* WXSearchResultViewController.m */,
 				2A8E784022AF78FE0020BC57 /* WXAddFriendViewController.h */,
@@ -1331,6 +1374,59 @@
 				2AF0B93222B7762900854BFE /* Login.storyboard */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		CE5B9A1422BCD35A00B608E4 /* WXMailController */ = {
+			isa = PBXGroup;
+			children = (
+				CE5B9A1522BCD35A00B608E4 /* Controller */,
+				CE5B9A1A22BCD35A00B608E4 /* View */,
+			);
+			path = WXMailController;
+			sourceTree = "<group>";
+		};
+		CE5B9A1522BCD35A00B608E4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CE5B9A1622BCD35A00B608E4 /* WXInboxViewController.m */,
+				CE5B9A1722BCD35A00B608E4 /* WXMailListViewController.m */,
+				CE5B9A1822BCD35A00B608E4 /* WXInboxViewController.h */,
+				CE5B9A1922BCD35A00B608E4 /* WXMailListViewController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CE5B9A1A22BCD35A00B608E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE5B9A1B22BCD35A00B608E4 /* WXMailCell.h */,
+				CE5B9A1C22BCD35A00B608E4 /* WXMailListSubCell.h */,
+				CE5B9A1D22BCD35A00B608E4 /* WXMailListSectionCell.m */,
+				CE5B9A1E22BCD35A00B608E4 /* WXMailListHeaderView.h */,
+				CE5B9A1F22BCD35A00B608E4 /* WXMailBottomCell.h */,
+				CE5B9A2022BCD35A00B608E4 /* WXMailListSubCell.m */,
+				CE5B9A2122BCD35A00B608E4 /* WXMailCell.m */,
+				CE5B9A2222BCD35A00B608E4 /* WXMailListHeaderView.m */,
+				CE5B9A2322BCD35A00B608E4 /* WXMailListSectionCell.h */,
+				CE5B9A2422BCD35A00B608E4 /* WXMailBottomCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE5B9A2F22C05EDA00B608E4 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				CE5B9A3822C05EED00B608E4 /* scanFlashlight@2x.png */,
+				CE5B9A3722C05EED00B608E4 /* scanFlashlight@3x.png */,
+				CE5B9A3422C05EEC00B608E4 /* scanLine@2x.png */,
+				CE5B9A3122C05EEC00B608E4 /* WSLCreateQRCodeController.h */,
+				CE5B9A3022C05EEC00B608E4 /* WSLCreateQRCodeController.m */,
+				CE5B9A3322C05EEC00B608E4 /* WSLNativeScanTool.h */,
+				CE5B9A3522C05EEC00B608E4 /* WSLNativeScanTool.m */,
+				CE5B9A3622C05EEC00B608E4 /* WSLScanView.h */,
+				CE5B9A3222C05EEC00B608E4 /* WSLScanView.m */,
+			);
+			path = Scan;
 			sourceTree = "<group>";
 		};
 		DF216DE5B6F478A93DC3F217 /* Pods */ = {
@@ -1506,11 +1602,13 @@
 				2ACD5EBC2271539600A24BF6 /* LaunchScreen.storyboard in Resources */,
 				2A8E7EF522B092A80020BC57 /* speaker_gray@3x.png in Resources */,
 				2A8E7EA622B092A80020BC57 /* animate_00057.png in Resources */,
+				CE5B9A3E22C05EED00B608E4 /* scanFlashlight@2x.png in Resources */,
 				CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */,
 				2A8E7EAE22B092A80020BC57 /* animate_00040.png in Resources */,
 				2A8E7E9E22B092A80020BC57 /* animate_00084.png in Resources */,
 				2A8E7E9F22B092A80020BC57 /* animate_00085.png in Resources */,
 				2A8E7EAA22B092A80020BC57 /* animate_00069.png in Resources */,
+				CE5B9A3B22C05EED00B608E4 /* scanLine@2x.png in Resources */,
 				2A8E7EB622B092A80020BC57 /* animate_00066.png in Resources */,
 				2A8E7EDD22B092A80020BC57 /* kbps_white@3x.png in Resources */,
 				2A8E7ED322B092A80020BC57 /* recorder_white@3x.png in Resources */,
@@ -1518,6 +1616,7 @@
 				2ACD5EB92271539600A24BF6 /* Assets.xcassets in Resources */,
 				2A8E7EB522B092A80020BC57 /* animate_00058.png in Resources */,
 				2ACD5EB72271539400A24BF6 /* Main.storyboard in Resources */,
+				CE5B9A3D22C05EED00B608E4 /* scanFlashlight@3x.png in Resources */,
 				2A8E7EB822B092A80020BC57 /* animate_00073.png in Resources */,
 				2A8E7E9322B092A80020BC57 /* animate_00037.png in Resources */,
 				2A4D4742229D273E00D3FE2C /* WXFoldingCell.xib in Resources */,
@@ -1625,22 +1724,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-resources.sh",
-				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
-				"${PODS_ROOT}/EaseUI/EaseUI/resources/EaseUIResource.bundle",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MWPhotoBrowser/MWPhotoBrowser.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EaseUIResource.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MWPhotoBrowser.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1653,16 +1741,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-frameworks.sh",
-				"${PODS_ROOT}/Hyphenate/iOS_Pods_IMFullSDK_V3.5.4/Hyphenate.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hyphenate.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-WXChat/Pods-WXChat-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1678,8 +1761,12 @@
 			files = (
 				2A8E7E7D22B092A80020BC57 /* EMConferenceViewController.m in Sources */,
 				2A28B17C22802B1100B224F4 /* MMOperateMenuView.m in Sources */,
+				CE5B9A2622BCD35B00B608E4 /* WXMailListViewController.m in Sources */,
+				CE5B9A2A22BCD35B00B608E4 /* WXMailListHeaderView.m in Sources */,
 				2A8E7F0822B093C90020BC57 /* EMConversationHelper.m in Sources */,
+				CE5B9A2522BCD35B00B608E4 /* WXInboxViewController.m in Sources */,
 				2A8E7F0222B093540020BC57 /* EMGlobalVariables.m in Sources */,
+				CE5B9A2822BCD35B00B608E4 /* WXMailListSubCell.m in Sources */,
 				2A8E782122A8B45B0020BC57 /* WXNetWorkTool.m in Sources */,
 				2ADDBA0822A4D02F0006C42A /* EMInviteGroupMemberViewController.m in Sources */,
 				2ADDBA1522A4D22A0006C42A /* EMSearchViewController.m in Sources */,
@@ -1715,7 +1802,10 @@
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,
 				2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */,
 				2ADDBA2D22A518F50006C42A /* UIImage+ColorImage.m in Sources */,
+				CE5B9A3922C05EED00B608E4 /* WSLCreateQRCodeController.m in Sources */,
+				CE5B9A3C22C05EED00B608E4 /* WSLNativeScanTool.m in Sources */,
 				2A8E784E22AF8EDF0020BC57 /* WXValidationTool.m in Sources */,
+				CE5B9A2E22C05D8300B608E4 /* WXScanViewController.m in Sources */,
 				2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */,
 				2A8E7E7E22B092A80020BC57 /* ConfInviteUsersViewController.m in Sources */,
 				2A28B17622802B1100B224F4 /* Comment.m in Sources */,
@@ -1726,6 +1816,7 @@
 				2A28B197228034C600B224F4 /* MMTableView.m in Sources */,
 				2A8E7E7C22B092A80020BC57 /* Live2ViewController.m in Sources */,
 				2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */,
+				CE5B9A2B22BCD35B00B608E4 /* WXMailBottomCell.m in Sources */,
 				2A8E7F1022B099080020BC57 /* WXWebViewController.m in Sources */,
 				2A8E783322AE5D310020BC57 /* WXResultBottomCell.m in Sources */,
 				2ACD5EE622715D3A00A24BF6 /* WXTabBarController.m in Sources */,
@@ -1741,6 +1832,7 @@
 				2A8E782722AE01140020BC57 /* WXSearchResultViewController.m in Sources */,
 				2ADDBA2722A4FF5A0006C42A /* WXPresentNavigationController.m in Sources */,
 				2A8E7E7722B092A80020BC57 /* Call1v1VideoViewController.m in Sources */,
+				CE5B9A3A22C05EED00B608E4 /* WSLScanView.m in Sources */,
 				2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */,
 				2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */,
 				2ADDBA0522A4D0120006C42A /* WXGroupViewController.m in Sources */,
@@ -1751,6 +1843,7 @@
 				2A8E7EFB22B092A80020BC57 /* CallResolutionViewController.m in Sources */,
 				2A8E7F0522B093860020BC57 /* EMDemoOptions.m in Sources */,
 				2A8E7E7422B092A80020BC57 /* EMCallOptions+NSCoding.m in Sources */,
+				CE5B9A2922BCD35B00B608E4 /* WXMailCell.m in Sources */,
 				2A28B1902280311500B224F4 /* UIView+Geometry.m in Sources */,
 				2A8E7E7822B092A80020BC57 /* EM1v1CallViewController.m in Sources */,
 				2A4D473E229D26CC00D3FE2C /* FoldingCell.swift in Sources */,
@@ -1771,6 +1864,7 @@
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,
 				2A8E783622AF434F0020BC57 /* WXAnimatedTransitioning.m in Sources */,
+				CE5B9A2722BCD35B00B608E4 /* WXMailListSectionCell.m in Sources */,
 				2A8E784222AF78FE0020BC57 /* WXAddFriendViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
