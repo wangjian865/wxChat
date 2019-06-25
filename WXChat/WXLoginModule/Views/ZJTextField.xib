@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Aiz-Oc-276" userLabel="account" customClass="ZJTextField" customModule="login" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="64"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Ue0-wh-6Df">
+                    <rect key="frame" x="10" y="0.0" width="374" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edU-Xw-Q6m">
+                            <rect key="frame" x="0.0" y="0.0" width="65.5" height="64"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入手机号码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="meq-wD-MZz">
+                            <rect key="frame" x="75.5" y="0.0" width="174.5" height="64"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderWithColor">
+                                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fM-5h-aYU" customClass="VerficationButton" customModule="login" customModuleProvider="target">
+                            <rect key="frame" x="260" y="0.0" width="114" height="64"/>
+                            <color key="backgroundColor" red="0.17254901959999999" green="0.59215686270000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="114" id="Upq-jI-asN"/>
+                            </constraints>
+                            <state key="normal" title="获取验证码">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="getCode:" destination="Aiz-Oc-276" eventType="touchUpInside" id="jP7-Kb-e2G"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4fM-5h-aYU" secondAttribute="trailing" id="HrN-IW-I6v"/>
+                        <constraint firstAttribute="bottom" secondItem="4fM-5h-aYU" secondAttribute="bottom" id="Ve5-pn-opo"/>
+                        <constraint firstItem="meq-wD-MZz" firstAttribute="top" secondItem="Ue0-wh-6Df" secondAttribute="top" id="YDv-Dh-20n"/>
+                        <constraint firstItem="4fM-5h-aYU" firstAttribute="top" secondItem="Ue0-wh-6Df" secondAttribute="top" id="bO0-rP-n1U"/>
+                        <constraint firstAttribute="bottom" secondItem="edU-Xw-Q6m" secondAttribute="bottom" id="dSo-DB-wS1"/>
+                        <constraint firstItem="edU-Xw-Q6m" firstAttribute="top" secondItem="Ue0-wh-6Df" secondAttribute="top" id="e41-F0-nwT"/>
+                        <constraint firstAttribute="bottom" secondItem="meq-wD-MZz" secondAttribute="bottom" id="ou6-9A-m8F"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="height" constant="64" id="Bxk-pf-O0V"/>
+                <constraint firstAttribute="bottom" secondItem="Ue0-wh-6Df" secondAttribute="bottom" id="dQ4-59-sXQ"/>
+                <constraint firstItem="Ue0-wh-6Df" firstAttribute="trailing" secondItem="Aiz-Oc-276" secondAttribute="trailing" id="lgC-cC-P0o"/>
+                <constraint firstItem="Ue0-wh-6Df" firstAttribute="top" secondItem="Aiz-Oc-276" secondAttribute="top" id="qc3-Op-aG6"/>
+                <constraint firstItem="Ue0-wh-6Df" firstAttribute="leading" secondItem="Aiz-Oc-276" secondAttribute="leading" constant="10" id="vWE-ff-7IL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="Fsh-cQ-kNw"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="6"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="inputTextField" destination="meq-wD-MZz" id="YMf-rU-zpr"/>
+                <outlet property="stackView" destination="Ue0-wh-6Df" id="9eo-84-K14"/>
+                <outlet property="titleLabel" destination="edU-Xw-Q6m" id="RTm-Ai-zWv"/>
+                <outlet property="verficationButton" destination="4fM-5h-aYU" id="2cm-iP-S5a"/>
+            </connections>
+            <point key="canvasLocation" x="-368.11594202898556" y="-283.25892857142856"/>
+        </view>
+    </objects>
+</document>

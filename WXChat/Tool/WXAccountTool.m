@@ -9,5 +9,7 @@
 #import "WXAccountTool.h"
 
 @implementation WXAccountTool
-
++ (BOOL)isLogin{
+    return YES;
+}
 @end

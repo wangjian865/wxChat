@@ -40,6 +40,7 @@ PODS:
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
+  - SnapKit (4.2.0)
   - UUActionSheet (1.8)
   - UUButton (1.1)
   - YYModel (1.0.4)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - MLLabel
   - MMWebView
   - SDAutoLayout
+  - SnapKit
   - UUActionSheet
   - UUButton
   - YYModel
@@ -77,6 +79,7 @@ SPEC REPOS:
     - MWPhotoBrowser
     - SDAutoLayout
     - SDWebImage
+    - SnapKit
     - UUActionSheet
     - UUButton
     - YYModel
@@ -108,11 +111,12 @@ SPEC CHECKSUMS:
   MWPhotoBrowser: 5836d7aa041dc05a13de380c246826578adc5ea5
   SDAutoLayout: 8bf6b3bbc8b01f775d4defbb4fda2ace805461be
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   UUActionSheet: cde48ec5db6699f20f5b7f72517e4bb6294398e0
   UUButton: 9a19bbe0c812a6920de21da8acca7a2d0bad52da
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 55c3d5b41eab16f0847b2e3ce4c7d21d7971ca7c
+PODFILE CHECKSUM: 2316b71ab92e552e02a62f220da288ff9e9ed91c
 
 COCOAPODS: 1.7.2

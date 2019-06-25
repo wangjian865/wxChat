@@ -9,7 +9,6 @@
 #import "WXMessageAlertViewController.h"
 #import "WXMessageAlertViewCell.h"
 #import "WXMessageAlertModel.h"
-
 @interface WXMessageAlertViewController ()
 /**
  * 模型数组

@@ -21,6 +21,8 @@
 #import "WXChatListHeaderCell.h"
 #import "WXMessageAlertViewController.h"
 #import "WXScanViewController.h"
+#import "WXAccountTool.h"
+#import "WXAddCompanyViewController.h"
 @interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
@@ -117,9 +119,8 @@
         [weaklf.navigationController pushViewController:addVC animated:YES];
     }];
     YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"加入公司" image:[UIImage imageNamed:@"pop_company"] handler:^(YCMenuAction *action) {
-        WXAddFriendViewController *addVC = [[WXAddFriendViewController alloc] init];
-        addVC.type = WXAddVCTypeCompany;
-        [weaklf.navigationController pushViewController:addVC animated:YES];
+        WXAddCompanyViewController *addCompanyVC = [[WXAddCompanyViewController alloc] init];
+        [weaklf.navigationController pushViewController:addCompanyVC animated:YES];
     }];
     YCMenuAction *action4 = [YCMenuAction actionWithTitle:@"扫一扫" image:[UIImage imageNamed:@"pop_scan"] handler:^(YCMenuAction *action) {
         WXScanViewController *scanVC = [[WXScanViewController alloc] init];

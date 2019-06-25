@@ -16,5 +16,6 @@
 @property (nonatomic, assign) CGRect convertRect;
 
 + (AppDelegate *)sharedInstance;
+- (void)loginStateChange: (BOOL)isLogin;
 @end
 
