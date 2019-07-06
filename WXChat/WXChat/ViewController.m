@@ -97,31 +97,32 @@
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FoldingCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
-    if (cell.isAnimating) {
-        return;
-    }
-    
-    double duration = 0;
-    NSNumber *height = [self.cellHeights objectAtIndex:indexPath.row];
-    bool cellIsCollapsed = height.floatValue == self.kCloseCellHeight;
-    if (cellIsCollapsed) {
-        [self.cellHeights setObject:[NSNumber numberWithFloat:self.kOpenCellHeight] atIndexedSubscript:indexPath.row];
-        //[cell selectedAnimation:true animated:true completion: nil];
-        [cell unfold:YES animated:YES completion:nil];
-        duration = 0.5;
-    } else {
-        [self.cellHeights setObject:[NSNumber numberWithFloat:self.kCloseCellHeight] atIndexedSubscript:indexPath.row];
-        //[cell selectedAnimation:false animated:true completion: nil];
-        [cell unfold:NO animated:YES completion:nil];
-        duration = 0.8;
-    }
-    
-    [UIView animateWithDuration:duration delay:0 options:0 animations:^{
-        [tableView beginUpdates];
-        [tableView endUpdates];
-    } completion:nil];
-    
+//    FoldingCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//
+//    if (cell.isAnimating) {
+//        return;
+//    }
+//
+//    double duration = 0;
+//    NSNumber *height = [self.cellHeights objectAtIndex:indexPath.row];
+//    bool cellIsCollapsed = height.floatValue == self.kCloseCellHeight;
+//    if (cellIsCollapsed) {
+//        [self.cellHeights setObject:[NSNumber numberWithFloat:self.kOpenCellHeight] atIndexedSubscript:indexPath.row];
+//        //[cell selectedAnimation:true animated:true completion: nil];
+//        [cell unfold:YES animated:YES completion:nil];
+//        duration = 0.5;
+//    } else {
+//        [self.cellHeights setObject:[NSNumber numberWithFloat:self.kCloseCellHeight] atIndexedSubscript:indexPath.row];
+//        //[cell selectedAnimation:false animated:true completion: nil];
+//        [cell unfold:NO animated:YES completion:nil];
+//        duration = 0.8;
+//    }
+//
+//    [UIView animateWithDuration:duration delay:0 options:0 animations:^{
+//        [tableView beginUpdates];
+//        [tableView endUpdates];
+//    } completion:nil];
+//
 }
 @end

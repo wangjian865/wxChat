@@ -259,6 +259,24 @@
 		CE5B9A3C22C05EED00B608E4 /* WSLNativeScanTool.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5B9A3522C05EEC00B608E4 /* WSLNativeScanTool.m */; };
 		CE5B9A3D22C05EED00B608E4 /* scanFlashlight@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5B9A3722C05EED00B608E4 /* scanFlashlight@3x.png */; };
 		CE5B9A3E22C05EED00B608E4 /* scanFlashlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5B9A3822C05EED00B608E4 /* scanFlashlight@2x.png */; };
+		F4C28E6622D0A6F000606E6D /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */; };
+		F4C28E6722D0A6F000606E6D /* RelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5422D0A6EF00606E6D /* RelationViewController.swift */; };
+		F4C28E6822D0A6F000606E6D /* GroupChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5522D0A6EF00606E6D /* GroupChatVC.swift */; };
+		F4C28E6922D0A6F000606E6D /* CompanyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5622D0A6EF00606E6D /* CompanyVC.swift */; };
+		F4C28E6A22D0A6F000606E6D /* WXEditCompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5722D0A6EF00606E6D /* WXEditCompanyViewController.swift */; };
+		F4C28E6B22D0A6F000606E6D /* RelationViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E5822D0A6EF00606E6D /* RelationViewController.storyboard */; };
+		F4C28E6C22D0A6F000606E6D /* CompanyHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5A22D0A6EF00606E6D /* CompanyHeader.swift */; };
+		F4C28E6D22D0A6F000606E6D /* ChatGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E5B22D0A6EF00606E6D /* ChatGroupCell.xib */; };
+		F4C28E6E22D0A6F000606E6D /* CompanyFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E5C22D0A6EF00606E6D /* CompanyFooter.xib */; };
+		F4C28E6F22D0A6F000606E6D /* FriendInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E5D22D0A6EF00606E6D /* FriendInfoCell.xib */; };
+		F4C28E7022D0A6F000606E6D /* RelationHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5E22D0A6EF00606E6D /* RelationHeaderView.swift */; };
+		F4C28E7122D0A6F000606E6D /* CompanyHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E5F22D0A6EF00606E6D /* CompanyHeader.xib */; };
+		F4C28E7222D0A6F000606E6D /* RelationSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E6022D0A6EF00606E6D /* RelationSearchView.xib */; };
+		F4C28E7322D0A6F000606E6D /* RelationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4C28E6122D0A6EF00606E6D /* RelationHeaderView.xib */; };
+		F4C28E7422D0A6F000606E6D /* FriendInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E6222D0A6EF00606E6D /* FriendInfoCell.swift */; };
+		F4C28E7522D0A6F000606E6D /* CompanyFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E6322D0A6EF00606E6D /* CompanyFooter.swift */; };
+		F4C28E7622D0A6F000606E6D /* RelationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E6422D0A6EF00606E6D /* RelationSearchView.swift */; };
+		F4C28E7722D0A6F000606E6D /* ChatGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E6522D0A6EF00606E6D /* ChatGroupCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -645,6 +663,24 @@
 		CE5B9A3622C05EEC00B608E4 /* WSLScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSLScanView.h; sourceTree = "<group>"; };
 		CE5B9A3722C05EED00B608E4 /* scanFlashlight@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanFlashlight@3x.png"; sourceTree = "<group>"; };
 		CE5B9A3822C05EED00B608E4 /* scanFlashlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scanFlashlight@2x.png"; sourceTree = "<group>"; };
+		F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
+		F4C28E5422D0A6EF00606E6D /* RelationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationViewController.swift; sourceTree = "<group>"; };
+		F4C28E5522D0A6EF00606E6D /* GroupChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatVC.swift; sourceTree = "<group>"; };
+		F4C28E5622D0A6EF00606E6D /* CompanyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyVC.swift; sourceTree = "<group>"; };
+		F4C28E5722D0A6EF00606E6D /* WXEditCompanyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXEditCompanyViewController.swift; sourceTree = "<group>"; };
+		F4C28E5822D0A6EF00606E6D /* RelationViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RelationViewController.storyboard; sourceTree = "<group>"; };
+		F4C28E5A22D0A6EF00606E6D /* CompanyHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyHeader.swift; sourceTree = "<group>"; };
+		F4C28E5B22D0A6EF00606E6D /* ChatGroupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatGroupCell.xib; sourceTree = "<group>"; };
+		F4C28E5C22D0A6EF00606E6D /* CompanyFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyFooter.xib; sourceTree = "<group>"; };
+		F4C28E5D22D0A6EF00606E6D /* FriendInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendInfoCell.xib; sourceTree = "<group>"; };
+		F4C28E5E22D0A6EF00606E6D /* RelationHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationHeaderView.swift; sourceTree = "<group>"; };
+		F4C28E5F22D0A6EF00606E6D /* CompanyHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyHeader.xib; sourceTree = "<group>"; };
+		F4C28E6022D0A6EF00606E6D /* RelationSearchView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationSearchView.xib; sourceTree = "<group>"; };
+		F4C28E6122D0A6EF00606E6D /* RelationHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelationHeaderView.xib; sourceTree = "<group>"; };
+		F4C28E6222D0A6EF00606E6D /* FriendInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoCell.swift; sourceTree = "<group>"; };
+		F4C28E6322D0A6EF00606E6D /* CompanyFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyFooter.swift; sourceTree = "<group>"; };
+		F4C28E6422D0A6EF00606E6D /* RelationSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationSearchView.swift; sourceTree = "<group>"; };
+		F4C28E6522D0A6EF00606E6D /* ChatGroupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatGroupCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1100,6 +1136,7 @@
 				2AEE8BA922857ECA00103A9E /* WXUserListModule */,
 				2ADDB9FD22A4D0120006C42A /* WXGroupModule */,
 				2A042CD92277E9E50075582B /* WXFriend */,
+				F4C28E5122D0A6EF00606E6D /* WXMineModule */,
 				CE03C2FE22C2054700730371 /* WXMine */,
 				2ACD5EB22271539400A24BF6 /* ViewController.h */,
 				2ACD5EB32271539400A24BF6 /* ViewController.m */,
@@ -1493,6 +1530,47 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F4C28E5122D0A6EF00606E6D /* WXMineModule */ = {
+			isa = PBXGroup;
+			children = (
+				F4C28E5222D0A6EF00606E6D /* Relation */,
+			);
+			path = WXMineModule;
+			sourceTree = "<group>";
+		};
+		F4C28E5222D0A6EF00606E6D /* Relation */ = {
+			isa = PBXGroup;
+			children = (
+				F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */,
+				F4C28E5422D0A6EF00606E6D /* RelationViewController.swift */,
+				F4C28E5522D0A6EF00606E6D /* GroupChatVC.swift */,
+				F4C28E5622D0A6EF00606E6D /* CompanyVC.swift */,
+				F4C28E5722D0A6EF00606E6D /* WXEditCompanyViewController.swift */,
+				F4C28E5822D0A6EF00606E6D /* RelationViewController.storyboard */,
+				F4C28E5922D0A6EF00606E6D /* Views */,
+			);
+			path = Relation;
+			sourceTree = "<group>";
+		};
+		F4C28E5922D0A6EF00606E6D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F4C28E5A22D0A6EF00606E6D /* CompanyHeader.swift */,
+				F4C28E5B22D0A6EF00606E6D /* ChatGroupCell.xib */,
+				F4C28E5C22D0A6EF00606E6D /* CompanyFooter.xib */,
+				F4C28E5D22D0A6EF00606E6D /* FriendInfoCell.xib */,
+				F4C28E5E22D0A6EF00606E6D /* RelationHeaderView.swift */,
+				F4C28E5F22D0A6EF00606E6D /* CompanyHeader.xib */,
+				F4C28E6022D0A6EF00606E6D /* RelationSearchView.xib */,
+				F4C28E6122D0A6EF00606E6D /* RelationHeaderView.xib */,
+				F4C28E6222D0A6EF00606E6D /* FriendInfoCell.swift */,
+				F4C28E6322D0A6EF00606E6D /* CompanyFooter.swift */,
+				F4C28E6422D0A6EF00606E6D /* RelationSearchView.swift */,
+				F4C28E6522D0A6EF00606E6D /* ChatGroupCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1601,6 +1679,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A8E7EBB22B092A80020BC57 /* animate_00077.png in Resources */,
+				F4C28E6B22D0A6F000606E6D /* RelationViewController.storyboard in Resources */,
 				2A8E7E9D22B092A80020BC57 /* animate_00053.png in Resources */,
 				2A8E7ED822B092A80020BC57 /* recorder_gray@3x.png in Resources */,
 				2A8E7E9622B092A80020BC57 /* animate_00044.png in Resources */,
@@ -1625,6 +1704,7 @@
 				2A8E7EED22B092A80020BC57 /* video_white@3x.png in Resources */,
 				2A8E7ED722B092A80020BC57 /* minimize_gray@3x.png in Resources */,
 				2A8E7EEB22B092A80020BC57 /* minimize_white@2x.png in Resources */,
+				F4C28E7222D0A6F000606E6D /* RelationSearchView.xib in Resources */,
 				2A8E7E7622B092A80020BC57 /* EMVideoInfoViewController.xib in Resources */,
 				2A8E7EF622B092A80020BC57 /* hangup@2x.png in Resources */,
 				2A8E7ED622B092A80020BC57 /* grid_gray@3x.png in Resources */,
@@ -1642,6 +1722,7 @@
 				2A8E7EE222B092A80020BC57 /* micphone_white@3x.png in Resources */,
 				2A8E7EC422B092A80020BC57 /* animate_00075.png in Resources */,
 				2A8E7EA922B092A80020BC57 /* animate_00041.png in Resources */,
+				F4C28E6F22D0A6F000606E6D /* FriendInfoCell.xib in Resources */,
 				2A8E7EE422B092A80020BC57 /* kbps_white@2x.png in Resources */,
 				2A8E7ECA22B092A80020BC57 /* talking_green@3x.png in Resources */,
 				2A8E7EB922B092A80020BC57 /* animate_00067.png in Resources */,
@@ -1657,6 +1738,7 @@
 				2ACD5EBC2271539600A24BF6 /* LaunchScreen.storyboard in Resources */,
 				2A8E7EF522B092A80020BC57 /* speaker_gray@3x.png in Resources */,
 				2A8E7EA622B092A80020BC57 /* animate_00057.png in Resources */,
+				F4C28E7122D0A6F000606E6D /* CompanyHeader.xib in Resources */,
 				CE5B9A3E22C05EED00B608E4 /* scanFlashlight@2x.png in Resources */,
 				CE5B98EF22A56F6F00B608E4 /* todo.text in Resources */,
 				CE03C2F422C0D8A800730371 /* Login.storyboard in Resources */,
@@ -1680,6 +1762,7 @@
 				2A8E7ECC22B092A80020BC57 /* recorder_white@2x.png in Resources */,
 				2A8E7EF822B092A80020BC57 /* video_white@2x.png in Resources */,
 				2A8E7E9522B092A80020BC57 /* animate_00050.png in Resources */,
+				F4C28E6E22D0A6F000606E6D /* CompanyFooter.xib in Resources */,
 				2A8E7EEE22B092A80020BC57 /* switchCamera_gray@2x.png in Resources */,
 				2A8E7EDC22B092A80020BC57 /* bg_connecting@3x.png in Resources */,
 				2A8E7EC922B092A80020BC57 /* grid_gray@2x.png in Resources */,
@@ -1701,7 +1784,9 @@
 				2A8E7EB122B092A80020BC57 /* animate_00071.png in Resources */,
 				2A8E7EA522B092A80020BC57 /* animate_00080.png in Resources */,
 				2A8E7E9822B092A80020BC57 /* animate_00086.png in Resources */,
+				F4C28E7322D0A6F000606E6D /* RelationHeaderView.xib in Resources */,
 				2A8E7EA722B092A80020BC57 /* animate_00043.png in Resources */,
+				F4C28E6D22D0A6F000606E6D /* ChatGroupCell.xib in Resources */,
 				2A8E7E9022B092A80020BC57 /* animate_00035.png in Resources */,
 				2A8E7E8422B092A80020BC57 /* video_gray@2x.png in Resources */,
 				2A8E7EBA22B092A80020BC57 /* animate_00063.png in Resources */,
@@ -1818,6 +1903,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A8E7E7D22B092A80020BC57 /* EMConferenceViewController.m in Sources */,
+				F4C28E7622D0A6F000606E6D /* RelationSearchView.swift in Sources */,
 				2A28B17C22802B1100B224F4 /* MMOperateMenuView.m in Sources */,
 				CE5B9A2622BCD35B00B608E4 /* WXMailListViewController.m in Sources */,
 				CE5B9A2A22BCD35B00B608E4 /* WXMailListHeaderView.m in Sources */,
@@ -1828,6 +1914,7 @@
 				2A8E782122A8B45B0020BC57 /* WXNetWorkTool.m in Sources */,
 				CE03C2FD22C1D07F00730371 /* WXAddCompanyViewController.m in Sources */,
 				2ADDBA0822A4D02F0006C42A /* EMInviteGroupMemberViewController.m in Sources */,
+				F4C28E7022D0A6F000606E6D /* RelationHeaderView.swift in Sources */,
 				2ADDBA1522A4D22A0006C42A /* EMSearchViewController.m in Sources */,
 				2A28B1912280311500B224F4 /* UIScrollView+Category.m in Sources */,
 				2A8E781A22A7B3910020BC57 /* WXChatListTableViewCell.m in Sources */,
@@ -1852,6 +1939,7 @@
 				2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */,
 				2A8E785422AF9C9D0020BC57 /* WXMessageAlertViewController.m in Sources */,
 				2A8E785122AF963E0020BC57 /* WXChatListHeaderCell.m in Sources */,
+				F4C28E7722D0A6F000606E6D /* ChatGroupCell.swift in Sources */,
 				2A8E7E8022B092A80020BC57 /* ConfInviteUserCell.m in Sources */,
 				CE03C2EE22C0D8A800730371 /* ZJButton.swift in Sources */,
 				2A8E782D22AE4E120020BC57 /* WXResultSectionHeaderView.m in Sources */,
@@ -1862,11 +1950,14 @@
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,
 				2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */,
 				2ADDBA2D22A518F50006C42A /* UIImage+ColorImage.m in Sources */,
+				F4C28E6722D0A6F000606E6D /* RelationViewController.swift in Sources */,
 				CE5B9A3922C05EED00B608E4 /* WSLCreateQRCodeController.m in Sources */,
 				CE5B9A3C22C05EED00B608E4 /* WSLNativeScanTool.m in Sources */,
 				2A8E784E22AF8EDF0020BC57 /* WXValidationTool.m in Sources */,
 				CE03C2F622C0D8A800730371 /* GetPasswordViewController.swift in Sources */,
 				CE5B9A2E22C05D8300B608E4 /* WXScanViewController.m in Sources */,
+				F4C28E7522D0A6F000606E6D /* CompanyFooter.swift in Sources */,
+				F4C28E6622D0A6F000606E6D /* FriendsVC.swift in Sources */,
 				2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */,
 				2A8E7E7E22B092A80020BC57 /* ConfInviteUsersViewController.m in Sources */,
 				2A28B17622802B1100B224F4 /* Comment.m in Sources */,
@@ -1885,6 +1976,7 @@
 				CE03C30422C2064800730371 /* WXMessageAlertModel.m in Sources */,
 				2ACD5EE622715D3A00A24BF6 /* WXTabBarController.m in Sources */,
 				2ACD5EB12271539400A24BF6 /* AppDelegate.m in Sources */,
+				F4C28E6922D0A6F000606E6D /* CompanyVC.swift in Sources */,
 				2A8E7E7522B092A80020BC57 /* DemoCallManager.m in Sources */,
 				2A28B17222802B1100B224F4 /* MomentViewController.m in Sources */,
 				2A28B17A22802B1100B224F4 /* MMImagePreviewView.m in Sources */,
@@ -1897,6 +1989,7 @@
 				CE03C30A22C21A4900730371 /* WXMainHeaderView.m in Sources */,
 				2A8E7E7722B092A80020BC57 /* Call1v1VideoViewController.m in Sources */,
 				CE5B9A3A22C05EED00B608E4 /* WSLScanView.m in Sources */,
+				F4C28E7422D0A6F000606E6D /* FriendInfoCell.swift in Sources */,
 				2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */,
 				2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */,
 				2ADDBA0522A4D0120006C42A /* WXGroupViewController.m in Sources */,
@@ -1907,6 +2000,7 @@
 				2A8E7E7A22B092A80020BC57 /* MeetingViewController.m in Sources */,
 				2A8E7EFB22B092A80020BC57 /* CallResolutionViewController.m in Sources */,
 				2A8E7F0522B093860020BC57 /* EMDemoOptions.m in Sources */,
+				F4C28E6A22D0A6F000606E6D /* WXEditCompanyViewController.swift in Sources */,
 				2A8E7E7422B092A80020BC57 /* EMCallOptions+NSCoding.m in Sources */,
 				CE5B9A2922BCD35B00B608E4 /* WXMailCell.m in Sources */,
 				2A28B1902280311500B224F4 /* UIView+Geometry.m in Sources */,
@@ -1921,6 +2015,7 @@
 				2A28B17022802B1100B224F4 /* WKWebViewController.m in Sources */,
 				2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */,
 				2ADDBA2122A4D4E70006C42A /* EMBadgeLabel.m in Sources */,
+				F4C28E6822D0A6F000606E6D /* GroupChatVC.swift in Sources */,
 				2A28B17422802B1100B224F4 /* MPicture.m in Sources */,
 				2A8E782422A8EAB10020BC57 /* WXUsersListCell.m in Sources */,
 				2A8E7E7B22B092A80020BC57 /* DemoConfManager.m in Sources */,
@@ -1929,6 +2024,7 @@
 				2A8E7EFF22B092A80020BC57 /* EMStreamView.m in Sources */,
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,
+				F4C28E6C22D0A6F000606E6D /* CompanyHeader.swift in Sources */,
 				CE5B9A2722BCD35B00B608E4 /* WXMailListSectionCell.m in Sources */,
 				2A8E784222AF78FE0020BC57 /* WXAddFriendViewController.m in Sources */,
 				CE03C2F722C0D8A800730371 /* RegisterViewController.swift in Sources */,

@@ -13,7 +13,7 @@
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXMailListViewController"
 #define Controller_Third         @"DiscoverViewController"
-#define Controller_Fourth        @"ViewController"
+#define Controller_Fourth        @"RelationViewController"
 @interface WXTabBarController ()
 /**
  * 控制器集合
@@ -77,6 +77,9 @@
         }else if([className isEqualToString:@"LoinController"]) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
             childVC = [storyboard instantiateViewControllerWithIdentifier:@"loginVC"];
+        }else if([className isEqualToString:@"RelationViewController"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RelationViewController" bundle:nil];
+            childVC = [storyboard instantiateViewControllerWithIdentifier:@"relationVC"];
         }else{
             childVC = [[NSClassFromString(className)alloc]init];
         }

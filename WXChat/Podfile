@@ -20,4 +20,13 @@ pod 'Masonry'
 pod 'AFNetworking'
 pod 'YYModel'
 pod 'SnapKit'
+pod 'XLActionController'
+pod 'HMSegmentedControl'
+# Uncomment depending on the examples that you want to install
+#pod 'XLActionController/Periscope'
+#pod 'XLActionController/Skype'
+#pod 'XLActionController/Spotify'
+#pod 'XLActionController/Tweetbot'
+#pod 'XLActionController/Twitter'
+#pod 'XLActionController/Youtube'
 end
