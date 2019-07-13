@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, WXHttpRequestType)
     /** post请求 */
     WXHttpRequestTypePost
 };
-typedef void(^SuccessBlock)(id  responseBody);
+typedef void(^SuccessBlock)(id responseBody);
 typedef void(^FailureBlock)(NSError * error);
 typedef void(^ProgressBlock)(NSProgress * downloadProgress);
 @interface WXNetWorkTool : NSObject

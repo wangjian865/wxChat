@@ -291,7 +291,7 @@
         [[EMClient sharedClient].callManager setCallOptions:callOptions];
         rootController = [[WXTabBarController alloc] init];
     }else {//环信登录失败
-
+        
     }
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];

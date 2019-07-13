@@ -53,13 +53,33 @@ class LoginController: UIViewController {
         if !account.isTelNumber() {
             print("请输入正确的手机号码")
         }
-        //    FIXME: 调用登录方法
-        //后台登录成功后再登录环信
-
-        //环信登录成功后切换页面
-        AppDelegate.sharedInstance()?.loginStateChange(true)
+        loginRequest(isFirstPage, account, pwd)
+        
     }
-    
+    func loginRequest(_ isFirst: Bool,_ account: String,_ pwd: String){
+        var urlString = ""
+        var params:[String:String] = [:]
+        if isFirstPage {
+            urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/smslogin"
+            params["tgusetaccount"] = account
+        }else{
+            //密码登录
+            urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/pwdlogin"
+            params["tgusetaccount"] = account
+            params["tgusetpassword"] = pwd
+        }
+        //    FIXME: 调用登录方法
+        
+//        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
+//            print(result)
+//        }) { (error) in
+//            print(error)
+//        }
+        //后台登录成功后再登录环信
+        
+        AppDelegate.sharedInstance()?.loginStateChange(true)
+        //环信登录成功后切换页面
+    }
     @IBAction func getPassword(_ sender: UIButton) {
         let vc = GetPasswordViewController()
         navigationController?.pushViewController(vc, animated: true)

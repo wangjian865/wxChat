@@ -69,8 +69,7 @@ static AFHTTPSessionManager *aManager;
     {
         //添加接口统一参数
         NSMutableDictionary *muParames = [[NSMutableDictionary alloc] initWithDictionary:parameters];
-        muParames[@"device_type"] = @"ios";
-        muParames[@"version_no"] = @"1.0";
+        
         [[self sharedManager] POST:urlString parameters:muParames progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -102,8 +101,7 @@ static AFHTTPSessionManager *aManager;
          failureBlock:(FailureBlock)failureBlock{
     //添加接口统一参数
     NSMutableDictionary *muParames = [[NSMutableDictionary alloc] initWithDictionary:parameters];
-    muParames[@"device_type"] = @"ios";
-    muParames[@"version_no"] = @"1.0";
+    
     [[self sharedManager] POST:urlString parameters:muParames progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

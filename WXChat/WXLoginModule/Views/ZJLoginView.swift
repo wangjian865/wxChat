@@ -31,6 +31,7 @@ class ZJLoginView: UIView {
             case .password:
                 passwordLabel.text = "密   码"
                 verfiTextField.placeholder = "输入密码"
+                verfiTextField.isSecureTextEntry = true
                 verfiButton.isHidden = true
                 verfiTextFieldWidth.constant = 0
             case .verficationCode:

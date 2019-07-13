@@ -140,7 +140,7 @@ extension InputViewController: UITextFieldDelegate {
             guard let item = subview as? ZJTextField, let text = item.inputTextField.text else {
                 continue
             }
-            if type == .getPassword, item.data?.type == .account {
+            if item.data?.type == .account {
                 account = text
             }
             let isEnable = text.count > 0
@@ -150,7 +150,7 @@ extension InputViewController: UITextFieldDelegate {
              button.isEnabled = false
         } else {
             //如果是密码验证，则两次密码需一致
-            if type == .confirm {
+            if type == .confirm{
                 let inputFirst = contentView.arrangedSubviews.first as? ZJTextField
                 let inputSecond = contentView.arrangedSubviews[1] as? ZJTextField
                 if let pwd1 = inputFirst?.inputTextField.text,
@@ -158,6 +158,19 @@ extension InputViewController: UITextFieldDelegate {
                     password = pwd1
                     button.isEnabled = true
                 } else {
+                    button.isEnabled = false
+                    return
+                }
+            }
+            if type == .register{
+                let inputFirst = contentView.arrangedSubviews[2] as? ZJTextField
+                let inputSecond = contentView.arrangedSubviews[3] as? ZJTextField
+                if let pwd1 = inputFirst?.inputTextField.text,
+                    let pwd2 = inputSecond?.inputTextField.text, pwd1 == pwd2 {
+                    password = pwd1
+                    button.isEnabled = true
+                } else {
+                    button.isEnabled = false
                     return
                 }
             }

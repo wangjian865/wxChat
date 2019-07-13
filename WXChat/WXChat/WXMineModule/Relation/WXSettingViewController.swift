@@ -11,6 +11,7 @@ import UIKit
 class WXSettingViewController: UIViewController {
 
     var textField: UITextField!
+    var callBackClosure: ((String)->Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0)
@@ -37,5 +38,8 @@ class WXSettingViewController: UIViewController {
             make.width.height.equalTo(19)
         }
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        callBackClosure?(textField.text ?? "")
+        super.viewWillDisappear(animated)
+    }
 }

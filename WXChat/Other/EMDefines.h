@@ -22,7 +22,7 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 #define EMVIEWBOTTOMMARGIN (IS_iPhoneX ? 34.f : 0.f)
 
 //账号状态
-#define ACCOUNT_LOGIN_CHANGED @"loginStateChange"
+#define ACCOUNT_LOGIN_CHANGED @"loginSuccess"
 
 #define NOTIF_PUSHVIEWCONTROLLER @"EMPushNotificationViewController"
 #define NOTIF_ID @"EMNotifId"

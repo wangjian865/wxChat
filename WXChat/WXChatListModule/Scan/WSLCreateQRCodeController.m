@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"生成二维码";
+    self.navigationItem.title = @"我的二维码";
     self.imageView.image = self.qrImage;
     self.label.text = [NSString stringWithFormat:@"扫描结果：%@ ",self.qrString];
     

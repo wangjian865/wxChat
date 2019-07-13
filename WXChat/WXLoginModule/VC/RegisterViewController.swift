@@ -15,14 +15,28 @@ class RegisterViewController: InputViewController {
         type = .register
     }
     
+    
     //点击注册
     override func clickButton() {
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/register"
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":account,"tgusetpassword":password], successBlock: { (result) in
+            let dic = result as! [String:Any]
+            let code = dic["code"] as! Int
+            if code == 200{
+                //成功
+                //showalert
+                self.navigationController?.popViewController(animated: true)
+            }
+            print(result)
+        }) { (error) in
+            print(error)
+        }
         
     }
     override func getCode(num: String) {
         let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/checkphone"
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"1"], successBlock: { (result) in
-            print("ssss")
+            print(result)
         }) { (error) in
             print(error)
         }

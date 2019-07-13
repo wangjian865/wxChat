@@ -14,7 +14,7 @@ class VerficationButton: UIButton {
         didSet {
             if isEnabled {
                 setTitle("获取验证码", for: .normal)
-                backgroundColor = .blue
+                backgroundColor = UIColor(red: 48.0 / 255.0, green: 134.0 / 255.0, blue: 191.0 / 255.0, alpha: 1.0)
                 setTitleColor(.white, for: .normal)
             } else {
                 addTimer()

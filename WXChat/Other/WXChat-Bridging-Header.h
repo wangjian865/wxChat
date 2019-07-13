@@ -5,3 +5,4 @@
 #import "HMSegmentedControl.h"
 #import "WXNetWorkTool.h"
 #import "WXChatViewController.h"
+#import <YYModel.h>

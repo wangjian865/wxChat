@@ -15,6 +15,7 @@ class WXBottomChooseView: UIView {
         
     }
     @IBAction func chooseAction(_ sender: UIButton) {
+        removeFromSuperview()
         chooseClosure?(sender.tag)
     }
     
