@@ -11,7 +11,7 @@ import UIKit
 class FriendsVC: UITableViewController {
   
     var datas = ["111","2222","33222","44222","55222","66222","77222","8222"]
-    
+    weak var superVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "FriendInfoCell", bundle: nil), forCellReuseIdentifier: "FriendInfoCell")
@@ -19,7 +19,10 @@ class FriendsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
+        let chatVC = WXChatViewController(conversationChatter: "user3", conversationType: EMConversationType(rawValue: 0))
+        chatVC?.title = "xxx聊天"
+        superVC?.navigationController?.pushViewController(chatVC!, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,4 +34,5 @@ class FriendsVC: UITableViewController {
         cell.infoModel = datas[indexPath.row]
         return cell
     }
+    
 }

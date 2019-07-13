@@ -14,6 +14,8 @@
 #import "MomentCell.h"
 #import "MomentUtil.h"
 #import "UIImage+ColorImage.h"
+#import "WXNewMomentViewController.h"
+#import "WXNewMomentMessageViewController.h"
 @interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
@@ -56,7 +58,10 @@
     [self.navigationController.navigationBar setTranslucent:true];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"moment_camera"] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
+    UIBarButtonItem *first = [[UIBarButtonItem alloc] initWithTitle:@"拍照" style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
+    UIBarButtonItem *second = [[UIBarButtonItem alloc] initWithTitle:@"消息列表" style:UIBarButtonItemStylePlain target:self action:@selector(newComment)];
+    self.navigationItem.rightBarButtonItems = @[second,first];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"moment_camera"] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
     
 }
 #pragma mark - 模拟数据
@@ -64,6 +69,7 @@
 {
     self.loginUser = [MUser findFirstByCriteria:@"WHERE type = 1"];
     self.momentList = [[NSMutableArray alloc] init];
+    [MomentUtil initMomentData];
     [self.momentList addObjectsFromArray:[MomentUtil getMomentList:0 pageNum:10]];
 }
 
@@ -124,8 +130,15 @@
 - (void)addMoment
 {
     NSLog(@"新增");
+    WXNewMomentViewController *newInfoVC = [[WXNewMomentViewController alloc] init];
+    [self.navigationController pushViewController:newInfoVC animated:true];
 }
-
+#pragma mark - 新的消息
+- (void)newComment{
+    NSLog(@"新的消息");
+    WXNewMomentMessageViewController *vc = [[WXNewMomentMessageViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
+}
 #pragma mark - 评论相关
 - (void)addComment:(NSString *)commentText
 {

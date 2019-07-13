@@ -15,6 +15,7 @@ class RelationHeaderView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
+    @IBOutlet weak var editButton: UIButton!
     
     //FIXME:根据信息赋值
     

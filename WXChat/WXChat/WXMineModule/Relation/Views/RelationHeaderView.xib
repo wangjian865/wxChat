@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RelationHeaderView" customModule="WXChat" customModuleProvider="target">
             <connections>
                 <outlet property="companyLabel" destination="pLM-7Q-VZL" id="pdI-74-gn3"/>
+                <outlet property="editButton" destination="DOF-Sc-3jb" id="6iV-Hg-QBn"/>
                 <outlet property="headerView" destination="iN0-l3-epB" id="aMi-6i-E6m"/>
                 <outlet property="iconImageView" destination="u9D-U5-GL0" id="dGr-8y-ZeG"/>
                 <outlet property="nameLabel" destination="dTS-Kl-vuS" id="LRP-Xw-LWJ"/>

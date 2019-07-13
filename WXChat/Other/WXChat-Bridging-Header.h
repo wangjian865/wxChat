@@ -3,3 +3,5 @@
 //
 #import "AppDelegate.h"
 #import "HMSegmentedControl.h"
+#import "WXNetWorkTool.h"
+#import "WXChatViewController.h"

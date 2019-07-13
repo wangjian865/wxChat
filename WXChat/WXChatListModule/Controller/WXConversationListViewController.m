@@ -114,9 +114,11 @@
         [weaklf presentViewController:nav animated:YES completion:nil];
     }];
     YCMenuAction *action2 = [YCMenuAction actionWithTitle:@"添加好友" image:[UIImage imageNamed:@"pop_addFriend"] handler:^(YCMenuAction *action) {
-        WXAddFriendViewController *addVC = [[WXAddFriendViewController alloc] init];
-        addVC.type = WXAddVCTypeFriend;
-        [weaklf.navigationController pushViewController:addVC animated:YES];
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Chat" bundle:nil];
+        UIViewController *newAddVC = [sb instantiateViewControllerWithIdentifier:@"newAddFriendVC"];
+//        WXAddFriendViewController *addVC = [[WXAddFriendViewController alloc] init];
+//        addVC.type = WXAddVCTypeFriend;
+        [weaklf.navigationController pushViewController:newAddVC animated:YES];
     }];
     YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"加入公司" image:[UIImage imageNamed:@"pop_company"] handler:^(YCMenuAction *action) {
         WXAddCompanyViewController *addCompanyVC = [[WXAddCompanyViewController alloc] init];

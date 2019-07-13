@@ -13,20 +13,20 @@
         <!--Login Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginController" customModule="login" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginController" customModule="WXChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="infinite" scrollEnabled="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qZt-a9-B4V">
-                                <rect key="frame" x="0.0" y="88" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="156"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkq-1a-IHu" customClass="ZJLoginView" customModule="login" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="216"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lkq-1a-IHu" customClass="ZJLoginView" customModule="WXChat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="156"/>
                                         <color key="backgroundColor" red="1" green="0.46780758309999998" blue="0.4062293884" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbp-gv-Nx4" userLabel="Login View2" customClass="ZJLoginView" customModule="login" customModuleProvider="target">
-                                        <rect key="frame" x="414" y="0.0" width="414" height="216"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sbp-gv-Nx4" userLabel="Login View2" customClass="ZJLoginView" customModule="WXChat" customModuleProvider="target">
+                                        <rect key="frame" x="414" y="0.0" width="414" height="156"/>
                                         <color key="backgroundColor" red="0.13725490200000001" green="0.56862745100000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
@@ -34,7 +34,7 @@
                                     <constraint firstItem="Lkq-1a-IHu" firstAttribute="leading" secondItem="qZt-a9-B4V" secondAttribute="leading" id="7e5-A9-9AN"/>
                                     <constraint firstItem="Sbp-gv-Nx4" firstAttribute="top" secondItem="qZt-a9-B4V" secondAttribute="top" id="9aT-Im-NXl"/>
                                     <constraint firstAttribute="trailing" secondItem="Sbp-gv-Nx4" secondAttribute="trailing" id="FDf-1i-XwT"/>
-                                    <constraint firstAttribute="height" constant="216" id="IEb-52-7y8"/>
+                                    <constraint firstAttribute="height" constant="156" id="IEb-52-7y8"/>
                                     <constraint firstItem="Lkq-1a-IHu" firstAttribute="top" secondItem="qZt-a9-B4V" secondAttribute="top" id="WZr-HS-Hmm"/>
                                     <constraint firstItem="Sbp-gv-Nx4" firstAttribute="width" secondItem="qZt-a9-B4V" secondAttribute="width" id="XMP-ob-pJ4"/>
                                     <constraint firstAttribute="trailing" secondItem="Sbp-gv-Nx4" secondAttribute="trailing" id="YmB-Yg-3Nq"/>
@@ -46,11 +46,11 @@
                                     <constraint firstItem="Sbp-gv-Nx4" firstAttribute="height" secondItem="qZt-a9-B4V" secondAttribute="height" id="seQ-3V-FNl"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcx-sk-QmF" customClass="ZJButton" customModule="login" customModuleProvider="target">
-                                <rect key="frame" x="30" y="304" width="354" height="64"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcx-sk-QmF" customClass="ZJButton" customModule="WXChat" customModuleProvider="target">
+                                <rect key="frame" x="30" y="244" width="354" height="47"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="mf6-1i-yNN"/>
+                                    <constraint firstAttribute="height" constant="47" id="mf6-1i-yNN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="登录">
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8P8-fW-Sya">
-                                <rect key="frame" x="30" y="382" width="70" height="32"/>
+                                <rect key="frame" x="30" y="305" width="70" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="rHj-cO-DXJ" userLabel="width = 70"/>
                                 </constraints>
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6q-IG-Lmp">
-                                <rect key="frame" x="294" y="382" width="90" height="32"/>
+                                <rect key="frame" x="294" y="305" width="90" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="NKw-fN-F5L" userLabel="width = 70"/>
                                 </constraints>
@@ -136,7 +136,7 @@
         <!--Register View Controller-->
         <scene sceneID="ePr-gw-Skt">
             <objects>
-                <viewController id="Go8-K1-pWG" customClass="RegisterViewController" customModule="login" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Go8-K1-pWG" customClass="RegisterViewController" customModule="WXChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fyh-5y-tNx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

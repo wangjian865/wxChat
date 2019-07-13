@@ -11,7 +11,7 @@
 #import "DemoCallManager.h"
 #import "DemoConfManager.h"
 #import "WXAccountTool.h"
-
+#import <IQKeyboardManager.h>
 @interface AppDelegate ()<EMChatManagerDelegate>
 
 @end
@@ -24,6 +24,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     //easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
     //环信服务注册

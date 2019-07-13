@@ -24,19 +24,24 @@ class RelationViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.editButton.addTarget(self, action: #selector(gotoEditPersonInfoVC), for: .touchUpInside)
         setUI()
         addChildVC()
     }
-    
+    @objc func gotoEditPersonInfoVC(){
+        let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "personInfoVC")
+        navigationController?.pushViewController(vc, animated: true)
+    }
     private func setUI() {
         guard let segmentedControl = segmentedControl else {
             return
@@ -78,11 +83,13 @@ class RelationViewController: UIViewController {
     
     private func addChildVC() {
         let vc = FriendsVC()
+        vc.superVC = self
         vc.view.tag = 0
         let vc2 = CompanyVC()
         vc2.superVC = self
         vc2.view.tag = 1
         let vc3 = GroupChatVC()
+        vc3.superVC = self
         vc3.view.tag = 2
         childVCs = [vc, vc2, vc3]
         pageViewController.setViewControllers([vc], direction: .forward, animated: true, completion: nil)

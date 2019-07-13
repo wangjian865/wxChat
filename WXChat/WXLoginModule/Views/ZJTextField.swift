@@ -21,7 +21,7 @@ class ZJTextField: UIView {
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var verficationButton: VerficationButton!
     @IBOutlet weak var stackView: UIStackView!
-    var buttonClick: (() -> ())?
+    var buttonClick: ((String) -> ())?
     var data: InputInfo? {
         didSet {
             guard let data = data else {
@@ -32,6 +32,7 @@ class ZJTextField: UIView {
                 titleLabel.text = "手机号码"
                 inputTextField.placeholder = "输入手机号"
             case .password:
+                 verficationButton.isHidden = true
                 inputTextField.placeholder = data.placeHolder
                 if let title = data.title {
                     titleLabel.text = title
@@ -65,7 +66,15 @@ class ZJTextField: UIView {
             return
         }
         if num.isTelNumber() {
-            //发送验证码
+            buttonClick?(num)
+            print("拿到vc进行验证码请求")
+            //发送验证码 拿到vc实现
+//            let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/checkphone"
+//            WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"1"], successBlock: { (result) in
+//                print("ssss")
+//            }) { (error) in
+//                print(error)
+//            }
         } else {
             print("不是手机号码")
             return

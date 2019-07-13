@@ -44,10 +44,7 @@ static AFHTTPSessionManager *aManager;
     if (type == WXHttpRequestTypeGet)
     {
         
-        [[self sharedManager] GET:urlString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
-            
-        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            
+        [[self sharedManager] GET:urlString parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if (successBlock)
             {
                 successBlock(responseObject);
@@ -70,8 +67,11 @@ static AFHTTPSessionManager *aManager;
     
     if (type == WXHttpRequestTypePost)
     {
-        
-        [[self sharedManager] POST:urlString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        //添加接口统一参数
+        NSMutableDictionary *muParames = [[NSMutableDictionary alloc] initWithDictionary:parameters];
+        muParames[@"device_type"] = @"ios";
+        muParames[@"version_no"] = @"1.0";
+        [[self sharedManager] POST:urlString parameters:muParames progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             
@@ -95,7 +95,38 @@ static AFHTTPSessionManager *aManager;
         }];
     }
 }
-
++ (void)uploadRequest:(WXHttpRequestType)type
+              urlString:(NSString *)urlString
+             parameters:(NSDictionary *)parameters
+           successBlock:(SuccessBlock)successBlock
+         failureBlock:(FailureBlock)failureBlock{
+    //添加接口统一参数
+    NSMutableDictionary *muParames = [[NSMutableDictionary alloc] initWithDictionary:parameters];
+    muParames[@"device_type"] = @"ios";
+    muParames[@"version_no"] = @"1.0";
+    [[self sharedManager] POST:urlString parameters:muParames progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (successBlock)
+        {
+            successBlock(responseObject);
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (error.code !=-999) {
+            if (failureBlock)
+            {
+                failureBlock(error);
+            }
+        }
+        else{
+            NSLog(@"取消队列了");
+        }
+        
+    }];
+}
 + (void)cancelDataTask{
     NSMutableArray *dataTasks = [NSMutableArray arrayWithArray:[self sharedManager].dataTasks];
     for (NSURLSessionDataTask *taskObj in dataTasks) {

@@ -13,6 +13,7 @@ class ConfirmViewController: InputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "找回密码"
         type = .confirm
     }
     

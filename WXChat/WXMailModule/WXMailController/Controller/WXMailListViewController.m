@@ -13,6 +13,8 @@
 #import "WXMailListSubCell.h"
 #import "WXMailBottomCell.h"
 #import "WXInboxViewController.h"
+#import "WXMailLoginViewController.h"
+#import "WXChooseMailTypeTableViewController.h"
 @interface WXMailListViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  * list
@@ -100,7 +102,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section > _count - 1){
-        //添加或删除事件
+        if (indexPath.section == _count){
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            WXChooseMailTypeTableViewController *vc = [sb instantiateViewControllerWithIdentifier:@"chooseMailTypeVC"];
+            [self.navigationController pushViewController:vc animated:true];
+        }else{
+            //删除邮箱
+        }
         return;
     }
     //点击subCell

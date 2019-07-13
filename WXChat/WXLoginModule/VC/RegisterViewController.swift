@@ -19,4 +19,12 @@ class RegisterViewController: InputViewController {
     override func clickButton() {
         
     }
+    override func getCode(num: String) {
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/checkphone"
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"1"], successBlock: { (result) in
+            print("ssss")
+        }) { (error) in
+            print(error)
+        }
+    }
 }

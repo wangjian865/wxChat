@@ -10,6 +10,7 @@
 
 @implementation WXAccountTool
 + (BOOL)isLogin{
-    return YES;
+//    return true;
+    return false;
 }
 @end

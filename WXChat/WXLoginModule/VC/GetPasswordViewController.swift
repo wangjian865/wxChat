@@ -13,6 +13,7 @@ class GetPasswordViewController: InputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         type = .getPassword
+        title = "找回密码"
     }
     
     override func clickButton() {

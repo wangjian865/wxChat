@@ -11,7 +11,7 @@ import UIKit
 class GroupChatVC: UITableViewController {
 
     var datas = ["111","2222","33222","44222","55222","66222","77222","8222"]
-    
+    weak var superVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")

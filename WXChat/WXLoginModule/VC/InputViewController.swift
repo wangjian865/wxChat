@@ -29,7 +29,7 @@ class InputViewController: UIViewController {
     private var contentView: UIStackView = {
         let view = UIStackView()
         view.axis = .vertical
-        view.spacing = 24
+        view.spacing = 18
         view.distribution = .fillEqually
         return view
     }()
@@ -37,7 +37,6 @@ class InputViewController: UIViewController {
     private var icon = UIImageView()
     private var remindLabel = UILabel()
     private var model: InputModel?
-    
     var password = ""
     var account = ""
     var type = PageType.getPassword {
@@ -75,6 +74,9 @@ class InputViewController: UIViewController {
     func clickButton () {
         
     }
+    @objc func getCode(num: String) {
+        
+    }
     
     @objc private func buttonAction() {
         clickButton()
@@ -91,13 +93,13 @@ class InputViewController: UIViewController {
             make.top.equalToSuperview().offset(84 + 40)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
-            make.height.greaterThanOrEqualTo(152)
+            make.height.greaterThanOrEqualTo(112)
         }
         button.snp.makeConstraints { (make) in
             make.top.equalTo(contentView.snp.bottom).offset(24)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
-            make.height.equalTo(64)
+            make.height.equalTo(47)
         }
         icon.snp.makeConstraints { (make) in
             make.height.width.equalTo(110)
@@ -111,6 +113,11 @@ class InputViewController: UIViewController {
     private func createSubviews(model: InputModel) {
         for item in model.inputs {
             let inputView = ZJTextField.textFieldBy(data: item)
+            if (item.type == .account){
+                inputView.buttonClick = {[weak self] (num) in
+                    self?.getCode(num: num)
+                }
+            }
             contentView.addArrangedSubview(inputView)
             inputView.inputTextField.delegate = self
             inputView.inputTextField.addTarget(self, action: #selector(textFieldTextDidChange), for: UIControl.Event.editingChanged)

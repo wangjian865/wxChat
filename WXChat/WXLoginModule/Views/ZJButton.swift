@@ -13,7 +13,7 @@ class ZJButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             if isEnabled {
-                backgroundColor = .blue
+                backgroundColor = UIColor(red: 48.0 / 255.0, green: 134.0 / 255.0, blue: 191.0 / 255.0, alpha: 1.0)
             } else {
                 backgroundColor = .gray
             }

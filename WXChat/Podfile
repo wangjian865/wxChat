@@ -21,5 +21,6 @@ pod 'AFNetworking'
 pod 'YYModel'
 pod 'SnapKit'
 pod 'HMSegmentedControl'
-
+pod 'IQKeyboardManager'
+pod ''
 end

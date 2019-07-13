@@ -38,6 +38,7 @@
 #import "EMDefines.h"
 #import <NSObject+YYModel.h>
 #import "WXChat-Swift.h"
+#import "WXApiMacros.h"
 /*
  颜色
  */

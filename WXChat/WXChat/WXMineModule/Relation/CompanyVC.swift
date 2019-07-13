@@ -11,15 +11,27 @@ import UIKit
 class CompanyVC: UITableViewController {
     var datas =  [["111","2222","33222","44222"],["55222","66222","77222"],["8222"]]
     var showSection = [Int]()
-    var footer = UINib(nibName: "CompanyFooter", bundle: nil).instantiate(withOwner: self, options: nil).first as! CompanyFooter
+    
     //用于push
     weak var superVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "FriendInfoCell", bundle: nil), forCellReuseIdentifier: "FriendInfoCell")
         tableView.register(UINib(nibName: "CompanyHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CompanyHeader")
+        
+        let footer = UINib(nibName: "CompanyFooter", bundle: nil).instantiate(withOwner: nil, options: nil).first as! CompanyFooter
+        footer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 500)
         tableView.tableFooterView = footer
-        footer.frame = CGRect(x: 0, y: 0, width: 0, height: 148)
+        footer.createActionClosure = {[weak self] in
+            let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "createCompanyVC")
+            self?.superVC?.navigationController?.pushViewController(vc, animated: true)
+        }
+        footer.joinActionClosure = {[weak self] in
+            let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: "createCompanyVC")
+            self?.superVC?.navigationController?.pushViewController(vc, animated: true)
+        }
         tableView.rowHeight = 80
     }
     
