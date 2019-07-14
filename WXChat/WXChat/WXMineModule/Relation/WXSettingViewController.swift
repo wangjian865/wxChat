@@ -10,12 +10,12 @@ import UIKit
 
 class WXSettingViewController: UIViewController {
 
-    var textField: UITextField!
+    var textField = UITextField.init()
+    
     var callBackClosure: ((String)->Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0)
-        textField = UITextField.init()
         textField.backgroundColor = UIColor.white
         let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 10))
         textField.leftView = leftView

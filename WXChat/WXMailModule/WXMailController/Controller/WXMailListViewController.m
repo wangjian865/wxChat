@@ -48,6 +48,7 @@
         [_mailListView registerClass:[WXMailListSectionCell class] forCellReuseIdentifier:@"WXMailListSectionCell"];
         [_mailListView registerClass:[WXMailListSubCell class] forCellReuseIdentifier:@"WXMailListSubCell"];
         [_mailListView registerClass:[WXMailBottomCell class] forCellReuseIdentifier:@"WXMailBottomCell"];
+        _mailListView.tableFooterView = [[UIView alloc] init];
     }
     return _mailListView;
 }

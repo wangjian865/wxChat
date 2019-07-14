@@ -78,7 +78,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = k_background_color;
-    
+    self.title = @"加入公司";
     [self setupUI];
 }
 - (void)setupUI{

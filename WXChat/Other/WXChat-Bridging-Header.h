@@ -6,3 +6,8 @@
 #import "WXNetWorkTool.h"
 #import "WXChatViewController.h"
 #import <YYModel.h>
+#import <YYTextView.h>
+#import "WXAddCompanyViewController.h"
+#import "WXUserMomentInfoViewController.h"
+#import "MBProgressHUD+NJ.h"
+#import "WXBaseModel.h"

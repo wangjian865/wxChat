@@ -35,7 +35,8 @@ class LoginController: UIViewController {
     }
     
     @IBAction func getVerficationCode(_ sender: UIButton) {
-        
+        print("2")
+
     }
     
     @IBAction func loginAction(_ sender: UIButton) {
@@ -60,8 +61,9 @@ class LoginController: UIViewController {
         var urlString = ""
         var params:[String:String] = [:]
         if isFirstPage {
-            urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/smslogin"
+            urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/msmlogin"
             params["tgusetaccount"] = account
+            params["code"] = pwd
         }else{
             //密码登录
             urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/pwdlogin"
@@ -70,14 +72,16 @@ class LoginController: UIViewController {
         }
         //    FIXME: 调用登录方法
         
-//        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
-//            print(result)
-//        }) { (error) in
-//            print(error)
-//        }
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
+            print(result)
+            let model = WXBaseModel.yy_model(with: result as! [String : Any]) as! WXBaseModel
+            print(model)
+        }) { (error) in
+            print(error)
+        }
         //后台登录成功后再登录环信
         
-        AppDelegate.sharedInstance()?.loginStateChange(true)
+//        AppDelegate.sharedInstance()?.loginStateChange(true)
         //环信登录成功后切换页面
     }
     @IBAction func getPassword(_ sender: UIButton) {

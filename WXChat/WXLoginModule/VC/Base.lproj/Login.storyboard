@@ -149,10 +149,10 @@
             </objects>
             <point key="canvasLocation" x="1287" y="871"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Main View Controller-->
         <scene sceneID="w1u-tT-cfd">
             <objects>
-                <viewController id="V8e-qX-DA6" sceneMemberID="viewController">
+                <viewController id="V8e-qX-DA6" customClass="WXLoginMainViewController" customModule="WXChat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XxW-6M-f7y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

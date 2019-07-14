@@ -77,6 +77,12 @@ class ZJLoginView: UIView {
             print("不是手机号码")
             return
         }
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/checkphone"
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"2"], successBlock: { (result) in
+            print(result)
+        }) { (error) in
+            print(error)
+        }
         sender.isEnabled.toggle()
     }
 }

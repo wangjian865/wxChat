@@ -133,6 +133,11 @@
                 <constraint firstItem="a7i-fa-uWz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="mRg-yu-Pqc"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="firstBtn" destination="2Lf-8Q-7bY" id="QY3-hB-IL1"/>
+                <outlet property="secondBtn" destination="Pph-xj-c8o" id="ps8-U2-6AP"/>
+                <outlet property="thirdBtn" destination="mb8-w1-grg" id="2Ut-Jg-UXd"/>
+            </connections>
             <point key="canvasLocation" x="-448" y="-168"/>
         </view>
     </objects>

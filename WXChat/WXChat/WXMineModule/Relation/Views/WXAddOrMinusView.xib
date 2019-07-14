@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="WXAddOrMinusView" customModule="WXChat" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="451" height="558"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="管理员设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1F6-Ah-7Fk">
+                    <rect key="frame" x="15" y="16" width="71.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.082352941176470587" green="0.082352941176470587" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="IxK-y7-dmP">
+                    <rect key="frame" x="26" y="56" width="399" height="400"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="AN3-2A-aiA"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="11" minimumInteritemSpacing="11" id="yYg-Es-34q">
+                        <size key="itemSize" width="67" height="84"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="IxK-y7-dmP" firstAttribute="top" secondItem="1F6-Ah-7Fk" secondAttribute="bottom" constant="23" id="IQR-Ow-Egv"/>
+                <constraint firstAttribute="trailing" secondItem="IxK-y7-dmP" secondAttribute="trailing" constant="26" id="Iwj-XX-waN"/>
+                <constraint firstItem="IxK-y7-dmP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="26" id="XBP-xI-bLI"/>
+                <constraint firstItem="1F6-Ah-7Fk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="vxG-Zj-yIV"/>
+                <constraint firstItem="1F6-Ah-7Fk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="zJ0-W7-2Z0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="IxK-y7-dmP" id="Qtq-WR-W1d"/>
+            </connections>
+            <point key="canvasLocation" x="164.49275362318841" y="94.419642857142847"/>
+        </view>
+    </objects>
+</document>

@@ -20,9 +20,9 @@ class FriendsVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let chatVC = WXChatViewController(conversationChatter: "user3", conversationType: EMConversationType(rawValue: 0))
-        chatVC?.title = "xxx聊天"
-        superVC?.navigationController?.pushViewController(chatVC!, animated: true)
+        let personInfoView = WXUserMomentInfoViewController()
+        superVC?.navigationController?.pushViewController(personInfoView, animated: true)
+
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

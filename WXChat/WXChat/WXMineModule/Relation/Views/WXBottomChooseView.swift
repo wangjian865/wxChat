@@ -10,6 +10,9 @@ import UIKit
 
 class WXBottomChooseView: UIView {
     
+    @IBOutlet weak var firstBtn: UIButton!
+    @IBOutlet weak var secondBtn: UIButton!
+    @IBOutlet weak var thirdBtn: UIButton!
     var chooseClosure: ((Int)->Void)?
     override func awakeFromNib() {
         
@@ -23,6 +26,8 @@ class WXBottomChooseView: UIView {
         removeFromSuperview()
     }
     func setShowData(array: [String]) {
-        
+        firstBtn.setTitle(array[0], for: .normal)
+        secondBtn.setTitle(array[1], for: .normal)
+        thirdBtn.setTitle(array[2], for: .normal)
     }
 }

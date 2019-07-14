@@ -99,6 +99,7 @@ CGFloat lineSpacing = 5;
     _bgImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:_bgImageView];
     _commentView = [[UIView alloc] init];
+    _commentView.backgroundColor = rgb(245, 245, 245);
     [self.contentView addSubview:_commentView];
     // 操作视图
     _menuView = [[MMOperateMenuView alloc] initWithFrame:CGRectZero];

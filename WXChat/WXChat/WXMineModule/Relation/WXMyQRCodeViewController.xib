@@ -12,6 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WXMyQRCodeViewController" customModule="WXChat" customModuleProvider="target">
             <connections>
+                <outlet property="companyLabel" destination="xBk-ep-Sir" id="pUx-eM-wh7"/>
+                <outlet property="iconView" destination="olJ-YY-dYh" id="cTk-Ho-6Kx"/>
+                <outlet property="nameLabel" destination="BSy-is-sEu" id="q1y-8E-QJZ"/>
+                <outlet property="qrcodeView" destination="fju-As-OEs" id="ife-rn-2Dt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,19 +33,57 @@
                                 <constraint firstAttribute="height" constant="50" id="cH6-M4-IZg"/>
                                 <constraint firstAttribute="width" constant="50" id="xI1-dw-DUz"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="25"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奥特曼" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSy-is-sEu">
+                            <rect key="frame" x="105" y="25" width="46" height="18"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海嘻嘻哈哈有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBk-ep-Sir">
+                            <rect key="frame" x="105" y="49" width="133" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="xBk-ep-Sir" firstAttribute="top" secondItem="BSy-is-sEu" secondAttribute="bottom" constant="6" id="0sa-u9-M8O"/>
                         <constraint firstItem="olJ-YY-dYh" firstAttribute="centerY" secondItem="pC4-li-mXt" secondAttribute="centerY" id="6zN-TO-APb"/>
+                        <constraint firstItem="BSy-is-sEu" firstAttribute="top" secondItem="pC4-li-mXt" secondAttribute="top" constant="25" id="RFI-D1-CrH"/>
+                        <constraint firstItem="BSy-is-sEu" firstAttribute="leading" secondItem="olJ-YY-dYh" secondAttribute="trailing" constant="25" id="dMH-Pb-XP7"/>
                         <constraint firstItem="olJ-YY-dYh" firstAttribute="leading" secondItem="pC4-li-mXt" secondAttribute="leading" constant="30" id="eAj-z9-J96"/>
+                        <constraint firstItem="xBk-ep-Sir" firstAttribute="leading" secondItem="BSy-is-sEu" secondAttribute="leading" id="jJI-AV-i3e"/>
                         <constraint firstAttribute="height" constant="96" id="l3T-ja-3hf"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fju-As-OEs">
+                    <rect key="frame" x="93" y="184" width="228" height="228"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="fju-As-OEs" secondAttribute="height" multiplier="1:1" id="LX2-3w-UJ6"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫一扫二维码, 添加好友" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yW4-vf-Y8D">
+                    <rect key="frame" x="126.5" y="427" width="161.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pC4-li-mXt" secondAttribute="trailing" id="68q-9f-yE7"/>
+                <constraint firstItem="yW4-vf-Y8D" firstAttribute="top" secondItem="fju-As-OEs" secondAttribute="bottom" constant="15" id="EyO-86-DOB"/>
+                <constraint firstItem="fju-As-OEs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="LxI-Cx-P3d"/>
+                <constraint firstItem="yW4-vf-Y8D" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c7o-wW-paF"/>
+                <constraint firstItem="fju-As-OEs" firstAttribute="top" secondItem="pC4-li-mXt" secondAttribute="bottom" constant="44" id="h32-9I-dww"/>
+                <constraint firstItem="fju-As-OEs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="93" id="q1h-qM-Juy"/>
                 <constraint firstItem="pC4-li-mXt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qvd-Ms-qde"/>
                 <constraint firstItem="pC4-li-mXt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yga-aZ-Llq"/>
             </constraints>

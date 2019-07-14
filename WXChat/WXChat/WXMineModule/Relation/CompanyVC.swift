@@ -28,8 +28,7 @@ class CompanyVC: UITableViewController {
             self?.superVC?.navigationController?.pushViewController(vc, animated: true)
         }
         footer.joinActionClosure = {[weak self] in
-            let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "createCompanyVC")
+            let vc = WXAddCompanyViewController()
             self?.superVC?.navigationController?.pushViewController(vc, animated: true)
         }
         tableView.rowHeight = 80
@@ -82,7 +81,14 @@ class CompanyVC: UITableViewController {
         }
         return header
     }
-    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 5
+    }
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView.init()
+        view.backgroundColor = UIColor.white
+        return view
+    }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendInfoCell", for: indexPath) as! FriendInfoCell
         cell.infoModel = datas[indexPath.section][indexPath.row]

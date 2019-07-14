@@ -64,6 +64,7 @@ class WXEditPersonInfoViewController: UITableViewController {
             navigationController?.pushViewController(settingVC, animated: true)
         }else if indexPath.row == 4{
             let settingVC = WXSettingViewController()
+
             settingVC.textField.text = workLabel.text
             settingVC.callBackClosure = { [weak self] (string) in
                 self?.workLabel.text = string
@@ -78,6 +79,21 @@ class WXEditPersonInfoViewController: UITableViewController {
             }
             settingVC.title = "公司"
             navigationController?.pushViewController(settingVC, animated: true)
+        }else if indexPath.row == 6{
+            //二维码
+            let qrcodeVC = WXMyQRCodeViewController()
+            navigationController?.pushViewController(qrcodeVC, animated: true)
+        }else if indexPath.row == 7{
+            //企业圈
+            
+        }else if indexPath.row == 8{
+            //隐私
+            let vc = UIStoryboard.init(name: "RelationViewController", bundle: nil).instantiateViewController(withIdentifier: "privateVC")
+            navigationController?.pushViewController(vc, animated: true)
+        }else if indexPath.row == 9{
+            //设置
+            let vc = UIStoryboard.init(name: "RelationViewController", bundle: nil).instantiateViewController(withIdentifier: "settingTBVC")
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 

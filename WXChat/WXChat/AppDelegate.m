@@ -56,6 +56,11 @@
             [[EMClient sharedClient].callManager setCallOptions:callOptions];
             self.window.rootViewController = [[WXTabBarController alloc] init];
             [self.window makeKeyAndVisible];
+        }else{
+            //未登录状态
+            UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
+            self.window.rootViewController = loginVC;
+            [self.window makeKeyAndVisible];
         }
     }else{
         //未登录状态
