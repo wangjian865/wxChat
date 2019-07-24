@@ -20,6 +20,10 @@ class FriendsVC: UITableViewController {
         //WDX http
         getFriendListRequest()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getFriendListRequest()
+    }
     func getFriendListRequest() {
         MineViewModel.getFriendList(success: { (success) in
             self.models = success

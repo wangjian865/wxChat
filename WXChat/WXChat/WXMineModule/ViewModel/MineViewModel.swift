@@ -29,9 +29,9 @@ class MineViewModel: NSObject {
         }
     }
     //添加好友
-    class func addFriend() {
-        
-    }
+//    class func addFriend() {
+//
+//    }
     //删除好友
     class func deleteFriend(friendID: String,
                             success: @escaping (_ response: [String: Any]?) ->(),
