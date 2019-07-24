@@ -11,11 +11,19 @@ import UIKit
 class CompanyVC: UITableViewController {
     var datas =  [["111","2222","33222","44222"],["55222","66222","77222"],["8222"]]
     var showSection = [Int]()
-    
+    var companymodels: [CompanyModel]?
     //用于push
     weak var superVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
+        initMyView()
+        initMyData()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initMyData()
+    }
+    func initMyView() {
         tableView.register(UINib(nibName: "FriendInfoCell", bundle: nil), forCellReuseIdentifier: "FriendInfoCell")
         tableView.register(UINib(nibName: "CompanyHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "CompanyHeader")
         
@@ -33,14 +41,21 @@ class CompanyVC: UITableViewController {
         }
         tableView.rowHeight = 80
     }
-    
+    func initMyData() {
+        MineViewModel.searchUserCompanys(success: { (success) in
+            self.companymodels = success
+            self.tableView.reloadData()
+        }) { (error) in
+            print("获取公司列表失败")
+        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if showSection.contains(section){
-            return datas[section].count
+            return companymodels![section].users.count
         } else {
             //不在showSection的组不展示cell
             return 0
@@ -49,7 +64,7 @@ class CompanyVC: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 3
+        return companymodels?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -59,8 +74,9 @@ class CompanyVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UINib(nibName: "CompanyHeader", bundle: nil).instantiate(withOwner: self, options: nil).first as! CompanyHeader
-        header.companyInfo = "header数据"
+        let model = companymodels![section]
         header.sectionIndex = section
+        header.setContentData(model: model)
         if showSection.contains(section) {
             header.isShow = true
         }
@@ -76,7 +92,9 @@ class CompanyVC: UITableViewController {
         }
         header.tapEditCompany = {[weak self] (model) in
             let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: "editCompanyVC")
+
+            let vc = sb.instantiateViewController(withIdentifier: "editCompanyVC")  as! WXEditCompanyViewController
+            vc.setContentData(model: model)
             self?.superVC?.navigationController?.pushViewController(vc, animated: true)
         }
         return header
@@ -91,7 +109,10 @@ class CompanyVC: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendInfoCell", for: indexPath) as! FriendInfoCell
-        cell.infoModel = datas[indexPath.section][indexPath.row]
+        let companyModel = companymodels![indexPath.section]
+        let model = companyModel.users[indexPath.row] as! FriendModel
+        cell.setModel(model: model)
+//        cell.infoModel = datas[indexPath.section][indexPath.row]
         return cell
     }
     

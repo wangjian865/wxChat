@@ -16,11 +16,19 @@ class ConfirmViewController: InputViewController {
         title = "找回密码"
         type = .confirm
     }
-    
+    var code: String = ""
     //点击设置新密码
     override func clickButton() {
-        print(password);
-        print(account)
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/updateTgusetPwd"
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":account,"tgusetpassword":password,"code":code], successBlock: { (result) in
+            if let dic = result as? [String:Any],let msg = dic["msg"] as? String{
+                MBProgressHUD.showSuccess(msg)
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            
+        }) { (error) in
+            print(error)
+        }
     }
 
 }

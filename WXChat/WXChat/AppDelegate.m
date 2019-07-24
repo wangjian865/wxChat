@@ -28,14 +28,16 @@
     //easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
     //环信服务注册
-    EMOptions *options = [EMOptions optionsWithAppkey:@"1128190420216118#testdemo"];
+//    EMOptions *options = [EMOptions optionsWithAppkey:@"1128190420216118#testdemo"];
+    EMOptions *options = [EMOptions optionsWithAppkey:@"1111190604042820#bambooslip"];
     // apnsCertName是证书名称，可以先传nil，等后期配置apns推送时在传入证书名称
     options.apnsCertName = nil;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     
     //默认登录的状态
     if ([WXAccountTool isLogin]){
-        EMError *error = [[EMClient sharedClient] loginWithUsername:@"user2" password:@"123456"];
+        //[WXAccountTool getHuanXinID]
+        EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];
         if (!error) {
             NSLog(@"登录成功");
             [DemoCallManager sharedManager];
@@ -61,6 +63,7 @@
             UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
             self.window.rootViewController = loginVC;
             [self.window makeKeyAndVisible];
+            
         }
     }else{
         //未登录状态
@@ -267,7 +270,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)loginStateChange: (BOOL)isLogin{
+- (void)loginStateChange:(BOOL)isLogin huanxinID:(NSString *)ID{
     UIViewController *rootController = nil;
     BOOL loginSuccess = isLogin;
     //此时只是后台登录成功
@@ -275,7 +278,7 @@
         //登录不成功的状态
         return;
     }
-    EMError *error = [[EMClient sharedClient] loginWithUsername:@"user2" password:@"123456"];
+    EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];
     if (!error) {
         NSLog(@"登录成功");
         [DemoCallManager sharedManager];
@@ -296,7 +299,8 @@
         [[EMClient sharedClient].callManager setCallOptions:callOptions];
         rootController = [[WXTabBarController alloc] init];
     }else {//环信登录失败
-        
+        [MBProgressHUD showError:@"登录环信服务器失败,请重新尝试"];
+        return;
     }
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];

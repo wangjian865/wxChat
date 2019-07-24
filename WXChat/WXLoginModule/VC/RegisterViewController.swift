@@ -34,7 +34,7 @@ class RegisterViewController: InputViewController {
         
     }
     override func getCode(num: String) {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/checkphone"
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/checkPhone"
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"1"], successBlock: { (result) in
             print(result)
         }) { (error) in

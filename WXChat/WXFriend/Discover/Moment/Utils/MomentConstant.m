@@ -20,7 +20,8 @@ CGFloat const MarginHeight = 15;
 CGFloat const MMHandlePhoneTag = 1000;
 // 删除评论
 CGFloat const MMDelCommentTag = 1001;
-
+//替换封面
+CGFloat const MMChangeCoverTag = 1002;
 // 延迟执行
 void GCD_AFTER(CGFloat time,dispatch_block_t block)
 {

@@ -13,6 +13,7 @@ enum PageType {
     case getPassword
     case confirm
     case register
+//    case find
 }
 
 struct InputModel {
@@ -48,8 +49,8 @@ class InputViewController: UIViewController {
                 model = InputModel(inputs: [first,seconde])
                 button.setTitle("继续", for: .normal)
             case .confirm:
-                let first = InputInfo(type: .input, title: nil, placeHolder: "输入新的密码")
-                let seconde = InputInfo(type: .input, title: nil, placeHolder: "再次输入新的密码")
+                let first = InputInfo(type: .password, title: nil, placeHolder: "输入新的密码")
+                let seconde = InputInfo(type: .password, title: nil, placeHolder: "再次输入新的密码")
                 model = InputModel(inputs: [first,seconde])
                 button.setTitle("确定", for: .normal)
             case .register:
@@ -115,6 +116,7 @@ class InputViewController: UIViewController {
             let inputView = ZJTextField.textFieldBy(data: item)
             if (item.type == .account){
                 inputView.buttonClick = {[weak self] (num) in
+                    //传出获取验证码事件
                     self?.getCode(num: num)
                 }
             }
@@ -174,7 +176,12 @@ extension InputViewController: UITextFieldDelegate {
                     return
                 }
             }
-             button.isEnabled = true
+            if type == .getPassword{
+//                let inputFirst = contentView.arrangedSubviews.first as? ZJTextField
+                let inputSecond = contentView.arrangedSubviews[1] as? ZJTextField
+                password = inputSecond?.inputTextField.text ?? ""
+            }
+                         button.isEnabled = true
         }
     }
 }

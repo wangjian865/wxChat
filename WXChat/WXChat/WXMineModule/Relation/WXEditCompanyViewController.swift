@@ -9,8 +9,15 @@
 import UIKit
 
 
-class WXEditCompanyViewController: UITableViewController {
+class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     @IBOutlet weak var companyIconView: UIImageView!
+    var myModel :CompanyModel?
+    
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var numberTF: UITextField!
+    @IBOutlet weak var descTF: YYTextView!
+    @IBOutlet weak var indusTF: UITextField!
+    @IBOutlet weak var locationTF: UITextField!
     
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -31,7 +38,49 @@ class WXEditCompanyViewController: UITableViewController {
         rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         rightBtn.frame.size = CGSize.init(width: 52, height: 28)
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
+        
+        //控件赋值
+        companyIconView.sd_setImage(with: URL.init(string: myModel?.companylogo ?? ""), placeholderImage: UIImage.init(named: "normal_icon"))
+        nameTF.text = myModel?.companyname
+        numberTF.text = myModel?.companysystem
+        descTF.text = myModel?.companysynopsis
+        indusTF.text = myModel?.companyindustry
+        locationTF.text = myModel?.companyregion
     }
+    func setContentData(model: CompanyModel){
+        myModel = model
+        
+    }
+    
+    //action
+    @IBAction func deleteCompanyAction(_ sender: Any) {
+        let sheet = Bundle.main.loadNibNamed("WXBottomChooseView", owner: nil, options: nil)?.last as! WXTwoBottomChooseView
+        sheet.firstBtn.setTitle("删除公司后,该公司下的所有成员将一并移除", for: .normal)
+        sheet.secondBtn.setTitle("删除公司", for: .normal)
+        sheet.chooseClosure = { [weak self] (index) in
+            if index == 102{
+                //101作为title  无视点击事件
+                self?.deleComRequest()
+            }
+        }
+        view.window?.addSubview(sheet)
+    }
+    func deleComRequest() {
+        MineViewModel.deleCompany(companyid: myModel?.companyid ?? "", success: { (success) in
+            print("1")
+            self.navigationController?.popToRootViewController(animated: true)
+        }) { (error) in
+            print("删除公司出现错误")
+        }
+    }
+    @IBAction func removeFromCompanyAction(_ sender: Any) {
+        MineViewModel.leaveCompany(companyid: myModel?.companyid ?? "", success: { (success) in
+            print(success)
+        }) { (error) in
+            print("退出公司出现错误")
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         switch row {
@@ -55,12 +104,17 @@ class WXEditCompanyViewController: UITableViewController {
             break
         case 1:
         //公司成员管理
-            
+            let vc = WXAttendantViewController()
+            vc.companyID = myModel?.companyid ?? ""
+            vc.title = "公司成员管理"
+            self.navigationController?.pushViewController(vc, animated: true)
             break
         case 2:
         //管理员设置
         
             let vc = WXAttendantViewController()
+            vc.companyID = myModel?.companyid ?? ""
+            vc.title = "管理员设置"
             self.navigationController?.pushViewController(vc, animated: true)
             break
         case 3:
@@ -79,7 +133,7 @@ extension WXEditCompanyViewController: UIImagePickerControllerDelegate,UINavigat
             pickerView.sourceType = .camera
             self.present(pickerView, animated: true, completion: nil)
         } else {
-            //            HUDTool.showText(text: "暂无相机权限")
+            MBProgressHUD.showError("暂无相机权限")
         }
     }
     
@@ -88,14 +142,14 @@ extension WXEditCompanyViewController: UIImagePickerControllerDelegate,UINavigat
             pickerView.sourceType = .photoLibrary
             self.present(pickerView, animated: true, completion: nil)
         } else {
-            //            HUDTool.showText(text: "暂无相册权限")
+            MBProgressHUD.showError("暂无相册权限")
         }
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         let image = info[.editedImage] as! UIImage
         companyIconView.image = image
-        print("2")
+        
     }
     
     

@@ -51,9 +51,9 @@ class LoginController: UIViewController {
         }
         
         //判断手机号码是否合法 ？ 要验证吗？还是直接登录，等后台返回错误信息？
-        if !account.isTelNumber() {
-            print("请输入正确的手机号码")
-        }
+//        if !account.isTelNumber() {
+//            print("请输入正确的手机号码")
+//        }
         loginRequest(isFirstPage, account, pwd)
         
     }
@@ -61,12 +61,12 @@ class LoginController: UIViewController {
         var urlString = ""
         var params:[String:String] = [:]
         if isFirstPage {
-            urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/msmlogin"
+            urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/msmLogin"
             params["tgusetaccount"] = account
             params["code"] = pwd
         }else{
             //密码登录
-            urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/pwdlogin"
+            urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/pwdLogin"
             params["tgusetaccount"] = account
             params["tgusetpassword"] = pwd
         }
@@ -74,15 +74,43 @@ class LoginController: UIViewController {
         
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
             print(result)
-            let model = WXBaseModel.yy_model(with: result as! [String : Any]) as! WXBaseModel
-            print(model)
+            let model = WXBaseModel.yy_model(with: result as! [String : Any])
+            if model!.code.elementsEqual("200"){
+                //登录成功
+                //保存token
+                let token = model?.data["x-auth-token"] as! String
+                let huanxinID = model?.data["account"] as! String
+                
+                UserDefaults.standard.set(token, forKey: "token")
+                UserDefaults.standard.set(account ,forKey: "account")
+                UserDefaults.standard.set(huanxinID, forKey: "huanxinID")
+                //环信登录成功后切换页面
+                AppDelegate.sharedInstance()?.loginStateChange(true, huanxinID: huanxinID)
+                self.getUserInfo()
+            }
         }) { (error) in
+            
             print(error)
         }
-        //后台登录成功后再登录环信
         
-//        AppDelegate.sharedInstance()?.loginStateChange(true)
-        //环信登录成功后切换页面
+    }
+    //登录成功后请求一下个人数据
+    func getUserInfo() {
+        let params = ["tgusetaccount":WXAccountTool.getUserPhone()]
+        WXNetWorkTool.request(with: .post, urlString: WXApiManager.getRequestUrl("manKeepToken/findUserAccount"), parameters: params, successBlock: { (result) in
+            print(result)
+            let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                //获取到用户信息并存储
+                let model = UserInfoModel.yy_model(with: result.data)
+                UserDefaults.standard.set(model?.tgusetid, forKey: "userID")
+                WXCacheTool.wx_saveModel(model as Any, key: "userInfo")
+            }
+        }) { (error) in
+            
+            print(error)
+        }
     }
     @IBAction func getPassword(_ sender: UIButton) {
         let vc = GetPasswordViewController()

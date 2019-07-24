@@ -11,6 +11,7 @@ import UIKit
 
 class RelationViewController: UIViewController {
     @IBOutlet weak var headerView: RelationHeaderView!
+    var headerModel: UserInfoModel?
     private let searchView = UINib(nibName: "RelationSearchView", bundle: Bundle.main).instantiate(withOwner: self, options: nil).first as! RelationSearchView
     private let segmentedControl = HMSegmentedControl(sectionTitles: ["好友","公司","群聊"])
     private let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -36,10 +37,26 @@ class RelationViewController: UIViewController {
         headerView.editButton.addTarget(self, action: #selector(gotoEditPersonInfoVC), for: .touchUpInside)
         setUI()
         addChildVC()
+        //WDX http
+        getUserInfoRequest()
     }
+    func getUserInfoRequest() {
+        MineViewModel.getUserInfo(success: { (model) in
+            if let temp = model{
+                self.headerModel = model
+                self.headerView.setContentData(model: temp)
+            }else{
+                print("获取个人信息错误")
+            }
+        }) { (error) in
+            print(error as Any)
+        }
+    }
+    
     @objc func gotoEditPersonInfoVC(){
         let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "personInfoVC")
+        let vc = sb.instantiateViewController(withIdentifier: "personInfoVC") as! WXEditPersonInfoViewController
+        vc.userInfoModel = headerModel
         navigationController?.pushViewController(vc, animated: true)
     }
     private func setUI() {

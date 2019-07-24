@@ -7,7 +7,7 @@
 //
 
 #import "WXMailLoginViewController.h"
-
+#import "ViewMailConfigController.h"
 @interface WXMailLoginViewController ()
 
 @end
@@ -28,6 +28,14 @@
 }
 - (void)mailLoginAction {
     NSLog(@"登录邮箱");
+}
+- (IBAction)configAction:(UIButton *)sender {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ViewMailConfigController *configVC = [sb instantiateViewControllerWithIdentifier:@"mailConfigVC"];
+    [self.navigationController pushViewController:configVC animated:true];
+}
+- (IBAction)loginErrorAction:(UIButton *)sender {
+    NSLog(@"登录有问题");
 }
 
 

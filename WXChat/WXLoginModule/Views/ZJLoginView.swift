@@ -73,11 +73,11 @@ class ZJLoginView: UIView {
             print("手机号码不能为空")
             return
         }
-        if !num.isTelNumber() {
-            print("不是手机号码")
-            return
-        }
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/checkphone"
+//        if !num.isTelNumber() {
+//            print("不是手机号码")
+//            return
+//        }
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/checkPhone"
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"2"], successBlock: { (result) in
             print(result)
         }) { (error) in

@@ -283,6 +283,7 @@
             [self.sectionTitles removeObjectAtIndex:i];
         }
     }
+    
     [self.contactArr addObjectsFromArray:sortedArray];
     [self.tableView reloadData];
 }

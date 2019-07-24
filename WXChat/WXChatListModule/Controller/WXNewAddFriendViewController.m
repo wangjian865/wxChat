@@ -10,6 +10,7 @@
 #import "WXNewAddTableViewCell.h"
 #import <IQKeyboardManager.h>
 #import "WXfriendResultViewController.h"
+#import "WXContackListViewController.h"
 @interface WXNewAddFriendViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTF;
@@ -26,6 +27,10 @@
     _tableView.rowHeight = 104;
     [_tableView registerNib:[UINib nibWithNibName:@"WXNewAddTableViewCell" bundle:nil] forCellReuseIdentifier:@"newCell"];
     _searchTF.delegate = self;
+}
+- (IBAction)addContackFriendsAction:(UIButton *)sender {
+    WXContackListViewController *listVC = [[WXContackListViewController alloc] init];
+    [self.navigationController pushViewController:listVC animated:true];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -17,19 +17,15 @@ class FriendInfoCell: UITableViewCell {
     
     @IBOutlet weak var companyLabel: UILabel!
     
-    //改成实际模型，并赋值
-    var infoModel = "" {
-        didSet {
-//            iconImageView.image = UIImage(named: <#T##String#>)
-            nameLabel.text = infoModel
-            positionLabel.text = "职位"
-            companyLabel.text = "公司名字"
-            
-        }
-    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+    func setModel(model: FriendModel){
+        iconImageView.sd_setImage(with: URL.init(string: model.tgusetimg), placeholderImage: UIImage.init(named: "normal_icon"))
+        nameLabel.text = model.tgusetname
+        positionLabel.text = model.tgusetposition
+        companyLabel.text = model.tgusetcompany
+    }
 }

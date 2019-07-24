@@ -51,13 +51,16 @@
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
-#pragma mark - 设置导航栏样式
-- (void)setNaviBarStyle{
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
     [self.navigationController.navigationBar setTranslucent:true];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+#pragma mark - 设置导航栏样式
+- (void)setNaviBarStyle{
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     UIBarButtonItem *first = [[UIBarButtonItem alloc] initWithTitle:@"拍照" style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
     UIBarButtonItem *second = [[UIBarButtonItem alloc] initWithTitle:@"消息列表" style:UIBarButtonItemStylePlain target:self action:@selector(newComment)];
     self.navigationItem.rightBarButtonItems = @[second,first];
@@ -79,6 +82,9 @@
     // 封面
     MMImageView * imageView = [[MMImageView alloc] initWithFrame:CGRectMake(0, -k_top_height, k_screen_width, 270)];
     imageView.image = [UIImage imageNamed:@"moment_cover"];
+    imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *coverTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeHeaderCover)];
+    [imageView addGestureRecognizer:coverTap];
     self.coverImageView = imageView;
     // 用户头像
     imageView = [[MMImageView alloc] initWithFrame:CGRectMake(k_screen_width-85, self.coverImageView.bottom-40, 75, 75)];
@@ -125,6 +131,13 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
     }];
+}
+#pragma mark - 更换头部图片
+- (void)changeHeaderCover
+{
+    UUActionSheet *sheet = [[UUActionSheet alloc] initWithTitle:@"更换相册封面" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择",@"拍一张",nil];
+    sheet.tag = 1002;
+    [sheet showInView:self.view.window];
 }
 #pragma mark - 发布动态
 - (void)addMoment
@@ -330,6 +343,7 @@
         }
         case MLLinkTypeOther: // 用户
         {
+            //WDX 跳转用户详情页
             int pk = [link.linkValue intValue];
             MUser * user = [MUser findByPK:pk];
             
@@ -385,8 +399,14 @@
         } else { // 取消
             
         }
-    } else {
-        
+    } else if (actionSheet.tag == 1002){
+        //更换相册封面
+        if (buttonIndex == 0){
+            //从相册选择
+            
+        }else{
+            //
+        }
     }
 }
 

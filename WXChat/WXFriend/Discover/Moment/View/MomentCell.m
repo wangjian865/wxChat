@@ -150,7 +150,7 @@ CGFloat lineSpacing = 5;
             _showAllBtn.selected = _moment.isFullText;
         }
         _linkLabel.frame = CGRectMake(_avatarImageView.left, bottom, attrStrSize.width, labHeight);
-        _showAllBtn.frame = CGRectMake(_nicknameBtn.left, _linkLabel.bottom + kArrowHeight, _showAllBtn.width, kMoreLabHeight);
+        _showAllBtn.frame = CGRectMake(_avatarImageView.left, _linkLabel.bottom + kArrowHeight, _showAllBtn.width, kMoreLabHeight);
         if (_showAllBtn.hidden) {
             bottom = _linkLabel.bottom + kPaddingValue;
         } else {

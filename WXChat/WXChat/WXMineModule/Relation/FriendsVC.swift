@@ -11,13 +11,24 @@ import UIKit
 class FriendsVC: UITableViewController {
   
     var datas = ["111","2222","33222","44222","55222","66222","77222","8222"]
+    var models: [FriendModel]?
     weak var superVC: UIViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "FriendInfoCell", bundle: nil), forCellReuseIdentifier: "FriendInfoCell")
         tableView.rowHeight = 85
+        //WDX http
+        getFriendListRequest()
     }
-    
+    func getFriendListRequest() {
+        MineViewModel.getFriendList(success: { (success) in
+            self.models = success
+            self.tableView.reloadData()
+        }) { (error) in
+            print("请求朋友列表失败")
+        }
+        
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let personInfoView = WXUserMomentInfoViewController()
@@ -26,12 +37,12 @@ class FriendsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datas.count
+        return models?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendInfoCell", for: indexPath) as! FriendInfoCell
-        cell.infoModel = datas[indexPath.row]
+        cell.setModel(model: models![indexPath.row])
         return cell
     }
     

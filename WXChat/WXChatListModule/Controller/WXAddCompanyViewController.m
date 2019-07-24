@@ -7,8 +7,8 @@
 //
 
 #import "WXAddCompanyViewController.h"
-
-@interface WXAddCompanyViewController ()
+#import "CompanyModel.h"
+@interface WXAddCompanyViewController ()<UITextFieldDelegate>
 @property (nonatomic, strong)UITextField *inputView;
 @property (nonatomic, strong)UILabel *promptLabel;
 @property (nonatomic, strong)UIView *companyView;
@@ -96,9 +96,34 @@
     textField.textColor = rgb(51,51,51);
     textField.font = [UIFont systemFontOfSize:14];
     textField.backgroundColor = UIColor.whiteColor;
+    textField.delegate = self;
     _inputView = textField;
     [self.view addSubview:textField];
     [self.view addSubview:self.companyView];
+    _companyView.hidden = YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField endEditing:true];
+    NSString *urlStr = [WXApiManager getRequestUrl:@"company/selectCompany"];
+    NSDictionary *params = @{@"companyid":textField.text,@"companytgusettgusetid":[WXAccountTool getUserID]};
+    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
+        if ([code isEqualToString:@"200"]){
+            //成功
+            self.companyView.hidden = NO;
+            CompanyModel *model = [CompanyModel yy_modelWithJSON:responseBody[@"data"]];
+            [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.companylogo] placeholderImage:[UIImage imageNamed:@"normal_icon"]];
+            self.companyNameLabel.text = model.companyname;
+            self.companyCountLabel.text = [NSString stringWithFormat:@"%@ 人",model.companycount];
+            self.companyDescriptionLabel.text = model.companysynopsis;
+        }else{
+            [MBProgressHUD showError:@"未检索到该公司"];
+            self.companyView.hidden = YES;
+        }
+    } failureBlock:^(NSError * _Nonnull error) {
+        self.companyView.hidden = YES;
+    }];
+    return true;
 }
 - (void)viewDidLayoutSubviews{
     [_promptLabel mas_makeConstraints:^(MASConstraintMaker *make) {

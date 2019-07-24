@@ -39,6 +39,11 @@
 #import <NSObject+YYModel.h>
 #import "WXChat-Swift.h"
 #import "WXApiMacros.h"
+#import "WXApiManager.h"
+#import "WXAccountTool.h"
+#import "WXNetWorkTool.h"
+#import "UIImageView+WebCache.h"
+#import <YYModel.h>
 /*
  颜色
  */

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="456" height="126"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tSb-pq-3jv">
+                    <rect key="frame" x="14" y="25" width="14" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="14" id="OZt-IQ-myk"/>
+                        <constraint firstAttribute="width" constant="14" id="hk0-Ex-qZa"/>
+                    </constraints>
+                    <state key="normal" image="userList_deselect"/>
+                    <state key="selected" image="userList_select"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选中 ( 0 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8o-Fs-k93">
+                    <rect key="frame" x="54" y="22" width="67" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="r8o-Fs-k93" firstAttribute="leading" secondItem="tSb-pq-3jv" secondAttribute="trailing" constant="26" id="3xP-1o-Y9u"/>
+                <constraint firstItem="tSb-pq-3jv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="FaO-Vl-UQc"/>
+                <constraint firstItem="tSb-pq-3jv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="14" id="aUU-uC-MiV"/>
+                <constraint firstItem="r8o-Fs-k93" firstAttribute="centerY" secondItem="tSb-pq-3jv" secondAttribute="centerY" id="qxd-Xg-Fj0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="168.11594202898553" y="-171.42857142857142"/>
+        </view>
+        <view contentMode="scaleToFill" id="aRR-6o-vp7">
+            <rect key="frame" x="0.0" y="0.0" width="440" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adB-UV-c6K">
+                    <rect key="frame" x="23" y="17" width="394" height="47"/>
+                    <color key="backgroundColor" red="0.18823529411764706" green="0.52549019607843139" blue="0.74901960784313726" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="6Fe-Lr-zVv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="发送邀请"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="adB-UV-c6K" firstAttribute="leading" secondItem="aRR-6o-vp7" secondAttribute="leading" constant="23" id="Fbe-QK-YZq"/>
+                <constraint firstAttribute="trailing" secondItem="adB-UV-c6K" secondAttribute="trailing" constant="23" id="LJN-8W-AjW"/>
+                <constraint firstAttribute="bottom" secondItem="adB-UV-c6K" secondAttribute="bottom" id="c8O-xS-9n8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="158" y="58"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="userList_deselect" width="21" height="21"/>
+        <image name="userList_select" width="21" height="21"/>
+    </resources>
+</document>

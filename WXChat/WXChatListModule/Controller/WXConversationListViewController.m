@@ -198,6 +198,20 @@
 {
     return 64;
 }
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0){
+        return false;
+    }
+    return true;
+}
+- (void)deleteCellAction:(NSIndexPath *)aIndexPath
+{
+    NSIndexPath *currentIndexPath = [NSIndexPath indexPathForRow:aIndexPath.row-1 inSection:aIndexPath.section];
+    EaseConversationModel *model = [self.dataArray objectAtIndex:currentIndexPath.row];
+    [[EMClient sharedClient].chatManager deleteConversation:model.conversation.conversationId isDeleteMessages:YES completion:nil];
+    [self.dataArray removeObjectAtIndex:currentIndexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:aIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
 /*!
  @method
  @brief 获取会话最近一条消息内容提示

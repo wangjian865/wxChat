@@ -38,6 +38,14 @@ typedef void(^ProgressBlock)(NSProgress * downloadProgress);
            successBlock:(SuccessBlock)successBlock
            failureBlock:(FailureBlock)failureBlock;
 /**
+ 文件上传
+ **/
++ (void)uploadFileWithUrl:(NSString *)urlString
+                    image:(UIImage *)image
+               parameters:(NSDictionary *)parameters
+             successBlock:(SuccessBlock)successBlock
+             failureBlock:(FailureBlock)failureBlock;
+/**
  取消队列
  */
 +(void)cancelDataTask;

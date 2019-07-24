@@ -70,6 +70,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ci-Fu-tXs">
                                                     <rect key="frame" x="153" y="33.5" width="108" height="30"/>
                                                     <state key="normal" title="添加手机联系人"/>
+                                                    <connections>
+                                                        <action selector="addContackFriendsAction:" destination="i42-53-OYK" eventType="touchUpInside" id="tYv-4S-oaX"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

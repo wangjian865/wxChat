@@ -10,6 +10,13 @@ import UIKit
 
 class WXCreateCompanyViewController: UITableViewController {
     @IBOutlet weak var companyIconView: UIImageView!
+    
+    @IBOutlet weak var myTextView: YYTextView!
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var numberTF: UITextField!
+    @IBOutlet weak var induTF: UITextField!
+    @IBOutlet weak var locationTF: UITextField!
+    
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = true;
@@ -19,6 +26,7 @@ class WXCreateCompanyViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "创建公司"
+        myTextView.placeholderText = "请输入公司简介"
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -40,7 +48,14 @@ class WXCreateCompanyViewController: UITableViewController {
             view.window?.addSubview(bottomView)
         }
     }
-
+    @IBAction func createCompanyAction(_ sender: UIButton) {
+        MineViewModel.createCompany(companyname: "乳娃娃", logofiles: "", companysynopsis: "213124", companyindustry: "简介", companyregion: "上海", tgusetaccount: "17600209301", success: { (model) in
+            print("1")
+        }) { (error) in
+            
+        }
+    }
+    
 }
 extension WXCreateCompanyViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     

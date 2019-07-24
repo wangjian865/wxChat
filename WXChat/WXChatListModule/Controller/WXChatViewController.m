@@ -7,7 +7,7 @@
 //
 
 #import "WXChatViewController.h"
-
+#import "WXPersonInfoCell.h"
 @interface WXChatViewController ()<EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource,UIDocumentPickerDelegate,EMCallManagerDelegate>
 
 @end
@@ -17,19 +17,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
+    self.tableView.backgroundColor = UIColor.whiteColor;
     self.dataSource = self;
     //设置聊天会话样式
-//    [self setChatAppearance];
+    [self setChatAppearance];
     //添加文件传输按钮
-//    [self insetItemForChatBar];
+    [self insetItemForChatBar];
     [[EMClient sharedClient].callManager addDelegate:self delegateQueue:nil];
 }
 //设置聊天会话样式
 - (void)setChatAppearance{
-    [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
+//    [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
     
-    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
-    
+//    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
+    [[EaseBaseMessageCell appearance] setBubbleMaxWidth: 500];
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];//设置头像大小
     
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];//设置头像圆角
@@ -46,13 +47,43 @@
     
     [[EaseBaseMessageCell appearance] setRecvMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"],[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing003"]]];//接收者语音消息播放图片
 }
-//- (void)insetItemForChatBar {
-//    [self.chatBarMoreView insertItemWithImage:[UIImage imageNamed:@"tabbar_maillist_sel"] highlightedImage:[UIImage imageNamed:@"tabbar_maillist_sel"] title:@"文件传输"];
-//}
+- (void)insetItemForChatBar {
+    [self.chatBarMoreView insertItemWithImage:[UIImage imageNamed:@"tabbar_maillist_sel"] highlightedImage:[UIImage imageNamed:@"tabbar_maillist_sel"] title:@"名片"];
+}
+
 //自定义功能的回调
 - (void)moreView:(EaseChatBarMoreView *)moreView didItemInMoreViewAtIndex:(NSInteger)index{
+    //只加了名片,所以这里无需判断index
+    if (self.conversation.type == EMConversationTypeChat) {
+        //发送名片
+        [self sendInfoView];
+    }
+    
+    
 //    [self presentDocumentPicker];
 //    [EMClient sharedClient].callManager startCall:<#(EMCallType)#> remoteName:<#(NSString *)#> ext:<#(NSString *)#> completion:<#^(EMCallSession *aCallSession, EMError *aError)aCompletionBlock#>
+}
+- (void)sendInfoView{
+    NSLog(@"发送名片");
+    //WDX fix
+    NSDictionary *dic = @{@"userName":@"王大侠",@"userPhone":@"110"};
+    //用户id
+    NSString *toID = @"user3";
+    EMMessage *message = [EaseSDKHelper getTextMessage:@"[名片]" to:toID messageType:EMChatTypeChat messageExt:dic];
+    [self addMessageToDataSource:message progress:nil];
+    
+    [[EMClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
+        NSLog(@"%d",progress);
+    } completion:^(EMMessage *message, EMError *error) {
+        NSLog(@"聊天信息 == %@, 错误 == %@",message,error);
+    }];
+}
+- (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel{
+    if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){
+        NSLog(@"点击了名片");
+        return YES;
+    }
+    return NO;
 }
 //文件选择器
 - (void)presentDocumentPicker {
@@ -103,6 +134,27 @@
     }
     model.nickname = nil;//用户昵称
     return model;
+}
+
+//自定义cell
+- (UITableViewCell *)messageViewController:(UITableView *)tableView
+                       cellForMessageModel:(id<IMessageModel>)messageModel{
+    if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){
+        NSString *cellid = [WXPersonInfoCell cellIdentifierWithModel:messageModel];
+        WXPersonInfoCell *infoCell = (WXPersonInfoCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+        if (!infoCell){
+            infoCell = [[WXPersonInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
+        }
+        infoCell.model = messageModel;
+        return infoCell;
+    }
+    return nil;
+}
+- (CGFloat)messageViewController:(EaseMessageViewController *)viewController heightForMessageModel:(id<IMessageModel>)messageModel withCellWidth:(CGFloat)cellWidth{
+    if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){
+        return [WXPersonInfoCell cellHeightWithModel:messageModel];
+    }
+    return 0;
 }
 //easeUI中未实现群组语音方法
 - (void)moreViewCommunicationAction:(EaseChatBarMoreView *)moreView{

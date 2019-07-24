@@ -41,10 +41,10 @@ class VerficationButton: UIButton {
             timer?.invalidate()
             isEnabled = true
             duration = 60
-            setTitle("重新发送(\(duration)秒)", for: .disabled)
+            setTitle("重试(\(duration)秒)", for: .disabled)
             return
         }
         duration -= 1
-        setTitle("重新发送(\(duration)秒)", for: .disabled)
+        setTitle("重试(\(duration)秒)", for: .disabled)
     }
 }

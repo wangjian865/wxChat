@@ -30,5 +30,11 @@ class RelationHeaderView: UIView {
         headerView.frame = bounds
         addSubview(headerView)
     }
-    
+    func setContentData(model: UserInfoModel) {
+        iconImageView.sd_setImage(with: URL.init(string: model.tgusetimg), placeholderImage: UIImage.init(named: "normal_icon"))
+        nameLabel.text = model.tgusetname
+        positionLabel.text = model.tgusetposition
+        companyLabel.text = model.tgusetcompany
+        
+    }
 }

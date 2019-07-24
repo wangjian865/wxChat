@@ -10,7 +10,25 @@
 
 @implementation WXAccountTool
 + (BOOL)isLogin{
-    return true;
-//    return false;
+    if ([WXAccountTool getToken] != nil){
+        return true;
+    }
+    return false;
+}
++ (NSString *)getToken{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault stringForKey:@"token"];
+}
++ (NSString *)getUserPhone{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault stringForKey:@"account"];
+}
++ (NSString *)getUserID{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault stringForKey:@"userID"];
+}
++ (NSString *)getHuanXinID{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault stringForKey:@"huanxinID"];
 }
 @end

@@ -41,8 +41,8 @@
 	<string>木简请求您的麦克风权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>木简请求访问您的相册</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<key>NSContactsUsageDescription</key>
+	<string>导入通讯录好友,迅速建立起你的专属企业圈</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

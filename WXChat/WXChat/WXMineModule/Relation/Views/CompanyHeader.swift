@@ -16,16 +16,9 @@ class CompanyHeader: UIView {
     @IBOutlet weak var countLabel: UILabel!
     
     //arrowImageView的imgage以及编辑按钮的图标 需要替换成正确的图
-    var companyInfo = "" {
-        didSet {
-//            iconImageView.image = UIImage(named: <#T##String#>)
-            companyLabel.text = "公司名字"
-            descLabel.text = "公司描述"
-            countLabel.text = "xx人"
-        }
-    }
+    var myModel: CompanyModel?
     var tapCallBack: ((_ index: Int, _ isShow: Bool) -> ())?
-    var tapEditCompany: ((_ model: String) -> ())?//string替换成某个模型
+    var tapEditCompany: ((_ model: CompanyModel) -> ())?//string替换成某个模型
     var sectionIndex = 0
     //三角形图标旋转 默认分组收起
     var isShow = false {
@@ -52,10 +45,16 @@ class CompanyHeader: UIView {
         isShow.toggle()
         tapCallBack?(sectionIndex,isShow)
     }
-    
+    func setContentData(model: CompanyModel){
+        myModel = model
+        companyLabel.text = model.companyname
+        iconImageView.sd_setImage(with: URL.init(string: model.companylogo), placeholderImage: UIImage.init(named: "normal_icon"))
+        descLabel.text = model.companysynopsis
+        countLabel.text = model.companycount + "人"
+    }
     @IBAction func editAction(_ sender: UIButton) {
         //编辑公司
-        tapEditCompany?("旺旺公司")
+        tapEditCompany?(myModel!)
     }
     
 }

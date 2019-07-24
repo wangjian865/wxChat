@@ -9,6 +9,7 @@
 import UIKit
 
 class WXEditPersonInfoViewController: UITableViewController {
+    
     @IBOutlet weak var userIconView: UIImageView!
     @IBOutlet weak var sexyLabel: UILabel!
     
@@ -17,6 +18,8 @@ class WXEditPersonInfoViewController: UITableViewController {
     @IBOutlet weak var workLabel: UILabel!
     
     @IBOutlet weak var companyLabel: UILabel!
+    
+    var userInfoModel: UserInfoModel?
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = true;
@@ -25,13 +28,11 @@ class WXEditPersonInfoViewController: UITableViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        userIconView.sd_setImage(with: URL.init(string: userInfoModel?.tgusetimg ?? ""), placeholderImage: UIImage.init(named: "normal_icon"))
+        userName.text = userInfoModel?.tgusetname
+        sexyLabel.text = userInfoModel?.tgusetsex
+        workLabel.text = userInfoModel?.tgusetposition
+        companyLabel.text = userInfoModel?.tgusetcompany
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -122,9 +123,20 @@ extension WXEditPersonInfoViewController: UIImagePickerControllerDelegate,UINavi
         picker.dismiss(animated: true, completion: nil)
         let image = info[.editedImage] as! UIImage
         userIconView.image = image
-        print("2")
+        //WDX http
+        changeUserIcon()
     }
-    
+    func changeUserIcon() {
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeepToken/updateTgInfoImg4"
+        let account = UserDefaults.standard.string(forKey: "account")
+        let params:[String:String] = ["tgusetaccount":account ?? ""]
+        WXNetWorkTool.uploadFile(withUrl: urlString, image: userIconView.image!, parameters: params, successBlock: { (success) in
+            print("1")
+        }) { (error) in
+            
+        }
+        
+    }
     
     //裁剪图片
     func imageWithImageSimple(image:UIImage,scaledToSize newSize:CGSize)->UIImage{
