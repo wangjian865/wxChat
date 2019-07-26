@@ -41,8 +41,10 @@ typedef void(^ProgressBlock)(NSProgress * downloadProgress);
  文件上传
  **/
 + (void)uploadFileWithUrl:(NSString *)urlString
-                    image:(UIImage *)image
+                imageName:(NSArray *)names
+                    image:(NSArray *)images
                parameters:(NSDictionary *)parameters
+            progressBlock:(ProgressBlock)progressBlock
              successBlock:(SuccessBlock)successBlock
              failureBlock:(FailureBlock)failureBlock;
 /**

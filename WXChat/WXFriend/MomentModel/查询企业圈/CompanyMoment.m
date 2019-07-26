@@ -10,5 +10,7 @@
 
 
 @implementation CompanyMoment
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"enterprise":[Enterprise class]};
+}
 @end

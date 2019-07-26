@@ -16,7 +16,9 @@
 #import "UIImage+ColorImage.h"
 #import "WXNewMomentViewController.h"
 #import "WXNewMomentMessageViewController.h"
-@interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate>
+#import "CompanyViewModel.h"
+#import "MomentComent.h"
+@interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
 @property (nonatomic, strong) MMTableView * tableView; // 表格
@@ -30,10 +32,22 @@
 @property (nonatomic, strong) NSIndexPath * selectedIndexPath; // 当前评论indexPath
 @property (nonatomic, assign) CGFloat keyboardHeight; // 键盘高度
 
+//wdx's
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) CompanyMoment *totalModel;
+@property (nonatomic, strong) MomentCell * operateWXCell; // 当前操作朋友圈动态
+@property (nonatomic, strong) MomentComent * operateWXComment; // 当前操作评论
 @end
 
 @implementation MomentViewController
-
+- (UIImagePickerController *)imagePicker{
+    if (_imagePicker == nil){
+        _imagePicker = [[UIImagePickerController alloc] init];
+        _imagePicker.delegate = self;
+        _imagePicker.allowsEditing = YES;
+    }
+    return _imagePicker;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,6 +57,22 @@
     [self configUI];
     //自定义导航栏
     [self setNaviBarStyle];
+    //初始化数据
+    [self getMoments];
+}
+- (void)getMoments {
+    [CompanyViewModel getMomentsWithPage:1 successBlock:^(CompanyMoment * _Nonnull model) {
+        NSLog(@"1");
+        self.totalModel = model;
+        [self setUIData];
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
+}
+//获取到数据后对UI进行填充
+- (void)setUIData {
+//    [_coverImageView sd_setImageWithURL:<#(NSURL *)#>]
+    [_tableView reloadData];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -403,9 +433,10 @@
         //更换相册封面
         if (buttonIndex == 0){
             //从相册选择
-            
+            [self openAlbun];
         }else{
             //
+            [self openCamera];
         }
     }
 }
@@ -418,7 +449,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.momentList count];
+//    return [self.momentList count];
+    if (self.totalModel != nil){
+        return _totalModel.enterprise.count;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -430,8 +465,10 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
     }
+    Enterprise *model = _totalModel.enterprise[indexPath.row];
     cell.tag = indexPath.row;
-    cell.moment = [self.momentList objectAtIndex:indexPath.row];
+    cell.model = model;
+//    cell.moment = [self.momentList objectAtIndex:indexPath.row];
     cell.delegate = self;
     return cell;
 }
@@ -495,5 +532,30 @@
 {
     [super didReceiveMemoryWarning];
 }
-
+#pragma mark - 相机相册
+- (void)openCamera {
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:_imagePicker animated:YES completion:nil];
+    }else{
+        [MBProgressHUD showError:@"暂无相机权限"];
+    }
+}
+- (void)openAlbun {
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:_imagePicker animated:YES completion:nil];
+    }else{
+        [MBProgressHUD showError:@"暂无相册权限"];
+    }
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
+    [_imagePicker dismissViewControllerAnimated:true completion:nil];
+    UIImage *image = (UIImage *)info[UIImagePickerControllerEditedImage];
+    //更换背景图
+//    [CompanyViewModel changeBackgroundWithPriseid:<#(nonnull NSString *)#> image:<#(nonnull UIImage *)#> imageName:<#(nonnull NSString *)#> successBlock:<#^(NSString * _Nonnull successMsg)success#> failBlock:<#^(NSError * _Nonnull error)failure#>]
+    NSLog(@"拿到了编辑后的图片");
+}
 @end

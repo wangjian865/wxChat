@@ -46,7 +46,51 @@
     }
     return self;
 }
-
+#pragma mark - wxsetter
+- (void)setImageArr:(NSArray *)imageArr{
+    _imageArr = imageArr;
+    for (MMImageView * imageView in _imageViewsArray) {
+        imageView.hidden = YES;
+    }
+    // 图片区
+    NSInteger count = [imageArr count];
+    if (count == 0) {
+        self.size = CGSizeZero;
+        return;
+    }
+    // 更新视图数据
+    _previewView.pageNum = count;
+    _previewView.scrollView.contentSize = CGSizeMake(_previewView.width*count, _previewView.height);
+    // 添加图片
+    MMImageView * imageView = nil;
+    for (NSInteger i = 0; i < count; i++)
+    {
+        NSInteger rowNum = i / 3;
+        NSInteger colNum = i % 3;
+        if(count == 4) {
+            rowNum = i / 2;
+            colNum = i % 2;
+        }
+        CGFloat imageX = colNum * (kImageWidth + kImagePadding);
+        CGFloat imageY = rowNum * (kImageWidth + kImagePadding);
+        CGRect frame = CGRectMake(imageX, imageY, kImageWidth, kImageWidth);
+        
+        // 单张图片需计算实际显示size
+        if (count == 1) {
+            CGSize singleSize = [Utility getMomentImageSize:CGSizeMake(500 , 302)];
+            frame = CGRectMake(0, 0, singleSize.width, singleSize.height);
+        }
+        imageView = [self viewWithTag:1000+i];
+        imageView.hidden = NO;
+        imageView.frame = frame;
+        // 赋值
+//        MPicture * picture = [imageArr objectAtIndex:i];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:imageArr[i]]
+                     placeholderImage:nil];
+    }
+    self.width = kTextWidth;
+    self.height = imageView.bottom;
+}
 #pragma mark - Setter
 - (void)setMoment:(Moment *)moment
 {

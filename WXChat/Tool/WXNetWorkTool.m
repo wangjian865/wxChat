@@ -9,7 +9,7 @@
 #import "WXNetWorkTool.h"
 #import "AFNetworking.h"
 #import "WXAccountTool.h"
-NSInteger const kAFNetworkingTimeoutInterval = 10;
+NSInteger const kAFNetworkingTimeoutInterval = 500000;
 @implementation WXNetWorkTool
 static AFHTTPSessionManager *aManager;
 + (AFHTTPSessionManager *)sharedManager{
@@ -131,28 +131,36 @@ static AFHTTPSessionManager *aManager;
     }];
 }
 + (void)uploadFileWithUrl:(NSString *)urlString
-                    image:(UIImage *)image
+                imageName:(NSArray *)names
+                    image:(NSArray *)images
                parameters:(NSDictionary *)parameters
+            progressBlock:(ProgressBlock)progressBlock
              successBlock:(SuccessBlock)successBlock
              failureBlock:(FailureBlock)failureBlock {
     AFHTTPSessionManager *manager = [self sharedManager];
     
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
-    CGFloat quality = 1.0;
-    // 限定上传图片大小为100K
-    while (imageData.length > 10 * 1024 && quality > 0.2) {
-        quality -= 0.1;
-        imageData = UIImageJPEGRepresentation(image, quality);
-    }
     
-    [manager POST:urlString parameters:@{@"tgusetaccount":@"17600209301"} constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:imageData name:@"userIcon" fileName:@"1.jpg" mimeType:@"image/jpeg"];
+    
+    [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        for (int i = 0; i < names.count; i++) {
+            NSString *name = names[i];
+            UIImage *image = images[i];
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.6);
+            CGFloat quality = 1.0;
+            // 限定上传图片大小为100K
+            while (imageData.length > 10 * 1024 && quality > 0.2) {
+                quality -= 0.1;
+                imageData = UIImageJPEGRepresentation(image, quality);
+            }
+            [formData appendPartWithFileData:imageData name:name fileName:@"icon.jpg" mimeType:@"image/jpeg"];
+        }
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+        progressBlock(uploadProgress);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+        successBlock(responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        failureBlock(error);
     }];
 }
 + (void)cancelDataTask{

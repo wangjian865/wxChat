@@ -15,7 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 //group用于业务逻辑中直接跳转群组会话页面
 @property (nonatomic, copy) void (^doneCompletion)(EMGroup *group);
 //
+@property (nonatomic, copy) void (^chooseCompletion)(NSArray <NSString *>*IDS);
 @property (nonatomic, assign) BOOL isEditing;
+//是否为创建群组
+@property (nonatomic, assign) BOOL isGroup;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,6 +12,7 @@ class WXAddOrMinusCell: UICollectionViewCell {
 
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var deleteIcon: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

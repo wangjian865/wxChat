@@ -10,10 +10,10 @@ import UIKit
 
 class WXAddOrMinusView: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
-    
+    var isEdit = false
+    var addClosure: (()-> Void)?
+    var deleteClosure: (()-> Void)?
     var dataArray: [SearchUserModel]?
     override func awakeFromNib() {
         collectionView.register(UINib.init(nibName: "WXAddOrMinusCell", bundle: nil), forCellWithReuseIdentifier: "addOrMinusCell")
@@ -29,25 +29,40 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addOrMinusCell", for: indexPath) as! WXAddOrMinusCell
-        if indexPath.row == dataArray?.count{
+        if indexPath.row == dataArray?.count ?? 0{
             //设置加号
             cell.nameLabel.text = "加号"
+            cell.deleteIcon.isHidden = true
+            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "加号"))
             print("加号")
         }else if indexPath.row > dataArray?.count ?? 0{
             //设置减号
             cell.nameLabel.text = "减号"
+            cell.deleteIcon.isHidden = true
+            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "减号"))
             print("减号")
+        }else{
+            if let data = dataArray{
+               let model = data[indexPath.item]
+               cell.nameLabel.text = model.tgusetName
+               cell.iconView.sd_setImage(with: URL.init(string: model.tgusetimg), placeholderImage: UIImage.init(named: "normal_icon"))
+                cell.deleteIcon.isHidden = !isEdit
+            }
+            
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == dataArray?.count{
+        if indexPath.row == dataArray?.count ?? 0{
             //加号
             print("加号事件")
+            addClosure?()
         }else if indexPath.row > dataArray?.count ?? 0{
             //减号
             print("减号事件")
+            isEdit = true
+            collectionView.reloadData()
         }
     }
 }

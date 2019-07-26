@@ -8,7 +8,7 @@
 
 #import "MLLabelUtil.h"
 #import "MomentUtil.h"
-
+#import "MomentComent.h"
 @implementation MLLabelUtil
 
 MLLinkLabel *kMLLinkLabel(BOOL isMoment)
@@ -46,21 +46,22 @@ MLLinkLabel *kMLLinkLabel(BOOL isMoment)
 NSMutableAttributedString *kMLLinkAttributedText(id object)
 {
     NSMutableAttributedString *attributedText = nil;
-    if ([object isKindOfClass:[Comment class]])
+    if ([object isKindOfClass:[MomentComent class]])
     {
-        Comment * comment = (Comment *)object;
-        NSString * fromName = comment.fromUser.name;
-        NSString * toName = comment.toUser.name;
-        if (comment.toUser)
+        MomentComent * comment = (MomentComent *)object;
+        NSString * fromName = comment.commentsTgusetName;
+        NSString * toName = comment.commentsTgusetHFName;
+        if (toName)//不存在toname则表明是直接评论该条企业圈
         {
-            NSString * likeString  = [NSString stringWithFormat:@"%@回复%@：%@",fromName,toName,comment.text];
+            NSString * likeString  = [NSString stringWithFormat:@"%@回复%@：%@",fromName,toName,comment.commentsContext];
             attributedText = [[NSMutableAttributedString alloc] initWithString:likeString];
-            [attributedText setAttributes:@{NSFontAttributeName:kComHLTextFont,NSLinkAttributeName:[NSString stringWithFormat:@"%d",comment.fromUser.pk]} range:[likeString rangeOfString:fromName]];
-            [attributedText setAttributes:@{NSFontAttributeName:kComHLTextFont,NSLinkAttributeName:[NSString stringWithFormat:@"%d",comment.toUser.pk]} range:[likeString rangeOfString:toName]];
+            //WDX todo
+//            [attributedText setAttributes:@{NSFontAttributeName:kComHLTextFont,NSLinkAttributeName:[NSString stringWithFormat:@"%d",comment.fromUser.pk]} range:[likeString rangeOfString:fromName]];
+//            [attributedText setAttributes:@{NSFontAttributeName:kComHLTextFont,NSLinkAttributeName:[NSString stringWithFormat:@"%d",comment.toUser.pk]} range:[likeString rangeOfString:toName]];
         } else {
-            NSString *likeString  = [NSString stringWithFormat:@"%@：%@",fromName,comment.text];
+            NSString *likeString  = [NSString stringWithFormat:@"%@：%@",fromName,comment.commentsContext];
             attributedText = [[NSMutableAttributedString alloc] initWithString:likeString];
-            [attributedText setAttributes:@{NSFontAttributeName:kComHLTextFont,NSLinkAttributeName:[NSString stringWithFormat:@"%d",comment.fromUser.pk]} range:[likeString rangeOfString:fromName]];
+//            [attributedText setAttributes:@{NSFontAttributeName:kComHLTextFont,NSLinkAttributeName:[NSString stringWithFormat:@"%d",comment.fromUser.pk]} range:[likeString rangeOfString:fromName]];
         }
     }
     if ([object isKindOfClass:[Moment class]])

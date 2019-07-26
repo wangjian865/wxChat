@@ -49,7 +49,8 @@ class WXCreateCompanyViewController: UITableViewController {
         }
     }
     @IBAction func createCompanyAction(_ sender: UIButton) {
-        MineViewModel.createCompany(companyname: "乳娃娃", logofiles: "", companysynopsis: "213124", companyindustry: "简介", companyregion: "上海", tgusetaccount: "17600209301", success: { (model) in
+        
+        MineViewModel.createCompany(companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: myTextView.text, companyindustry: induTF.text ?? "", companyregion: locationTF.text ?? "", tgusetaccount: WXAccountTool.getUserPhone(), success: { (model) in
             print("1")
         }) { (error) in
             
@@ -80,9 +81,7 @@ extension WXCreateCompanyViewController: UIImagePickerControllerDelegate,UINavig
         picker.dismiss(animated: true, completion: nil)
         let image = info[.editedImage] as! UIImage
         companyIconView.image = image
-        print("2")
     }
-    
     
     //裁剪图片
     func imageWithImageSimple(image:UIImage,scaledToSize newSize:CGSize)->UIImage{

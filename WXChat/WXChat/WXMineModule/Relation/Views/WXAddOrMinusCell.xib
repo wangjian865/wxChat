@@ -21,7 +21,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="55e-bk-gKD">
                         <rect key="frame" x="11" y="11" width="151" height="151"/>
-                        <color key="backgroundColor" red="0.18823529410000001" green="0.52549019610000003" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="55e-bk-gKD" secondAttribute="height" multiplier="1:1" id="1Wk-4R-6GV"/>
                         </constraints>
@@ -37,6 +37,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F9h-Nf-UzG">
+                        <rect key="frame" x="151" y="0.0" width="22" height="22"/>
+                        <color key="backgroundColor" red="1" green="0.12856833770000001" blue="0.074535682280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="22" id="ckh-tz-Fot"/>
+                            <constraint firstAttribute="height" constant="22" id="vFc-Ow-qCW"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,11 +53,14 @@
                 <constraint firstItem="ofS-I8-uqK" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="IEF-uJ-8Hz"/>
                 <constraint firstItem="55e-bk-gKD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="11" id="T0S-q5-nRo"/>
                 <constraint firstAttribute="bottom" secondItem="ofS-I8-uqK" secondAttribute="bottom" constant="6" id="bep-zs-IBl"/>
+                <constraint firstAttribute="trailing" secondItem="F9h-Nf-UzG" secondAttribute="trailing" id="kW0-gP-SaF"/>
                 <constraint firstAttribute="trailing" secondItem="55e-bk-gKD" secondAttribute="trailing" constant="11" id="lPL-KX-jIz"/>
+                <constraint firstItem="F9h-Nf-UzG" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="lgB-OH-tXw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="173" height="203"/>
             <connections>
+                <outlet property="deleteIcon" destination="F9h-Nf-UzG" id="emL-V8-jhq"/>
                 <outlet property="iconView" destination="55e-bk-gKD" id="Sn7-6W-4lA"/>
                 <outlet property="nameLabel" destination="ofS-I8-uqK" id="mGA-Em-Bfu"/>
             </connections>

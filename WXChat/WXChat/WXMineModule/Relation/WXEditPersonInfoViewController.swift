@@ -28,6 +28,7 @@ class WXEditPersonInfoViewController: UITableViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         userIconView.sd_setImage(with: URL.init(string: userInfoModel?.tgusetimg ?? ""), placeholderImage: UIImage.init(named: "normal_icon"))
         userName.text = userInfoModel?.tgusetname
         sexyLabel.text = userInfoModel?.tgusetsex
@@ -127,15 +128,16 @@ extension WXEditPersonInfoViewController: UIImagePickerControllerDelegate,UINavi
         changeUserIcon()
     }
     func changeUserIcon() {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeepToken/updateTgInfoImg4"
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeepToken/updateTgInfoImg"
         let account = UserDefaults.standard.string(forKey: "account")
         let params:[String:String] = ["tgusetaccount":account ?? ""]
-        WXNetWorkTool.uploadFile(withUrl: urlString, image: userIconView.image!, parameters: params, successBlock: { (success) in
-            print("1")
+        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["img"], image: [userIconView.image!], parameters: params, progressBlock: { (progress) in
+            print(progress)
+        }, successBlock: { (success) in
+            print(success)
         }) { (error) in
-            
+            print(error)
         }
-        
     }
     
     //裁剪图片

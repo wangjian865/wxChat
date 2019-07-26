@@ -9,5 +9,7 @@
 #import "Enterprise.h"
 
 @implementation Enterprise
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"commes":[MomentComent class],@"namelike":[LikeListModel class]};
+}
 @end

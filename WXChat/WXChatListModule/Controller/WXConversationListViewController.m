@@ -110,6 +110,7 @@
             [weaklf.navigationController pushViewController:viewController animated:YES];
         };
         userListVC.isEditing = YES;
+        userListVC.isGroup = YES;
         WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:userListVC];
         [weaklf presentViewController:nav animated:YES completion:nil];
     }];

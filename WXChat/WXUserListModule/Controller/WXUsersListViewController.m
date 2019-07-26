@@ -93,7 +93,7 @@
     completeButton.size = CGSizeMake(52, 28);
     completeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     completeButton.backgroundColor = rgb(48, 134, 191);
-    [completeButton setTitle:@"转让" forState:UIControlStateNormal];
+    [completeButton setTitle:@"确认" forState:UIControlStateNormal];
     [completeButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:completeButton];
     self.title = @"选择好友";
@@ -104,24 +104,38 @@
 }
 - (void)doneAction
 {
-    EMError *error = nil;
-    EMGroupOptions *setting = [[EMGroupOptions alloc] init];
-    setting.maxUsersCount = 500;
-    setting.IsInviteNeedConfirm = NO; //邀请群成员时，是否需要发送邀请通知.若NO，被邀请的人自动加入群组
-    setting.style = EMGroupStylePublicOpenJoin;// 创建不同类型的群组，这里需要才传入不同的类型
-    EMGroup *group = [[EMClient sharedClient].groupManager createGroupWithSubject:@"群组" description:@"群组描述" invitees:self.selectedModelArray message:@"邀请您加入群组" setting:setting error:&error];
-    if(!error){
-        NSLog(@"创建成功 -- %@",group);
+    if (_isGroup){
+        EMError *error = nil;
+        EMGroupOptions *setting = [[EMGroupOptions alloc] init];
+        setting.maxUsersCount = 500;
+        setting.IsInviteNeedConfirm = NO; //邀请群成员时，是否需要发送邀请通知.若NO，被邀请的人自动加入群组
+        setting.style = EMGroupStylePublicOpenJoin;// 创建不同类型的群组，这里需要才传入不同的类型
+        EMGroup *group = [[EMClient sharedClient].groupManager createGroupWithSubject:@"群组" description:@"群组描述" invitees:self.selectedModelArray message:@"邀请您加入群组" setting:setting error:&error];
+        if(!error){
+            NSLog(@"创建成功 -- %@",group);
+            WS(wSelf);
+            [self dismissViewControllerAnimated:YES completion:^{
+                __strong typeof(wSelf) sSelf = wSelf;
+                if (sSelf.doneCompletion){
+                    sSelf.doneCompletion(group);
+                }
+            }];
+        }else{
+            [self showHint:@"创建失败"];
+        }
+    }else{
         WS(wSelf);
         [self dismissViewControllerAnimated:YES completion:^{
             __strong typeof(wSelf) sSelf = wSelf;
-            if (sSelf.doneCompletion){
-                sSelf.doneCompletion(group);
+            if (sSelf.chooseCompletion){
+                sSelf.chooseCompletion(_selectedModelArray);
             }
         }];
-    }else{
-        [self showHint:@"创建失败"];
+
+        
+        
     }
+    
 }
 #pragma mark -- delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -289,9 +303,10 @@
 }
 
 - (void)userListViewController:(EaseUsersListViewController *)userListViewController didSelectUserModel:(id<IUserModel>)userModel {
-    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:userModel.buddy conversationType:EMConversationTypeChat];
-    viewController.title = userModel.nickname;
-    [self.navigationController pushViewController:viewController animated:YES];
+    //不跳转
+//    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:userModel.buddy conversationType:EMConversationTypeChat];
+//    viewController.title = userModel.nickname;
+//    [self.navigationController pushViewController:viewController animated:YES];
 }
 /*
  *

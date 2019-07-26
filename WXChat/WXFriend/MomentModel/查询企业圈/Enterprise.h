@@ -7,39 +7,48 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MomentComent.h"
+#import "LikeListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Enterprise : NSObject
-@property (nonatomic, copy)NSString *tgusetid;//用户id
-@property (nonatomic, copy)NSString *tgusetname;
-@property (nonatomic, copy)NSString *tgusetaccount;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetpassword;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetimg;
-@property (nonatomic, copy)NSString *tgusetcode;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetcompany;
-@property (nonatomic, copy)NSString *tgusetposition;
-@property (nonatomic, copy)NSString *tgusetreghtdate;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetsex;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetadbox;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetsalt;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetnterprise;//接口上值类型为null
-@property (nonatomic, copy)NSString *seanceshows;//接口上值类型为null
-@property (nonatomic, copy)NSString *enterprisezid;//发布的企业圈id
-@property (nonatomic, copy)NSString *enterprisezenterpriseid;//企业圈id
-@property (nonatomic, strong)NSDate *enterpriseztime;//发布时间 接口是int应该要转
-@property (nonatomic, assign) int enterprisezcount;//接口上值类型为null
-@property (nonatomic, copy)NSString *enterprisezenterpriseshowid;//null
-@property (nonatomic, copy)NSString *enterprisezcontent;//发布内容
-@property (nonatomic, copy)NSString *enterprisezfujina;//视频或者图片url
-@property (nonatomic, copy)NSString *enterpriseztgusetid;//用户id
-@property (nonatomic, copy)NSString *friendid;//null
-@property (nonatomic, copy)NSString *friendtgusetid;//null
-@property (nonatomic, copy)NSString *friendfriendid;//null
-@property (nonatomic, copy)NSString *friendaddtime;//null
-@property (nonatomic, copy)NSString *friendrecord;//备注（好友或者自己的备注）
-@property (nonatomic, assign) int count;//点赞数量
-@property (nonatomic, assign) int commentscount;//评论数量
+///点赞数量
+@property (nonatomic, assign) int count;
+///评论数量
+@property (nonatomic, assign) int commentsCount;
+///评论数组
+@property (nonatomic, strong) NSArray<MomentComent *> *commes;
+///点赞数组
+@property (nonatomic, strong) NSArray<LikeListModel *> *namelike;
+///用户id
+@property (nonatomic, copy)NSString *enterprisezId;
+///   什么意思?
+@property (nonatomic, copy)NSString *enterprisezEnterpriseId;
+///职位
+@property (nonatomic, copy)NSString *tgusetPosition;
+///公司
+@property (nonatomic, copy)NSString *tgusetCompany;
+///用户备注
+@property (nonatomic, copy)NSString *friendRecord;
+///发动态的时间
+@property (nonatomic, copy)NSString *enterprisezTime;
+///动态文字内容
+@property (nonatomic, copy)NSString *enterprisezContent;
+///   什么意思?
+@property (nonatomic, copy)NSString *enterprisezTgusetId;
+///该动态发的图片
+@property (nonatomic, copy)NSString *enterprisezfujina;
+///该动态用户账号
+@property (nonatomic, copy)NSString *tgusetAccount;
+///该动态用户头像
+@property (nonatomic, copy)NSString *tgusetImg;
+///该动态用户id
+@property (nonatomic, copy)NSString *tgusetId;
+///该动态用户姓名
+@property (nonatomic, copy)NSString *tgusetName;
+
+///缓存行高
+@property (nonatomic, assign) CGFloat rowHeight;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -18,7 +18,7 @@ class FriendsVC: UITableViewController {
         tableView.register(UINib(nibName: "FriendInfoCell", bundle: nil), forCellReuseIdentifier: "FriendInfoCell")
         tableView.rowHeight = 85
         //WDX http
-        getFriendListRequest()
+//        getFriendListRequest()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

@@ -8,8 +8,10 @@
 
 #import "WXNewMomentMessageViewController.h"
 #import "WXNewMomentMessageViewCell.h"
+#import "CompanyViewModel.h"
 @interface WXNewMomentMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myView;
+@property (nonatomic, strong) MomentMessageList *listModel;
 @end
 
 @implementation WXNewMomentMessageViewController
@@ -24,10 +26,12 @@
     [cleanBtn addTarget:self action:@selector(cleanAll) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cleanBtn];
     [self setupUI];
+    [self getMessageList];
 }
 - (void)cleanAll{
     NSLog(@"清空消息列表");
 }
+
 - (void)setupUI{
     _myView = [[UITableView alloc] init];
     [self.view addSubview:_myView];
@@ -44,7 +48,10 @@
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    if (_listModel != nil){
+        return _listModel.data.count;
+    }
+    return 0;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
@@ -57,5 +64,23 @@
         //删除事件
         
     }
+}
+#pragma mark -- REQUEST
+- (void)getMessageList {
+    [CompanyViewModel getMomentMessageListSuccessBlock:^(MomentMessageList * _Nonnull model) {
+        self.listModel = model;
+        [self.myView reloadData];
+        NSLog(@"1");
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
+}
+//单删
+- (void)deleteSingleMessage {
+//    [CompanyViewModel deleteMomentsMessageListWithCommentId:<#(nonnull NSString *)#> successBlock:<#^(NSString * _Nonnull successMsg)success#> failBlock:<#^(NSError * _Nonnull error)failure#>]
+}
+//清空
+- (void)clearMessage {
+    
 }
 @end

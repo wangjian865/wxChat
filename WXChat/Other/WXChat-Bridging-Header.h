@@ -21,3 +21,5 @@
 #import "FriendModel.h"
 #import "CompanyModel.h"
 #import "SearchUserModel.h"
+#import "WXUsersListViewController.h"
+#import "WXPresentNavigationController.h"

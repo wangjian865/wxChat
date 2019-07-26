@@ -277,16 +277,21 @@
 		F4224B0222D9ED25003DA311 /* WXSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4224B0122D9ED25003DA311 /* WXSettingTableViewController.swift */; };
 		F4224B0422DA0A22003DA311 /* WXPrivateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4224B0322DA0A22003DA311 /* WXPrivateViewController.swift */; };
 		F42BC65C22E89732004EFA02 /* ViewMailConfigController.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC65B22E89732004EFA02 /* ViewMailConfigController.m */; };
-		F42BC67722E8AAE0004EFA02 /* FriendMomentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66022E8AAE0004EFA02 /* FriendMomentInfoList.m */; };
-		F42BC67822E8AAE0004EFA02 /* FriendMomentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66122E8AAE0004EFA02 /* FriendMomentInfo.m */; };
-		F42BC67922E8AAE0004EFA02 /* MomentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66522E8AAE0004EFA02 /* MomentUser.m */; };
-		F42BC67A22E8AAE0004EFA02 /* CompanyMomentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66922E8AAE0004EFA02 /* CompanyMomentInfo.m */; };
-		F42BC67B22E8AAE0004EFA02 /* Comments.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66A22E8AAE0004EFA02 /* Comments.m */; };
-		F42BC67C22E8AAE0004EFA02 /* CommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66C22E8AAE0004EFA02 /* CommentInfo.m */; };
-		F42BC67D22E8AAE0004EFA02 /* CommentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC66F22E8AAE0004EFA02 /* CommentInfoList.m */; };
-		F42BC67E22E8AAE0004EFA02 /* CompanyMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC67122E8AAE0004EFA02 /* CompanyMoment.m */; };
-		F42BC67F22E8AAE0004EFA02 /* Enterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC67322E8AAE0004EFA02 /* Enterprise.m */; };
-		F42BC68022E8AAE0004EFA02 /* UserCompanies.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC67422E8AAE0004EFA02 /* UserCompanies.m */; };
+		F42BC6A322E9EEBC004EFA02 /* MomentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC68422E9EEBB004EFA02 /* MomentUser.m */; };
+		F42BC6A422E9EEBC004EFA02 /* MomentEnterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC68522E9EEBB004EFA02 /* MomentEnterprise.m */; };
+		F42BC6A522E9EEBC004EFA02 /* MomentComent.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC68722E9EEBB004EFA02 /* MomentComent.m */; };
+		F42BC6A622E9EEBC004EFA02 /* CompanyMomentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC68922E9EEBB004EFA02 /* CompanyMomentInfo.m */; };
+		F42BC6A722E9EEBC004EFA02 /* CompanyMoment.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC68D22E9EEBC004EFA02 /* CompanyMoment.m */; };
+		F42BC6A822E9EEBC004EFA02 /* Enterprise.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC68F22E9EEBC004EFA02 /* Enterprise.m */; };
+		F42BC6A922E9EEBC004EFA02 /* UserCompanies.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC69022E9EEBC004EFA02 /* UserCompanies.m */; };
+		F42BC6AA22E9EEBC004EFA02 /* FriendMomentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC69422E9EEBC004EFA02 /* FriendMomentDetail.m */; };
+		F42BC6AB22E9EEBC004EFA02 /* MomentMessageList.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC69722E9EEBC004EFA02 /* MomentMessageList.m */; };
+		F42BC6AC22E9EEBC004EFA02 /* FriendMomentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC69A22E9EEBC004EFA02 /* FriendMomentInfoList.m */; };
+		F42BC6AD22E9EEBC004EFA02 /* FriendMomentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC69B22E9EEBC004EFA02 /* FriendMomentInfo.m */; };
+		F42BC6AE22E9EEBC004EFA02 /* CommentInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC69F22E9EEBC004EFA02 /* CommentInfo.m */; };
+		F42BC6AF22E9EEBC004EFA02 /* CommentInfoList.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC6A222E9EEBC004EFA02 /* CommentInfoList.m */; };
+		F42BC6B222E9EED6004EFA02 /* CompanyViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC6B122E9EED6004EFA02 /* CompanyViewModel.m */; };
+		F42BC6B522EB3DA2004EFA02 /* LikeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F42BC6B422EB3DA1004EFA02 /* LikeListModel.m */; };
 		F449EC5122E1CA3D00612EC0 /* WXCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F449EC5022E1CA3D00612EC0 /* WXCacheTool.m */; };
 		F449EC5422E40A6400612EC0 /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F449EC5322E40A6400612EC0 /* CompanyModel.m */; };
 		F449EC6122E5B25300612EC0 /* CompanyUsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F449EC6022E5B25200612EC0 /* CompanyUsersModel.m */; };
@@ -747,7 +752,7 @@
 		F40E96FA22E603DD00EE8C60 /* WXMailService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMailService.h; sourceTree = "<group>"; };
 		F40E96FB22E603DD00EE8C60 /* WXMailService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMailService.m; sourceTree = "<group>"; };
 		F40E970122E6061900EE8C60 /* MomentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentViewModel.swift; sourceTree = "<group>"; };
-		F4224AF122D9DDB5003DA311 /* WXAddOrMinusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAddOrMinusView.swift; sourceTree = "<group>"; };
+		F4224AF122D9DDB5003DA311 /* WXAddOrMinusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAddOrMinusView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		F4224AF322D9DDC6003DA311 /* WXAddOrMinusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXAddOrMinusView.xib; sourceTree = "<group>"; };
 		F4224AF522D9DEFF003DA311 /* WXAddOrMinusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAddOrMinusCell.swift; sourceTree = "<group>"; };
 		F4224AF622D9DEFF003DA311 /* WXAddOrMinusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXAddOrMinusCell.xib; sourceTree = "<group>"; };
@@ -756,26 +761,36 @@
 		F4224B0322DA0A22003DA311 /* WXPrivateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXPrivateViewController.swift; sourceTree = "<group>"; };
 		F42BC65A22E89732004EFA02 /* ViewMailConfigController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewMailConfigController.h; sourceTree = "<group>"; };
 		F42BC65B22E89732004EFA02 /* ViewMailConfigController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewMailConfigController.m; sourceTree = "<group>"; };
-		F42BC66022E8AAE0004EFA02 /* FriendMomentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMomentInfoList.m; sourceTree = "<group>"; };
-		F42BC66122E8AAE0004EFA02 /* FriendMomentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMomentInfo.m; sourceTree = "<group>"; };
-		F42BC66222E8AAE0004EFA02 /* FriendMomentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMomentInfo.h; sourceTree = "<group>"; };
-		F42BC66322E8AAE0004EFA02 /* FriendMomentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMomentInfoList.h; sourceTree = "<group>"; };
-		F42BC66522E8AAE0004EFA02 /* MomentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentUser.m; sourceTree = "<group>"; };
-		F42BC66622E8AAE0004EFA02 /* CompanyMomentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMomentInfo.h; sourceTree = "<group>"; };
-		F42BC66722E8AAE0004EFA02 /* Comments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comments.h; sourceTree = "<group>"; };
-		F42BC66822E8AAE0004EFA02 /* MomentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentUser.h; sourceTree = "<group>"; };
-		F42BC66922E8AAE0004EFA02 /* CompanyMomentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMomentInfo.m; sourceTree = "<group>"; };
-		F42BC66A22E8AAE0004EFA02 /* Comments.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comments.m; sourceTree = "<group>"; };
-		F42BC66C22E8AAE0004EFA02 /* CommentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInfo.m; sourceTree = "<group>"; };
-		F42BC66D22E8AAE0004EFA02 /* CommentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentInfoList.h; sourceTree = "<group>"; };
-		F42BC66E22E8AAE0004EFA02 /* CommentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentInfo.h; sourceTree = "<group>"; };
-		F42BC66F22E8AAE0004EFA02 /* CommentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInfoList.m; sourceTree = "<group>"; };
-		F42BC67122E8AAE0004EFA02 /* CompanyMoment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMoment.m; sourceTree = "<group>"; };
-		F42BC67222E8AAE0004EFA02 /* UserCompanies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCompanies.h; sourceTree = "<group>"; };
-		F42BC67322E8AAE0004EFA02 /* Enterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enterprise.m; sourceTree = "<group>"; };
-		F42BC67422E8AAE0004EFA02 /* UserCompanies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCompanies.m; sourceTree = "<group>"; };
-		F42BC67522E8AAE0004EFA02 /* CompanyMoment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMoment.h; sourceTree = "<group>"; };
-		F42BC67622E8AAE0004EFA02 /* Enterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enterprise.h; sourceTree = "<group>"; };
+		F42BC68422E9EEBB004EFA02 /* MomentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentUser.m; sourceTree = "<group>"; };
+		F42BC68522E9EEBB004EFA02 /* MomentEnterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentEnterprise.m; sourceTree = "<group>"; };
+		F42BC68622E9EEBB004EFA02 /* CompanyMomentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMomentInfo.h; sourceTree = "<group>"; };
+		F42BC68722E9EEBB004EFA02 /* MomentComent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentComent.m; sourceTree = "<group>"; };
+		F42BC68822E9EEBB004EFA02 /* MomentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentUser.h; sourceTree = "<group>"; };
+		F42BC68922E9EEBB004EFA02 /* CompanyMomentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMomentInfo.m; sourceTree = "<group>"; };
+		F42BC68A22E9EEBB004EFA02 /* MomentEnterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentEnterprise.h; sourceTree = "<group>"; };
+		F42BC68B22E9EEBB004EFA02 /* MomentComent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentComent.h; sourceTree = "<group>"; };
+		F42BC68D22E9EEBC004EFA02 /* CompanyMoment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyMoment.m; sourceTree = "<group>"; };
+		F42BC68E22E9EEBC004EFA02 /* UserCompanies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCompanies.h; sourceTree = "<group>"; };
+		F42BC68F22E9EEBC004EFA02 /* Enterprise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enterprise.m; sourceTree = "<group>"; };
+		F42BC69022E9EEBC004EFA02 /* UserCompanies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCompanies.m; sourceTree = "<group>"; };
+		F42BC69122E9EEBC004EFA02 /* CompanyMoment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyMoment.h; sourceTree = "<group>"; };
+		F42BC69222E9EEBC004EFA02 /* Enterprise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enterprise.h; sourceTree = "<group>"; };
+		F42BC69422E9EEBC004EFA02 /* FriendMomentDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMomentDetail.m; sourceTree = "<group>"; };
+		F42BC69522E9EEBC004EFA02 /* FriendMomentDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMomentDetail.h; sourceTree = "<group>"; };
+		F42BC69722E9EEBC004EFA02 /* MomentMessageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentMessageList.m; sourceTree = "<group>"; };
+		F42BC69822E9EEBC004EFA02 /* MomentMessageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentMessageList.h; sourceTree = "<group>"; };
+		F42BC69A22E9EEBC004EFA02 /* FriendMomentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMomentInfoList.m; sourceTree = "<group>"; };
+		F42BC69B22E9EEBC004EFA02 /* FriendMomentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendMomentInfo.m; sourceTree = "<group>"; };
+		F42BC69C22E9EEBC004EFA02 /* FriendMomentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMomentInfo.h; sourceTree = "<group>"; };
+		F42BC69D22E9EEBC004EFA02 /* FriendMomentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendMomentInfoList.h; sourceTree = "<group>"; };
+		F42BC69F22E9EEBC004EFA02 /* CommentInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInfo.m; sourceTree = "<group>"; };
+		F42BC6A022E9EEBC004EFA02 /* CommentInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentInfoList.h; sourceTree = "<group>"; };
+		F42BC6A122E9EEBC004EFA02 /* CommentInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentInfo.h; sourceTree = "<group>"; };
+		F42BC6A222E9EEBC004EFA02 /* CommentInfoList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentInfoList.m; sourceTree = "<group>"; };
+		F42BC6B022E9EED6004EFA02 /* CompanyViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyViewModel.h; path = ../../../CompanyViewModel.h; sourceTree = "<group>"; };
+		F42BC6B122E9EED6004EFA02 /* CompanyViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyViewModel.m; path = ../../../CompanyViewModel.m; sourceTree = "<group>"; };
+		F42BC6B322EB3DA1004EFA02 /* LikeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LikeListModel.h; sourceTree = "<group>"; };
+		F42BC6B422EB3DA1004EFA02 /* LikeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LikeListModel.m; sourceTree = "<group>"; };
 		F449EC4F22E1CA3D00612EC0 /* WXCacheTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXCacheTool.h; sourceTree = "<group>"; };
 		F449EC5022E1CA3D00612EC0 /* WXCacheTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXCacheTool.m; sourceTree = "<group>"; };
 		F449EC5222E40A6400612EC0 /* CompanyModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyModel.h; sourceTree = "<group>"; };
@@ -1769,6 +1784,8 @@
 		F40E96FD22E605D000EE8C60 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F42BC6B022E9EED6004EFA02 /* CompanyViewModel.h */,
+				F42BC6B122E9EED6004EFA02 /* CompanyViewModel.m */,
 				F40E970122E6061900EE8C60 /* MomentViewModel.swift */,
 			);
 			path = Service;
@@ -1777,68 +1794,85 @@
 		F42BC65D22E8AAAD004EFA02 /* MomentModel */ = {
 			isa = PBXGroup;
 			children = (
-				F42BC65F22E8AAE0004EFA02 /* 查看好友企业圈 */,
-				F42BC65E22E8AAE0004EFA02 /* 查看好友企业圈详情-跟好友企业圈一样 */,
-				F42BC66422E8AAE0004EFA02 /* 查询发布企业圈详情 */,
-				F42BC67022E8AAE0004EFA02 /* 查询企业圈 */,
-				F42BC66B22E8AAE0004EFA02 /* 企业圈查询消息列表 */,
+				F42BC69922E9EEBC004EFA02 /* 查看好友企业圈 */,
+				F42BC69322E9EEBC004EFA02 /* 查看好友企业圈详情 */,
+				F42BC68322E9EEBB004EFA02 /* 查询发布企业圈详情 */,
+				F42BC68C22E9EEBC004EFA02 /* 查询企业圈 */,
+				F42BC69622E9EEBC004EFA02 /* 查询消息列表 */,
+				F42BC69E22E9EEBC004EFA02 /* 企业圈查询消息列表 */,
 			);
 			path = MomentModel;
 			sourceTree = "<group>";
 		};
-		F42BC65E22E8AAE0004EFA02 /* 查看好友企业圈详情-跟好友企业圈一样 */ = {
+		F42BC68322E9EEBB004EFA02 /* 查询发布企业圈详情 */ = {
 			isa = PBXGroup;
 			children = (
+				F42BC68422E9EEBB004EFA02 /* MomentUser.m */,
+				F42BC68522E9EEBB004EFA02 /* MomentEnterprise.m */,
+				F42BC68622E9EEBB004EFA02 /* CompanyMomentInfo.h */,
+				F42BC68722E9EEBB004EFA02 /* MomentComent.m */,
+				F42BC68822E9EEBB004EFA02 /* MomentUser.h */,
+				F42BC68922E9EEBB004EFA02 /* CompanyMomentInfo.m */,
+				F42BC68A22E9EEBB004EFA02 /* MomentEnterprise.h */,
+				F42BC68B22E9EEBB004EFA02 /* MomentComent.h */,
 			);
-			path = "查看好友企业圈详情-跟好友企业圈一样";
+			name = "查询发布企业圈详情";
+			path = "../../../../Documents/MomentModel/查询发布企业圈详情";
 			sourceTree = "<group>";
 		};
-		F42BC65F22E8AAE0004EFA02 /* 查看好友企业圈 */ = {
+		F42BC68C22E9EEBC004EFA02 /* 查询企业圈 */ = {
 			isa = PBXGroup;
 			children = (
-				F42BC66022E8AAE0004EFA02 /* FriendMomentInfoList.m */,
-				F42BC66122E8AAE0004EFA02 /* FriendMomentInfo.m */,
-				F42BC66222E8AAE0004EFA02 /* FriendMomentInfo.h */,
-				F42BC66322E8AAE0004EFA02 /* FriendMomentInfoList.h */,
+				F42BC68D22E9EEBC004EFA02 /* CompanyMoment.m */,
+				F42BC68E22E9EEBC004EFA02 /* UserCompanies.h */,
+				F42BC68F22E9EEBC004EFA02 /* Enterprise.m */,
+				F42BC69022E9EEBC004EFA02 /* UserCompanies.m */,
+				F42BC69122E9EEBC004EFA02 /* CompanyMoment.h */,
+				F42BC69222E9EEBC004EFA02 /* Enterprise.h */,
+				F42BC6B322EB3DA1004EFA02 /* LikeListModel.h */,
+				F42BC6B422EB3DA1004EFA02 /* LikeListModel.m */,
+			);
+			path = "查询企业圈";
+			sourceTree = "<group>";
+		};
+		F42BC69322E9EEBC004EFA02 /* 查看好友企业圈详情 */ = {
+			isa = PBXGroup;
+			children = (
+				F42BC69422E9EEBC004EFA02 /* FriendMomentDetail.m */,
+				F42BC69522E9EEBC004EFA02 /* FriendMomentDetail.h */,
+			);
+			path = "查看好友企业圈详情";
+			sourceTree = "<group>";
+		};
+		F42BC69622E9EEBC004EFA02 /* 查询消息列表 */ = {
+			isa = PBXGroup;
+			children = (
+				F42BC69722E9EEBC004EFA02 /* MomentMessageList.m */,
+				F42BC69822E9EEBC004EFA02 /* MomentMessageList.h */,
+			);
+			path = "查询消息列表";
+			sourceTree = "<group>";
+		};
+		F42BC69922E9EEBC004EFA02 /* 查看好友企业圈 */ = {
+			isa = PBXGroup;
+			children = (
+				F42BC69A22E9EEBC004EFA02 /* FriendMomentInfoList.m */,
+				F42BC69B22E9EEBC004EFA02 /* FriendMomentInfo.m */,
+				F42BC69C22E9EEBC004EFA02 /* FriendMomentInfo.h */,
+				F42BC69D22E9EEBC004EFA02 /* FriendMomentInfoList.h */,
 			);
 			path = "查看好友企业圈";
 			sourceTree = "<group>";
 		};
-		F42BC66422E8AAE0004EFA02 /* 查询发布企业圈详情 */ = {
+		F42BC69E22E9EEBC004EFA02 /* 企业圈查询消息列表 */ = {
 			isa = PBXGroup;
 			children = (
-				F42BC66522E8AAE0004EFA02 /* MomentUser.m */,
-				F42BC66622E8AAE0004EFA02 /* CompanyMomentInfo.h */,
-				F42BC66722E8AAE0004EFA02 /* Comments.h */,
-				F42BC66822E8AAE0004EFA02 /* MomentUser.h */,
-				F42BC66922E8AAE0004EFA02 /* CompanyMomentInfo.m */,
-				F42BC66A22E8AAE0004EFA02 /* Comments.m */,
-			);
-			path = "查询发布企业圈详情";
-			sourceTree = "<group>";
-		};
-		F42BC66B22E8AAE0004EFA02 /* 企业圈查询消息列表 */ = {
-			isa = PBXGroup;
-			children = (
-				F42BC66C22E8AAE0004EFA02 /* CommentInfo.m */,
-				F42BC66D22E8AAE0004EFA02 /* CommentInfoList.h */,
-				F42BC66E22E8AAE0004EFA02 /* CommentInfo.h */,
-				F42BC66F22E8AAE0004EFA02 /* CommentInfoList.m */,
+				F42BC69F22E9EEBC004EFA02 /* CommentInfo.m */,
+				F42BC6A022E9EEBC004EFA02 /* CommentInfoList.h */,
+				F42BC6A122E9EEBC004EFA02 /* CommentInfo.h */,
+				F42BC6A222E9EEBC004EFA02 /* CommentInfoList.m */,
 			);
 			path = "企业圈查询消息列表";
-			sourceTree = "<group>";
-		};
-		F42BC67022E8AAE0004EFA02 /* 查询企业圈 */ = {
-			isa = PBXGroup;
-			children = (
-				F42BC67122E8AAE0004EFA02 /* CompanyMoment.m */,
-				F42BC67222E8AAE0004EFA02 /* UserCompanies.h */,
-				F42BC67322E8AAE0004EFA02 /* Enterprise.m */,
-				F42BC67422E8AAE0004EFA02 /* UserCompanies.m */,
-				F42BC67522E8AAE0004EFA02 /* CompanyMoment.h */,
-				F42BC67622E8AAE0004EFA02 /* Enterprise.h */,
-			);
-			path = "查询企业圈";
 			sourceTree = "<group>";
 		};
 		F4C28E5122D0A6EF00606E6D /* WXMineModule */ = {
@@ -2280,7 +2314,7 @@
 				F40185DF22D965460047B1B0 /* WXChooseMailTypeTableViewController.m in Sources */,
 				F4653EC222DAE2BC00A77D49 /* WXUserMomentInfoViewController.m in Sources */,
 				CE5B9A2622BCD35B00B608E4 /* WXMailListViewController.m in Sources */,
-				F42BC67C22E8AAE0004EFA02 /* CommentInfo.m in Sources */,
+				F42BC6B222E9EED6004EFA02 /* CompanyViewModel.m in Sources */,
 				CE5B9A2A22BCD35B00B608E4 /* WXMailListHeaderView.m in Sources */,
 				2A8E7F0822B093C90020BC57 /* EMConversationHelper.m in Sources */,
 				CE5B9A2522BCD35B00B608E4 /* WXInboxViewController.m in Sources */,
@@ -2303,12 +2337,11 @@
 				2AF0B92922B7412300854BFE /* SDShortVideoController.m in Sources */,
 				F449EC5122E1CA3D00612EC0 /* WXCacheTool.m in Sources */,
 				2ADDBA1222A4D22A0006C42A /* UIViewController+Search.m in Sources */,
-				F42BC67F22E8AAE0004EFA02 /* Enterprise.m in Sources */,
 				CE03C2F222C0D8A800730371 /* ConfirmViewController.swift in Sources */,
 				2A28B1932280311500B224F4 /* JPinYinUtil.m in Sources */,
 				F4C28E8A22D3799700606E6D /* WXBottomChooseView.swift in Sources */,
 				2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */,
-				F42BC67822E8AAE0004EFA02 /* FriendMomentInfo.m in Sources */,
+				F42BC6AD22E9EEBC004EFA02 /* FriendMomentInfo.m in Sources */,
 				2A8E7EFC22B092A80020BC57 /* EMCallViewController.m in Sources */,
 				F449EC6122E5B25300612EC0 /* CompanyUsersModel.m in Sources */,
 				2A28B17B22802B1100B224F4 /* MomentCell.m in Sources */,
@@ -2321,7 +2354,6 @@
 				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
 				2AF962C222A65FF3005FAC61 /* WXUsersListService.m in Sources */,
 				F40E96F822E5FF5600EE8C60 /* SearchUserModel.m in Sources */,
-				F42BC67922E8AAE0004EFA02 /* MomentUser.m in Sources */,
 				2A8E785422AF9C9D0020BC57 /* WXMessageAlertViewController.m in Sources */,
 				2A8E785122AF963E0020BC57 /* WXChatListHeaderCell.m in Sources */,
 				F4C28E7722D0A6F000606E6D /* ChatGroupCell.swift in Sources */,
@@ -2339,13 +2371,13 @@
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,
 				F4FFBF2E22DF13AF003FC0F3 /* WXApiManager.m in Sources */,
 				F4653EE122DC43AA00A77D49 /* WXChatService.m in Sources */,
-				F42BC67A22E8AAE0004EFA02 /* CompanyMomentInfo.m in Sources */,
 				2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */,
 				2ADDBA2D22A518F50006C42A /* UIImage+ColorImage.m in Sources */,
-				F42BC67B22E8AAE0004EFA02 /* Comments.m in Sources */,
+				F42BC6A622E9EEBC004EFA02 /* CompanyMomentInfo.m in Sources */,
 				F4C28E6722D0A6F000606E6D /* RelationViewController.swift in Sources */,
 				CE5B9A3922C05EED00B608E4 /* WSLCreateQRCodeController.m in Sources */,
 				F40E96FC22E603DD00EE8C60 /* WXMailService.m in Sources */,
+				F42BC6A522E9EEBC004EFA02 /* MomentComent.m in Sources */,
 				CE5B9A3C22C05EED00B608E4 /* WSLNativeScanTool.m in Sources */,
 				2A8E784E22AF8EDF0020BC57 /* WXValidationTool.m in Sources */,
 				CE03C2F622C0D8A800730371 /* GetPasswordViewController.swift in Sources */,
@@ -2353,8 +2385,10 @@
 				F4C28E7522D0A6F000606E6D /* CompanyFooter.swift in Sources */,
 				F4C28E6622D0A6F000606E6D /* FriendsVC.swift in Sources */,
 				F4224B0422DA0A22003DA311 /* WXPrivateViewController.swift in Sources */,
+				F42BC6A322E9EEBC004EFA02 /* MomentUser.m in Sources */,
 				F4FFBF3222DF2895003FC0F3 /* WXContactCell.m in Sources */,
 				2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */,
+				F42BC6AB22E9EEBC004EFA02 /* MomentMessageList.m in Sources */,
 				2A8E7E7E22B092A80020BC57 /* ConfInviteUsersViewController.m in Sources */,
 				F40E970222E6061900EE8C60 /* MomentViewModel.swift in Sources */,
 				F486ADF722D4588C0030D9F0 /* WXSettingViewController.swift in Sources */,
@@ -2365,6 +2399,7 @@
 				CE03C30722C2096700730371 /* WXMineViewController.m in Sources */,
 				2A28B1922280311500B224F4 /* Utility.m in Sources */,
 				2A28B197228034C600B224F4 /* MMTableView.m in Sources */,
+				F42BC6B522EB3DA2004EFA02 /* LikeListModel.m in Sources */,
 				2A8E7E7C22B092A80020BC57 /* Live2ViewController.m in Sources */,
 				2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */,
 				CE5B9A2B22BCD35B00B608E4 /* WXMailBottomCell.m in Sources */,
@@ -2384,7 +2419,9 @@
 				2A28B17A22802B1100B224F4 /* MMImagePreviewView.m in Sources */,
 				2A28B17122802B1100B224F4 /* MMLocationViewController.m in Sources */,
 				2ADDBA1422A4D22A0006C42A /* EMSearchBar.m in Sources */,
+				F42BC6A422E9EEBC004EFA02 /* MomentEnterprise.m in Sources */,
 				2A28B18322802C9500B224F4 /* JKDBModel.m in Sources */,
+				F42BC6AA22E9EEBC004EFA02 /* FriendMomentDetail.m in Sources */,
 				F4653ED022DB262500A77D49 /* WXPersonInfoCell.m in Sources */,
 				F4FFBF2B22DF0539003FC0F3 /* MineViewModel.swift in Sources */,
 				2A28B17722802B1100B224F4 /* MLocation.m in Sources */,
@@ -2393,17 +2430,17 @@
 				CE03C30A22C21A4900730371 /* WXMainHeaderView.m in Sources */,
 				F4C28E8822D33B0800606E6D /* WXEditPersonInfoViewController.swift in Sources */,
 				2A8E7E7722B092A80020BC57 /* Call1v1VideoViewController.m in Sources */,
-				F42BC67D22E8AAE0004EFA02 /* CommentInfoList.m in Sources */,
 				F486AE0D22D6C6380030D9F0 /* WXNewMomentMessageViewCell.m in Sources */,
 				CE5B9A3A22C05EED00B608E4 /* WSLScanView.m in Sources */,
 				F4C28E7422D0A6F000606E6D /* FriendInfoCell.swift in Sources */,
 				2AEE8BB022857EEF00103A9E /* WXChatViewController.m in Sources */,
-				F42BC67E22E8AAE0004EFA02 /* CompanyMoment.m in Sources */,
 				F4224AF222D9DDB5003DA311 /* WXAddOrMinusView.swift in Sources */,
 				F4FFBF2622DEEB16003FC0F3 /* WXContackListViewController.m in Sources */,
 				F4224AF722D9DEFF003DA311 /* WXAddOrMinusCell.swift in Sources */,
 				2A28B16D22802B1100B224F4 /* MomentUtil.m in Sources */,
+				F42BC6AE22E9EEBC004EFA02 /* CommentInfo.m in Sources */,
 				2ADDBA0522A4D0120006C42A /* WXGroupViewController.m in Sources */,
+				F42BC6AF22E9EEBC004EFA02 /* CommentInfoList.m in Sources */,
 				CE03C2DB22C0D8A100730371 /* String+Extension.swift in Sources */,
 				F4653EDA22DC0AEC00A77D49 /* WXPersonMomentViewController.m in Sources */,
 				F486AE2122D95C670030D9F0 /* WXMailLoginViewController.m in Sources */,
@@ -2414,7 +2451,6 @@
 				2A8E7E7A22B092A80020BC57 /* MeetingViewController.m in Sources */,
 				2A8E7EFB22B092A80020BC57 /* CallResolutionViewController.m in Sources */,
 				2A8E7F0522B093860020BC57 /* EMDemoOptions.m in Sources */,
-				F42BC67722E8AAE0004EFA02 /* FriendMomentInfoList.m in Sources */,
 				F4C28E6A22D0A6F000606E6D /* WXEditCompanyViewController.swift in Sources */,
 				2A8E7E7422B092A80020BC57 /* EMCallOptions+NSCoding.m in Sources */,
 				CE5B9A2922BCD35B00B608E4 /* WXMailCell.m in Sources */,
@@ -2438,18 +2474,21 @@
 				F4653EC822DB0AE600A77D49 /* WXLoginMainViewController.swift in Sources */,
 				2A8E7E7B22B092A80020BC57 /* DemoConfManager.m in Sources */,
 				F4FFBF1722DE18E9003FC0F3 /* WXMomentDetailViewController.swift in Sources */,
+				F42BC6AC22E9EEBC004EFA02 /* FriendMomentInfoList.m in Sources */,
 				F4FFBEF322DDE0FD003FC0F3 /* FriendModel.m in Sources */,
 				F4224B0222D9ED25003DA311 /* WXSettingTableViewController.swift in Sources */,
-				F42BC68022E8AAE0004EFA02 /* UserCompanies.m in Sources */,
 				2AF0B92D22B741B300854BFE /* WXDiscoverViewCell.m in Sources */,
+				F42BC6A722E9EEBC004EFA02 /* CompanyMoment.m in Sources */,
 				CE03C2DC22C0D8A100730371 /* UIView+extension.swift in Sources */,
 				2A8E7EFF22B092A80020BC57 /* EMStreamView.m in Sources */,
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
 				F486ADFA22D48C0E0030D9F0 /* WXMyQRCodeViewController.swift in Sources */,
+				F42BC6A922E9EEBC004EFA02 /* UserCompanies.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,
 				F4C28E6C22D0A6F000606E6D /* CompanyHeader.swift in Sources */,
 				CE5B9A2722BCD35B00B608E4 /* WXMailListSectionCell.m in Sources */,
 				2A8E784222AF78FE0020BC57 /* WXAddFriendViewController.m in Sources */,
+				F42BC6A822E9EEBC004EFA02 /* Enterprise.m in Sources */,
 				F4653EC622DB01CD00A77D49 /* WXBaseModel.m in Sources */,
 				CE03C2F722C0D8A800730371 /* RegisterViewController.swift in Sources */,
 			);

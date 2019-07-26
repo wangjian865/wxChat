@@ -18,21 +18,30 @@ class WXAttendantViewController: UIViewController {
         view.backgroundColor = UIColor.white
         setNaviBar()
         setupUI()
+        
+        getdata()
+    }
+    func getdata() {
         if (self.title == "管理员设置"){
             getAdminData()
+        }else{
+            getUserData()
         }
-        
     }
     func getAdminData() {
         MineViewModel.getCompanyAdminList(companyid: companyID, success: { (adminModels) in
-            print("1")
+            self.dataArr = adminModels
+            self.contentView.dataArray = adminModels
+            self.contentView.collectionView.reloadData()
         }) { (error) in
             print("获取管理员失败")
         }
     }
     func getUserData() {
         MineViewModel.getCompanyUserList(companyid: companyID, success: { (friendModels) in
-            print("2")
+            self.dataArr = friendModels
+            self.contentView.dataArray = friendModels
+            self.contentView.collectionView.reloadData()
         }) { (error) in
             print("获取成员失败")
         }
@@ -49,24 +58,58 @@ class WXAttendantViewController: UIViewController {
         button.addTarget(self, action: #selector(checkOutAction), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: button)
     }
+    
+    //记录去掉的用户id
+    var deleteUserIDs: [String] = []
     //确认按钮
     @objc func checkOutAction() {
-//        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeepToken/findUserAccount"
-//        let account = UserDefaults.standard.string(forKey: "account")
-//        let params:[String:String] = ["tgusetaccount":account ?? ""]
-//        
-//        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
-//            
-//            let model = UserInfoModel.yy_model(with: result as! [AnyHashable : Any])
-//            print(result)
-//        }) { (error) in
-//            
-//            print(error)
-//        }
+        contentView.isEdit = false
+        if deleteUserIDs.count > 0{
+            deleteRequest()
+        }
+    }
+    //删除操作
+    func deleteRequest() {
+        if (self.title == "管理员设置"){
+            deleteAdminRequest()
+        }else{
+            deleteUserRequest()
+        }
+    }
+    func deleteUserRequest() {
+        let deleStr = deleteUserIDs.joined(separator: ",")
+        MineViewModel.deleCompanyUser(companysystem: deleStr, companyid: companyID, success: { (success) in
+            
+        }) { (error) in
+            print("删除公司用户失败")
+        }
+    }
+    func deleteAdminRequest() {
         
     }
     func setupUI() {
         let tempView = Bundle.main.loadNibNamed("WXAddOrMinusView", owner: nil, options: nil)?.last as! WXAddOrMinusView
+        tempView.addClosure = {[weak self] in
+            let vc = WXUsersListViewController.init()
+            vc.chooseCompletion = { (IDs) in
+                if (self?.title == "管理员设置"){
+                    let ids = IDs.joined(separator: ",")
+                    MineViewModel.addCompanyAdmin(tgusetids: ids, seanceshowidadmincompanyid: self?.companyID ?? "", success: { (success) in
+                        print("1")
+                        
+                    }, failure: { (error) in
+                        print("添加管理员失败")
+                    })
+                }else{//成员设置
+                    
+                }
+                
+            }
+            vc.isEditing = true
+            vc.isGroup = false
+            let nav = WXPresentNavigationController.init(rootViewController: vc)
+            self?.present(nav, animated: true, completion: nil)
+        }
         contentView = tempView
         tempView.dataArray = dataArr
         tempView.titleLabel.text = title

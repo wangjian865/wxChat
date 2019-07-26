@@ -37,6 +37,7 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
         rightBtn.layer.borderWidth = 1
         rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         rightBtn.frame.size = CGSize.init(width: 52, height: 28)
+        rightBtn.addTarget(self, action: #selector(editCompany), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
         
         //控件赋值
@@ -46,6 +47,13 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
         descTF.text = myModel?.companysynopsis
         indusTF.text = myModel?.companyindustry
         locationTF.text = myModel?.companyregion
+    }
+    @objc func editCompany(){
+        MineViewModel.updateCompanyInfo(companyid: myModel?.companyid ?? "", companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: descTF.text, companyindustry: indusTF.text ?? "", companyregion: locationTF.text ?? "", tgusetaccount: WXAccountTool.getUserPhone(), success: { (model) in
+            print(model)
+        }) { (error) in
+            
+        }
     }
     func setContentData(model: CompanyModel){
         myModel = model
@@ -151,7 +159,6 @@ extension WXEditCompanyViewController: UIImagePickerControllerDelegate,UINavigat
         companyIconView.image = image
         
     }
-    
     
     //裁剪图片
     func imageWithImageSimple(image:UIImage,scaledToSize newSize:CGSize)->UIImage{

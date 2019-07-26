@@ -8,6 +8,7 @@
 
 #import "WXPersonMomentViewController.h"
 #import "MMImageListView.h"
+
 @interface WXPersonMomentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MMTableView * tableView;
 @property (nonatomic, strong) UIView * tableHeaderView;

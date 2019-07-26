@@ -13,8 +13,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CompanyMoment : NSObject
-   @property (nonatomic, strong)NSArray<Enterprise *> *enterprise;
-   @property (nonatomic, strong)UserCompanies *userQ;//用户企业圈
+///动态列表
+@property (nonatomic, strong)NSArray<Enterprise *> *enterprise;
+///封面图片
+@property (nonatomic, copy)NSString *image;
+///企业圈主人
+@property (nonatomic, strong)UserCompanies *userQ;
 
 
 @end

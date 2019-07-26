@@ -112,6 +112,143 @@ CGFloat lineSpacing = 5;
     // 最大高度限制
     maxLimitHeight = (_linkLabel.font.lineHeight + lineSpacing) * 6;
 }
+#pragma mark - wx modelSetter
+- (void)setModel:(Enterprise *)model{
+    _model = model;
+    //头像
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg] placeholderImage:nil];
+    // 昵称
+    [_nicknameBtn setTitle:model.tgusetName forState:UIControlStateNormal];
+    if (_nicknameBtn.width > kTextWidth) {
+        _nicknameBtn.width = kTextWidth;
+    }
+    _nicknameBtn.frame = CGRectMake(_avatarImageView.right + 10, _avatarImageView.top, _nicknameBtn.width, 20);
+    // 正文
+    _showAllBtn.hidden = YES;
+    _linkLabel.hidden = YES;
+    CGFloat bottom = _avatarImageView.bottom + 15;
+    CGFloat rowHeight = 0;
+    if ([model.enterprisezContent length])
+    {
+        _linkLabel.hidden = NO;
+        NSMutableParagraphStyle * style = [[NSMutableParagraphStyle alloc] init];
+        style.lineSpacing = lineSpacing;
+        NSMutableAttributedString * attributedText = [[NSMutableAttributedString alloc] initWithString:model.enterprisezContent];
+        [attributedText addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0,[model.enterprisezContent length])];
+        _linkLabel.attributedText = attributedText;
+        // 判断显示'全文'/'收起'
+        CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
+        CGFloat labHeight = attrStrSize.height;
+        if (labHeight > maxLimitHeight) {
+            if (!_moment.isFullText) {
+                labHeight = maxLimitHeight;
+            }
+            _showAllBtn.hidden = NO;
+            _showAllBtn.selected = _moment.isFullText;
+        }
+        _linkLabel.frame = CGRectMake(_avatarImageView.left, bottom, attrStrSize.width, labHeight);
+        _showAllBtn.frame = CGRectMake(_avatarImageView.left, _linkLabel.bottom + kArrowHeight, _showAllBtn.width, kMoreLabHeight);
+        if (_showAllBtn.hidden) {
+            bottom = _linkLabel.bottom + kPaddingValue;
+        } else {
+            bottom = _showAllBtn.bottom + kPaddingValue;
+        }
+        // 添加长按手势
+        if (!_longPress) {
+            _longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressHandler:)];
+        }
+        [_linkLabel addGestureRecognizer:_longPress];
+    }
+    // 图片
+    NSArray *imageArr = [model.tgusetImg componentsSeparatedByString:@","];
+    _imageListView.imageArr = imageArr;
+    if ([imageArr count] > 0) {
+        _imageListView.origin = CGPointMake(_avatarImageView.left, bottom);
+        bottom = _imageListView.bottom + kPaddingValue;
+    }
+    // 位置和时间
+//    _timeLabel.text = [Utility getMomentTime:moment.time];
+    _timeLabel.text = model.enterprisezTime;
+    [_timeLabel sizeToFit];
+//    if (moment.location) {
+//        [_locationBtn setTitle:moment.location.position forState:UIControlStateNormal];
+//        [_locationBtn sizeToFit];
+//        _locationBtn.hidden = NO;
+//        _locationBtn.frame = CGRectMake(_avatarImageView.left, bottom, _locationBtn.width, kTimeLabelH);
+//        bottom = _locationBtn.bottom + kPaddingValue;
+//    } else {
+        _locationBtn.hidden = YES;
+//    }
+    _timeLabel.frame = CGRectMake(_avatarImageView.left, bottom, _timeLabel.width, kTimeLabelH);
+    _deleteBtn.frame = CGRectMake(_timeLabel.right + 25, _timeLabel.top, 30, kTimeLabelH);
+    bottom = _timeLabel.bottom + kPaddingValue;
+    // 操作视图
+    _menuView.frame = CGRectMake(k_screen_width-kOperateWidth-10, _timeLabel.top-(kOperateHeight-kTimeLabelH)/2, kOperateWidth, kOperateHeight);
+    _menuView.show = NO;
+//    _menuView.isLike = moment.isLike;
+    _menuView.isLike = false;
+    // 处理评论/赞
+    _commentView.frame = CGRectZero;
+    _bgImageView.frame = CGRectZero;
+    _bgImageView.image = nil;
+    [_commentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    // 处理赞
+    CGFloat top = 0;
+    CGFloat width = k_screen_width - kRightMargin - _avatarImageView.left;
+//    if ([moment.likeList count]) {
+//        MLLinkLabel * likeLabel = kMLLinkLabel(NO);
+//        likeLabel.delegate = self;
+//        likeLabel.attributedText = kMLLinkAttributedText(moment);
+//        CGSize attrStrSize = [likeLabel preferredSizeWithMaxWidth:kTextWidth];
+//        likeLabel.frame = CGRectMake(5, 8, attrStrSize.width, attrStrSize.height);
+//        [_commentView addSubview:likeLabel];
+//        // 分割线
+//        UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, likeLabel.bottom + 7, width, 0.5)];
+//        line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
+//        [_commentView addSubview:line];
+//        // 更新
+//        top = attrStrSize.height + 15;
+//    }
+    // 处理评论
+    NSInteger count = [model.commes count];
+    for (NSInteger i = 0; i < count; i ++) {
+        CommentLabel * label = [[CommentLabel alloc] initWithFrame:CGRectMake(0, top, width, 0)];
+        label.wxComment = [model.commes objectAtIndex:i];
+        // 点击评论
+        
+        [label setDidClickText:^(Comment *comment) {
+            // 当前moment相对tableView的frame
+            CGRect rect = [[label superview] convertRect:label.frame toView:self.superview];
+            [AppDelegate sharedInstance].convertRect = rect;
+            
+            if ([self.delegate respondsToSelector:@selector(didOperateMoment:selectComment:)]) {
+                [self.delegate didOperateMoment:self selectComment:comment];
+            }
+            [self resetMenuView];
+        }];
+        // 点击高亮
+        [label setDidClickLinkText:^(MLLink *link, NSString *linkText) {
+            if ([self.delegate respondsToSelector:@selector(didClickLink:linkText:)]) {
+                [self.delegate didClickLink:link linkText:linkText];
+            }
+            [self resetMenuView];
+        }];
+        [_commentView addSubview:label];
+        // 更新
+        top += label.height;
+    }
+    // 更新UI
+    if (top > 0) {
+        _bgImageView.frame = CGRectMake(_nicknameBtn.left, bottom, width, top + kArrowHeight);
+        _bgImageView.image = [[UIImage imageNamed:@"comment_bg"] stretchableImageWithLeftCapWidth:40 topCapHeight:30];
+        _commentView.frame = CGRectMake(_avatarImageView.left, bottom + kArrowHeight, width, top);
+        rowHeight = _commentView.bottom + kBlank;
+    } else {
+        rowHeight = _timeLabel.bottom + kBlank;
+    }
+    // 这样做就是起到缓存行高的作用，省去重复计算!!!
+    model.rowHeight = rowHeight;
+}
 
 #pragma mark - setter
 - (void)setMoment:(Moment *)moment
@@ -358,7 +495,15 @@ CGFloat lineSpacing = 5;
     }
     return self;
 }
-
+#pragma mark - WX_Setter
+- (void)setWxComment:(MomentComent *)wxComment{
+    _wxComment = wxComment;
+    _linkLabel.attributedText = kMLLinkAttributedText(wxComment);
+    CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
+    _linkLabel.frame = CGRectMake(5, 3, attrStrSize.width, attrStrSize.height);
+    self.height = attrStrSize.height + 5;
+    
+}
 #pragma mark - Setter
 - (void)setComment:(Comment *)comment
 {

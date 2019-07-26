@@ -79,8 +79,8 @@ class MineViewModel: NSObject {
     class func getFriendList(nickName: String = "",
                              success: @escaping (_ response: [FriendModel]) ->(),
                              failure: @escaping (_ error: NSError?) ->()) {
-        let urlString =  WXApiManager.getRequestUrl("manKeepToken/showTgusetFriendList")
-        let params:[String:Any] = ["tgusetid":WXAccountTool.getUserID(),"tgusetname":nickName]
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/userFriends")
+        let params:[String:Any] = ["tgusetname":"小风"]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
             let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
             guard let result = resultModel else {return }
@@ -142,7 +142,7 @@ class MineViewModel: NSObject {
      String    tgusetaccount        true    用户手机号
      */
     class func createCompany(companyname: String,
-                             logofiles: String,
+                             logofiles: UIImage,
                              companysynopsis: String,
                              companyindustry: String,
                              companyregion: String,
@@ -150,14 +150,10 @@ class MineViewModel: NSObject {
                              success: @escaping (_ response: CompanyModel?) ->(),
                              failure: @escaping (_ error: NSError?) ->()){
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/createCompany")
-        let params:[String:Any] = ["companyname":companyname,"logofiles":logofiles,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"tgusetaccount":tgusetaccount]
-//        WXNetWorkTool.uploadFile(withUrl: urlString, image: UIImage.init(named: "normal_icon")!, parameters: params, successBlock: { (success) in
-//
-//        }) { (error) in
-//
-//        }
-        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
-            print(result)
+        let params:[String:Any] = ["companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"tgusetaccount":tgusetaccount]
+        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["image"], image: [logofiles], parameters: params, progressBlock: { (progress) in
+            print(progress)
+        }, successBlock: { (result) in
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
             guard let result = resultModel else {return }
             if result.code.elementsEqual("200"){
@@ -168,19 +164,26 @@ class MineViewModel: NSObject {
                 print(result.msg)
             }
         }) { (error) in
-
+            
         }
+        
     }
     //人脉 公司修改
     class func updateCompanyInfo(companyid: String,
                                  companyname: String,
-                                 logofiles: String,
+                                 logofiles: UIImage,
                                  companysynopsis: String,
+                                 companyindustry: String,
+                                 companyregion: String,
+                                 tgusetaccount: String,
                                  success: @escaping (_ response: CompanyModel?) ->(),
                                  failure: @escaping (_ error: NSError?) ->()){
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/updateCompanyInfo")
-        let params:[String:Any] = ["companyid":companyid,"companyname":companyname,"logofiles":logofiles,"companysynopsis":companysynopsis]
-        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
+        let params:[String:Any] = ["companyid":companyid,"companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"tgusetaccount":tgusetaccount]
+        
+        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["logofiles"], image: [logofiles], parameters: params, progressBlock: { (progress) in
+            print(progress)
+        }, successBlock: { (result) in
             print(result)
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
             guard let result = resultModel else {return }
@@ -194,6 +197,7 @@ class MineViewModel: NSObject {
         }) { (error) in
             
         }
+        
     }
     //人脉 解散公司   over
     class func deleCompany(companyid: String,

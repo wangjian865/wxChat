@@ -14,6 +14,8 @@
 @class MMImageView;
 @interface MMImageListView : UIView
 
+//wx 图片数组
+@property (nonatomic,strong) NSArray *imageArr;
 // 动态
 @property (nonatomic,strong) Moment * moment;
 // 点击小图

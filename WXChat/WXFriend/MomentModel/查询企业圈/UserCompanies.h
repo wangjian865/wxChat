@@ -11,14 +11,24 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserCompanies : NSObject
-@property (nonatomic, copy)NSString *tgusetid;
-@property (nonatomic, copy)NSString *tgusetname;
-@property (nonatomic, copy)NSString *tgusetaccount;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetpassword;//接口上值类型为null
+///公司
+@property (nonatomic, copy)NSString *tgusetcompany;
+///职位
+@property (nonatomic, copy)NSString *tgusetposition;
+///账号
+@property (nonatomic, copy)NSString *tgusetaccount;
+///头像
 @property (nonatomic, copy)NSString *tgusetimg;
+///用户id
+@property (nonatomic, copy)NSString *tgusetid;
+///用户姓名
+@property (nonatomic, copy)NSString *tgusetname;
+
+
+
+
+@property (nonatomic, copy)NSString *tgusetpassword;//接口上值类型为null
 @property (nonatomic, copy)NSString *tgusetcode;//接口上值类型为null
-@property (nonatomic, copy)NSString *tgusetcompany;//公司
-@property (nonatomic, copy)NSString *tgusetposition;//职位
 @property (nonatomic, copy)NSString *tgusetreghtdate;//接口上值类型为null
 @property (nonatomic, copy)NSString *tgusetsex;//接口上值类型为null
 @property (nonatomic, copy)NSString *tgusetadbox;//接口上值类型为null

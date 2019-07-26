@@ -13,7 +13,7 @@
 #import "MMImageListView.h"
 #import "Moment.h"
 #import "Comment.h"
-
+#import "Enterprise.h"
 //#### 动态
 
 @protocol MomentCellDelegate;
@@ -51,6 +51,8 @@
 // 代理
 @property (nonatomic, assign) id<MomentCellDelegate> delegate;
 
+//wx model
+@property (nonatomic, strong) Enterprise *model;
 @end
 
 @protocol MomentCellDelegate <NSObject>
@@ -74,6 +76,8 @@
 @property (nonatomic, strong) MLLinkLabel * linkLabel;
 // 评论
 @property (nonatomic, strong) Comment * comment;
+// wx 评论
+@property (nonatomic, strong) MomentComent *wxComment;
 // 点击评论高亮内容
 @property (nonatomic, copy) void (^didClickLinkText)(MLLink *link , NSString *linkText);
 // 点击评论
