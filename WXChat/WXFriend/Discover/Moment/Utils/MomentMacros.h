@@ -13,7 +13,8 @@
 #define kNameLabelH             16
 // 时间视图高度
 #define kTimeLabelH             15
-
+/// 点赞头像的宽高
+#define kLikeIconWidth          32
 // 操作按钮的宽度
 #define kOperateBtnWidth        30
 // 操作视图的高度

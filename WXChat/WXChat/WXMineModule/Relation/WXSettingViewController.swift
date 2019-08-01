@@ -17,7 +17,7 @@ class WXSettingViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(red: 0.93, green: 0.93, blue: 0.93, alpha: 1.0)
         textField.backgroundColor = UIColor.white
-        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 30, height: 10))
+        let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
         textField.leftView = leftView
         textField.leftViewMode = .always
         
@@ -28,15 +28,17 @@ class WXSettingViewController: UIViewController {
             make.height.equalTo(42)
         }
         let clearButton = UIButton.init(type: .custom)
-        clearButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-        clearButton.setTitle("❎", for: .normal)
-        clearButton.setTitleColor(UIColor.black, for: .normal)
+        clearButton.setImage(UIImage.init(named: "取消"), for: .normal)
+        clearButton.addTarget(self, action: #selector(clearTF), for: .touchUpInside)
         view.addSubview(clearButton)
         clearButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(self.textField)
             make.right.equalTo(self.textField).offset(-12)
             make.width.height.equalTo(19)
         }
+    }
+    @objc func clearTF() {
+        textField.text = ""
     }
     override func viewWillDisappear(_ animated: Bool) {
         callBackClosure?(textField.text ?? "")

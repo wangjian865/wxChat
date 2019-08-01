@@ -25,6 +25,7 @@ class WXBottomChooseView: UIView {
     @IBAction func cancelAction(_ sender: UIButton) {
         removeFromSuperview()
     }
+
     func setShowData(array: [String]) {
         firstBtn.setTitle(array[0], for: .normal)
         secondBtn.setTitle(array[1], for: .normal)

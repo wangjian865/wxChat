@@ -8,12 +8,14 @@
 
 #import "WXMessageAlertViewController.h"
 #import "WXMessageAlertViewCell.h"
-#import "WXMessageAlertModel.h"
+#import "WXMessageAlertListModel.h"
+#import "WXChatService.h"
 @interface WXMessageAlertViewController ()
 /**
  * 模型数组
  */
-@property (nonatomic, strong) NSArray *modelArray;
+@property (nonatomic, strong) WXMessageAlertListModel *model;
+
 @end
 
 @implementation WXMessageAlertViewController
@@ -21,22 +23,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"消息";
-    [self getData];
+//    [self getData];
+    [self getdata];
     [self setupUI];
-    
 }
 
 - (void)getData{
-    NSArray *arr = @[
-  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
-  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
-  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
-  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
-  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
-  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
-  ];
-    _modelArray = [NSArray yy_modelArrayWithClass:[WXMessageAlertModel class] json:arr];
-    NSLog(@"1");
+//    NSArray *arr = @[
+//  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+//  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+//  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+//  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+//  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+//  @{@"avatarUrl":@"http://img.52z.com/upload/news/image/20181108/20181108204521_83402.jpg",@"name":@"皮卡丘",@"descriptionText":@"皮卡丘申请加入成都联盟",@"status":@"确认"},
+//  ];
+//    _modelArray = [NSArray yy_modelArrayWithClass:[WXMessageAlertModel class] json:arr];
+//    NSLog(@"1");
+}
+- (void)getdata{
+    [WXChatService getAllAddFriendRequestSuccessBlock:^(WXMessageAlertListModel * _Nonnull model) {
+        self.model = model;
+        [self.tableView reloadData];
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)setupUI{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -54,7 +64,7 @@
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return _modelArray.count;
+    return _model.data.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -87,7 +97,7 @@
     if (cell == nil){
         cell = [[WXMessageAlertViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WXMessageAlertViewCell"];
     }
-    WXMessageAlertModel *model = _modelArray[indexPath.section];
+    WXMessageAlertModel *model = _model.data[indexPath.section];
     [cell setModel:model];
     return cell;
 }

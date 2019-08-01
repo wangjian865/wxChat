@@ -12,17 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UserCompanies : NSObject
 ///公司
-@property (nonatomic, copy)NSString *tgusetcompany;
+@property (nonatomic, copy)NSString *tgusetcCompany;
 ///职位
-@property (nonatomic, copy)NSString *tgusetposition;
+@property (nonatomic, copy)NSString *tgusetPosition;
 ///账号
-@property (nonatomic, copy)NSString *tgusetaccount;
+@property (nonatomic, copy)NSString *tgusetAccount;
 ///头像
-@property (nonatomic, copy)NSString *tgusetimg;
+@property (nonatomic, copy)NSString *tgusetImg;
 ///用户id
-@property (nonatomic, copy)NSString *tgusetid;
+@property (nonatomic, copy)NSString *tgusetId;
 ///用户姓名
-@property (nonatomic, copy)NSString *tgusetname;
+@property (nonatomic, copy)NSString *tgusetName;
 
 
 

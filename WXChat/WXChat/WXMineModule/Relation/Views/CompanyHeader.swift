@@ -25,7 +25,7 @@ class CompanyHeader: UIView {
         didSet {
             if isShow {
                 UIView.animate(withDuration: 0.3, animations: {
-                    self.arrowImageView.transform = CGAffineTransform.identity.rotated(by: CGFloat(Double.pi))
+                    self.arrowImageView.transform = CGAffineTransform.identity.rotated(by: CGFloat(Double.pi/2))
                 })
             } else {
                 UIView.animate(withDuration: 0.3, animations: {

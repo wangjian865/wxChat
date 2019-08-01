@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUserID;
 //获取环信ID  登录后存在
 + (NSString *)getHuanXinID;
-
+///获取用户名
++ (NSString *)getUserName;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,7 +10,7 @@
 #import <YYText.h>
 #import "WXPhotoCollectionViewCell.h"
 #import "MBProgressHUD+NJ.h"
-
+#import "CompanyViewModel.h"
 //发布朋友圈动态
 @interface WXNewMomentViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic, strong) YYTextView *textTF;
@@ -51,15 +51,27 @@
     rightBtn.layer.borderColor = [UIColor whiteColor].CGColor;
     rightBtn.layer.borderWidth = 1.0;
     [rightBtn setTitle:@"发布" forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(rightButtonAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+}
+- (void)rightButtonAction{
+    NSMutableArray *names = [NSMutableArray array];
+    for (UIImage *image in self.photos) {
+        [names addObject:@"files"];
+    }
+    [CompanyViewModel publicMomentsMessage:self.textTF.text files:self.photos fileNames:names successBlock:^(NSString * _Nonnull successMsg) {
+        NSLog(@"%@",successMsg);
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)setupUI{
     self.view.backgroundColor = kColor_LightGray;
     //tf
     self.textTF = [YYTextView new];
     self.textTF.textColor = [UIColor darkTextColor];
-    self.textTF.font = [UIFont systemFontOfSize:12];
-    self.textTF.placeholderFont = [UIFont systemFontOfSize:12];
+    self.textTF.font = [UIFont systemFontOfSize:16];
+    self.textTF.placeholderFont = [UIFont systemFontOfSize:16];
     self.textTF.placeholderTextColor = [UIColor darkGrayColor];
     self.textTF.placeholderText = @"输入这一刻的想法...";
     [self.view addSubview:self.textTF];

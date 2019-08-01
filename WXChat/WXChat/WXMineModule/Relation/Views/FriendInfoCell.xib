@@ -20,46 +20,45 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="normal_icon" translatesAutoresizingMaskIntoConstraints="NO" id="GCO-6S-XlL">
-                        <rect key="frame" x="14" y="25.5" width="54" height="54"/>
+                        <rect key="frame" x="14" y="28.5" width="48" height="48"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="GCO-6S-XlL" secondAttribute="height" multiplier="1:1" id="08A-Qi-9Ve"/>
-                            <constraint firstAttribute="width" constant="54" id="bhk-vB-ZMw"/>
+                            <constraint firstAttribute="width" constant="48" id="bhk-vB-ZMw"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="30"/>
+                                <real key="value" value="24"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39n-1n-6J2" userLabel="nameLable">
-                        <rect key="frame" x="82" y="14" width="237" height="27"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="74" y="15.5" width="245" height="19.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRv-dN-aMo" userLabel="posionLabel">
-                        <rect key="frame" x="82" y="45" width="237" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
+                        <rect key="frame" x="74" y="44" width="245" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDC-J4-eNc" userLabel="companyNameLabel">
-                        <rect key="frame" x="82" y="67.5" width="237" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <rect key="frame" x="74" y="70" width="245" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KRv-dN-aMo" firstAttribute="leading" secondItem="GCO-6S-XlL" secondAttribute="trailing" constant="14" id="2dE-mf-YX4"/>
+                    <constraint firstItem="KRv-dN-aMo" firstAttribute="leading" secondItem="GCO-6S-XlL" secondAttribute="trailing" constant="12" id="2dE-mf-YX4"/>
                     <constraint firstItem="39n-1n-6J2" firstAttribute="leading" secondItem="KRv-dN-aMo" secondAttribute="leading" id="BFT-Rr-XRs"/>
-                    <constraint firstItem="39n-1n-6J2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="Cqm-9Z-bFU"/>
                     <constraint firstItem="GCO-6S-XlL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="GUW-3l-2kJ"/>
                     <constraint firstItem="KRv-dN-aMo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="J8p-4b-zg0"/>
-                    <constraint firstItem="DDC-J4-eNc" firstAttribute="top" secondItem="KRv-dN-aMo" secondAttribute="bottom" constant="8" id="JuE-eP-v9e"/>
+                    <constraint firstItem="DDC-J4-eNc" firstAttribute="top" secondItem="KRv-dN-aMo" secondAttribute="bottom" constant="9" id="JuE-eP-v9e"/>
                     <constraint firstItem="39n-1n-6J2" firstAttribute="trailing" secondItem="KRv-dN-aMo" secondAttribute="trailing" id="MPG-LL-w0b"/>
                     <constraint firstAttribute="trailing" secondItem="KRv-dN-aMo" secondAttribute="trailing" constant="20" id="OA1-UG-YEQ"/>
-                    <constraint firstItem="KRv-dN-aMo" firstAttribute="top" secondItem="39n-1n-6J2" secondAttribute="bottom" constant="4" id="Y8J-ex-qJ4"/>
+                    <constraint firstItem="KRv-dN-aMo" firstAttribute="top" secondItem="39n-1n-6J2" secondAttribute="bottom" constant="9" id="Y8J-ex-qJ4"/>
                     <constraint firstItem="DDC-J4-eNc" firstAttribute="trailing" secondItem="KRv-dN-aMo" secondAttribute="trailing" id="Z36-nd-Z0B"/>
                     <constraint firstItem="KRv-dN-aMo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZA4-if-zQ4"/>
                     <constraint firstItem="GCO-6S-XlL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="g3n-FI-FqD"/>

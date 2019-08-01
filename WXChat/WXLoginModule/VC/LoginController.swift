@@ -105,6 +105,7 @@ class LoginController: UIViewController {
                 //获取到用户信息并存储
                 let model = UserInfoModel.yy_model(with: result.data)
                 UserDefaults.standard.set(model?.tgusetid, forKey: "userID")
+                UserDefaults.standard.set(model?.tgusetname, forKey: "userName")
                 WXCacheTool.wx_saveModel(model as Any, key: "userInfo")
             }
         }) { (error) in

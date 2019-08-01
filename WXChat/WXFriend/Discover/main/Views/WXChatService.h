@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "WXMessageAlertListModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXChatService : NSObject
-
+///人脉-查询所有添加好友申请
++(void)getAllAddFriendRequestSuccessBlock:(void(^) (WXMessageAlertListModel *model))success failBlock:(void(^) (NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -45,6 +45,8 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXNewMomentMessageViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"newMomentMessageCell" forIndexPath:indexPath];
+    CommentInfo *model = _listModel.data[indexPath.row];
+    cell.model = model;
     return cell;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -61,8 +63,8 @@
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete){
-        //删除事件
         
+        [self deleteSingleMessage:(int)indexPath.row];
     }
 }
 #pragma mark -- REQUEST
@@ -76,8 +78,14 @@
     }];
 }
 //单删
-- (void)deleteSingleMessage {
-//    [CompanyViewModel deleteMomentsMessageListWithCommentId:<#(nonnull NSString *)#> successBlock:<#^(NSString * _Nonnull successMsg)success#> failBlock:<#^(NSError * _Nonnull error)failure#>]
+- (void)deleteSingleMessage:(int )index {
+    CommentInfo *model = _listModel.data[index];
+    [CompanyViewModel deleteMomentsMessageListWithCommentId:model.commentszid successBlock:^(NSString * _Nonnull successMsg) {
+        NSLog(@"删除单条成功");
+        [self getMessageList];
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
 //清空
 - (void)clearMessage {

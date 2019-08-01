@@ -31,4 +31,8 @@
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     return [userDefault stringForKey:@"huanxinID"];
 }
++ (NSString *)getUserName{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault stringForKey:@"userName"];
+}
 @end

@@ -32,9 +32,9 @@
                             <constraint firstAttribute="height" constant="11" id="tYq-mn-gqf"/>
                         </constraints>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-Rw-NK8">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="选择" translatesAutoresizingMaskIntoConstraints="NO" id="9Ks-Rw-NK8">
                         <rect key="frame" x="281" y="19" width="11" height="11"/>
-                        <color key="backgroundColor" red="1" green="0.12856833770000001" blue="0.074535682280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="11" id="hf4-fQ-x96"/>
                             <constraint firstAttribute="height" constant="11" id="lwM-jX-ORn"/>
@@ -59,4 +59,7 @@
             <point key="canvasLocation" x="131.8840579710145" y="86.049107142857139"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="选择" width="10.5" height="10"/>
+    </resources>
 </document>

@@ -447,6 +447,57 @@ class MineViewModel: NSObject {
             
         }
     }
-    
+    //个人人脉展示
+    class func getPersonalInfo(userID: String,
+                                   success: @escaping (_ response: UserMomentInfoModel?) ->(),
+                                   failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/selectUserFriendE")
+        let params:[String:Any] = ["tgusetid":userID]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                //转换模型数组
+                if let successData = temp as? [String:Any] {
+                    if let datas = successData["data"] as? [String:Any]{
+                        let model = UserMomentInfoModel.yy_model(with: datas)
+                        //遍历结束回调
+                        success(model)
+                    }
+                }
+                
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    //查看群聊下的用户
+    class func getChatGroupUsers(groupId: String,
+                               success: @escaping (_ response: UserMomentInfoModel?) ->(),
+                               failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("getTgBySeaid/getTgBySeaid")
+        let params:[String:Any] = ["seanceshowid":groupId]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                //转换模型数组
+                if let successData = temp as? [String:Any] {
+                    if let datas = successData["data"] as? [String:Any]{
+                        let model = UserMomentInfoModel.yy_model(with: datas)
+                        //遍历结束回调
+                        success(model)
+                    }
+                }
+                
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
 }
 

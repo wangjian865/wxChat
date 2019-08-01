@@ -10,7 +10,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Comment.h"
-
+#import "MomentComent.h"
 @interface MMCommentInputView : UIView
 
 // 监听容器高度(包含监听键盘)
@@ -19,9 +19,10 @@
 @property (nonatomic, copy) void (^MMCompleteInputTextBlock)(NSString *commentText);
 // 容器高度
 @property (nonatomic, assign) CGFloat ctTop;
-// 当前评论(用于判断是评论还是回复)
+// 当前评论(用于判断是评论还是回复) 已失效
 @property (nonatomic, strong) Comment * comment;
-
+///当前评论(用于判断是评论还是回复)
+@property (nonatomic, strong) MomentComent * WxComment;
 // 显示
 - (void)show;
 

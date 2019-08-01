@@ -25,6 +25,8 @@
 @property (nonatomic, strong) UILabel * timeLabel;
 // 名称
 @property (nonatomic, strong) UIButton * nicknameBtn;
+//公司
+@property (nonatomic, strong) UILabel * companyLabel;
 // 位置
 @property (nonatomic, strong) UIButton * locationBtn;
 // 时间
@@ -66,12 +68,20 @@
 // 点击高亮文字
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText;
 
+//WX改
+///选择评论
+- (void)didOperateWxMoment:(MomentCell *)cell selectWxComment: (MomentComent *)wxComment;
+/// 点击点赞头像
+- (void)didOperateMoment:(MomentCell *)cell selectLike:(LikeListModel *)like;
+/// 点击评论头像
+- (void)didClickCommentIcon:(MomentComent *)wxComment;
 @end
 
 
 //#### 评论
 @interface CommentLabel : UIView <MLLinkLabelDelegate>
-
+// 头像icon
+@property (nonatomic, strong) MMImageView *iconView;
 // 内容Label
 @property (nonatomic, strong) MLLinkLabel * linkLabel;
 // 评论
@@ -81,8 +91,9 @@
 // 点击评论高亮内容
 @property (nonatomic, copy) void (^didClickLinkText)(MLLink *link , NSString *linkText);
 // 点击评论
-@property (nonatomic, copy) void (^didClickText)(Comment *comment);
-
+@property (nonatomic, copy) void (^didClickText)(MomentComent *comment);
+///点击头像
+@property (nonatomic, strong) void(^didClickUserIcon)(MomentComent *comment);
 @end
 
 

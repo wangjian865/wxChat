@@ -39,7 +39,7 @@ class CompanyVC: UITableViewController {
             let vc = WXAddCompanyViewController()
             self?.superVC?.navigationController?.pushViewController(vc, animated: true)
         }
-        tableView.rowHeight = 80
+        tableView.rowHeight = 85
     }
     func initMyData() {
         MineViewModel.searchUserCompanys(success: { (success) in
@@ -50,7 +50,12 @@ class CompanyVC: UITableViewController {
         }
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
+        let personInfoView = WXUserMomentInfoViewController()
+        let companyModel = companymodels![indexPath.section]
+        let model = companyModel.users[indexPath.row]
+        personInfoView.userId = model.tgusetid
+        superVC?.navigationController?.pushViewController(personInfoView, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,7 +115,7 @@ class CompanyVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FriendInfoCell", for: indexPath) as! FriendInfoCell
         let companyModel = companymodels![indexPath.section]
-        let model = companyModel.users[indexPath.row] as! FriendModel
+        let model = companyModel.users[indexPath.row]
         cell.setModel(model: model)
 //        cell.infoModel = datas[indexPath.section][indexPath.row]
         return cell

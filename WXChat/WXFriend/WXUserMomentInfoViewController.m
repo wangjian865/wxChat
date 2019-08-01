@@ -9,10 +9,15 @@
 #import "WXUserMomentInfoViewController.h"
 #import "WXPersonMomentViewController.h"
 #import "WXChatViewController.h"
+#import "CompanyViewModel.h"
 @interface WXUserMomentInfoViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UIView *momentView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *zhiweiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 
+@property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *momentImages;
 
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (weak, nonatomic) UIImageView *lastImageView;
@@ -26,21 +31,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self getRequestData];
     UITapGestureRecognizer *iconTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showZoomImageView:)];
-//    UITapGestureRecognizer *iconTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconTapAction)];
     self.iconView.userInteractionEnabled = YES;
     [self.iconView addGestureRecognizer:iconTap];
     UITapGestureRecognizer *momentViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(momentViewTapAction)];
     [self.momentView addGestureRecognizer:momentViewTap];
     
 }
-- (void)iconTapAction {
-    NSLog(@"点击了头像");
+- (void)getRequestData {
     
+    [CompanyViewModel getPersonMomentDataWithUserIdL:self.userId successBlock:^(UserMomentInfoModel * _Nonnull model) {
+        [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg]];
+        self.nameLabel.text = model.tgusetName;
+        self.zhiweiLabel.text = model.tgusetPosition;
+        self.companyLabel.text = model.tgusetCompany;
+        for (int i = 0;i < model.urlName.count && i < 5;i++){
+            UIImageView *imageV = self.momentImages[i];
+            [imageV sd_setImageWithURL:[NSURL URLWithString:model.urlName[i]]];
+        }
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
+
 - (void)momentViewTapAction {
     NSLog(@"点击了企业圈");
     WXPersonMomentViewController *vc = [[WXPersonMomentViewController alloc] init];
+    vc.userId = self.userId;
     [self.navigationController pushViewController:vc animated:true];
 }
 - (IBAction)gotoChat:(UIButton *)sender {
@@ -79,7 +97,7 @@
     self.scrollView = bgView;
     //最大放大比例
     self.scrollView.maximumZoomScale = 1.5;
-    self.scrollView.delegate = self;
+//    self.scrollView.delegate = self;
     
     [UIView animateWithDuration:0.5 animations:^{
         CGRect frame = imageView.frame;

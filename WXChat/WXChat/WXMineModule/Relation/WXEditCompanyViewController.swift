@@ -109,6 +109,9 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
             }
             bottomView.setShowData(array: ["查看logo大图","拍照","从相册选择"])
             self.view.window?.addSubview(bottomView)
+            bottomView.snp.makeConstraints { (make) in
+                make.left.top.right.bottom.equalToSuperview()
+            }
             break
         case 1:
         //公司成员管理

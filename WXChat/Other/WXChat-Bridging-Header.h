@@ -23,3 +23,4 @@
 #import "SearchUserModel.h"
 #import "WXUsersListViewController.h"
 #import "WXPresentNavigationController.h"
+#import "UserMomentInfoModel.h"

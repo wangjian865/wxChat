@@ -19,7 +19,8 @@ class GroupChatVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let settingVC = WXGroupSettingViewController.init()
+        superVC?.navigationController?.pushViewController(settingVC, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "CommentInfo.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXNewMomentMessageViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIImageView *userIconView;
+@property (weak, nonatomic) IBOutlet UIImageView *momentImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (nonatomic, strong)CommentInfo *model;
 @end
 
 NS_ASSUME_NONNULL_END

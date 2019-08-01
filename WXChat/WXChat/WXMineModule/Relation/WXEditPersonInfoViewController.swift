@@ -52,6 +52,9 @@ class WXEditPersonInfoViewController: UITableViewController {
                 }
             }
             view.window?.addSubview(bottomView)
+            bottomView.snp.makeConstraints { (make) in
+                make.top.left.right.bottom.equalToSuperview()
+            }
         }else if indexPath.row == 3{
             let sexyVC = WXSexyChooseViewController.init()
             sexyVC.title = "性别"
@@ -84,6 +87,7 @@ class WXEditPersonInfoViewController: UITableViewController {
         }else if indexPath.row == 6{
             //二维码
             let qrcodeVC = WXMyQRCodeViewController()
+            qrcodeVC.userInfoModel = userInfoModel
             navigationController?.pushViewController(qrcodeVC, animated: true)
         }else if indexPath.row == 7{
             //企业圈

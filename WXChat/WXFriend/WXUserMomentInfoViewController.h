@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXUserMomentInfoViewController : UIViewController
-
+@property (nonatomic, copy) NSString *userId;
 @end
 
 NS_ASSUME_NONNULL_END

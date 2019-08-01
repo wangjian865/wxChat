@@ -36,6 +36,8 @@ class FriendsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let personInfoView = WXUserMomentInfoViewController()
+        let model = models?[indexPath.row]
+        personInfoView.userId = model!.tgusetid
         superVC?.navigationController?.pushViewController(personInfoView, animated: true)
 
     }

@@ -75,6 +75,13 @@
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="contentLabel" destination="4m1-aW-1CZ" id="jGr-Sy-adM"/>
+                <outlet property="momentImageView" destination="GaC-fI-hBF" id="Ptb-5o-ZDI"/>
+                <outlet property="nameLabel" destination="xdf-sH-SbD" id="rEL-EH-aA2"/>
+                <outlet property="timeLabel" destination="6hK-Js-btv" id="Oln-bU-1ec"/>
+                <outlet property="userIconView" destination="S79-ug-3Wx" id="fMw-2s-rZ3"/>
+            </connections>
             <point key="canvasLocation" x="81.159420289855078" y="114.50892857142857"/>
         </tableViewCell>
     </objects>

@@ -128,7 +128,7 @@
         [self dismissViewControllerAnimated:YES completion:^{
             __strong typeof(wSelf) sSelf = wSelf;
             if (sSelf.chooseCompletion){
-                sSelf.chooseCompletion(_selectedModelArray);
+                sSelf.chooseCompletion(sSelf.selectedModelArray);
             }
         }];
 

@@ -84,7 +84,14 @@
     }
     return self;
 }
-
+- (void)setWxComment:(MomentComent *)WxComment{
+    _WxComment = WxComment;
+    if (!WxComment){
+        self.textView.placeholderText = @"评论";
+    }else{
+        self.textView.placeholderText = [NSString stringWithFormat:@"回复%@:",WxComment.commentsTgusetName];
+    }
+}
 - (void)setComment:(Comment *)comment
 {
     _comment = comment;

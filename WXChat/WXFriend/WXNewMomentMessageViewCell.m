@@ -14,7 +14,15 @@
     [super awakeFromNib];
     // Initialization code
 }
-
+- (void)setModel:(CommentInfo *)model{
+    _model = model;
+    [_userIconView sd_setImageWithURL:[NSURL URLWithString:model.tgusetimg]];
+    _nameLabel.text = model.tgusetname;
+    _contentLabel.text = model.commentscontext;
+    _timeLabel.text = model.commentsdatetime;
+    
+    
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

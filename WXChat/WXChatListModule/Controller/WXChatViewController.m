@@ -29,7 +29,10 @@
 - (void)setChatAppearance{
 //    [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
     
+    [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"蓝色对话框"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
+    
 //    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
+    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"白色对话框"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
     [[EaseBaseMessageCell appearance] setBubbleMaxWidth: 500];
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];//设置头像大小
     
@@ -125,12 +128,12 @@
     //分两种情况  一种是当为当前用户的时候
     if ([model.nickname isEqualToString:[EMClient sharedClient].currentUsername]) {
         //默认图
-        model.avatarImage = [UIImage imageNamed:@"DefaultImg"];
+        model.avatarImage = [UIImage imageNamed:@"normal_icon"];
         //网络图
 //        model.avatarURLPath = accInfo.pic;
     }else{//当为对方的时候
 //        model.avatarURLPath = _imageUrl;//网络图
-        model.avatarImage =  [UIImage imageNamed:@"DefaultImg"];
+        model.avatarImage =  [UIImage imageNamed:@"normal_icon"];
     }
     model.nickname = nil;//用户昵称
     return model;

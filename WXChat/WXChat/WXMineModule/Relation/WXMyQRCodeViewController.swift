@@ -14,16 +14,22 @@ class WXMyQRCodeViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var qrcodeView: UIImageView!
+    
+    var userInfoModel: UserInfoModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "我的二维码"
         //取出用户数据,给控件复制
+        iconView.sd_setImage(with: URL.init(string: userInfoModel?.tgusetimg ?? "")) {[weak self] (image, error, type, url) in
+            //拼接一个url  这里假设id为 654321
+            let urlStr = "addFriend://www.friendID" + (self?.userInfoModel?.tgusetid ?? "")
+            //二维码中心的头像
+            self?.qrcodeView.image = self?.setupQRCodeImage(urlStr, image: image)
+        }
+        nameLabel.text = userInfoModel?.tgusetname
+        companyLabel.text = userInfoModel?.tgusetcompany
         
-        //拼接一个url  这里假设id为 654321
-        let urlStr = "addFriend://www.friendID"+"654321"
-        //二维码中心的头像
-        let headerImage = UIImage(named: "loginIcon")
-        qrcodeView.image = setupQRCodeImage(urlStr, image: headerImage)
+        
     }
     //MARK: -传进去字符串,生成二维码图片
     func setupQRCodeImage(_ text: String, image: UIImage?) -> UIImage {

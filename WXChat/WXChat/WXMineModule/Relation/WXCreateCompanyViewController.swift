@@ -17,6 +17,7 @@ class WXCreateCompanyViewController: UITableViewController {
     @IBOutlet weak var induTF: UITextField!
     @IBOutlet weak var locationTF: UITextField!
     
+    
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = true;
@@ -36,6 +37,11 @@ class WXCreateCompanyViewController: UITableViewController {
                 print(tag)
                 if tag == 0{
                     //查看大图
+                    if (self?.companyIconView.image == nil){
+                        MBProgressHUD.showText("您还未设置图片")
+                        return
+                    }
+                    //大图模式
                 }else if tag == 1{
                     //相机
                     self?.openCamera()
@@ -46,6 +52,9 @@ class WXCreateCompanyViewController: UITableViewController {
             }
             bottomView.setShowData(array: ["查看logo大图","拍照","从相册选择"])
             view.window?.addSubview(bottomView)
+            bottomView.snp.makeConstraints { (make) in
+                make.left.top.right.bottom.equalToSuperview()
+            }
         }
     }
     @IBAction func createCompanyAction(_ sender: UIButton) {
@@ -101,5 +110,13 @@ extension WXCreateCompanyViewController: UIImagePickerControllerDelegate,UINavig
         let newImage:UIImage=UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext();
         return newImage;
+    }
+}
+//大图预览
+extension WXCreateCompanyViewController {
+    func showBigImage() {
+        let scrollView = UIScrollView.init()
+        scrollView.frame = UIScreen.main.bounds
+        scrollView.backgroundColor = UIColor.black
     }
 }

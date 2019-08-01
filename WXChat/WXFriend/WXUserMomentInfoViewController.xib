@@ -12,9 +12,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WXUserMomentInfoViewController">
             <connections>
+                <outlet property="companyLabel" destination="09D-Dl-xOp" id="Pkd-Wg-0vF"/>
                 <outlet property="iconView" destination="WRj-IP-31U" id="Hq0-KX-xd8"/>
                 <outlet property="momentView" destination="0M9-Xf-5UZ" id="lKr-lJ-EjU"/>
+                <outlet property="nameLabel" destination="QAC-IA-Hpw" id="Vii-eg-10t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="zhiweiLabel" destination="aS1-4y-4yu" id="I1m-jQ-wQu"/>
+                <outletCollection property="momentImages" destination="AWI-Rz-od5" id="W6M-97-Mfe"/>
+                <outletCollection property="momentImages" destination="Ph8-37-yi0" id="c2m-98-6Wb"/>
+                <outletCollection property="momentImages" destination="yCD-ke-6jg" id="I6J-W5-8cl"/>
+                <outletCollection property="momentImages" destination="hUV-1c-wuR" id="dkf-7A-oLW"/>
+                <outletCollection property="momentImages" destination="eto-bJ-mF8" id="6lV-tK-0An"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -115,13 +123,9 @@
                                 <constraint firstItem="eto-bJ-mF8" firstAttribute="width" secondItem="AWI-Rz-od5" secondAttribute="width" id="q3E-ys-4Eu"/>
                             </constraints>
                         </stackView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-qk-dO5">
-                            <rect key="frame" x="390" y="41.5" width="8" height="12"/>
-                            <color key="backgroundColor" red="1" green="0.12856833770000001" blue="0.074535682280000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="12" id="EcJ-6k-M9m"/>
-                                <constraint firstAttribute="width" constant="8" id="NOE-Z1-CVh"/>
-                            </constraints>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="多语言箭头" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-qk-dO5">
+                            <rect key="frame" x="390" y="42" width="8" height="11"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,5 +173,6 @@
     </objects>
     <resources>
         <image name="message_alert" width="45" height="45"/>
+        <image name="多语言箭头" width="6.5" height="11"/>
     </resources>
 </document>

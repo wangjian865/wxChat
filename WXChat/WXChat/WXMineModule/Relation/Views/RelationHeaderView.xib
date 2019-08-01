@@ -32,20 +32,20 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大侠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTS-Kl-vuS">
-                    <rect key="frame" x="90" y="72.5" width="267" height="21"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                    <rect key="frame" x="90" y="67.5" width="267" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                     <color key="textColor" red="0.99215686270000003" green="0.98823529409999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="董事长" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTb-RL-RDN">
-                    <rect key="frame" x="90" y="98.5" width="267" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="90" y="97.5" width="267" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.99215686270000003" green="0.98823529409999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海德玛西亚有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLM-7Q-VZL">
-                    <rect key="frame" x="90" y="118" width="267" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <rect key="frame" x="90" y="126" width="267" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.99215686270000003" green="0.98823529409999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -85,8 +85,8 @@
                 <constraint firstItem="dTS-Kl-vuS" firstAttribute="leading" secondItem="zTb-RL-RDN" secondAttribute="leading" id="fQ3-oo-1oR"/>
                 <constraint firstItem="DOF-Sc-3jb" firstAttribute="leading" secondItem="zTb-RL-RDN" secondAttribute="trailing" constant="8" id="fvk-G6-blo"/>
                 <constraint firstItem="pLM-7Q-VZL" firstAttribute="trailing" secondItem="zTb-RL-RDN" secondAttribute="trailing" id="jG5-I1-nD5"/>
-                <constraint firstItem="zTb-RL-RDN" firstAttribute="top" secondItem="dTS-Kl-vuS" secondAttribute="bottom" constant="5" id="oAi-Yu-knk"/>
-                <constraint firstAttribute="bottom" secondItem="pLM-7Q-VZL" secondAttribute="bottom" constant="40" id="uvJ-wW-gnw"/>
+                <constraint firstItem="zTb-RL-RDN" firstAttribute="top" secondItem="dTS-Kl-vuS" secondAttribute="bottom" constant="9" id="oAi-Yu-knk"/>
+                <constraint firstItem="pLM-7Q-VZL" firstAttribute="top" secondItem="zTb-RL-RDN" secondAttribute="bottom" constant="9" id="uJy-qS-f6L"/>
                 <constraint firstItem="DOF-Sc-3jb" firstAttribute="centerY" secondItem="zTb-RL-RDN" secondAttribute="centerY" id="wBE-vC-KkM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

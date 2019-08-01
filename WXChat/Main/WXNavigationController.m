@@ -22,13 +22,15 @@
     [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,
                                                                       NSFontAttributeName : [UIFont fontWithName:@"Helvetica-Bold" size:17]}];
     [self.navigationBar setShadowImage:[UIImage new]];
+    
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated{
     //设置非根控制器的内容
     if (self.childViewControllers.count) { // 不是根控制器
         viewController.hidesBottomBarWhenPushed = YES ;
-        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+        UIImage *image = [[UIImage imageNamed:@"navi_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     }
     [super pushViewController:viewController animated:animated];
 }

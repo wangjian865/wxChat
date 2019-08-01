@@ -8,6 +8,7 @@
 
 #import "WXMailLoginViewController.h"
 #import "ViewMailConfigController.h"
+#import "MailViewModel.h"
 @interface WXMailLoginViewController ()
 
 @end
@@ -28,6 +29,11 @@
 }
 - (void)mailLoginAction {
     NSLog(@"登录邮箱");
+    [MailViewModel loginMailWithMailAccount:@"wdxzstdl@163.com" password:@"wj86565902" accountType:@"163" successBlock:^(NSString * _Nonnull data) {
+        NSLog(@"1");
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (IBAction)configAction:(UIButton *)sender {
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

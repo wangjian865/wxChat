@@ -9,5 +9,7 @@
 #import "MomentMessageList.h"
 
 @implementation MomentMessageList
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"data":[CommentInfo class]};
+}
 @end

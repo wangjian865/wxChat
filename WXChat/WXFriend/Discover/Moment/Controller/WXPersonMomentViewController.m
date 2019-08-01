@@ -8,7 +8,7 @@
 
 #import "WXPersonMomentViewController.h"
 #import "MMImageListView.h"
-
+#import "CompanyViewModel.h"
 @interface WXPersonMomentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MMTableView * tableView;
 @property (nonatomic, strong) UIView * tableHeaderView;
@@ -21,6 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self getData];
+}
+- (void)getData {
+    [CompanyViewModel getMomentsListWithUserid:self.userId page:@"1" successBlock:^(FriendMomentInfoList * _Nonnull model) {
+        NSLog(@"fff");
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)setupUI {
     self.view.backgroundColor = UIColor.whiteColor;

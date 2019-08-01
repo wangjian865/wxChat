@@ -39,6 +39,7 @@ CGFloat lineSpacing = 5;
     WS(wSelf);
     // 头像视图
     _avatarImageView = [[MMImageView alloc] initWithFrame:CGRectMake(14, kBlank, kAvatarWidth, kAvatarWidth)];
+    _avatarImageView.cornerRadius = kAvatarWidth/2;
     [_avatarImageView setClickHandler:^(MMImageView *imageView) {
         if ([wSelf.delegate respondsToSelector:@selector(didOperateMoment:operateType:)]) {
             [wSelf.delegate didOperateMoment:wSelf operateType:MMOperateTypeProfile];
@@ -54,6 +55,12 @@ CGFloat lineSpacing = 5;
     [_nicknameBtn setTitleColor:kHLTextColor forState:UIControlStateNormal];
     [_nicknameBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_nicknameBtn];
+    //公司视图
+    _companyLabel = [[UILabel alloc] init];
+    _companyLabel.font = [UIFont systemFontOfSize:14];
+    _companyLabel.textColor = rgb(102, 102, 102);
+    [self.contentView addSubview:_companyLabel];
+    
     // 正文视图 ↓↓
     _linkLabel = kMLLinkLabel(YES);
     _linkLabel.font = kTextFont;
@@ -115,6 +122,8 @@ CGFloat lineSpacing = 5;
 #pragma mark - wx modelSetter
 - (void)setModel:(Enterprise *)model{
     _model = model;
+    //判断是不是自己的朋友圈,如果是自己的则显示删除按钮
+    [_deleteBtn setHidden:!(model.tgusetId == [WXAccountTool getUserID])];
     //头像
     [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg] placeholderImage:nil];
     // 昵称
@@ -122,7 +131,12 @@ CGFloat lineSpacing = 5;
     if (_nicknameBtn.width > kTextWidth) {
         _nicknameBtn.width = kTextWidth;
     }
+    [_nicknameBtn sizeToFit];
     _nicknameBtn.frame = CGRectMake(_avatarImageView.right + 10, _avatarImageView.top, _nicknameBtn.width, 20);
+    // 公司
+    _companyLabel.text = model.tgusetCompany;
+    [_companyLabel sizeToFit];
+    _companyLabel.frame = CGRectMake(_nicknameBtn.mj_x, _nicknameBtn.bottom + 8, _companyLabel.width, _companyLabel.height);
     // 正文
     _showAllBtn.hidden = YES;
     _linkLabel.hidden = YES;
@@ -195,20 +209,35 @@ CGFloat lineSpacing = 5;
     // 处理赞
     CGFloat top = 0;
     CGFloat width = k_screen_width - kRightMargin - _avatarImageView.left;
-//    if ([moment.likeList count]) {
-//        MLLinkLabel * likeLabel = kMLLinkLabel(NO);
-//        likeLabel.delegate = self;
-//        likeLabel.attributedText = kMLLinkAttributedText(moment);
-//        CGSize attrStrSize = [likeLabel preferredSizeWithMaxWidth:kTextWidth];
-//        likeLabel.frame = CGRectMake(5, 8, attrStrSize.width, attrStrSize.height);
-//        [_commentView addSubview:likeLabel];
-//        // 分割线
-//        UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, likeLabel.bottom + 7, width, 0.5)];
-//        line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
-//        [_commentView addSubview:line];
-//        // 更新
-//        top = attrStrSize.height + 15;
-//    }
+    if ([model.namelike count]){
+        UIView *likeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 48)];
+        CGFloat iconX = 30;
+        //idx增加后增加的x
+        CGFloat marginWidth = 40;
+        //这里需要加一个点赞图标
+        [model.namelike enumerateObjectsUsingBlock:^(LikeListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            MMImageView *iconLike = [[MMImageView alloc] initWithFrame:CGRectMake(iconX + marginWidth * idx, 8, kLikeIconWidth, kLikeIconWidth)];
+            WS(wSelf);
+            [iconLike setClickHandler:^(MMImageView *imageView) {
+                if ([wSelf.delegate respondsToSelector:@selector(didOperateMoment:selectLike:)]) {
+                    [wSelf.delegate didOperateMoment:wSelf selectLike:obj];
+                }
+            }];
+            iconLike.cornerRadius = kLikeIconWidth/2;
+            iconLike.backgroundColor = UIColor.grayColor;
+            //点赞模型缺图片
+            [iconLike sd_setImageWithURL:[NSURL URLWithString:@""]];
+            [likeView addSubview:iconLike];
+        }];
+        
+        [_commentView addSubview:likeView];
+        // 分割线
+        UIView * line = [[UIView alloc] initWithFrame:CGRectMake(0, likeView.bottom, width, 0.5)];
+        line.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.3];
+        [_commentView addSubview:line];
+        top = 48;
+    }
+    
     // 处理评论
     NSInteger count = [model.commes count];
     for (NSInteger i = 0; i < count; i ++) {
@@ -216,14 +245,17 @@ CGFloat lineSpacing = 5;
         label.wxComment = [model.commes objectAtIndex:i];
         // 点击评论
         
-        [label setDidClickText:^(Comment *comment) {
+        [label setDidClickText:^(MomentComent *comment) {
             // 当前moment相对tableView的frame
             CGRect rect = [[label superview] convertRect:label.frame toView:self.superview];
             [AppDelegate sharedInstance].convertRect = rect;
-            
-            if ([self.delegate respondsToSelector:@selector(didOperateMoment:selectComment:)]) {
-                [self.delegate didOperateMoment:self selectComment:comment];
+            if ([self.delegate respondsToSelector:@selector(didOperateWxMoment:selectWxComment:)]){
+                [self.delegate didOperateWxMoment:self selectWxComment:comment];
             }
+//            if ([self.delegate respondsToSelector:@selector(didOperateMoment:selectComment:)]) {
+//                [self.delegate didOperateMoment:self selectComment:comment];
+//
+//            }
             [self resetMenuView];
         }];
         // 点击高亮
@@ -232,6 +264,12 @@ CGFloat lineSpacing = 5;
                 [self.delegate didClickLink:link linkText:linkText];
             }
             [self resetMenuView];
+        }];
+        //点击头像
+        [label setDidClickUserIcon:^(MomentComent *comment) {
+            if ([self.delegate respondsToSelector:@selector(didClickCommentIcon:)]){
+                [self.delegate didClickCommentIcon:comment];
+            }
         }];
         [_commentView addSubview:label];
         // 更新
@@ -352,16 +390,16 @@ CGFloat lineSpacing = 5;
         CommentLabel * label = [[CommentLabel alloc] initWithFrame:CGRectMake(0, top, width, 0)];
         label.comment = [moment.commentList objectAtIndex:i];
         // 点击评论
-        [label setDidClickText:^(Comment *comment) {
-            // 当前moment相对tableView的frame
-            CGRect rect = [[label superview] convertRect:label.frame toView:self.superview];
-            [AppDelegate sharedInstance].convertRect = rect;
-            
-            if ([self.delegate respondsToSelector:@selector(didOperateMoment:selectComment:)]) {
-                [self.delegate didOperateMoment:self selectComment:comment];
-            }
-            [self resetMenuView];
-        }];
+//        [label setDidClickText:^(Comment *comment) {
+//            // 当前moment相对tableView的frame
+//            CGRect rect = [[label superview] convertRect:label.frame toView:self.superview];
+//            [AppDelegate sharedInstance].convertRect = rect;
+//
+//            if ([self.delegate respondsToSelector:@selector(didOperateMoment:selectComment:)]) {
+//                [self.delegate didOperateMoment:self selectComment:comment];
+//            }
+//            [self resetMenuView];
+//        }];
         // 点击高亮
         [label setDidClickLinkText:^(MLLink *link, NSString *linkText) {
             if ([self.delegate respondsToSelector:@selector(didClickLink:linkText:)]) {
@@ -492,26 +530,45 @@ CGFloat lineSpacing = 5;
         _linkLabel = kMLLinkLabel(NO);
         _linkLabel.delegate = self;
         [self addSubview:_linkLabel];
+        
+        _iconView = [[MMImageView alloc] initWithFrame:CGRectMake(30, 13, kLikeIconWidth, kLikeIconWidth)];
+        
+        _iconView.cornerRadius = kLikeIconWidth/2;
+        _iconView.backgroundColor = UIColor.grayColor;
+        [self addSubview:_iconView];
     }
     return self;
 }
 #pragma mark - WX_Setter
 - (void)setWxComment:(MomentComent *)wxComment{
     _wxComment = wxComment;
+    
+    [_iconView sd_setImageWithURL: [NSURL URLWithString:wxComment.tgusetImg]];
+    WS(wSelf);
+    [_iconView setClickHandler:^(MMImageView *imageView) {
+        if (wSelf.didClickUserIcon) {
+            wSelf.didClickUserIcon(wxComment);
+        }
+    }];
+    
     _linkLabel.attributedText = kMLLinkAttributedText(wxComment);
-    CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
-    _linkLabel.frame = CGRectMake(5, 3, attrStrSize.width, attrStrSize.height);
-    self.height = attrStrSize.height + 5;
+    CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth - 71];
+    _linkLabel.frame = CGRectMake(_iconView.right+9, _iconView.top, attrStrSize.width, attrStrSize.height);
+//    self.height = attrStrSize.height + 5;
+    self.height = MAX(_iconView.bottom, attrStrSize.height + 17) + 5;
     
 }
 #pragma mark - Setter
 - (void)setComment:(Comment *)comment
 {
     _comment = comment;
+    
+    
     _linkLabel.attributedText = kMLLinkAttributedText(comment);
     CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
     _linkLabel.frame = CGRectMake(5, 3, attrStrSize.width, attrStrSize.height);
     self.height = attrStrSize.height + 5;
+    
 }
 
 #pragma mark - MLLinkLabelDelegate
@@ -533,7 +590,7 @@ CGFloat lineSpacing = 5;
     GCD_AFTER(0.3, ^{  // 延迟执行
         self.backgroundColor = [UIColor clearColor];
         if (self.didClickText) {
-            self.didClickText(_comment);
+            self.didClickText(_wxComment);
         }
     });
 }

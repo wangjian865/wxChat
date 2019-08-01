@@ -31,15 +31,15 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addOrMinusCell", for: indexPath) as! WXAddOrMinusCell
         if indexPath.row == dataArray?.count ?? 0{
             //设置加号
-            cell.nameLabel.text = "加号"
+            cell.nameLabel.text = ""
             cell.deleteIcon.isHidden = true
-            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "加号"))
+            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "加"))
             print("加号")
         }else if indexPath.row > dataArray?.count ?? 0{
             //设置减号
-            cell.nameLabel.text = "减号"
+            cell.nameLabel.text = ""
             cell.deleteIcon.isHidden = true
-            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "减号"))
+            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "减"))
             print("减号")
         }else{
             if let data = dataArray{

@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MomentComent.h"
+#import "CommentInfo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MomentMessageList : NSObject
-@property (nonatomic, strong)NSArray<MomentComent *> *data;
+@property (nonatomic, strong)NSArray<CommentInfo *> *data;
 @end
 
 NS_ASSUME_NONNULL_END

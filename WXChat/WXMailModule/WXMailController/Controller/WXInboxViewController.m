@@ -30,8 +30,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.mailListView];
+    [self setNaviBar];
 }
-- (void)viewDidLayoutSubviews{
+- (void)setNaviBar {
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightBtn addTarget:self action:@selector(writeEmail) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn setTitle:@"发邮件" forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+}
+- (void)writeEmail {
+    NSLog(@"写邮件啦");
+}
+- (void)viewDidLayoutSubviews {
     [self.mailListView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.mas_equalTo(0);
     }];

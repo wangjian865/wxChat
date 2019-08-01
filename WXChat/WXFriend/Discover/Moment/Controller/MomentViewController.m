@@ -18,6 +18,9 @@
 #import "WXNewMomentMessageViewController.h"
 #import "CompanyViewModel.h"
 #import "MomentComent.h"
+#import "UserCompanies.h"
+#import "WXUserMomentInfoViewController.h"
+
 @interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
@@ -35,8 +38,9 @@
 //wdx's
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) CompanyMoment *totalModel;
-@property (nonatomic, strong) MomentCell * operateWXCell; // 当前操作朋友圈动态
-@property (nonatomic, strong) MomentComent * operateWXComment; // 当前操作评论
+@property (nonatomic, strong) MomentComent *operateWXComment; // 当前操作评论
+///"我"
+@property (nonatomic, strong) UserCompanies *mine;
 @end
 
 @implementation MomentViewController
@@ -64,6 +68,7 @@
     [CompanyViewModel getMomentsWithPage:1 successBlock:^(CompanyMoment * _Nonnull model) {
         NSLog(@"1");
         self.totalModel = model;
+        self.mine = model.userQ;
         [self setUIData];
     } failBlock:^(NSError * _Nonnull error) {
         
@@ -71,7 +76,7 @@
 }
 //获取到数据后对UI进行填充
 - (void)setUIData {
-//    [_coverImageView sd_setImageWithURL:<#(NSURL *)#>]
+    [_coverImageView sd_setImageWithURL:[NSURL URLWithString:self.totalModel.image]];
     [_tableView reloadData];
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -185,37 +190,45 @@
 #pragma mark - 评论相关
 - (void)addComment:(NSString *)commentText
 {
-    // 新增评论
-    Comment * comment = [[Comment alloc] init];
-    comment.text = commentText;
-    comment.fromUser = self.loginUser;
-    comment.fromId = self.loginUser.pk;
-    if (self.operateComment) { // 回复评论
-        comment.toUser = self.operateComment.fromUser;
-        comment.toId = self.operateComment.fromUser.pk;
+    Enterprise *moment = self.operateCell.model;
+    //创建评论
+    MomentComent *wxComment = [[MomentComent alloc] init];
+    wxComment.commentsContext = commentText;
+    wxComment.commentsTgusetName = _mine.tgusetName;
+    wxComment.commentsTguset = _mine.tgusetId;
+    if (self.operateWXComment){//存在操作的评论即回复某条评论 //区分对moment评论和对人评论
+        wxComment.commentsTgusetHFName = self.operateWXComment.commentsTgusetName;
+        wxComment.commentsTgusetHFId = self.operateWXComment.commentsTguset;
+        //发布对评论的评论
+        [CompanyViewModel commentToPersonWithContent:commentText commentOwnerId:moment.tgusetId priseid:moment.enterprisezId beCommentId:wxComment.commentsTgusetHFId beCommentName:wxComment.commentsTgusetHFName successBlock:^(NSString * _Nonnull successMsg) {
+            NSLog(@"%@",successMsg);
+            [self addCommentRefreshUI:wxComment];
+        } failBlock:^(NSError * _Nonnull error) {
+            
+        }];
+    }else{
+        //WDX http
+        //添加评论的请求
+        [CompanyViewModel commentWithContent:commentText priseid:moment.enterprisezId successBlock:^(NSString * _Nonnull successMsg) {
+            NSLog(@"%@",successMsg);
+            [self addCommentRefreshUI:wxComment];
+        } failBlock:^(NSError * _Nonnull error) {
+            
+        }];
     }
-    [comment save];
-    // 更新评论列表
-    Moment * moment = self.operateCell.moment;
-    NSMutableArray * commentList = [[NSMutableArray alloc] initWithArray:moment.commentList];
-    [commentList addObject:comment];
-    moment.commentList = commentList;
-    NSMutableString * ids = [[NSMutableString alloc] initWithString:moment.commentIds];
-    if ([ids length]) {
-        [ids appendFormat:@",%d",comment.pk];
-    } else {
-        [ids appendFormat:@"%d",comment.pk];
-    }
-    moment.commentIds = ids;
-    [moment update];
-    // 刷新
-    self.operateCell.moment = moment;
+    
+}
+///评论插入视图操作  请求成功后调用
+- (void)addCommentRefreshUI: (MomentComent *)wxComment{
+    //评论插入
+    NSMutableArray *commentList = [NSMutableArray arrayWithArray:self.operateCell.model.commes];
+    [commentList addObject:wxComment];
+    self.operateCell.model.commes = commentList;
     [UIView performWithoutAnimation:^{
         [self.tableView reloadRowsAtIndexPaths:@[self.selectedIndexPath]
                               withRowAnimation:UITableViewRowAnimationNone];
     }];
 }
-
 // 滚动table
 - (void)scrollForComment
 {
@@ -241,9 +254,9 @@
     {
         case MMOperateTypeProfile: // 用户详情
         {
-//            MMUserDetailViewController * controller = [[MMUserDetailViewController alloc] init];
-//            controller.user = cell.moment.user;
-//            [self.navigationController pushViewController:controller animated:YES];
+            WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+            controller.userId = cell.model.tgusetId;
+            [self.navigationController pushViewController:controller animated:YES];
             break;
         }
         case MMOperateTypeDelete: // 删除
@@ -271,26 +284,33 @@
         case MMOperateTypeLike: // 点赞
         {
             // data
-            Moment * moment = cell.moment;
-            NSMutableArray * likeList = [NSMutableArray arrayWithArray:moment.likeList];
-            NSMutableArray * idList = [NSMutableArray arrayWithArray:[moment.likeIds componentsSeparatedByString:@","]];
-            if (moment.isLike) { // 取消点赞
-                moment.isLike = 0;
-                NSPredicate * predicate = [NSPredicate predicateWithFormat:@"type = 1"];
-                NSArray * result = [likeList filteredArrayUsingPredicate:predicate];
-                if ([result count]) {
-                    MUser * removeUser = [result firstObject];
-                    [likeList removeObject:removeUser];
-                    [idList removeObject:[NSString stringWithFormat:@"%d",removeUser.pk]];
-                }
+            Enterprise * moment = cell.model;
+            NSMutableArray<LikeListModel *> * likeList = [NSMutableArray arrayWithArray:moment.namelike];
+            NSPredicate * predicate = [NSPredicate predicateWithFormat:@"enterpriseliketid = %@",_mine.tgusetId];
+            NSArray *result = [likeList filteredArrayUsingPredicate:predicate];
+            if ([result count]) {
+                //存在
+                LikeListModel *model = result.firstObject;
+                [likeList removeObject:model];
+                //取消点赞
+                [CompanyViewModel deleteLikeMomentWithPriseid:moment.enterprisezId successBlock:^(NSString * _Nonnull successMsg) {
+                    NSLog(@"%@",successMsg);
+                } failBlock:^(NSError * _Nonnull error) {
+                    
+                }];
             } else { // 点赞
-                moment.isLike = 1;
-                [likeList addObject:self.loginUser];
-                [idList addObject:[NSString stringWithFormat:@"%d",self.loginUser.pk]];
+                LikeListModel *like = [[LikeListModel alloc] init];
+                like.enterpriseliketid = _mine.tgusetId;
+                like.enterpricelikename = _mine.tgusetName;
+                [likeList addObject:like];
+                //点赞
+                [CompanyViewModel likeMomentWithPriseid:moment.enterprisezId successBlock:^(NSString * _Nonnull successMsg) {
+                    NSLog(@"%@",successMsg);
+                } failBlock:^(NSError * _Nonnull error) {
+                    
+                }];
             }
-            moment.likeList = likeList;
-            moment.likeIds = [MomentUtil getIdsByIdList:idList];
-            [moment update];
+            moment.namelike = likeList.copy;
             // 刷新
             [self.momentList replaceObjectAtIndex:cell.tag withObject:moment];
             NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
@@ -306,7 +326,7 @@
         {
             self.operateCell = cell;
             self.operateComment = nil;
-            
+            self.operateWXComment = nil;
             self.selectedIndexPath = [self.tableView indexPathForCell:cell];
             CGRect rect = [self.tableView rectForRowAtIndexPath:self.selectedIndexPath];
             [AppDelegate sharedInstance].convertRect = rect;
@@ -329,8 +349,28 @@
             break;
     }
 }
-
-// 选择评论
+///点击评论中的头像
+- (void)didClickCommentIcon:(MomentComent *)wxComment{
+    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+    controller.userId = wxComment.commentsTguset;
+    [self.navigationController pushViewController:controller animated:YES];
+}
+/// 选择评论
+- (void)didOperateWxMoment:(MomentCell *)cell selectWxComment:(MomentComent *)wxComment{
+    self.operateCell = cell;
+    self.operateWXComment = wxComment;
+    
+    if (wxComment.commentsTguset == _mine.tgusetId) { // 删除自己的评论
+        UUActionSheet * sheet = [[UUActionSheet alloc] initWithTitle:@"删除我的评论" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil];
+        sheet.tag = MMDelCommentTag;
+        [sheet showInView:self.view.window];
+    } else { // 回复评论
+        self.selectedIndexPath = [self.tableView indexPathForCell:cell];
+        self.commentInputView.WxComment = wxComment;
+        [self.commentInputView show];
+    }
+}
+///老的选择评论  已失效
 - (void)didOperateMoment:(MomentCell *)cell selectComment:(Comment *)comment
 {
     self.operateCell = cell;
@@ -346,7 +386,13 @@
         [self.commentInputView show];
     }
 }
-
+//点击点赞头像
+- (void)didOperateMoment:(MomentCell *)cell selectLike:(LikeListModel *)like{
+    /// 传一个id
+    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+    controller.userId = like.enterpriseliketid;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 // 点击高亮文字
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText
 {
@@ -374,8 +420,9 @@
         case MLLinkTypeOther: // 用户
         {
             //WDX 跳转用户详情页
-            int pk = [link.linkValue intValue];
-            MUser * user = [MUser findByPK:pk];
+            WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+            controller.userId = link.linkValue;
+            [self.navigationController pushViewController:controller animated:YES];
             
 //            MMUserDetailViewController * controller = [[MMUserDetailViewController alloc] init];
 //            controller.user = user;
@@ -406,26 +453,27 @@
     } else if (actionSheet.tag == MMDelCommentTag) { // 删除自己的评论
         if (buttonIndex == 0)
         {
-            // 移除Moment的评论
-            Moment * moment = self.operateCell.moment;
-            NSMutableArray * tempList = [NSMutableArray arrayWithArray:moment.commentList];
-            [tempList removeObject:self.operateComment];
-            NSMutableArray * idList = [NSMutableArray arrayWithArray:[MomentUtil getIdListByIds:moment.commentIds]];
-            [idList removeObject:[NSString stringWithFormat:@"%d",self.operateComment.pk]];
-            moment.commentIds = [MomentUtil getIdsByIdList:idList];
-            moment.commentList = tempList;
-            // 数据库更新
-            [moment update];
-            [self.operateComment deleteObject];
-            // 刷新
-            [self.momentList replaceObjectAtIndex:self.operateCell.tag withObject:moment];
-            NSIndexPath * indexPath = [self.tableView indexPathForCell:self.operateCell];
-            if (indexPath) {
-                [UIView performWithoutAnimation:^{
-                    [self.tableView reloadRowsAtIndexPaths:@[indexPath]
-                                          withRowAnimation:UITableViewRowAnimationNone];
-                }];
-            }
+            //删除评论请求
+            [CompanyViewModel deleteCommentWithContentId:[NSString stringWithFormat:@"%d",self.operateWXComment.commentsId] successBlock:^(NSString * _Nonnull successMsg) {
+                
+                // 移除评论
+                Enterprise * moment = self.operateCell.model;
+                NSMutableArray * tempList = [NSMutableArray arrayWithArray:moment.commes];
+                [tempList removeObject:self.operateWXComment];
+                moment.commes = tempList;
+                // 刷新
+                [self.momentList replaceObjectAtIndex:self.operateCell.tag withObject:moment];
+                NSIndexPath * indexPath = [self.tableView indexPathForCell:self.operateCell];
+                if (indexPath) {
+                    [UIView performWithoutAnimation:^{
+                        [self.tableView reloadRowsAtIndexPaths:@[indexPath]
+                                              withRowAnimation:UITableViewRowAnimationNone];
+                    }];
+                }
+                
+            } failBlock:^(NSError * _Nonnull error) {
+                
+            }];
         } else { // 取消
             
         }
@@ -434,9 +482,11 @@
         if (buttonIndex == 0){
             //从相册选择
             [self openAlbun];
-        }else{
+        }else if(buttonIndex == 1){
             //
             [self openCamera];
+        }else{
+            NSLog(@"取消");
         }
     }
 }
@@ -477,8 +527,10 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 使用缓存行高，避免计算多次
-    Moment * moment = [self.momentList objectAtIndex:indexPath.row];
-    return moment.rowHeight;
+//    Moment * moment = [self.momentList objectAtIndex:indexPath.row];
+    Enterprise *model = _totalModel.enterprise[indexPath.row];
+    
+    return model.rowHeight;
 }
 
 #pragma mark - UIScrollViewDelegate

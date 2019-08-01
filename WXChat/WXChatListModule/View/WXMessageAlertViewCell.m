@@ -49,8 +49,9 @@
     [self.contentView addSubview:_descriptionLabel];
     
     _button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_button setTitle:@"同意" forState:UIControlStateNormal];
+    [_button setTitle:@" 同意 " forState:UIControlStateNormal];
     [_button setTitleColor:rgb(48,134,191) forState:UIControlStateNormal];
+    [_button setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     _button.titleLabel.font = [UIFont systemFontOfSize:12];
     _button.layer.borderColor = rgb(48,134,191).CGColor;
     _button.layer.borderWidth = 1;
@@ -76,13 +77,29 @@
     [_button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(k_current_Width(-14));
         make.centerY.equalTo(self.contentView);
-        make.width.equalTo(@38);
-        make.height.equalTo(@24);
+//        make.width.equalTo(@38);
+//        make.height.equalTo(@24);
     }];
 }
 - (void)setModel: (WXMessageAlertModel *)model{
-    [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.avatarUrl]];
-    _nameLabel.text = model.name;
-    _descriptionLabel.text = model.descriptionText;
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg]];
+    _nameLabel.text = model.friendshowtgusetname;
+    _descriptionLabel.text = model.friendshowcontext;
+    if ([model.friendshowifconsend isEqualToString:@"0"]){
+        //申请中
+        [self.button setTitle:@" 申请中 " forState:UIControlStateNormal];
+        self.button.enabled = true;
+        self.button.layer.borderColor = rgb(48,134,191).CGColor;
+    }else if ([model.friendshowifconsend isEqualToString:@"1"]){
+        //已通过
+        [self.button setTitle:@" 已通过 " forState:UIControlStateDisabled];
+        self.button.enabled = false;
+        _button.layer.borderColor = [UIColor grayColor].CGColor;
+    }else{
+        //已拒绝
+        [self.button setTitle:@" 已拒绝 " forState:UIControlStateDisabled];
+        self.button.enabled = false;
+        _button.layer.borderColor = [UIColor grayColor].CGColor;
+    }
 }
 @end
