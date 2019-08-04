@@ -28,6 +28,8 @@
 @property (nonatomic, strong) UIView * tableHeaderView; // 表头
 @property (nonatomic, strong) MMImageView * coverImageView; // 封面
 @property (nonatomic, strong) MMImageView * avatarImageView; // 当前用户头像
+@property (nonatomic, strong) UILabel *nameLabel;//用户名
+@property (nonatomic, strong) UILabel *companyLabel;//公司
 @property (nonatomic, strong) MMCommentInputView * commentInputView; // 评论输入框
 @property (nonatomic, strong) MomentCell * operateCell; // 当前操作朋友圈动态
 @property (nonatomic, strong) Comment * operateComment; // 当前操作评论
@@ -77,6 +79,9 @@
 //获取到数据后对UI进行填充
 - (void)setUIData {
     [_coverImageView sd_setImageWithURL:[NSURL URLWithString:self.totalModel.image]];
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:self.totalModel.userQ.tgusetImg]];
+    _nameLabel.text = self.totalModel.userQ.tgusetName;
+    _companyLabel.text = self.totalModel.userQ.tgusetCompany;
     [_tableView reloadData];
 }
 - (void)viewWillDisappear:(BOOL)animated{
@@ -127,11 +132,37 @@
     imageView.layer.borderWidth = 2;
     imageView.image = [UIImage imageNamed:@"moment_head"];
     self.avatarImageView = imageView;
+    //用户名
+    UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.text = @"z奥特曼";
+    nameLabel.textColor = rgb(255, 255, 255);
+    nameLabel.font = [UIFont systemFontOfSize:18];
+    nameLabel.width = 200;
+    nameLabel.height = 17;
+    nameLabel.right = imageView.left - 14;
+    nameLabel.bottom = self.coverImageView.bottom - 5;
+    nameLabel.textAlignment = NSTextAlignmentRight;
+    self.nameLabel = nameLabel;
+    //公司
+    UILabel *companyLabel = [[UILabel alloc] init];
+    companyLabel.text = @"这是某某某o";
+    companyLabel.textColor = rgb(153, 153, 153);
+    companyLabel.width = 250;
+    companyLabel.right = imageView.left - 15;
+    companyLabel.font = [UIFont systemFontOfSize:14];
+    companyLabel.top = self.coverImageView.bottom + 4;
+    companyLabel.height = 14;
+    companyLabel.textAlignment = NSTextAlignmentRight;
+    self.companyLabel = companyLabel;
+    
+    //用户公司
     // 表头
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, 270)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, 240)];
     view.userInteractionEnabled = YES;
     [view addSubview:self.coverImageView];
     [view addSubview:self.avatarImageView];
+    [view addSubview:self.nameLabel];
+    [view addSubview:self.companyLabel];
     self.tableHeaderView = view;
     // 表格
     MMTableView * tableView = [[MMTableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height-k_top_height)];
@@ -607,7 +638,11 @@
     [_imagePicker dismissViewControllerAnimated:true completion:nil];
     UIImage *image = (UIImage *)info[UIImagePickerControllerEditedImage];
     //更换背景图
-//    [CompanyViewModel changeBackgroundWithPriseid:<#(nonnull NSString *)#> image:<#(nonnull UIImage *)#> imageName:<#(nonnull NSString *)#> successBlock:<#^(NSString * _Nonnull successMsg)success#> failBlock:<#^(NSError * _Nonnull error)failure#>]
+    [CompanyViewModel changeBackgroundImage:image imageName:@"image" successBlock:^(NSString * _Nonnull successMsg) {
+        [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:successMsg]];
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
     NSLog(@"拿到了编辑后的图片");
 }
 @end

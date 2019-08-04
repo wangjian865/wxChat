@@ -23,7 +23,28 @@
     [self setChatAppearance];
     //添加文件传输按钮
     [self insetItemForChatBar];
+    //设置导航栏右边按钮
+    [self setNaviRightButton];
     [[EMClient sharedClient].callManager addDelegate:self delegateQueue:nil];
+}
+//设置右边按钮
+- (void)setNaviRightButton{
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [rightBtn setTitle:@"更多" forState:UIControlStateNormal];
+    [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+}
+- (void)rightBtnAction{
+    if (self.conversation.type == EMConversationTypeGroupChat){
+        //群聊模式
+        WXGroupSettingViewController *vc = [[WXGroupSettingViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:true];
+    }else{
+        //单聊
+        
+    }
+   
 }
 //设置聊天会话样式
 - (void)setChatAppearance{

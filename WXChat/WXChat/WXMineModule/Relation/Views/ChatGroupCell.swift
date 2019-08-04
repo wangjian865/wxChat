@@ -14,10 +14,10 @@ class ChatGroupCell: UITableViewCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    var groupModel = "" {
+    var groupModel: GroupModel?{
         didSet {
-//            iconImageView.image = UIImage(named: <#T##String#>)
-            nameLabel.text = "hehe"
+//            iconImage.sd_setImage(with: URL.init(string:groupModel. ))
+            nameLabel.text = groupModel?.seanceshowname
             messageLabel.text = "聊天聊天"
             timeLabel.text = "时间"
         }

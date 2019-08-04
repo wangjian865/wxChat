@@ -35,7 +35,7 @@
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     
     //默认登录的状态
-    if (![WXAccountTool isLogin]){
+    if ([WXAccountTool isLogin]){
         //[WXAccountTool getHuanXinID]
         EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];
         if (!error) {
@@ -66,12 +66,12 @@
             
         }
     }else{
-        self.window.rootViewController = [[WXTabBarController alloc] init];
-        [self.window makeKeyAndVisible];
-        //未登录状态
-//        UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
-//        self.window.rootViewController = loginVC;
+//        self.window.rootViewController = [[WXTabBarController alloc] init];
 //        [self.window makeKeyAndVisible];
+        //未登录状态
+        UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
+        self.window.rootViewController = loginVC;
+        [self.window makeKeyAndVisible];
     }
     [self _initNotification];
     // 设置应用程序的图标右上角的数字

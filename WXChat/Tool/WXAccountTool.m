@@ -33,6 +33,10 @@
 }
 + (NSString *)getUserName{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
-    return [userDefault stringForKey:@"userName"];
+    NSString *name = [userDefault stringForKey:@"userName"];
+    if (name == nil){
+        name = @"奥特曼";
+    }
+    return name;
 }
 @end

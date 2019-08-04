@@ -164,7 +164,8 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.titles objectAtIndex:section] count];
+    NSArray *array = [self.titles objectAtIndex:section];
+    return [array count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

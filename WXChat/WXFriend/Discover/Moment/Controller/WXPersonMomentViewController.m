@@ -9,11 +9,15 @@
 #import "WXPersonMomentViewController.h"
 #import "MMImageListView.h"
 #import "CompanyViewModel.h"
+#import "WXMyMomentTableViewCell.h"
+
 @interface WXPersonMomentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MMTableView * tableView;
 @property (nonatomic, strong) UIView * tableHeaderView;
 @property (nonatomic, strong) MMImageView * coverImageView;
 @property (nonatomic, strong) MMImageView * avatarImageView;
+
+@property (nonatomic, strong) FriendMomentInfoList *myModel;
 @end
 
 @implementation WXPersonMomentViewController
@@ -25,7 +29,8 @@
 }
 - (void)getData {
     [CompanyViewModel getMomentsListWithUserid:self.userId page:@"1" successBlock:^(FriendMomentInfoList * _Nonnull model) {
-        NSLog(@"fff");
+        self.myModel = model;
+        [self.tableView reloadData];
     } failBlock:^(NSError * _Nonnull error) {
         
     }];
@@ -64,15 +69,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    if (_myModel != nil) {
+        return _myModel.data.count;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXMyMomentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
+    cell.infoModel = _myModel.data[indexPath.row];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RelationViewController" bundle:nil];
     WXMomentDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"momentDetailVC"];
+    FriendMomentInfo *model = _myModel.data[indexPath.row];
+    detailVC.model = model;
     [self.navigationController pushViewController:detailVC animated:true];
 }
 @end

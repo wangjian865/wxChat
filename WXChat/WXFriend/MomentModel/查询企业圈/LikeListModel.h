@@ -21,7 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *enterpricelikename;
 ///点赞时间
 @property (nonatomic, copy) NSString *enterpriseliketime;
-
+///头像
+@property (nonatomic, copy) NSString *tgusetimg;
 @end
 
 NS_ASSUME_NONNULL_END

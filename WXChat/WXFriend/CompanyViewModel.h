@@ -19,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///获取简问上的企业圈
 +(void)getMomentsWithPage:(int)page successBlock:(void(^) (CompanyMoment *model))success failBlock:(void(^) (NSError *error))failure;
 
-///更换企业圈背景图==>图片上传方式要改
-+(void)changeBackgroundWithPriseid:(NSString *)enterpriseId image: (UIImage *)image imageName: (NSString *)imageName successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure;
+///更换企业圈背景图
++(void)changeBackgroundImage: (UIImage *)image imageName: (NSString *)imageName successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure;
 
 ///查询发布企业圈详情
-+(void)getMomentsDetailWithPriseid:(NSString *)enterpriseId successBlock:(void(^) (FriendMomentDetail *model))success failBlock:(void(^) (NSError *error))failure;
++(void)getMomentsDetailWithPriseid:(NSString *)enterpriseId successBlock:(void(^) (Enterprise *model))success failBlock:(void(^) (NSError *error))failure;
 
 ///查看某人企业圈详情
 + (void)getPersonMomentDataWithUserIdL:(NSString *)userId successBlock:(void(^) (UserMomentInfoModel *model))success failBlock:(void(^) (NSError *error))failure;

@@ -59,7 +59,7 @@ class WXCreateCompanyViewController: UITableViewController {
     }
     @IBAction func createCompanyAction(_ sender: UIButton) {
         
-        MineViewModel.createCompany(companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: myTextView.text, companyindustry: induTF.text ?? "", companyregion: locationTF.text ?? "", tgusetaccount: WXAccountTool.getUserPhone(), success: { (model) in
+        MineViewModel.createCompany(companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: myTextView.text, companyindustry: induTF.text ?? "", companyregion: locationTF.text ?? "", success: { (model) in
             print("1")
         }) { (error) in
             

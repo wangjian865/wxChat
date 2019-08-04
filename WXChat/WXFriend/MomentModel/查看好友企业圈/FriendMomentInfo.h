@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *seanceshows;//接口上值类型为null
 @property (nonatomic, copy)NSString *enterprisezid;//发布的企业圈id
 @property (nonatomic, copy)NSString *enterprisezenterpriseid;//企业圈id
-@property (nonatomic, strong)NSDate *enterpriseztime;//发布时间 接口是int应该要转
+@property (nonatomic, assign)long long enterpriseztime;//发布时间 接口是int应该要转
 @property (nonatomic, assign) int enterprisezcount;
 @property (nonatomic, copy)NSString *enterprisezenterpriseshowid;
 @property (nonatomic, copy)NSString *enterprisezcontent;//发布内容

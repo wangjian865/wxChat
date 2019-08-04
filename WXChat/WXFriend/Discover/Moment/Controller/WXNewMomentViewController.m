@@ -60,7 +60,7 @@
         [names addObject:@"files"];
     }
     [CompanyViewModel publicMomentsMessage:self.textTF.text files:self.photos fileNames:names successBlock:^(NSString * _Nonnull successMsg) {
-        NSLog(@"%@",successMsg);
+        [self.navigationController popViewControllerAnimated:true];
     } failBlock:^(NSError * _Nonnull error) {
         
     }];
@@ -111,7 +111,7 @@
         //照片
     }else if(indexPath.row == self.photos.count){
         //加号
-        cell.myImageView.backgroundColor = UIColor.yellowColor;
+        
     }
     return cell;
 }
@@ -127,6 +127,10 @@
         [alertView.secondBtn addTarget:self action:@selector(openAlbun) forControlEvents:UIControlEventTouchUpInside];
         _myAlertView = alertView;
         [self.view.window addSubview:alertView];
+        [alertView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.bottom.height.left.right.equalTo(self.view.window);
+            
+        }];
         return;
     }
     //点击看大图模式

@@ -30,7 +30,7 @@ class RelationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
-
+        getUserInfoRequest()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,6 @@ class RelationViewController: UIViewController {
         setUI()
         addChildVC()
         //WDX http
-        getUserInfoRequest()
     }
     func getUserInfoRequest() {
         MineViewModel.getUserInfo(success: { (model) in

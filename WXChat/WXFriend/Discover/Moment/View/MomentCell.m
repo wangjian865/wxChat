@@ -7,7 +7,7 @@
 //
 
 #import "MomentCell.h"
-
+#import "Utility.h"
 #pragma mark - ------------------ 动态 ------------------
 
 // 最大高度限制
@@ -174,7 +174,7 @@ CGFloat lineSpacing = 5;
         [_linkLabel addGestureRecognizer:_longPress];
     }
     // 图片
-    NSArray *imageArr = [model.tgusetImg componentsSeparatedByString:@","];
+    NSArray *imageArr = [model.enterprisezfujina componentsSeparatedByString:@","];
     _imageListView.imageArr = imageArr;
     if ([imageArr count] > 0) {
         _imageListView.origin = CGPointMake(_avatarImageView.left, bottom);
@@ -182,7 +182,7 @@ CGFloat lineSpacing = 5;
     }
     // 位置和时间
 //    _timeLabel.text = [Utility getMomentTime:moment.time];
-    _timeLabel.text = model.enterprisezTime;
+    _timeLabel.text = [Utility getMomentTime:model.enterprisezTime];
     [_timeLabel sizeToFit];
 //    if (moment.location) {
 //        [_locationBtn setTitle:moment.location.position forState:UIControlStateNormal];
@@ -226,7 +226,7 @@ CGFloat lineSpacing = 5;
             iconLike.cornerRadius = kLikeIconWidth/2;
             iconLike.backgroundColor = UIColor.grayColor;
             //点赞模型缺图片
-            [iconLike sd_setImageWithURL:[NSURL URLWithString:@""]];
+            [iconLike sd_setImageWithURL:[NSURL URLWithString:obj.tgusetimg]];
             [likeView addSubview:iconLike];
         }];
         

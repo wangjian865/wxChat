@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///用户备注
 @property (nonatomic, copy)NSString *friendRecord;
 ///发动态的时间
-@property (nonatomic, copy)NSString *enterprisezTime;
+@property (nonatomic, assign)long long enterprisezTime;
 ///动态文字内容
 @property (nonatomic, copy)NSString *enterprisezContent;
 ///   什么意思?

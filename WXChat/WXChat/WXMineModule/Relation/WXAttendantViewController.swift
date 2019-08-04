@@ -110,6 +110,17 @@ class WXAttendantViewController: UIViewController {
             let nav = WXPresentNavigationController.init(rootViewController: vc)
             self?.present(nav, animated: true, completion: nil)
         }
+        tempView.deleteClosure = { [weak self] model in
+            if var data = self?.dataArr {
+                if data.contains(model){
+                    data.removeAll(where: { (temp) -> Bool in
+                        return temp == model
+                    })
+                }else{
+                    data.append(model)
+                }
+            }
+        }
         contentView = tempView
         tempView.dataArray = dataArr
         tempView.titleLabel.text = title

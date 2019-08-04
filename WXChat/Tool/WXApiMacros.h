@@ -40,7 +40,7 @@
 
 #pragma mark -- 人脉
 //创建公司
-#define API_RelationModule_createCompany @"manKeepToken/createCompany"
+#define API_RelationModule_createCompany @"companyAdd/addUserCompany"
 //修改公司信息
 #define API_RelationModule_updateCompanyInfo @"manKeepToken/updateCompanyInfo"
 //批量添加公司用户

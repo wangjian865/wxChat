@@ -40,7 +40,6 @@
     
 }
 - (void)getRequestData {
-    
     [CompanyViewModel getPersonMomentDataWithUserIdL:self.userId successBlock:^(UserMomentInfoModel * _Nonnull model) {
         [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg]];
         self.nameLabel.text = model.tgusetName;

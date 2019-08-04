@@ -86,7 +86,9 @@
     if (_isEditing){//选取模式下才有
         [self _setNaviBar];
     }
+    
 }
+
 - (void)_setNaviBar{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"close_gray"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(closeAction)];
     UIButton *completeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -105,24 +107,29 @@
 - (void)doneAction
 {
     if (_isGroup){
-        EMError *error = nil;
-        EMGroupOptions *setting = [[EMGroupOptions alloc] init];
-        setting.maxUsersCount = 500;
-        setting.IsInviteNeedConfirm = NO; //邀请群成员时，是否需要发送邀请通知.若NO，被邀请的人自动加入群组
-        setting.style = EMGroupStylePublicOpenJoin;// 创建不同类型的群组，这里需要才传入不同的类型
-        EMGroup *group = [[EMClient sharedClient].groupManager createGroupWithSubject:@"群组" description:@"群组描述" invitees:self.selectedModelArray message:@"邀请您加入群组" setting:setting error:&error];
-        if(!error){
-            NSLog(@"创建成功 -- %@",group);
-            WS(wSelf);
-            [self dismissViewControllerAnimated:YES completion:^{
-                __strong typeof(wSelf) sSelf = wSelf;
-                if (sSelf.doneCompletion){
-                    sSelf.doneCompletion(group);
-                }
-            }];
-        }else{
-            [self showHint:@"创建失败"];
-        }
+        [MineViewModel createChatGroupWithUserIds:self.selectedModelArray success:^(UserMomentInfoModel * model) {
+            NSLog(@"1");
+        } failure:^(NSError * error) {
+            
+        }];
+//        EMError *error = nil;
+//        EMGroupOptions *setting = [[EMGroupOptions alloc] init];
+//        setting.maxUsersCount = 500;
+//        setting.IsInviteNeedConfirm = NO; //邀请群成员时，是否需要发送邀请通知.若NO，被邀请的人自动加入群组
+//        setting.style = EMGroupStylePublicOpenJoin;// 创建不同类型的群组，这里需要才传入不同的类型
+//        EMGroup *group = [[EMClient sharedClient].groupManager createGroupWithSubject:@"群组" description:@"群组描述" invitees:self.selectedModelArray message:@"邀请您加入群组" setting:setting error:&error];
+//        if(!error){
+//            NSLog(@"创建成功 -- %@",group);
+//            WS(wSelf);
+//            [self dismissViewControllerAnimated:YES completion:^{
+//                __strong typeof(wSelf) sSelf = wSelf;
+//                if (sSelf.doneCompletion){
+//                    sSelf.doneCompletion(group);
+//                }
+//            }];
+//        }else{
+//            [self showHint:@"创建失败"];
+//        }
     }else{
         WS(wSelf);
         [self dismissViewControllerAnimated:YES completion:^{
@@ -146,7 +153,8 @@
     }
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [self.contactArr[section] count];
+    NSArray *array = self.contactArr[section];
+    return array.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -221,6 +229,7 @@
     //用户可以根据自己的用户体系，根据buddy设置用户昵称和头像
     id<IUserModel> model = nil;
     model = [[EaseUserModel alloc] initWithBuddy:buddy];
+    model.nickname = @"试试看";
     return model;
 }
 

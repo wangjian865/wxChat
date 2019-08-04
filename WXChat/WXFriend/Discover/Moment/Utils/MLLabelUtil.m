@@ -48,9 +48,13 @@ NSMutableAttributedString *kMLLinkAttributedText(id object)
     NSMutableAttributedString *attributedText = nil;
     if ([object isKindOfClass:[MomentComent class]])
     {
+        
         MomentComent * comment = (MomentComent *)object;
         NSString * fromName = comment.commentsTgusetName;
         NSString * toName = comment.commentsTgusetHFName;
+        if (fromName == nil){
+            fromName = @"";
+        }
         if (toName)//不存在toname则表明是直接评论该条企业圈
         {
             NSString * likeString  = [NSString stringWithFormat:@"%@\n回复%@：%@",fromName,toName,comment.commentsContext];

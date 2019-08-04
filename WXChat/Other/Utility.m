@@ -14,7 +14,7 @@
 + (NSString *)getMomentTime:(long long)timestamp
 {
     // 入参日期
-    NSDate * date = [NSDate dateWithTimeIntervalSince1970:timestamp];
+    NSDate * date = [NSDate dateWithTimeIntervalSince1970:timestamp / 1000];
     // 当前日期
     NSDate * curDate = [NSDate date];
     // 日历

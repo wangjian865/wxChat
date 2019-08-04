@@ -15,7 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
  * 获取联系人列表
  * 优化体验需提前获取,需做本地缓存
  */
-+ (NSArray *)getUsersList;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

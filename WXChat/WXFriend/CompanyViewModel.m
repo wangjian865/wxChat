@@ -31,14 +31,14 @@
 }
 
 //更换企业圈背景图
-+(void)changeBackgroundWithPriseid:(NSString *)enterpriseId image: (UIImage *)image imageName: (NSString *)imageName successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
-    NSString *urlStr =  [WXApiManager getRequestUrl:@"enterprisez/uEnterprise"];
-    NSDictionary *params = @{@"enterpriseid":enterpriseId, @"companyid": WXAccountTool.getUserID};
-    
++(void)changeBackgroundImage: (UIImage *)image imageName: (NSString *)imageName successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"mEnter/background"];
+    NSDictionary *params = @{@"enterpriseIdTguset":WXAccountTool.getUserID};
     [WXNetWorkTool uploadFileWithUrl:urlStr imageName:@[imageName] image:@[image] parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
         NSLog(@"%@",downloadProgress);
     } successBlock:^(id  _Nonnull responseBody) {
         //成功
+        success(responseBody[@"data"]);
     } failureBlock:^(NSError * _Nonnull error) {
         //失败
     }];
@@ -46,14 +46,14 @@
 }
 
 //查询发布企业圈详情 ==》ok
-+(void)getMomentsDetailWithPriseid:(NSString *)enterpriseId successBlock:(void(^) (FriendMomentDetail *model))success failBlock:(void(^) (NSError *error))failure{
++(void)getMomentsDetailWithPriseid:(NSString *)enterpriseId successBlock:(void(^) (Enterprise *model))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"enterprisez/MEnterpricezSelectDan"];//后面一个单词可能有错
     NSDictionary *params = @{@"enterprisezid":enterpriseId,};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
-            FriendMomentDetail *model = [FriendMomentDetail yy_modelWithJSON:responseBody[@"data"]];
+            Enterprise *model = [Enterprise yy_modelWithJSON:responseBody[@"data"][@"enterprise"]];
             success(model);
         }else{
             [MBProgressHUD showError: responseBody[@"msg"]];
@@ -81,13 +81,13 @@
 }
 //查看好友企业圈(或者自己的企业圈==非简问里的企业圈)==》ok
 +(void)getMomentsListWithUserid:(NSString *)userId page:(NSString *)page successBlock:(void(^) (FriendMomentInfoList *model))success failBlock:(void(^) (NSError *error))failure{
-    NSString *urlStr =  [WXApiManager getRequestUrl:@"enterprisez/menterpriceSelectFriend"];//后面一个单词可能有错
-    NSDictionary *params = @{@"tgusetid":userId,@"page": page};
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"enterprisez/menterpriceSelectFriend"];
+    NSDictionary *params = @{@"userId":userId,@"page": page};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
-            FriendMomentInfoList *model = [FriendMomentInfoList yy_modelWithJSON:responseBody[@"data"]];
+            FriendMomentInfoList *model = [FriendMomentInfoList yy_modelWithJSON:responseBody];
             success(model);
         }else{
             [MBProgressHUD showError: responseBody[@"msg"]];
@@ -171,7 +171,7 @@
 /// 发表对评论的评论
 + (void)commentToPersonWithContent:(NSString *)content commentOwnerId: (NSString *)ownerId priseid: (NSString *)priseid beCommentId:(NSString *)beCommentId beCommentName: (NSString *)name successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/addHFComment"];
-    NSDictionary *params = @{@"commentszid": priseid,@"commentstgusethfid": beCommentId,@"commentstgusethfname": name,@"commentscontext": content};//2和4是userid和name
+    NSDictionary *params = @{@"commentszid": priseid,@"commentstgusethfid": beCommentId,@"commentstgusethfname": name,@"commentscontext": content,@"commentsTguset": ownerId};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -221,7 +221,7 @@
 //企业圈-查询消息列表  /替换userid  ==>ok
 +(void)getMomentMessageListSuccessBlock:(void(^) (MomentMessageList *model))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/commentsListLook"];
-    NSDictionary *params = @{@"commentstguset":WXAccountTool.getUserID};
+    NSDictionary *params = @{@"commentstguset":WXAccountTool.getUserID,@"page":@1};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -258,7 +258,7 @@
 //发布企业圈  /替换account 用户id
 +(void)publicMomentsMessage:(NSString *)message files:(NSArray *)files fileNames: (NSArray *)fileNames successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"enterprisez/tupship"];
-    NSDictionary *params = @{@"Tgusetaccount": WXAccountTool.getUserPhone,@"enterprisezcontent": message,@"tgusetid":WXAccountTool.getUserID};
+    NSDictionary *params = @{@"enterprisezcontent": message,@"EnterprisezEnterpriseId": @""};
     
     [WXNetWorkTool uploadFileWithUrl:urlStr imageName:fileNames image:files parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
         NSLog(@"%@",downloadProgress);

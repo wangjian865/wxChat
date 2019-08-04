@@ -24,3 +24,8 @@
 #import "WXUsersListViewController.h"
 #import "WXPresentNavigationController.h"
 #import "UserMomentInfoModel.h"
+#import "GroupListModel.h"
+#import "FriendMomentInfo.h"
+#import "CompanyViewModel.h"
+#import "MMImageListView.h"
+#import "Utility.h"

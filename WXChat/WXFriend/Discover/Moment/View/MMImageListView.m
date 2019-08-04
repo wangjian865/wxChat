@@ -149,7 +149,7 @@
     [_previewView.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     // 添加子视图
     NSInteger index = imageView.tag - 1000;
-    NSInteger count = [_moment.pictureList count];
+    NSInteger count = [_imageArr count];
     CGRect convertRect;
     if (count == 1) {
         [_previewView.pageControl removeFromSuperview];

@@ -9,5 +9,7 @@
 #import "FriendMomentDetail.h"
 
 @implementation FriendMomentDetail
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"cmments":[MomentComent class],@"user":[MomentUser class]};
+}
 @end

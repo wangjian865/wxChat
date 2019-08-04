@@ -23,6 +23,8 @@
 #import "WXScanViewController.h"
 #import "WXAccountTool.h"
 #import "WXAddCompanyViewController.h"
+#import "GroupModel.h"
+#import "FriendModel.h"
 @interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
@@ -36,6 +38,10 @@
  * 搜索框
  */
 @property (nonatomic, strong) UISearchController *serachController;
+///好友列表数据
+@property (nonatomic, strong) NSArray<FriendModel *> *userListModel;
+///群组列表数据
+@property (nonatomic, strong) NSArray<GroupModel *> *groupListModel;
 @end
 
 @implementation WXConversationListViewController
@@ -89,6 +95,21 @@
     self.dataSource = self;
     [self setupNavi];
     [self.tableView setTableHeaderView:self.serachController.searchBar];
+    [self getUserList];
+}
+- (void)getUserList{
+    [MineViewModel getFriendListWithNickName:@"" success:^(NSArray<FriendModel *> * list) {
+        self.userListModel = list;
+        [self tableViewDidTriggerHeaderRefresh];
+    } failure:^(NSError * error) {
+        
+    }];
+    [MineViewModel getChatGroupListWithSuccess:^(GroupListModel * groupList) {
+        self.groupListModel = groupList.data;
+        [self tableViewDidTriggerHeaderRefresh];
+    } failure:^(NSError * error) {
+        
+    }];
 }
 - (void)setupNavi{
     UIImage *image = [UIImage imageNamed:@"pop_add"];
@@ -259,6 +280,22 @@
     //用环信提供的model就可以了
     EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
     //然后根据用户名  往上面赋值
+    if (conversation.type == EMConversationTypeGroupChat){
+        //群聊
+        NSArray *temp = [self.groupListModel filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"seanceshowid = %@",model.conversation.conversationId]];
+        if (temp.count > 0){
+            model.title = ((GroupModel *)temp[0]).seanceshowname;
+            //还有头像
+        }
+        
+    }else{
+        //单聊
+        NSArray *temp = [self.userListModel filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tgusetid = %@",model.conversation.conversationId]];
+        if (temp.count > 0){
+            model.title = ((FriendModel *)temp[0]).tgusetname;
+        }
+    }
+//    model.title = @"测试标题";
     //self.imageAndNameArray为自定义的数组，其中存储的是从自己服务器上请求下来的数据
     //可用自己的服务器存储某些信息
     return model;

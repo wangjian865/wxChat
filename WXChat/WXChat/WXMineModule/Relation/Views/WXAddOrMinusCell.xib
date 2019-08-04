@@ -60,7 +60,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="173" height="203"/>
             <connections>
-                <outlet property="deleteIcon" destination="F9h-Nf-UzG" id="emL-V8-jhq"/>
+                <outlet property="deleteIcon" destination="F9h-Nf-UzG" id="mJY-k9-3ad"/>
                 <outlet property="iconView" destination="55e-bk-gKD" id="Sn7-6W-4lA"/>
                 <outlet property="nameLabel" destination="ofS-I8-uqK" id="mGA-Em-Bfu"/>
             </connections>

@@ -76,11 +76,11 @@ class MineViewModel: NSObject {
 //    用户ID    tgusetid
 //    模糊查询参数    tgusetname
     //人脉  获取好友列表
-    class func getFriendList(nickName: String = "",
+    @objc class func getFriendList(nickName: String = "",
                              success: @escaping (_ response: [FriendModel]) ->(),
                              failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/userFriends")
-        let params:[String:Any] = ["tgusetname":"小风"]
+        let params:[String:Any] = ["tgusetname":""]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
             let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
             guard let result = resultModel else {return }
@@ -114,7 +114,7 @@ class MineViewModel: NSObject {
                              success: @escaping (_ response: FriendModel?) ->(),
                              failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/showFriendInfo")
-        let params:[String:Any] = ["friendid":friendID]
+        let params:[String:Any] = ["friendfriendid":friendID]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
             print(result)
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
@@ -146,12 +146,11 @@ class MineViewModel: NSObject {
                              companysynopsis: String,
                              companyindustry: String,
                              companyregion: String,
-                             tgusetaccount: String,
                              success: @escaping (_ response: CompanyModel?) ->(),
                              failure: @escaping (_ error: NSError?) ->()){
-        let urlString =  WXApiManager.getRequestUrl("manKeepToken/createCompany")
-        let params:[String:Any] = ["companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"tgusetaccount":tgusetaccount]
-        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["image"], image: [logofiles], parameters: params, progressBlock: { (progress) in
+        let urlString =  WXApiManager.getRequestUrl("companyAdd/addUserCompany")
+        let params:[String:Any] = ["companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"companyaccount":WXAccountTool.getUserPhone(),"companysystem":WXAccountTool.getUserID()]
+        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["comimg"], image: [logofiles], parameters: params, progressBlock: { (progress) in
             print(progress)
         }, successBlock: { (result) in
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
@@ -175,11 +174,10 @@ class MineViewModel: NSObject {
                                  companysynopsis: String,
                                  companyindustry: String,
                                  companyregion: String,
-                                 tgusetaccount: String,
                                  success: @escaping (_ response: CompanyModel?) ->(),
                                  failure: @escaping (_ error: NSError?) ->()){
-        let urlString =  WXApiManager.getRequestUrl("manKeepToken/updateCompanyInfo")
-        let params:[String:Any] = ["companyid":companyid,"companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"tgusetaccount":tgusetaccount]
+        let urlString =  WXApiManager.getRequestUrl("companyAdd/updateCompanyInfo")
+        let params:[String:Any] = ["companyid":companyid,"companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"companysystem":false]
         
         WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["logofiles"], image: [logofiles], parameters: params, progressBlock: { (progress) in
             print(progress)
@@ -264,7 +262,7 @@ class MineViewModel: NSObject {
                                seanceshowidadmincompanyid: String,
                                success: @escaping (_ response: [String:Any]?) ->(),
                                failure: @escaping (_ error: NSError?) ->()) {
-        let urlString =  WXApiManager.getRequestUrl("manKeepToken/addComAdm")
+        let urlString =  WXApiManager.getRequestUrl("company/addComAdm")
         let params:[String:Any] = ["tgusetids":tgusetids,"seanceshowidadmincompanyid":seanceshowidadmincompanyid]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
             print(result)
@@ -285,8 +283,8 @@ class MineViewModel: NSObject {
                                 companyid: String,
                                 success: @escaping (_ response: [String:Any]?) ->(),
                                 failure: @escaping (_ error: NSError?) ->()) {
-        let urlString =  WXApiManager.getRequestUrl("company/companyDeleteUser")
-        let params:[String:Any] = ["companysystem":companysystem,"companyid":companyid]
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/deleteComTg")
+        let params:[String:Any] = ["tgusetids":companysystem,"seanceshowidadmincompanyid":companyid]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
             print(result)
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
@@ -473,12 +471,60 @@ class MineViewModel: NSObject {
             
         }
     }
+    //获取群聊列表
+    @objc class func getChatGroupList(success: @escaping (_ response: GroupListModel?) ->(),
+                                 failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/getSeaByTgid")
+        let params:[String:Any] = ["tgusetid":WXAccountTool.getUserID()]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                //转换模型数组
+                if let successData = temp as? [String:Any] {
+                    let model = GroupListModel.yy_model(with: successData)
+                    success(model)
+                }
+                
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
     //查看群聊下的用户
     class func getChatGroupUsers(groupId: String,
                                success: @escaping (_ response: UserMomentInfoModel?) ->(),
                                failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("getTgBySeaid/getTgBySeaid")
         let params:[String:Any] = ["seanceshowid":groupId]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                //转换模型数组
+                if let successData = temp as? [String:Any] {
+                    if let datas = successData["data"] as? [String:Any]{
+                        let model = UserMomentInfoModel.yy_model(with: datas)
+                        //遍历结束回调
+                        success(model)
+                    }
+                }
+                
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    ///创建群聊
+    @objc class func createChatGroup(userIds: [String],
+                               success: @escaping (_ response: UserMomentInfoModel?) ->(),
+                               failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/addSea")
+        let params:[String:Any] = ["seanceshowadmin":WXAccountTool.getUserID(),"tgusetids":userIds]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
             let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
             guard let result = resultModel else {return }

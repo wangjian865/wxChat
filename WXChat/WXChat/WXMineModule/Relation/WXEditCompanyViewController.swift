@@ -49,7 +49,7 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
         locationTF.text = myModel?.companyregion
     }
     @objc func editCompany(){
-        MineViewModel.updateCompanyInfo(companyid: myModel?.companyid ?? "", companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: descTF.text, companyindustry: indusTF.text ?? "", companyregion: locationTF.text ?? "", tgusetaccount: WXAccountTool.getUserPhone(), success: { (model) in
+        MineViewModel.updateCompanyInfo(companyid: myModel?.companyid ?? "", companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: descTF.text, companyindustry: indusTF.text ?? "", companyregion: locationTF.text ?? "", success: { (model) in
             print(model)
         }) { (error) in
             

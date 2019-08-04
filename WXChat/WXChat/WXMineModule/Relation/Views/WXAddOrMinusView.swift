@@ -13,7 +13,7 @@ class WXAddOrMinusView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     var isEdit = false
     var addClosure: (()-> Void)?
-    var deleteClosure: (()-> Void)?
+    var deleteClosure: ((SearchUserModel)-> Void)?
     var dataArray: [SearchUserModel]?
     override func awakeFromNib() {
         collectionView.register(UINib.init(nibName: "WXAddOrMinusCell", bundle: nil), forCellWithReuseIdentifier: "addOrMinusCell")
@@ -63,6 +63,13 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
             print("减号事件")
             isEdit = true
             collectionView.reloadData()
+        }else{
+            if isEdit{
+                deleteClosure?(dataArray?[indexPath.item] ?? SearchUserModel())
+            }else{
+                //进入详情
+            }
         }
+        
     }
 }

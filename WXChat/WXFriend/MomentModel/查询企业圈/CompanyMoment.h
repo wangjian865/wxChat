@@ -20,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///企业圈主人
 @property (nonatomic, strong)UserCompanies *userQ;
 
-
 @end
 
 NS_ASSUME_NONNULL_END
