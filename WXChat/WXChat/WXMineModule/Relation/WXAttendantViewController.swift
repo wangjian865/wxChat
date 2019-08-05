@@ -60,10 +60,11 @@ class WXAttendantViewController: UIViewController {
     }
     
     //记录去掉的用户id
-    var deleteUserIDs: [String] = []
+    var deleteUserIDs: [SearchUserModel] = []
     //确认按钮
     @objc func checkOutAction() {
         contentView.isEdit = false
+        contentView.collectionView.reloadData()
         if deleteUserIDs.count > 0{
             deleteRequest()
         }
@@ -77,31 +78,48 @@ class WXAttendantViewController: UIViewController {
         }
     }
     func deleteUserRequest() {
-        let deleStr = deleteUserIDs.joined(separator: ",")
-        MineViewModel.deleCompanyUser(companysystem: deleStr, companyid: companyID, success: { (success) in
-            
+        var deleteStr = ""
+        for model in deleteUserIDs {
+            deleteStr = model.tgusetId + ","
+        }
+        deleteStr.removeLast()
+        MineViewModel.deleCompanyUser(companysystem: deleteStr, companyid: companyID, success: { (success) in
+            self.getdata()
         }) { (error) in
             print("删除公司用户失败")
         }
     }
     func deleteAdminRequest() {
-        
+        var deleteStr = ""
+        for model in deleteUserIDs {
+            deleteStr = model.tgusetId + ","
+        }
+        deleteStr.removeLast()
+        MineViewModel.deleCompanyAdmin(tgusetids: deleteStr, seanceshowidadmincompanyid: companyID, success: { (success) in
+            self.getdata()
+        }) { (error) in
+            print("删除公司管理员失败")
+        }
     }
     func setupUI() {
         let tempView = Bundle.main.loadNibNamed("WXAddOrMinusView", owner: nil, options: nil)?.last as! WXAddOrMinusView
         tempView.addClosure = {[weak self] in
             let vc = WXUsersListViewController.init()
             vc.chooseCompletion = { (IDs) in
+                let ids = IDs.joined(separator: ",")
                 if (self?.title == "管理员设置"){
-                    let ids = IDs.joined(separator: ",")
                     MineViewModel.addCompanyAdmin(tgusetids: ids, seanceshowidadmincompanyid: self?.companyID ?? "", success: { (success) in
-                        print("1")
+                        self?.getdata()
                         
                     }, failure: { (error) in
                         print("添加管理员失败")
                     })
                 }else{//成员设置
-                    
+                    MineViewModel.addCompanyUser(companytgusettgusetids: ids, companytgusetcompanyid: self?.companyID ?? "", success: { (success) in
+                        self?.getdata()
+                    }, failure: { (error) in
+                        print("添加成员失败")
+                    })
                 }
                 
             }
@@ -111,15 +129,14 @@ class WXAttendantViewController: UIViewController {
             self?.present(nav, animated: true, completion: nil)
         }
         tempView.deleteClosure = { [weak self] model in
-            if var data = self?.dataArr {
-                if data.contains(model){
-                    data.removeAll(where: { (temp) -> Bool in
+            
+            if (self?.deleteUserIDs.contains(model))!{
+                    self?.deleteUserIDs.removeAll(where: { (temp) -> Bool in
                         return temp == model
                     })
                 }else{
-                    data.append(model)
+                    self?.deleteUserIDs.append(model)
                 }
-            }
         }
         contentView = tempView
         tempView.dataArray = dataArr

@@ -111,7 +111,7 @@
         //照片
     }else if(indexPath.row == self.photos.count){
         //加号
-        
+        cell.myImageView.image = [UIImage imageNamed:@"plus_moment"];
     }
     return cell;
 }
@@ -120,6 +120,7 @@
     return self.photos.count + 1;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.view endEditing:true];
     //当点击添加图片时
     if (indexPath.row == self.photos.count){
         WXTwoBottomChooseView *alertView = (WXTwoBottomChooseView *)([[NSBundle mainBundle] loadNibNamed:@"WXBottomChooseView" owner:nil options:nil].lastObject);

@@ -35,7 +35,17 @@ class WXEditPersonInfoViewController: UITableViewController {
         workLabel.text = userInfoModel?.tgusetposition
         companyLabel.text = userInfoModel?.tgusetcompany
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        editPersonalInfo()
+    }
+    func editPersonalInfo() {
+        MineViewModel.updateUserInfo(nickName: userName.text ?? "", sex: sexyLabel.text ?? "", company: companyLabel.text ?? "", position: workLabel.text ?? "", success: { (success) in
+            print("修改成功")
+        }) { (error) in
+            
+        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             let bottomView = Bundle.main.loadNibNamed("WXBottomChooseView", owner: nil, options: nil)?.first as! WXBottomChooseView
@@ -57,6 +67,10 @@ class WXEditPersonInfoViewController: UITableViewController {
             }
         }else if indexPath.row == 3{
             let sexyVC = WXSexyChooseViewController.init()
+            sexyVC.selectIndex = (sexyLabel.text ?? "") == "男" ? 0 : 1
+            sexyVC.changeSexCallBack = {[weak self] index in
+                self?.sexyLabel.text = index == 0 ? "男":"女"
+            }
             sexyVC.title = "性别"
             navigationController?.pushViewController(sexyVC, animated: true)
         }else if indexPath.row == 2{
@@ -91,7 +105,9 @@ class WXEditPersonInfoViewController: UITableViewController {
             navigationController?.pushViewController(qrcodeVC, animated: true)
         }else if indexPath.row == 7{
             //企业圈
-            
+            let personInfoView = WXUserMomentInfoViewController()
+            personInfoView.userId = userInfoModel!.tgusetid
+            navigationController?.pushViewController(personInfoView, animated: true)
         }else if indexPath.row == 8{
             //隐私
             let vc = UIStoryboard.init(name: "RelationViewController", bundle: nil).instantiateViewController(withIdentifier: "privateVC")

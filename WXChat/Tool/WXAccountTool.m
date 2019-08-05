@@ -39,4 +39,12 @@
     }
     return name;
 }
++ (NSString *)getUserImage{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *img = [userDefault stringForKey:@"userImage"];
+    if (img == nil){
+        img = @"奥特曼";
+    }
+    return img;
+}
 @end

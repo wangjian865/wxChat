@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getHuanXinID;
 ///获取用户名
 + (NSString *)getUserName;
+///获取头像
++ (NSString *)getUserImage;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -23,7 +23,8 @@
 - (void)setInfoModel:(FriendMomentInfo *)infoModel{
     _infoModel = infoModel;
     _timeLabel.text = [Utility getMomentTime:infoModel.enterpriseztime];
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:infoModel.enterprisezfujina]];
+    NSArray *urlArr = [infoModel.enterprisezfujina componentsSeparatedByString:@","];
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:urlArr.firstObject]];
     _contentLabel.text = infoModel.enterprisezcontent;
 }
 @end

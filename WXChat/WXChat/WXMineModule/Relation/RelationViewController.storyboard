@@ -819,7 +819,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TN6-G9-A9i">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="217"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="277"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivQ-U7-6zq" userLabel="header">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="129"/>
@@ -882,7 +882,7 @@
                                                     <inset key="sectionInset" minX="14" minY="0.0" maxX="14" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" id="iZk-5h-J5m">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iZk-5h-J5m">
                                                         <rect key="frame" x="14" y="0.0" width="111" height="111"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -913,22 +913,16 @@
                                                     <constraint firstAttribute="height" constant="48" id="rre-yg-nvm"/>
                                                 </constraints>
                                             </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jxf-aQ-JXQ">
-                                                <rect key="frame" x="0.0" y="177" width="414" height="40"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edn-SA-YrB">
+                                                <rect key="frame" x="0.0" y="177" width="414" height="100"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="SYs-BV-Mig"/>
+                                                    <constraint firstAttribute="height" constant="100" id="Qyn-vj-alv"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="aCo-7X-JGc" id="KSg-YH-h9S"/>
-                                                    <outlet property="delegate" destination="aCo-7X-JGc" id="xnc-aG-fZ0"/>
-                                                </connections>
-                                            </tableView>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="6fw-dB-EEK" firstAttribute="leading" secondItem="TN6-G9-A9i" secondAttribute="leading" id="2Xa-Xw-3VL"/>
-                                            <constraint firstItem="jxf-aQ-JXQ" firstAttribute="top" secondItem="USB-gf-zKM" secondAttribute="bottom" id="3w3-NN-ylY"/>
-                                            <constraint firstAttribute="trailing" secondItem="jxf-aQ-JXQ" secondAttribute="trailing" id="40p-oA-qD5"/>
                                             <constraint firstItem="USB-gf-zKM" firstAttribute="top" secondItem="6fw-dB-EEK" secondAttribute="bottom" id="GV7-LF-aEl"/>
                                             <constraint firstItem="USB-gf-zKM" firstAttribute="leading" secondItem="TN6-G9-A9i" secondAttribute="leading" id="HHU-ZN-kF2"/>
                                             <constraint firstAttribute="trailing" secondItem="ivQ-U7-6zq" secondAttribute="trailing" id="HUu-VR-IsN"/>
@@ -937,7 +931,6 @@
                                             <constraint firstAttribute="trailing" secondItem="6fw-dB-EEK" secondAttribute="trailing" id="TPo-4l-bAY"/>
                                             <constraint firstAttribute="trailing" secondItem="USB-gf-zKM" secondAttribute="trailing" id="gSk-o6-Kwd"/>
                                             <constraint firstItem="6fw-dB-EEK" firstAttribute="leading" secondItem="TN6-G9-A9i" secondAttribute="leading" id="oLM-pE-KNu"/>
-                                            <constraint firstItem="jxf-aQ-JXQ" firstAttribute="leading" secondItem="TN6-G9-A9i" secondAttribute="leading" id="psy-a9-1lu"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
@@ -959,13 +952,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomHeight" destination="Qyn-vj-alv" id="NTW-nr-wki"/>
+                        <outlet property="bottomView" destination="edn-SA-YrB" id="Jzc-5L-LeL"/>
                         <outlet property="collectionHeight" destination="oz5-SX-94d" id="FnM-sa-JKl"/>
                         <outlet property="collectionView" destination="6fw-dB-EEK" id="Jph-MP-um3"/>
                         <outlet property="companyLabel" destination="KlT-JS-xJg" id="HJC-Nd-lRn"/>
+                        <outlet property="contentLabel" destination="NFG-xA-PS1" id="qgE-b8-RKj"/>
                         <outlet property="iconView" destination="rRb-00-3yp" id="1n4-ps-3cr"/>
                         <outlet property="nameLabel" destination="5Jp-wa-UCp" id="DxG-Hq-xhz"/>
-                        <outlet property="tableView" destination="jxf-aQ-JXQ" id="ydD-97-4Wi"/>
-                        <outlet property="tableViewHeight" destination="SYs-BV-Mig" id="HPR-oV-A0Q"/>
                         <outlet property="timeLabel" destination="2i7-hR-ICo" id="DUP-uQ-ROi"/>
                     </connections>
                 </viewController>

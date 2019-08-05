@@ -74,12 +74,12 @@
     descLabel.text = @"将二维码/条码放入框内，即可自动扫描";
     [self addSubview:descLabel];
     
-    UIButton * myCode = [[UIButton alloc] initWithFrame:CGRectMake(0, self.scanRetangleRect.origin.y + self.scanRetangleRect.size.height + 10 + 20 + 10, rect.size.width, 20)];
-    myCode.titleLabel.font = [UIFont systemFontOfSize:15];
-    [myCode setTitle:@"我的二维码" forState:UIControlStateNormal];
-    [myCode setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-    [myCode addTarget:self action:@selector(myCodeClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:myCode];
+//    UIButton * myCode = [[UIButton alloc] initWithFrame:CGRectMake(0, self.scanRetangleRect.origin.y + self.scanRetangleRect.size.height + 10 + 20 + 10, rect.size.width, 20)];
+//    myCode.titleLabel.font = [UIFont systemFontOfSize:15];
+//    [myCode setTitle:@"我的二维码" forState:UIControlStateNormal];
+//    [myCode setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
+//    [myCode addTarget:self action:@selector(myCodeClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:myCode];
     
 }
 

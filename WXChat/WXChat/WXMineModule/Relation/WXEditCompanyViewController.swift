@@ -69,13 +69,16 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
             if index == 102{
                 //101作为title  无视点击事件
                 self?.deleComRequest()
+                
             }
         }
         view.window?.addSubview(sheet)
+        sheet.snp.makeConstraints { (make) in
+            make.top.left.right.bottom.equalTo(view.window!)
+        }
     }
     func deleComRequest() {
         MineViewModel.deleCompany(companyid: myModel?.companyid ?? "", success: { (success) in
-            print("1")
             self.navigationController?.popToRootViewController(animated: true)
         }) { (error) in
             print("删除公司出现错误")
@@ -83,7 +86,7 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     }
     @IBAction func removeFromCompanyAction(_ sender: Any) {
         MineViewModel.leaveCompany(companyid: myModel?.companyid ?? "", success: { (success) in
-            print(success)
+            self.navigationController?.popToRootViewController(animated: true)
         }) { (error) in
             print("退出公司出现错误")
         }

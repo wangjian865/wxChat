@@ -39,6 +39,7 @@
     if (self.conversation.type == EMConversationTypeGroupChat){
         //群聊模式
         WXGroupSettingViewController *vc = [[WXGroupSettingViewController alloc] init];
+        vc.groupID = self.conversation.conversationId;
         [self.navigationController pushViewController:vc animated:true];
     }else{
         //单聊

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WXWriteEmailViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h7R-VF-Wbz">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Np2-bG-4ep">
+                            <rect key="frame" x="128" y="36" width="240" height="128"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Goq-Vf-SC1">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Np2-bG-4ep" firstAttribute="top" secondItem="h7R-VF-Wbz" secondAttribute="top" id="AK4-X2-KTG"/>
+                        <constraint firstAttribute="trailing" secondItem="Np2-bG-4ep" secondAttribute="trailing" id="BSn-ri-k3n"/>
+                        <constraint firstItem="Np2-bG-4ep" firstAttribute="leading" secondItem="h7R-VF-Wbz" secondAttribute="leading" id="NBu-uj-hsi"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="h7R-VF-Wbz" secondAttribute="bottom" id="8Sw-XL-dsJ"/>
+                <constraint firstItem="h7R-VF-Wbz" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="BPl-JI-CIe"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="h7R-VF-Wbz" secondAttribute="trailing" id="TPr-dG-rUP"/>
+                <constraint firstItem="h7R-VF-Wbz" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="ooV-A1-khR"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <point key="canvasLocation" x="236" y="58"/>
+        </view>
+    </objects>
+</document>

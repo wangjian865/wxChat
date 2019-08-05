@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///群组人数
 @property (nonatomic, copy) NSString *seanceshowcount;
 ///啥?
-@property (nonatomic, copy) NSString *tgusets;
+@property (nonatomic, copy) NSArray <FriendModel *> *tgusets;
 ///啥?
 @property (nonatomic, copy) NSString *tgusetids;
 @end

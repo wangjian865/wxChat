@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///好友id
 @property (nonatomic, copy) NSString *friendshowfuserid;
 ///发起时间
-@property (nonatomic, copy) NSString *friendshowktime;
+@property (nonatomic, assign) long long friendshowktime;
 ///结束时间
 @property (nonatomic, copy) NSString *friendshowjtime;
 ///备注验证
@@ -42,7 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *tgusetAccount;
 ///头像
 @property (nonatomic, copy) NSString *tgusetImg;
-
+///名字
+@property (nonatomic, copy) NSString *tgusetName;
 //"friendshowid": 8,
 //"friendshowtgusetid": "201465",
 //"friendshowfuserid": "00006",

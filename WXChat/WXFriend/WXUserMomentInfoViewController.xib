@@ -81,16 +81,16 @@
                     <rect key="frame" x="0.0" y="171" width="414" height="95"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业圈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDD-ZC-s7Q">
-                            <rect key="frame" x="16" y="37.5" width="67" height="20.5"/>
+                            <rect key="frame" x="16" y="37.5" width="60" height="20.5"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="67" id="AZT-dF-moi"/>
+                                <constraint firstAttribute="width" constant="60" id="Xly-mb-X8X"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="yrN-IK-Cv2">
-                            <rect key="frame" x="118" y="23.5" width="252" height="48"/>
+                            <rect key="frame" x="104" y="23.5" width="252" height="48"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AWI-Rz-od5">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -124,7 +124,7 @@
                             </constraints>
                         </stackView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="多语言箭头" translatesAutoresizingMaskIntoConstraints="NO" id="KjK-qk-dO5">
-                            <rect key="frame" x="390" y="42" width="8" height="11"/>
+                            <rect key="frame" x="376" y="42" width="22" height="11"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                     </subviews>
@@ -137,7 +137,7 @@
                         <constraint firstAttribute="height" constant="95" id="Q6Y-2a-M2x"/>
                         <constraint firstAttribute="trailing" secondItem="KjK-qk-dO5" secondAttribute="trailing" constant="16" id="Wdb-6z-Q4d"/>
                         <constraint firstItem="KjK-qk-dO5" firstAttribute="leading" secondItem="yrN-IK-Cv2" secondAttribute="trailing" constant="20" id="bN5-zg-rmv"/>
-                        <constraint firstItem="yrN-IK-Cv2" firstAttribute="leading" secondItem="BDD-ZC-s7Q" secondAttribute="trailing" constant="35" id="yrB-oA-Zas"/>
+                        <constraint firstItem="yrN-IK-Cv2" firstAttribute="leading" secondItem="BDD-ZC-s7Q" secondAttribute="trailing" constant="28" id="yrB-oA-Zas"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XW4-yb-kcM">

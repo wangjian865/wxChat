@@ -15,6 +15,7 @@
 #import "WXInboxViewController.h"
 #import "WXMailLoginViewController.h"
 #import "WXChooseMailTypeTableViewController.h"
+#import "MailViewModel.h"
 @interface WXMailListViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  * list
@@ -57,8 +58,18 @@
     _count = 3;
     _openIndex = -1;
     [self.view addSubview:self.mailListView];
+    
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [self getHomePageData];
+}
+- (void)getHomePageData{
+    [MailViewModel getMailHomeDataWithSuccessBlock:^(MailInfoList * _Nonnull model) {
+        
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
+}
 #pragma mark -- UITableViewDelegate && DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     //底部多两个

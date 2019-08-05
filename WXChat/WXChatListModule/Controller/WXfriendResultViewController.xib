@@ -12,6 +12,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WXfriendResultViewController">
             <connections>
+                <outlet property="companyLable" destination="OBE-0u-JhE" id="1WP-gE-r7l"/>
+                <outlet property="iconView" destination="Cku-as-O7D" id="17Y-FL-w8D"/>
+                <outlet property="nameLabel" destination="Wdv-pf-mWe" id="Nrg-k0-IiP"/>
+                <outlet property="postionLabel" destination="bxS-bQ-Iy9" id="2eR-uQ-eoI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -89,6 +93,9 @@
                             <real key="value" value="2"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addFriendAction:" destination="-1" eventType="touchUpInside" id="HkI-mj-cKk"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

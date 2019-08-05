@@ -10,7 +10,7 @@
 #import "MMImageListView.h"
 #import "CompanyViewModel.h"
 #import "WXMyMomentTableViewCell.h"
-
+#import "WXSingleViewController.h"
 @interface WXPersonMomentViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) MMTableView * tableView;
 @property (nonatomic, strong) UIView * tableHeaderView;
@@ -18,18 +18,39 @@
 @property (nonatomic, strong) MMImageView * avatarImageView;
 
 @property (nonatomic, strong) FriendMomentInfoList *myModel;
+@property (nonatomic, assign) int page;
 @end
 
 @implementation WXPersonMomentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _page = 1;
     [self setupUI];
     [self getData];
 }
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setTranslucent:false];
+    UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    [self.navigationController.navigationBar setTranslucent:true];
+    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+}
 - (void)getData {
-    [CompanyViewModel getMomentsListWithUserid:self.userId page:@"1" successBlock:^(FriendMomentInfoList * _Nonnull model) {
-        self.myModel = model;
+    [CompanyViewModel getMomentsListWithUserid:self.userId page:[NSString stringWithFormat:@"%d",_page] successBlock:^(FriendMomentInfoList * _Nonnull model) {
+        if (self.myModel == nil){
+            self.myModel = model;
+        }else{
+            [self.myModel.data addObjectsFromArray:model.data];
+        }
+        self.page += 1;
+        [self.tableView.mj_footer endRefreshing];
         [self.tableView reloadData];
     } failBlock:^(NSError * _Nonnull error) {
         
@@ -64,8 +85,20 @@
     tableView.dataSource = self;
     tableView.delegate = self;
     tableView.tableHeaderView = self.tableHeaderView;
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:tableView];
     self.tableView = tableView;
+    // 上拉加载更多
+    MJRefreshBackNormalFooter * footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self getData];
+    }];
+    [footer.arrowView setImage:[UIImage imageNamed:@"refresh_pull"]];
+    [footer setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
+    [footer setTitle:@"松手加载更多" forState:MJRefreshStatePulling];
+    [footer setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
+    [footer setTitle:@"已加载全部" forState:MJRefreshStateNoMoreData];
+    footer.stateLabel.font = [UIFont systemFontOfSize:14];
+    self.tableView.mj_footer = footer;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -80,10 +113,41 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RelationViewController" bundle:nil];
-    WXMomentDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"momentDetailVC"];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RelationViewController" bundle:nil];
+//    WXMomentDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"momentDetailVC"];
     FriendMomentInfo *model = _myModel.data[indexPath.row];
-    detailVC.model = model;
-    [self.navigationController pushViewController:detailVC animated:true];
+//    detailVC.model = model;
+//    [self.navigationController pushViewController:detailVC animated:true];
+    WXSingleViewController *singleVC = [[WXSingleViewController alloc] init];
+    singleVC.model = model;
+    
+    [self.navigationController pushViewController:singleVC animated:true];
+}
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [kNotificationCenter postNotificationName:@"ResetMenuView" object:nil];
+    NSLog(@"%f",self.tableView.contentOffset.y);
+    CGFloat offsetY = self.tableView.contentOffset.y;
+    if (offsetY < 80){
+        //透明
+        [self.navigationController.navigationBar setTranslucent:true];
+        UIImage *image = [UIImage getImageWithColor:UIColor.clearColor];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
+    }else if (offsetY > 120){
+        //完全显示
+        [self.navigationController.navigationBar setTranslucent:true];
+        UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }else{
+        //        暂定变换区间未80-120
+        [self.navigationController.navigationBar setTranslucent:true];
+        CGFloat scale = (offsetY - 80)/40;
+        UIImage *image = [UIImage getImageWithColor:RGB(48,134,191,scale)];
+        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    }
 }
 @end

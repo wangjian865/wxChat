@@ -10,6 +10,8 @@ import UIKit
 
 class WXSexyChooseViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var selectIndex = 0
+    
+    var changeSexCallBack: ((_ index:Int)->Void)?
     lazy var tableV: UITableView = {
         let tableView = UITableView.init(frame: CGRect.zero, style: .plain)
         tableView.delegate = self
@@ -26,6 +28,7 @@ class WXSexyChooseViewController: UIViewController,UITableViewDelegate,UITableVi
         tableV.snp.makeConstraints { (make) in
             make.left.top.right.bottom.equalTo(0)
         }
+        tableV.selectRow(at: IndexPath.init(row: selectIndex, section: 0), animated: true, scrollPosition: .none)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
@@ -38,7 +41,11 @@ class WXSexyChooseViewController: UIViewController,UITableViewDelegate,UITableVi
         }else{
             cell.nameLabel.text = "女"
         }
-        cell.isSelected = selectIndex == indexPath.row
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectIndex = indexPath.row
+        changeSexCallBack?(self.selectIndex)
+        
     }
 }

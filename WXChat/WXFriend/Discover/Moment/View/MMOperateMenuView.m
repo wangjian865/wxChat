@@ -64,8 +64,8 @@
     self.menuView = view;
     // 菜单操作按钮
     UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(kOperateWidth-kOperateBtnWidth, 0, kOperateBtnWidth, kOperateHeight)];
-    [button setImage:[UIImage imageNamed:@"moment_operate"] forState:UIControlStateNormal];
-    [button setImage:[UIImage imageNamed:@"moment_operate_hl"] forState:UIControlStateHighlighted];
+    [button setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"moreIcon"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(menuClick) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     self.menuBtn = button;

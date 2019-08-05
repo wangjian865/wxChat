@@ -1,12 +1,12 @@
 //
-//  MomentViewController.m
+//  WXSingleViewController.m
 //  MomentKit
 //
 //  Created by LEA on 2017/12/12.
 //  Copyright © 2017年 LEA. All rights reserved.
 //
 
-#import "MomentViewController.h"
+#import "WXSingleViewController.h"
 #import "WKWebViewController.h"
 #import "MMLocationViewController.h"
 #import "EaseUsersListViewController.h"
@@ -20,16 +20,11 @@
 #import "MomentComent.h"
 #import "UserCompanies.h"
 #import "WXUserMomentInfoViewController.h"
-
-@interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+#import "Enterprise.h"
+@interface WXSingleViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
 @property (nonatomic, strong) MMTableView * tableView; // 表格
-@property (nonatomic, strong) UIView * tableHeaderView; // 表头
-@property (nonatomic, strong) MMImageView * coverImageView; // 封面
-@property (nonatomic, strong) MMImageView * avatarImageView; // 当前用户头像
-@property (nonatomic, strong) UILabel *nameLabel;//用户名
-@property (nonatomic, strong) UILabel *companyLabel;//公司
 @property (nonatomic, strong) MMCommentInputView * commentInputView; // 评论输入框
 @property (nonatomic, strong) MomentCell * operateCell; // 当前操作朋友圈动态
 @property (nonatomic, strong) Comment * operateComment; // 当前操作评论
@@ -39,7 +34,7 @@
 
 //wdx's
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
-@property (nonatomic, strong) CompanyMoment *totalModel;
+@property (nonatomic, strong) Enterprise *myModel;
 @property (nonatomic, strong) MomentComent *operateWXComment; // 当前操作评论
 ///"我"
 @property (nonatomic, strong) UserCompanies *mine;
@@ -47,7 +42,7 @@
 @property (nonatomic, assign) int page;
 @end
 
-@implementation MomentViewController
+@implementation WXSingleViewController
 - (UIImagePickerController *)imagePicker{
     if (_imagePicker == nil){
         _imagePicker = [[UIImagePickerController alloc] init];
@@ -61,171 +56,52 @@
 {
     [super viewDidLoad];
     self.title = @"企业圈";
+    _mine = [[UserCompanies alloc] init];
+    _mine.tgusetName = [WXAccountTool getUserName];
+    _mine.tgusetId = [WXAccountTool getUserID];
+    _mine.tgusetImg = [WXAccountTool getUserImage];
     self.view.backgroundColor = [UIColor whiteColor];
-//    [self configData];
+    //    [self configData];
     [self configUI];
-    //自定义导航栏
-    [self setNaviBarStyle];
-    
+    [self getMoments];
 }
-
 - (void)getMoments {
-    [CompanyViewModel getMomentsWithPage:_page successBlock:^(CompanyMoment * _Nonnull model) {
-        
-        if (self.page == 1){
-            self.totalModel = model;
-        }else{
-            NSMutableArray *temp = [NSMutableArray arrayWithArray:self.totalModel.enterprise];
-            [temp addObjectsFromArray:model.enterprise];
-            self.totalModel.enterprise = temp.copy;
-        }
-        self.mine = model.userQ;
-        [self setUIData];
-        self.page += 1;
-        [self.tableView.mj_footer endRefreshing];
+    [CompanyViewModel getMomentsDetailWithPriseid:_model.enterprisezid successBlock:^(Enterprise * _Nonnull model) {
+        self.myModel = model;
+        [self.tableView reloadData];
     } failBlock:^(NSError * _Nonnull error) {
-        [self.tableView.mj_footer endRefreshing];
+        
     }];
 }
 //获取到数据后对UI进行填充
 - (void)setUIData {
-    [_coverImageView sd_setImageWithURL:[NSURL URLWithString:self.totalModel.image]];
-    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:self.totalModel.userQ.tgusetImg]];
-    _nameLabel.text = self.totalModel.userQ.tgusetName;
-    _companyLabel.text = self.totalModel.userQ.tgusetCompany;
     [_tableView reloadData];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setTranslucent:false];
-    UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
-    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
-    [self.navigationController.navigationBar setTranslucent:true];
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    _page = 1;
-    //初始化数据
-    [self getMoments];
 }
-#pragma mark - 设置导航栏样式
-- (void)setNaviBarStyle{
-//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    UIBarButtonItem *first = [[UIBarButtonItem alloc] initWithTitle:@"拍照" style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
-    UIBarButtonItem *second = [[UIBarButtonItem alloc] initWithTitle:@"消息列表" style:UIBarButtonItemStylePlain target:self action:@selector(newComment)];
-    self.navigationItem.rightBarButtonItems = @[second,first];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"moment_camera"] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
-    
-}
-#pragma mark - 模拟数据
-- (void)configData
-{
-    self.loginUser = [MUser findFirstByCriteria:@"WHERE type = 1"];
-    self.momentList = [[NSMutableArray alloc] init];
-    [MomentUtil initMomentData];
-    [self.momentList addObjectsFromArray:[MomentUtil getMomentList:0 pageNum:10]];
-}
-
 #pragma mark - UI
 - (void)configUI
 {
-    // 封面
-    MMImageView * imageView = [[MMImageView alloc] initWithFrame:CGRectMake(0, -k_top_height, k_screen_width, 270)];
-    imageView.image = [UIImage imageNamed:@"moment_cover"];
-    imageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *coverTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeHeaderCover)];
-    [imageView addGestureRecognizer:coverTap];
-    self.coverImageView = imageView;
-    // 用户头像
-    imageView = [[MMImageView alloc] initWithFrame:CGRectMake(k_screen_width-85, self.coverImageView.bottom-40, 75, 75)];
-    imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
-    imageView.layer.borderWidth = 2;
-    imageView.image = [UIImage imageNamed:@"moment_head"];
-    self.avatarImageView = imageView;
-    //用户名
-    UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"z奥特曼";
-    nameLabel.textColor = rgb(255, 255, 255);
-    nameLabel.font = [UIFont systemFontOfSize:18];
-    nameLabel.width = 200;
-    nameLabel.height = 17;
-    nameLabel.right = imageView.left - 14;
-    nameLabel.bottom = self.coverImageView.bottom - 5;
-    nameLabel.textAlignment = NSTextAlignmentRight;
-    self.nameLabel = nameLabel;
-    //公司
-    UILabel *companyLabel = [[UILabel alloc] init];
-    companyLabel.text = @"这是某某某o";
-    companyLabel.textColor = rgb(153, 153, 153);
-    companyLabel.width = 250;
-    companyLabel.right = imageView.left - 15;
-    companyLabel.font = [UIFont systemFontOfSize:14];
-    companyLabel.top = self.coverImageView.bottom + 4;
-    companyLabel.height = 14;
-    companyLabel.textAlignment = NSTextAlignmentRight;
-    self.companyLabel = companyLabel;
-    
-    //用户公司
-    // 表头
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, 240)];
-    view.userInteractionEnabled = YES;
-    [view addSubview:self.coverImageView];
-    [view addSubview:self.avatarImageView];
-    [view addSubview:self.nameLabel];
-    [view addSubview:self.companyLabel];
-    self.tableHeaderView = view;
     // 表格
     MMTableView * tableView = [[MMTableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height-k_top_height)];
     tableView.showsVerticalScrollIndicator = false;
     tableView.separatorInset = UIEdgeInsetsZero;
     tableView.dataSource = self;
     tableView.delegate = self;
-    tableView.tableHeaderView = self.tableHeaderView;
-    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:tableView];
     self.tableView = tableView;
-    // 上拉加载更多
-    MJRefreshBackNormalFooter * footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [self getMoments];
-        
-    }];
-    [footer.arrowView setImage:[UIImage imageNamed:@"refresh_pull"]];
-    [footer setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
-    [footer setTitle:@"松手加载更多" forState:MJRefreshStatePulling];
-    [footer setTitle:@"正在加载" forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"已加载全部" forState:MJRefreshStateNoMoreData];
-    footer.stateLabel.font = [UIFont systemFontOfSize:14];
-    self.tableView.mj_footer = footer;
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 - (void)viewDidLayoutSubviews{
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
     }];
 }
-#pragma mark - 更换头部图片
-- (void)changeHeaderCover
-{
-    UUActionSheet *sheet = [[UUActionSheet alloc] initWithTitle:@"更换相册封面" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择",@"拍一张",nil];
-    sheet.tag = 1002;
-    [sheet showInView:self.view.window];
-}
-#pragma mark - 发布动态
-- (void)addMoment
-{
-    NSLog(@"新增");
-    WXNewMomentViewController *newInfoVC = [[WXNewMomentViewController alloc] init];
-    [self.navigationController pushViewController:newInfoVC animated:true];
-}
-#pragma mark - 新的消息
-- (void)newComment{
-    NSLog(@"新的消息");
-    WXNewMomentMessageViewController *vc = [[WXNewMomentMessageViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:true];
-}
+
 #pragma mark - 评论相关
 - (void)addComment:(NSString *)commentText
 {
@@ -467,9 +343,9 @@
             controller.userId = link.linkValue;
             [self.navigationController pushViewController:controller animated:YES];
             
-//            MMUserDetailViewController * controller = [[MMUserDetailViewController alloc] init];
-//            controller.user = user;
-//            [self.navigationController pushViewController:controller animated:YES];
+            //            MMUserDetailViewController * controller = [[MMUserDetailViewController alloc] init];
+            //            controller.user = user;
+            //            [self.navigationController pushViewController:controller animated:YES];
             break;
         }
         default:
@@ -520,17 +396,6 @@
         } else { // 取消
             
         }
-    } else if (actionSheet.tag == 1002){
-        //更换相册封面
-        if (buttonIndex == 0){
-            //从相册选择
-            [self openAlbun];
-        }else if(buttonIndex == 1){
-            //
-            [self openCamera];
-        }else{
-            NSLog(@"取消");
-        }
     }
 }
 
@@ -542,26 +407,23 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return [self.momentList count];
-    if (self.totalModel != nil){
-        return _totalModel.enterprise.count;
-    }
-    return 0;
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * identifier = @"MomentCell";
+    static NSString * identifier = @"MomentCell1";
     MomentCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[MomentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor whiteColor];
     }
-    Enterprise *model = _totalModel.enterprise[indexPath.row];
+    cell.separatorInset = UIEdgeInsetsMake(0, 500, 0, 0);
     cell.tag = indexPath.row;
-    cell.model = model;
-//    cell.moment = [self.momentList objectAtIndex:indexPath.row];
+    cell.model = _myModel;
+    //    cell.moment = [self.momentList objectAtIndex:indexPath.row];
     cell.delegate = self;
     return cell;
 }
@@ -570,46 +432,20 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 使用缓存行高，避免计算多次
-//    Moment * moment = [self.momentList objectAtIndex:indexPath.row];
-    Enterprise *model = _totalModel.enterprise[indexPath.row];
+    //    Moment * moment = [self.momentList objectAtIndex:indexPath.row];
+    Enterprise *model = _myModel;
     
     return model.rowHeight;
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [kNotificationCenter postNotificationName:@"ResetMenuView" object:nil];
-    NSLog(@"%f",self.tableView.contentOffset.y);
-    CGFloat offsetY = self.tableView.contentOffset.y;
-    if (offsetY < 80){
-        //透明
-        [self.navigationController.navigationBar setTranslucent:true];
-        UIImage *image = [UIImage getImageWithColor:UIColor.clearColor];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
-    }else if (offsetY > 120){
-        //完全显示
-        [self.navigationController.navigationBar setTranslucent:true];
-        UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    }else{
-//        暂定变换区间未80-120
-        [self.navigationController.navigationBar setTranslucent:true];
-        CGFloat scale = (offsetY - 80)/40;
-        UIImage *image = [UIImage getImageWithColor:RGB(48,134,191,scale)];
-        [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    }
-}
+
 
 #pragma mark - lazy load
 - (MMCommentInputView *)commentInputView
 {
     if (!_commentInputView) {
         _commentInputView = [[MMCommentInputView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-      
+        
         WS(wSelf);
         [_commentInputView setMMCompleteInputTextBlock:^(NSString *commentText) { // 完成文本输入
             [wSelf addComment:commentText];
@@ -622,39 +458,6 @@
     return _commentInputView;
 }
 
-#pragma mark -
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-#pragma mark - 相机相册
-- (void)openCamera {
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:_imagePicker animated:YES completion:nil];
-    }else{
-        [MBProgressHUD showError:@"暂无相机权限"];
-    }
-}
-- (void)openAlbun {
-    
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self presentViewController:_imagePicker animated:YES completion:nil];
-    }else{
-        [MBProgressHUD showError:@"暂无相册权限"];
-    }
-}
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
-    [_imagePicker dismissViewControllerAnimated:true completion:nil];
-    UIImage *image = (UIImage *)info[UIImagePickerControllerEditedImage];
-    //更换背景图
-    [CompanyViewModel changeBackgroundImage:image imageName:@"image" successBlock:^(NSString * _Nonnull successMsg) {
-        [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:successMsg]];
-    } failBlock:^(NSError * _Nonnull error) {
-        
-    }];
-    NSLog(@"拿到了编辑后的图片");
-}
+
+
 @end

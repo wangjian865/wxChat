@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (ColorImage)
 + (UIImage *)getImageWithColor: (UIColor *)color;
++ (UIImage *) combine:(NSArray<UIImage *> *)images;
++ (UIImage *)WX_imageWithUrlString:(NSString *)imageUrl;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *searchTF;
 
+@property (strong, nonatomic) NSArray <WXMessageAlertModel *> *models;
 @end
 
 @implementation WXNewAddFriendViewController
@@ -25,8 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _tableView.rowHeight = 104;
+    _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [_tableView registerNib:[UINib nibWithNibName:@"WXNewAddTableViewCell" bundle:nil] forCellReuseIdentifier:@"newCell"];
     _searchTF.delegate = self;
+    [self getAddList];
+}
+- (void)getAddList {
+    [MineViewModel getAddFriendListWithSuccess:^(NSArray<WXMessageAlertModel *> * friends) {
+        self.models = friends;
+        [self.tableView reloadData];
+    } failure:^(NSError * error) {
+        
+    }];
 }
 - (IBAction)addContackFriendsAction:(UIButton *)sender {
     WXContackListViewController *listVC = [[WXContackListViewController alloc] init];
@@ -34,10 +45,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    if (self.models != nil){
+        return self.models.count;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    WXMessageAlertModel *model = _models[indexPath.row];
     WXNewAddTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"newCell" forIndexPath:indexPath];
+//    cell.handleCallBack() = {
+//
+//    }()
+    cell.model = model;
     return cell;
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -50,15 +69,30 @@
     }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if (textField.text.length <= 0){
+        [MBProgressHUD showError:@"请输入手机号"];
+        [textField endEditing:true];
+        return NO;
+    }
+    NSString *account = textField.text;
     //先获取搜索结果后跳转
+    [MineViewModel getUserInfo:account success:^(UserInfoModel * model) {
+        NSLog(@"1");
+        WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+        resultVC.model = model;
+        [self.navigationController pushViewController:resultVC animated:true];
+    } failure:^(NSError * error) {
+        
+    }];
     
-    WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
-    [self.navigationController pushViewController:resultVC animated:true];
     
     return YES;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
-    [self.navigationController pushViewController:resultVC animated:true];
-}
+//不跳转
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+//    WXMessageAlertModel *model = _models[indexPath.row];
+//
+//    [self.navigationController pushViewController:resultVC animated:true];
+//}
 @end

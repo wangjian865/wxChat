@@ -18,7 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
                     accountType:(NSString *)type
                    successBlock:(void(^) (NSString *data))success
                       failBlock:(void(^) (NSError *error))failure;
-
+///获取邮箱首页信息
++(void)getMailHomeDataWithSuccessBlock:(void(^) (MailInfoList *model))success
+                             failBlock:(void(^) (NSError *error))failure;
 ///邮件查询
 +(void)getMailInfoWithMailAccount:(NSString *)account
                            pushId: (NSString *)pushId

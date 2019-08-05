@@ -29,3 +29,6 @@
 #import "CompanyViewModel.h"
 #import "MMImageListView.h"
 #import "Utility.h"
+#import "UIImage+ColorImage.h"
+#import "UIImage+Addtions.h"
+#import "WXMessageAlertModel.h"

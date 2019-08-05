@@ -9,5 +9,7 @@
 #import "GroupModel.h"
 
 @implementation GroupModel
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"tgusets":[FriendModel class]};
+}
 @end

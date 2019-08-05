@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @interface FriendMomentInfoList : NSObject
-@property (nonatomic, strong)NSArray<FriendMomentInfo *> *data;
+@property (nonatomic, strong)NSMutableArray<FriendMomentInfo *> *data;
 @end
 
 NS_ASSUME_NONNULL_END

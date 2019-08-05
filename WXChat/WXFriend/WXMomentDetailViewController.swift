@@ -12,12 +12,15 @@ class WXMomentDetailViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var collectionHeight: NSLayoutConstraint!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var tableView: UITableView!
+    
+    
+    @IBOutlet weak var bottomHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var companyLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
     
     var imageArr: [String]?
     @objc var model: FriendMomentInfo?
@@ -25,10 +28,7 @@ class WXMomentDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UINib.init(nibName: "WXFriendMomentImageCell", bundle: nil), forCellWithReuseIdentifier: "collCell")
-        tableView.register(UINib.init(nibName: "WXSexyCell", bundle: nil), forCellReuseIdentifier: "tableCell")
-        tableView.rowHeight = 40
         collectionHeight.constant = 111
-        tableViewHeight.constant = 120
         getMomentDetailInfo()
     }
     func getMomentDetailInfo() {
@@ -37,6 +37,7 @@ class WXMomentDetailViewController: UIViewController {
             self.iconView.sd_setImage(with: URL.init(string: detailModel.tgusetImg))
             self.nameLabel.text = detailModel.tgusetName
             self.companyLabel.text = detailModel.tgusetCompany
+            self.contentLabel.text = detailModel.enterprisezContent
             self.timeLabel.text = Utility.getMomentTime(detailModel.enterprisezTime)
             let array = detailModel.enterprisezfujina.components(separatedBy: ",")
             self.imageArr = array

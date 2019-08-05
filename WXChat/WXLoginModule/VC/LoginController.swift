@@ -106,6 +106,7 @@ class LoginController: UIViewController {
                 let model = UserInfoModel.yy_model(with: result.data)
                 UserDefaults.standard.set(model?.tgusetid, forKey: "userID")
                 UserDefaults.standard.set(model?.tgusetname, forKey: "userName")
+                UserDefaults.standard.set(model?.tgusetimg, forKey: "userImage")
                 WXCacheTool.wx_saveModel(model as Any, key: "userInfo")
             }
         }) { (error) in

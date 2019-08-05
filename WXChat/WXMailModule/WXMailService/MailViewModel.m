@@ -32,7 +32,24 @@
         failure(error);
     }];
 }
-
+///获取邮件首页信息
++(void)getMailHomeDataWithSuccessBlock:(void(^) (MailInfoList *model))success
+                             failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"emailS/mailHomePage"];
+    NSDictionary *params = @{};
+    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
+        if ([code isEqualToString:@"200"]){
+            //成功
+            
+            NSLog(@"1");
+        }else{
+            [MBProgressHUD showError: responseBody[@"msg"]];
+        }
+    } failureBlock:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 ///邮件查询
 +(void)getMailInfoWithMailAccount:(NSString *)account
                            pushId: (NSString *)pushId

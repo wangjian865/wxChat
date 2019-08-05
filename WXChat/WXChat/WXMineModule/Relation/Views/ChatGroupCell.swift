@@ -17,9 +17,14 @@ class ChatGroupCell: UITableViewCell {
     var groupModel: GroupModel?{
         didSet {
 //            iconImage.sd_setImage(with: URL.init(string:groupModel. ))
+//            var urlArr: [String] = []
+//            for friend in groupModel!.tgusets{
+//                urlArr.append(friend.tgusetimg)
+//            }
+//            iconImage.image = UIImage.groupIcon(withURLArray: urlArr, bgColor: UIColor.white)
             nameLabel.text = groupModel?.seanceshowname
-            messageLabel.text = "聊天聊天"
-            timeLabel.text = "时间"
+//            messageLabel.text = "聊天聊天"
+//            timeLabel.text = "时间"
         }
     }
     override func awakeFromNib() {

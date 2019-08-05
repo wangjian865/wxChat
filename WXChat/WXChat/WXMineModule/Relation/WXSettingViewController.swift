@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WXSettingViewController: UIViewController {
+class WXSettingViewController: UIViewController, UITextFieldDelegate {
 
     var textField = UITextField.init()
     
@@ -20,6 +20,7 @@ class WXSettingViewController: UIViewController {
         let leftView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 10, height: 10))
         textField.leftView = leftView
         textField.leftViewMode = .always
+        textField.delegate = self
         
         view.addSubview(textField)
         textField.snp.makeConstraints { (make) in
@@ -43,5 +44,9 @@ class WXSettingViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         callBackClosure?(textField.text ?? "")
         super.viewWillDisappear(animated)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
     }
 }

@@ -109,6 +109,15 @@
     if (_isGroup){
         [MineViewModel createChatGroupWithUserIds:self.selectedModelArray success:^(UserMomentInfoModel * model) {
             NSLog(@"1");
+            //成功了
+            EMGroup *group = [EMGroup groupWithId:@""];
+            WS(wSelf);
+            [self dismissViewControllerAnimated:YES completion:^{
+                __strong typeof(wSelf) sSelf = wSelf;
+                if (sSelf.doneCompletion){
+                    sSelf.doneCompletion(group);
+                }
+            }];
         } failure:^(NSError * error) {
             
         }];

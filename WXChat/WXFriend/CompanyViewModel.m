@@ -33,7 +33,7 @@
 //更换企业圈背景图
 +(void)changeBackgroundImage: (UIImage *)image imageName: (NSString *)imageName successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"mEnter/background"];
-    NSDictionary *params = @{@"enterpriseIdTguset":WXAccountTool.getUserID};
+    NSDictionary *params = @{@"enterpriseidtguset":WXAccountTool.getUserID};
     [WXNetWorkTool uploadFileWithUrl:urlStr imageName:@[imageName] image:@[image] parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
         NSLog(@"%@",downloadProgress);
     } successBlock:^(id  _Nonnull responseBody) {
@@ -263,6 +263,7 @@
     [WXNetWorkTool uploadFileWithUrl:urlStr imageName:fileNames image:files parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
         NSLog(@"%@",downloadProgress);
     } successBlock:^(id  _Nonnull responseBody) {
+        success(@"成功");
         //成功
     } failureBlock:^(NSError * _Nonnull error) {
         //失败

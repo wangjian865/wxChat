@@ -45,7 +45,7 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
             if let data = dataArray{
                let model = data[indexPath.item]
                cell.nameLabel.text = model.tgusetName
-               cell.iconView.sd_setImage(with: URL.init(string: model.tgusetimg), placeholderImage: UIImage.init(named: "normal_icon"))
+                cell.iconView.sd_setImage(with: URL.init(string: model.tgusetImg), placeholderImage: UIImage.init(named: "normal_icon"))
                 cell.deleteIcon.isHidden = !isEdit
             }
             

@@ -9,6 +9,10 @@
 #import "WXfriendResultViewController.h"
 
 @interface WXfriendResultViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *postionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLable;
 
 @end
 
@@ -16,7 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [_iconView sd_setImageWithURL:[NSURL URLWithString:_model.tgusetimg]];
+    _nameLabel.text = _model.tgusetname;
+    _postionLabel.text = _model.tgusetposition;
+    _companyLable.text = _model.tgusetcompany;
+}
+- (IBAction)addFriendAction:(UIButton *)sender {
+    [MineViewModel addFriendWithFriendID:_model.tgusetid context:@""];
 }
 
 /*

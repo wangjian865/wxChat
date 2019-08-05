@@ -38,6 +38,8 @@
 - (void)setupUI{
     _avatarView = [[UIImageView alloc] init];
     _avatarView.image = [UIImage imageNamed:@"normal_icon"];
+    _avatarView.layer.cornerRadius = 47/2;
+    _avatarView.layer.masksToBounds = true;
     [self.contentView addSubview:_avatarView];
     
     _nameLabel = [[UILabel alloc] init];
@@ -83,7 +85,7 @@
 }
 - (void)setModel: (WXMessageAlertModel *)model{
     [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg]];
-    _nameLabel.text = model.friendshowtgusetname;
+    _nameLabel.text = model.tgusetName;
     _descriptionLabel.text = model.friendshowcontext;
     if ([model.friendshowifconsend isEqualToString:@"0"]){
         //申请中

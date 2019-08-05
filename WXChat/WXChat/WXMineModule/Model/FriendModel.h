@@ -49,6 +49,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *friendaddtime;
 @property (nonatomic, copy)NSString *friendrecord;
 
+///好友申请列表字段
+//@property (nonatomic, assign)long long friendshowktime;
+/////申请附带的文字
+//@property (nonatomic, copy)NSString *friendshowcontext;
+/////好友id
+//@property (nonatomic, copy)NSString *friendshowfuserid;
+/////用户是否同意
 @end
 
 NS_ASSUME_NONNULL_END

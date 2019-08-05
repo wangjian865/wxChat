@@ -55,6 +55,7 @@ class RelationViewController: UIViewController {
     @objc func gotoEditPersonInfoVC(){
         let sb = UIStoryboard.init(name: "RelationViewController", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "personInfoVC") as! WXEditPersonInfoViewController
+        vc.title = "个人信息";
         vc.userInfoModel = headerModel
         navigationController?.pushViewController(vc, animated: true)
     }

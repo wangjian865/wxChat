@@ -303,6 +303,9 @@
 		F449EC5122E1CA3D00612EC0 /* WXCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F449EC5022E1CA3D00612EC0 /* WXCacheTool.m */; };
 		F449EC5422E40A6400612EC0 /* CompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F449EC5322E40A6400612EC0 /* CompanyModel.m */; };
 		F449EC6122E5B25300612EC0 /* CompanyUsersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F449EC6022E5B25200612EC0 /* CompanyUsersModel.m */; };
+		F459CB5922F8667D00EABDB0 /* WXSingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F459CB5822F8667D00EABDB0 /* WXSingleViewController.m */; };
+		F459CB5D22F87B5800EABDB0 /* WXWriteEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F459CB5B22F87B5800EABDB0 /* WXWriteEmailViewController.m */; };
+		F459CB5E22F87B5800EABDB0 /* WXWriteEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F459CB5C22F87B5800EABDB0 /* WXWriteEmailViewController.xib */; };
 		F45BB50122F3245100F62019 /* GroupListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F45BB50022F3245100F62019 /* GroupListModel.m */; };
 		F45BB50422F325C600F62019 /* GroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F45BB50322F325C600F62019 /* GroupModel.m */; };
 		F4653EC222DAE2BC00A77D49 /* WXUserMomentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4653EC022DAE2BC00A77D49 /* WXUserMomentInfoViewController.m */; };
@@ -354,6 +357,7 @@
 		F4D2E16422F6F7D700CFDBAE /* WDXUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D2E16322F6F7D700CFDBAE /* WDXUserListViewController.m */; };
 		F4D2E16722F72F2600CFDBAE /* WXFriendMomentImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D2E16522F72F2500CFDBAE /* WXFriendMomentImageCell.swift */; };
 		F4D2E16822F72F2600CFDBAE /* WXFriendMomentImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D2E16622F72F2500CFDBAE /* WXFriendMomentImageCell.xib */; };
+		F4D2E16B22F7D9BE00CFDBAE /* UIImage+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D2E16A22F7D9BD00CFDBAE /* UIImage+Addtions.m */; };
 		F4FFBEF022DCBF43003FC0F3 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FFBEEF22DCBF43003FC0F3 /* UserInfoModel.m */; };
 		F4FFBEF322DDE0FD003FC0F3 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FFBEF222DDE0FD003FC0F3 /* FriendModel.m */; };
 		F4FFBF1722DE18E9003FC0F3 /* WXMomentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FFBF1622DE18E9003FC0F3 /* WXMomentDetailViewController.swift */; };
@@ -824,6 +828,11 @@
 		F449EC5322E40A6400612EC0 /* CompanyModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyModel.m; sourceTree = "<group>"; };
 		F449EC5F22E5B25200612EC0 /* CompanyUsersModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyUsersModel.h; sourceTree = "<group>"; };
 		F449EC6022E5B25200612EC0 /* CompanyUsersModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompanyUsersModel.m; sourceTree = "<group>"; };
+		F459CB5722F8667D00EABDB0 /* WXSingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSingleViewController.h; sourceTree = "<group>"; };
+		F459CB5822F8667D00EABDB0 /* WXSingleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSingleViewController.m; sourceTree = "<group>"; };
+		F459CB5A22F87B5800EABDB0 /* WXWriteEmailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXWriteEmailViewController.h; sourceTree = "<group>"; };
+		F459CB5B22F87B5800EABDB0 /* WXWriteEmailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXWriteEmailViewController.m; sourceTree = "<group>"; };
+		F459CB5C22F87B5800EABDB0 /* WXWriteEmailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXWriteEmailViewController.xib; sourceTree = "<group>"; };
 		F45BB4FF22F3245100F62019 /* GroupListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupListModel.h; sourceTree = "<group>"; };
 		F45BB50022F3245100F62019 /* GroupListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupListModel.m; sourceTree = "<group>"; };
 		F45BB50222F325C600F62019 /* GroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupModel.h; sourceTree = "<group>"; };
@@ -890,6 +899,8 @@
 		F4D2E16322F6F7D700CFDBAE /* WDXUserListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDXUserListViewController.m; sourceTree = "<group>"; };
 		F4D2E16522F72F2500CFDBAE /* WXFriendMomentImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXFriendMomentImageCell.swift; sourceTree = "<group>"; };
 		F4D2E16622F72F2500CFDBAE /* WXFriendMomentImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXFriendMomentImageCell.xib; sourceTree = "<group>"; };
+		F4D2E16922F7D9BC00CFDBAE /* UIImage+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Addtions.h"; sourceTree = "<group>"; };
+		F4D2E16A22F7D9BD00CFDBAE /* UIImage+Addtions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Addtions.m"; sourceTree = "<group>"; };
 		F4FFBEEE22DCBF43003FC0F3 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		F4FFBEEF22DCBF43003FC0F3 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		F4FFBEF122DDE0FD003FC0F3 /* FriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
@@ -1010,6 +1021,8 @@
 				F486AE1C22D8DCC70030D9F0 /* WXNewMomentViewController.m */,
 				F4653ED822DC0AEC00A77D49 /* WXPersonMomentViewController.h */,
 				F4653ED922DC0AEC00A77D49 /* WXPersonMomentViewController.m */,
+				F459CB5722F8667D00EABDB0 /* WXSingleViewController.h */,
+				F459CB5822F8667D00EABDB0 /* WXSingleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1454,6 +1467,8 @@
 				2A28B18A2280311500B224F4 /* UIView+Geometry.m */,
 				2ADDBA2B22A518F50006C42A /* UIImage+ColorImage.h */,
 				2ADDBA2C22A518F50006C42A /* UIImage+ColorImage.m */,
+				F4D2E16922F7D9BC00CFDBAE /* UIImage+Addtions.h */,
+				F4D2E16A22F7D9BD00CFDBAE /* UIImage+Addtions.m */,
 				2A28B1892280311500B224F4 /* Utility.h */,
 				2A28B18D2280311500B224F4 /* Utility.m */,
 				2A8E784A22AF8DAC0020BC57 /* MBProgressHUD+NJ.h */,
@@ -1770,6 +1785,9 @@
 				F40185DE22D965460047B1B0 /* WXChooseMailTypeTableViewController.m */,
 				F42BC65A22E89732004EFA02 /* ViewMailConfigController.h */,
 				F42BC65B22E89732004EFA02 /* ViewMailConfigController.m */,
+				F459CB5A22F87B5800EABDB0 /* WXWriteEmailViewController.h */,
+				F459CB5B22F87B5800EABDB0 /* WXWriteEmailViewController.m */,
+				F459CB5C22F87B5800EABDB0 /* WXWriteEmailViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2293,6 +2311,7 @@
 				2A8E7E9922B092A80020BC57 /* animate_00045.png in Resources */,
 				2A8E7EA422B092A80020BC57 /* animate_00081.png in Resources */,
 				2A8E7EC022B092A80020BC57 /* animate_00060.png in Resources */,
+				F459CB5E22F87B5800EABDB0 /* WXWriteEmailViewController.xib in Resources */,
 				2A8E7EDB22B092A80020BC57 /* grid_white@2x.png in Resources */,
 				2A8E7E8322B092A80020BC57 /* bg_micro@3x.png in Resources */,
 				2A8E7ED122B092A80020BC57 /* role_gray@2x.png in Resources */,
@@ -2487,6 +2506,7 @@
 				2A8E7E7322B092A80020BC57 /* Call1v1AudioViewController.m in Sources */,
 				CE03C30722C2096700730371 /* WXMineViewController.m in Sources */,
 				2A28B1922280311500B224F4 /* Utility.m in Sources */,
+				F4D2E16B22F7D9BE00CFDBAE /* UIImage+Addtions.m in Sources */,
 				2A28B197228034C600B224F4 /* MMTableView.m in Sources */,
 				F42BC6B522EB3DA2004EFA02 /* LikeListModel.m in Sources */,
 				2A8E7E7C22B092A80020BC57 /* Live2ViewController.m in Sources */,
@@ -2575,9 +2595,11 @@
 				F4224B0222D9ED25003DA311 /* WXSettingTableViewController.swift in Sources */,
 				2AF0B92D22B741B300854BFE /* WXDiscoverViewCell.m in Sources */,
 				F42BC6A722E9EEBC004EFA02 /* CompanyMoment.m in Sources */,
+				F459CB5922F8667D00EABDB0 /* WXSingleViewController.m in Sources */,
 				CE03C2DC22C0D8A100730371 /* UIView+extension.swift in Sources */,
 				2A8E7EFF22B092A80020BC57 /* EMStreamView.m in Sources */,
 				2A28B17922802B1100B224F4 /* MMCommentInputView.m in Sources */,
+				F459CB5D22F87B5800EABDB0 /* WXWriteEmailViewController.m in Sources */,
 				F486ADFA22D48C0E0030D9F0 /* WXMyQRCodeViewController.swift in Sources */,
 				F42BC6A922E9EEBC004EFA02 /* UserCompanies.m in Sources */,
 				2A28B17322802B1100B224F4 /* Moment.m in Sources */,

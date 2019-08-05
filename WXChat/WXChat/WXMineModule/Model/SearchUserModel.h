@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SearchUserModel : NSObject
 
-@property (nonatomic, copy)NSString *tgusetimg;
+@property (nonatomic, copy)NSString *tgusetImg;
 @property (nonatomic, copy)NSString *tgusetAccount;
 @property (nonatomic, copy)NSString *tgusetId;
 @property (nonatomic, copy)NSString *tgusetName;

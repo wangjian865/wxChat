@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXfriendResultViewController : UIViewController
-
+@property (nonatomic, strong) UserInfoModel *model;
+@property (nonatomic, strong) WXMessageAlertModel *alertModel;
 @end
 
 NS_ASSUME_NONNULL_END
