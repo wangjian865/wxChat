@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="groupChatNameView" destination="yT7-F4-mCQ" id="NQF-Jo-VxL"/>
                 <outlet property="layout" destination="CBq-Nc-tgn" id="dXK-nK-9CH"/>
+                <outlet property="lookForMoreViewHeight" destination="NJE-9G-7CH" id="5cF-c8-hIR"/>
                 <outlet property="memberView" destination="obQ-3n-Toa" id="6V6-fo-CvA"/>
                 <outlet property="memberViewHeight" destination="yYS-8y-9Fy" id="4BI-MM-46S"/>
                 <outlet property="noDisturBtn" destination="rbM-Jy-bxt" id="KMe-fF-6LD"/>
@@ -52,25 +53,27 @@
                                                 <outlet property="delegate" destination="-1" id="74m-sW-1Ch"/>
                                             </connections>
                                         </collectionView>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMW-Ph-rof">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HMW-Ph-rof">
                                             <rect key="frame" x="0.0" y="200" width="414" height="70"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKb-2r-NUf">
-                                                    <rect key="frame" x="146.5" y="20" width="121" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <state key="normal" title="查看更多群成员 &gt;">
                                                         <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="lookMoreAction:" destination="-1" eventType="touchUpInside" id="sTx-Go-408"/>
+                                                        <action selector="lookForMoreAction:" destination="-1" eventType="touchUpInside" id="x4d-v4-67Q"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="vKb-2r-NUf" firstAttribute="centerY" secondItem="HMW-Ph-rof" secondAttribute="centerY" id="0ua-Dg-SXu"/>
+                                                <constraint firstItem="vKb-2r-NUf" firstAttribute="leading" secondItem="HMW-Ph-rof" secondAttribute="leading" id="8si-yV-gUQ"/>
                                                 <constraint firstAttribute="height" constant="70" id="NJE-9G-7CH"/>
-                                                <constraint firstItem="vKb-2r-NUf" firstAttribute="centerX" secondItem="HMW-Ph-rof" secondAttribute="centerX" id="jJc-O7-ojn"/>
+                                                <constraint firstAttribute="trailing" secondItem="vKb-2r-NUf" secondAttribute="trailing" id="XcP-Pe-Uis"/>
+                                                <constraint firstAttribute="bottom" secondItem="vKb-2r-NUf" secondAttribute="bottom" id="qbF-ef-3DQ"/>
+                                                <constraint firstItem="vKb-2r-NUf" firstAttribute="top" secondItem="HMW-Ph-rof" secondAttribute="top" id="zg6-qI-1FX"/>
                                             </constraints>
                                         </view>
                                     </subviews>

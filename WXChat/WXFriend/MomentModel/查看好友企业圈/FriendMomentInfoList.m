@@ -10,6 +10,6 @@
 
 @implementation FriendMomentInfoList
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"data":[FriendMomentInfo class]};
+    return @{@"enterprise":[FriendMomentInfo class],@"user":[UserCompanies class]};
 }
 @end

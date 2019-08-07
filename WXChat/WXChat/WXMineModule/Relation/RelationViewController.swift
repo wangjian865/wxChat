@@ -65,6 +65,18 @@ class RelationViewController: UIViewController {
         }
         view.addSubview(segmentedControl)
         view.addSubview(searchView)
+        searchView.clickAction = {[weak self] in
+            if (self?.currentIndex == 0){
+                //搜索用户
+                let sb = UIStoryboard.init(name: "Chat", bundle: nil)
+                let newAddVC = sb.instantiateViewController(withIdentifier: "newAddFriendVC")
+                self?.navigationController?.pushViewController(newAddVC, animated: true)
+            }else{
+                //搜索公司
+                let addCompanyVC = WXAddCompanyViewController()
+                self?.navigationController?.pushViewController(addCompanyVC, animated: true)
+            }
+        }
         segmentedControl.selectionIndicatorLocation = .down
         segmentedControl.selectionIndicatorHeight = 3
         segmentedControl.snp.makeConstraints({ (make) in

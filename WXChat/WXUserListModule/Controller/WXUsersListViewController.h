@@ -18,6 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isEditing;
 //是否为创建群组
 @property (nonatomic, assign) BOOL isGroup;
+//是否名片进来的
+@property (nonatomic, assign) BOOL isInfoCard;
+@property (nonatomic, copy) void (^cardCallBack)(NSString *userID);
+
+//给一个数组用来接收外面来的用户id,用来给cell设置已选中的状态
+@property (nonatomic, strong) NSArray *hasIDs;
 @end
 
 NS_ASSUME_NONNULL_END

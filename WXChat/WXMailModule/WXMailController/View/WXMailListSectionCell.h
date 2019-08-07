@@ -11,7 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXMailListSectionCell : UITableViewCell
-
+/**
+ * accountlLabel
+ */
+@property (nonatomic, strong) UILabel *accountLabel;
+/**
+ * countLabel
+ */
+@property (nonatomic, strong) UILabel *countLabel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -47,6 +47,9 @@ class GroupChatVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChatGroupCell", for: indexPath) as! ChatGroupCell
         cell.groupModel = listModel?.data[indexPath.row]
+        let conversation = WXChatService.getAConversation(withId: cell.groupModel?.seanceshowid ?? "")
+        cell.messageLabel.text = WXChatService.getGroupChatText(conversation)
+        cell.timeLabel.text = WXChatService.getLastTime(conversation)
         return cell
     }
 }

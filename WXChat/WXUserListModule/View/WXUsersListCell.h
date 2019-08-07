@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 //是否编辑状态
 @property (nonatomic, assign) BOOL isEditing;
 @property (nonatomic, copy) void (^chooseAction)(NSString *buddy);
+
+///是否显示遮盖
+@property (nonatomic, assign) BOOL *showCoverView;
 @end
 
 NS_ASSUME_NONNULL_END

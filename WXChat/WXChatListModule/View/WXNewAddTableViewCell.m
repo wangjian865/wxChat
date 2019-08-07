@@ -26,10 +26,24 @@
     [_iconView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg]];
     _nameLabel.text = model.tgusetName;
     _contentLabel.text = model.friendshowcontext;
+    // 48 134 191
+    if ([model.friendshowifconsend isEqualToString:@"0"]){
+        _agreeBtn.enabled = YES;
+        [_agreeBtn setTitle:@"同意" forState:UIControlStateNormal];
+        _agreeBtn.borderWithColor = rgb(48, 134, 191);
+    }else if ([model.friendshowifconsend isEqualToString:@"1"]){
+        _agreeBtn.enabled = NO;
+        [_agreeBtn setTitle:@"已添加" forState:UIControlStateDisabled];
+        _agreeBtn.borderWithColor = UIColor.lightGrayColor;
+    }else {
+        _agreeBtn.enabled = NO;
+        [_agreeBtn setTitle:@"已拒绝" forState:UIControlStateDisabled];
+        _agreeBtn.borderWithColor = UIColor.lightGrayColor;
+    }
 }
 - (IBAction)agreeAction:(UIButton *)sender {
-    [MineViewModel handleFriendRequestWithIfAgree:@"1" friendId:_model.friendshowfuserid success:^(NSString * result) {
-        NSLog(@"1");
+    [MineViewModel handleFriendRequestWithIfAgree:@"1" showId:_model.friendshowid success:^(NSString * result) {
+        [MBProgressHUD showText:result];
         if (self.handleCallBack){
             self.handleCallBack();
         }

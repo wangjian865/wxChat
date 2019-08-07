@@ -9,6 +9,7 @@
 import UIKit
 
 class RelationSearchView: UIView {
+    var clickAction: (()->Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(searchAction))
@@ -16,6 +17,6 @@ class RelationSearchView: UIView {
     }
     
     @objc func searchAction() {
-        
+        clickAction?()
     }
 }

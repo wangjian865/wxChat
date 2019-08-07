@@ -289,10 +289,17 @@
         }
         
     }else{
+//        NSDictionary *dict = conversation.lastReceivedMessage.ext;
+//        if(dict[@"from_name_user"] == nil || dict[@"from_heading_user"] == nil){
+//            NSDictionary *localDict = [WXAccountTool findUserInfoByUserId:conversation.conversationId];
+//            model.title = [localDict objectForKey:@"from_name_user"];
+//            model.avatarURLPath = [localDict objectForKey:@"from_heading_user"];
+//        }
         //单聊
         NSArray *temp = [self.userListModel filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tgusetid = %@",model.conversation.conversationId]];
         if (temp.count > 0){
             model.title = ((FriendModel *)temp[0]).tgusetname;
+            model.avatarURLPath = ((FriendModel *)temp[0]).tgusetimg;
         }
     }
 //    model.title = @"测试标题";

@@ -19,6 +19,7 @@ class WXEditPersonInfoViewController: UITableViewController {
     
     @IBOutlet weak var companyLabel: UILabel!
     
+    @IBOutlet weak var userIdLabel: UILabel!
     var userInfoModel: UserInfoModel?
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -34,6 +35,7 @@ class WXEditPersonInfoViewController: UITableViewController {
         sexyLabel.text = userInfoModel?.tgusetsex
         workLabel.text = userInfoModel?.tgusetposition
         companyLabel.text = userInfoModel?.tgusetcompany
+        userIdLabel.text = userInfoModel?.tgusetid
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

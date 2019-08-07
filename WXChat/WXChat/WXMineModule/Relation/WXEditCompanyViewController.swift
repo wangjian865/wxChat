@@ -12,7 +12,8 @@ import UIKit
 class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     @IBOutlet weak var companyIconView: UIImageView!
     var myModel :CompanyModel?
-    
+    //更改管理员时存在
+    var newAdminId: String = ""
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var numberTF: UITextField!
     @IBOutlet weak var descTF: YYTextView!
@@ -49,7 +50,8 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
         locationTF.text = myModel?.companyregion
     }
     @objc func editCompany(){
-        MineViewModel.updateCompanyInfo(companyid: myModel?.companyid ?? "", companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: descTF.text, companyindustry: indusTF.text ?? "", companyregion: locationTF.text ?? "", success: { (model) in
+        
+        MineViewModel.updateCompanyInfo(companyid: myModel?.companyid ?? "", companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: descTF.text, companyindustry: indusTF.text ?? "", companyregion: locationTF.text ?? "",companysystem: newAdminId, success: { (model) in
             print(model)
         }) { (error) in
             
@@ -133,7 +135,14 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
             break
         case 3:
         //超级管理员设置
-            
+            let vc = WXUsersListViewController.init()
+            vc.cardCallBack = {[weak self] ID in
+                self?.newAdminId = ID
+            }
+            vc.isEditing = true
+            vc.isInfoCard = true
+            let nav = WXPresentNavigationController.init(rootViewController: vc)
+            present(nav, animated: true, completion: nil)
             break
         default:
             break

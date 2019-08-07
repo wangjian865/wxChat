@@ -16,7 +16,8 @@
 @property (nonatomic, strong) UIView * tableHeaderView;
 @property (nonatomic, strong) MMImageView * coverImageView;
 @property (nonatomic, strong) MMImageView * avatarImageView;
-
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *companyLabel;
 @property (nonatomic, strong) FriendMomentInfoList *myModel;
 @property (nonatomic, assign) int page;
 @end
@@ -46,8 +47,12 @@
     [CompanyViewModel getMomentsListWithUserid:self.userId page:[NSString stringWithFormat:@"%d",_page] successBlock:^(FriendMomentInfoList * _Nonnull model) {
         if (self.myModel == nil){
             self.myModel = model;
+            [self.coverImageView sd_setImageWithURL:[NSURL URLWithString:model.image]];
+            [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:model.user.tgusetImg]];
+            self.nameLabel.text = model.user.tgusetName;
+            self.companyLabel.text = model.user.tgusetCompany;
         }else{
-            [self.myModel.data addObjectsFromArray:model.data];
+            [self.myModel.enterprise addObjectsFromArray:model.enterprise];
         }
         self.page += 1;
         [self.tableView.mj_footer endRefreshing];
@@ -68,15 +73,39 @@
     imageView.layer.borderWidth = 2;
     imageView.image = [UIImage imageNamed:@"moment_head"];
     self.avatarImageView = imageView;
+    //用户名
+    UILabel *nameLabel = [[UILabel alloc] init];
+    nameLabel.text = @"z奥特曼";
+    nameLabel.textColor = rgb(255, 255, 255);
+    nameLabel.font = [UIFont systemFontOfSize:18];
+    nameLabel.width = 200;
+    nameLabel.height = 17;
+    nameLabel.right = imageView.left - 14;
+    nameLabel.bottom = self.coverImageView.bottom - 5;
+    nameLabel.textAlignment = NSTextAlignmentRight;
+    self.nameLabel = nameLabel;
+    //公司
+    UILabel *companyLabel = [[UILabel alloc] init];
+    companyLabel.text = @"这是某某某o";
+    companyLabel.textColor = rgb(153, 153, 153);
+    companyLabel.width = 250;
+    companyLabel.right = imageView.left - 15;
+    companyLabel.font = [UIFont systemFontOfSize:14];
+    companyLabel.top = self.coverImageView.bottom + 4;
+    companyLabel.height = 14;
+    companyLabel.textAlignment = NSTextAlignmentRight;
+    self.companyLabel = companyLabel;
     // 表头
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, 270)];
     view.userInteractionEnabled = YES;
     view.backgroundColor = UIColor.whiteColor;
     [view addSubview:self.coverImageView];
     [view addSubview:self.avatarImageView];
+    [view addSubview:self.companyLabel];
+    [view addSubview:self.nameLabel];
     self.tableHeaderView = view;
     // 表格
-    MMTableView * tableView = [[MMTableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height-k_top_height)];
+    MMTableView * tableView = [[MMTableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height)];
     tableView.estimatedRowHeight = 40;
     tableView.rowHeight = UITableViewAutomaticDimension;
     [tableView registerNib:[UINib nibWithNibName:@"WXMyMomentTableViewCell" bundle:nil] forCellReuseIdentifier:@"myCell"];
@@ -103,19 +132,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (_myModel != nil) {
-        return _myModel.data.count;
+        return _myModel.enterprise.count;
     }
     return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXMyMomentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath:indexPath];
-    cell.infoModel = _myModel.data[indexPath.row];
+    cell.infoModel = _myModel.enterprise[indexPath.row];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RelationViewController" bundle:nil];
 //    WXMomentDetailViewController *detailVC = [storyboard instantiateViewControllerWithIdentifier:@"momentDetailVC"];
-    FriendMomentInfo *model = _myModel.data[indexPath.row];
+    FriendMomentInfo *model = _myModel.enterprise[indexPath.row];
 //    detailVC.model = model;
 //    [self.navigationController pushViewController:detailVC animated:true];
     WXSingleViewController *singleVC = [[WXSingleViewController alloc] init];

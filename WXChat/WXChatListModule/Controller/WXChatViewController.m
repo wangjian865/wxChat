@@ -8,6 +8,7 @@
 
 #import "WXChatViewController.h"
 #import "WXPersonInfoCell.h"
+#import "WXUserMomentInfoViewController.h"
 @interface WXChatViewController ()<EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource,UIDocumentPickerDelegate,EMCallManagerDelegate>
 
 @end
@@ -80,32 +81,50 @@
 - (void)moreView:(EaseChatBarMoreView *)moreView didItemInMoreViewAtIndex:(NSInteger)index{
     //只加了名片,所以这里无需判断index
     if (self.conversation.type == EMConversationTypeChat) {
-        //发送名片
-        [self sendInfoView];
+        WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] init];
+        userListVC.cardCallBack = ^(NSString * _Nonnull userID) {
+            
+            [MineViewModel getFriendInfoWithFriendID:userID success:^(FriendModel * model) {
+                //发送名片
+                [self sendInfoViewWithModel:model];
+            } failure:^(NSError * error) {
+                
+            }];
+        };
+        userListVC.isEditing = YES;
+        userListVC.isInfoCard = YES;
+        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:userListVC];
+        [self presentViewController:nav animated:YES completion:nil];
+        //私聊
+        
     }
     
     
 //    [self presentDocumentPicker];
 //    [EMClient sharedClient].callManager startCall:<#(EMCallType)#> remoteName:<#(NSString *)#> ext:<#(NSString *)#> completion:<#^(EMCallSession *aCallSession, EMError *aError)aCompletionBlock#>
 }
-- (void)sendInfoView{
+- (void)sendInfoViewWithModel:(FriendModel *)model{
     NSLog(@"发送名片");
     //WDX fix
-    NSDictionary *dic = @{@"userName":@"王大侠",@"userPhone":@"110"};
-    //用户id
-    NSString *toID = @"user3";
-    EMMessage *message = [EaseSDKHelper getTextMessage:@"[名片]" to:toID messageType:EMChatTypeChat messageExt:dic];
-    [self addMessageToDataSource:message progress:nil];
-    
-    [[EMClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
-        NSLog(@"%d",progress);
-    } completion:^(EMMessage *message, EMError *error) {
-        NSLog(@"聊天信息 == %@, 错误 == %@",message,error);
-    }];
+    NSDictionary *dic = @{@"userName":model.tgusetname,@"company":model.tgusetcompany,@"userIcon":model.tgusetimg,@"userID":model.tgusetid};
+    [self sendTextMessage:@"[名片]" withExt:dic];
+
+}
+//重写以添加用户个人信息
+- (void)sendMessage:(EMMessage *)message isNeedUploadFile:(BOOL)isUploadFile{
+    NSMutableDictionary *Muext = [NSMutableDictionary dictionaryWithDictionary:message.ext];
+    [Muext setObject:[WXAccountTool getUserName] forKey:@"from_name_user"];
+    [Muext setObject:[WXAccountTool getUserImage] forKey:@"from_heading_user"];
+    message.ext= Muext;
+    [super sendMessage:message isNeedUploadFile:isUploadFile];
 }
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel{
     if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){
-        NSLog(@"点击了名片");
+        NSString *ID = [NSString stringWithFormat:@"%@",messageModel.message.ext[@"userID"]];
+        //可能要先判断是不是好友
+        WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+        controller.userId = ID;
+        [self.navigationController pushViewController:controller animated:YES];
         return YES;
     }
     return NO;
@@ -143,21 +162,26 @@
 - (id<IMessageModel>)messageViewController:(EaseMessageViewController *)viewController
                            modelForMessage:(EMMessage *)message
 {
+    
     //用户可以根据自己的用户体系，根据message设置用户昵称和头像
     id<IMessageModel> model = nil;
     //EaseMessageModel是环信EaseUI提供的model  直接引用就好了
     model = [[EaseMessageModel alloc] initWithMessage:message];
+    
     //分两种情况  一种是当为当前用户的时候
     if ([model.nickname isEqualToString:[EMClient sharedClient].currentUsername]) {
         //默认图
-        model.avatarImage = [UIImage imageNamed:@"normal_icon"];
+//        model.avatarImage = [UIImage imageNamed:@"normal_icon"];
+        model.avatarURLPath = [WXAccountTool getUserImage];
         //网络图
 //        model.avatarURLPath = accInfo.pic;
     }else{//当为对方的时候
-//        model.avatarURLPath = _imageUrl;//网络图
-        model.avatarImage =  [UIImage imageNamed:@"normal_icon"];
+        NSString *url = [NSString stringWithFormat:@"%@",message.ext[@"from_heading_user"]];
+        model.avatarURLPath = url;//网络图
     }
     model.nickname = nil;//用户昵称
+    
+    
     return model;
 }
 

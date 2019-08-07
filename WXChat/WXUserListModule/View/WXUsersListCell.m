@@ -20,6 +20,7 @@
  * editMode下存在选中框
  */
 @property (nonatomic, strong) UIButton *selectButton;
+@property (nonatomic, strong) UIView *coverView;
 @end
 @implementation WXUsersListCell
 
@@ -41,6 +42,7 @@
     if (self) {
         
         [self _setupSubview];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
 //        UILongPressGestureRecognizer *headerLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(headerLongPress:)];
 //        [self addGestureRecognizer:headerLongPress];
     }
@@ -55,7 +57,8 @@
 }
 - (void)setModel:(id<IUserModel>)model{
     _model = model;
-    _titleLabel.text = model.buddy;
+    _titleLabel.text = model.nickname;
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.avatarURLPath]];
 }
 - (void)setCellSelected:(BOOL)CellSelected{
     _CellSelected = CellSelected;
@@ -111,6 +114,19 @@
         make.centerY.equalTo(self.avatarView);
         make.left.equalTo(self.avatarView.mas_right).offset(15);
     }];
+    
+    _coverView = [[UIView alloc] init];
+    _coverView.backgroundColor = RGB(233, 233, 233, 0.4);
+    _coverView.hidden = true;
+    [self.contentView addSubview:_coverView];
+    [_coverView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.equalTo(self.contentView);
+    }];
+    
+}
+- (void)setShowCoverView:(BOOL *)showCoverView{
+    _showCoverView = showCoverView;
+    _coverView.hidden = !showCoverView;
 }
 - (void)changeButtonState:(UIButton *)sender {
     sender.selected = !sender.selected;

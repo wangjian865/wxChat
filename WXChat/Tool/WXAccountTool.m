@@ -47,4 +47,42 @@
     }
     return img;
 }
++ (void)saveToUserInfo:(NSString *)userId name:(NSString *)userName avatarURLPath:(NSString *)avatarURLPath {
+    
+    NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"messageList.plist"];
+    
+    NSMutableArray *array =[[NSMutableArray alloc] initWithContentsOfFile:filePatch];
+    
+    if (!array) {
+        array = [NSMutableArray array];
+    }
+    
+    NSDictionary *toDict = @{@"from_id_user":userId,
+                             @"from_name_user":userName,
+                             @"from_heading_user":avatarURLPath
+                             };
+    
+    if (![array containsObject:toDict]) {
+        [array addObject:toDict];
+        [array writeToFile:filePatch atomically:true];
+    }
+    
+}
+
++ (NSDictionary *)findUserInfoByUserId:(NSString *)userId {
+    
+    NSString *filePatch = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0]stringByAppendingPathComponent:@"messageList.plist"];
+    
+    NSMutableArray *array =[[NSMutableArray alloc] initWithContentsOfFile:filePatch];
+    
+    NSDictionary *tempDict;
+    for (NSDictionary *dict in array) {
+        if ([dict[@"from_id_user"] isEqualToString:userId]) {
+            tempDict = dict;
+            break;
+        }
+    }
+    return tempDict;
+}
+
 @end

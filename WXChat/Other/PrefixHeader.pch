@@ -45,6 +45,8 @@
 #import "UIImageView+WebCache.h"
 #import <YYModel.h>
 #import "WXMessageAlertModel.h"
+#import "MailPageModel.h"
+#import "MailViewModel.h"
 /*
  颜色
  */

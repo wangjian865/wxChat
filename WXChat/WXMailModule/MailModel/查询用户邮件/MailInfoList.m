@@ -9,5 +9,7 @@
 #import "MailInfoList.h"
 
 @implementation MailInfoList
-
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"context":[MailInfo class]};
+}
 @end

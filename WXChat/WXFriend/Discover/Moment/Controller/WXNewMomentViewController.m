@@ -27,7 +27,6 @@
     if (_imagePicker == nil){
         _imagePicker = [[UIImagePickerController alloc] init];
         _imagePicker.delegate = self;
-        _imagePicker.allowsEditing = YES;
     }
     return _imagePicker;
 }
@@ -36,6 +35,13 @@
         _photos = [NSMutableArray array];
     }
     return _photos;
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setTranslucent:false];
+    UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -158,9 +164,9 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info{
     [_imagePicker dismissViewControllerAnimated:true completion:nil];
-    UIImage *image = (UIImage *)info[UIImagePickerControllerEditedImage];
+    UIImage *image = (UIImage *)info[UIImagePickerControllerOriginalImage];
     [self.photos addObject:image];
     [_collectionView reloadData];
-    NSLog(@"拿到了编辑后的图片");
+    
 }
 @end

@@ -73,7 +73,7 @@
             UserMomentInfoModel *model = [UserMomentInfoModel yy_modelWithJSON:responseBody[@"data"]];
             success(model);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+//            [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
         failure(error);
@@ -87,7 +87,7 @@
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
-            FriendMomentInfoList *model = [FriendMomentInfoList yy_modelWithJSON:responseBody];
+            FriendMomentInfoList *model = [FriendMomentInfoList yy_modelWithJSON:responseBody[@"data"]];
             success(model);
         }else{
             [MBProgressHUD showError: responseBody[@"msg"]];

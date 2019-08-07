@@ -11,7 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXInboxViewController : UIViewController
-
+///邮箱
+@property (nonatomic, copy) NSString *account;
+///类型
+@property (nonatomic, copy) NSString *type;
+///id 1 收件箱 2 草稿箱 3 发送箱 4 垃圾箱
+@property (nonatomic, copy) NSString *ID;
 @end
 
 NS_ASSUME_NONNULL_END

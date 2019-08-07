@@ -19,6 +19,7 @@
     NSDictionary *params = @{@"account": account,
                              @"password": password,
                              @"typeName": type};
+    [MBProgressHUD showHUD];
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -33,16 +34,18 @@
     }];
 }
 ///获取邮件首页信息
-+(void)getMailHomeDataWithSuccessBlock:(void(^) (MailInfoList *model))success
++(void)getMailHomeDataWithSuccessBlock:(void(^) (MailPageModel *model))success
                              failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"emailS/mailHomePage"];
     NSDictionary *params = @{};
+    [MBProgressHUD showHUD];
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
-            
-            NSLog(@"1");
+            MailPageModel *model = [MailPageModel yy_modelWithJSON:responseBody];
+            success(model);
         }else{
             [MBProgressHUD showError: responseBody[@"msg"]];
         }
@@ -57,12 +60,13 @@
                      categoryType:(NSString *)categoryType
                      successBlock:(void(^) (MailInfoList *model))success
                         failBlock:(void(^) (NSError *error))failure{
-    NSString *urlStr =  [WXApiManager getRequestUrl:@"emailS/MailMAP"];
+    [MBProgressHUD showHUD];
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"emailS/emailAll"];
     //categoryType 1收件箱，2 草稿箱，3发件箱 4垃圾箱
+//    @"regid": pushId,
     NSDictionary *params = @{@"account": account,
-                             @"regid": pushId,
                              @"typeName": type,
-                             @"Id": categoryType};
+                             @"id": categoryType};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -84,6 +88,7 @@
                      accountType:(NSString *)type
                        serviceId:(NSString *)serviceId
                     successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure{
+    [MBProgressHUD showHUD];
     NSString *urlStr =  [WXApiManager getRequestUrl:@"emailS/emailDelete"];
     NSDictionary *params = @{@"account": account,
                              @"typeName": typeName,//邮箱类型

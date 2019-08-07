@@ -25,6 +25,24 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUserName;
 ///获取头像
 + (NSString *)getUserImage;
+/**
+ 本地保存对方聊天信息
+ 
+ @param userId 环信账号
+ @param userName 用户名
+ @param avatarURLPath 头像
+ */
++ (void)saveToUserInfo:(NSString *)userId name:(NSString *)userName avatarURLPath:(NSString *)avatarURLPath;
+
+
+/**
+ 查找本地用户信息
+ 
+ @param userId 环信账号
+ @return 信息字典
+ */
++ (NSDictionary *)findUserInfoByUserId:(NSString *)userId;
+
 @end
 
 NS_ASSUME_NONNULL_END

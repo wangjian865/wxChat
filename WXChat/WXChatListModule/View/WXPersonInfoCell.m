@@ -102,6 +102,7 @@
 {
     NSLog(@"扩展消息 === %@",model.message.ext);
     self.hasRead.hidden = YES;
+    
     [self.bubbleView.backgroundImageView addSubview:self.titleLb];
     [self.bubbleView.backgroundImageView addSubview:self.describeLb];
     [self.bubbleView.backgroundImageView addSubview:self.iconImgView];
@@ -111,7 +112,7 @@
     [_iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(8);
         make.top.mas_equalTo(15);
-        make.width.height.mas_equalTo(40);
+        make.width.height.mas_equalTo(56);
     }];
     [_titleLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconImgView.mas_right).offset(8);
@@ -129,7 +130,13 @@
         make.bottom.mas_equalTo(-20);
     }];
 }
-
+- (void)setModel:(id<IMessageModel>)model{
+    [super setModel:model];
+    NSDictionary *dic = model.message.ext;
+    _titleLb.text = [NSString stringWithFormat:@"%@",dic[@"userName"]];
+    _describeLb.text = [NSString stringWithFormat:@"%@",dic[@"company"]];
+    [_iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dic[@"userIcon"]]]];
+}
 #pragma mark - lazy
 - (UILabel *)titleLb
 {
@@ -156,10 +163,10 @@
 - (UIImageView *)iconImgView
 {
     if (!_iconImgView) {
-        _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(213 - 40 - 20, 15+15+2, 40, 40)];
+        _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake(213 - 40 - 20, 15+15+2, 60, 60)];
         _iconImgView.image = [UIImage imageNamed:@"sports"];
-        _iconImgView.backgroundColor = UIColor.redColor;
-        _iconImgView.layer.cornerRadius = 25;
+        _iconImgView.backgroundColor = UIColor.grayColor;
+        _iconImgView.layer.cornerRadius = 28;
     }
     return _iconImgView;
 }

@@ -317,6 +317,10 @@
 		F4653ED722DB61C200A77D49 /* WXTwoBottomChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4653ED622DB61C200A77D49 /* WXTwoBottomChooseView.swift */; };
 		F4653EDA22DC0AEC00A77D49 /* WXPersonMomentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4653ED922DC0AEC00A77D49 /* WXPersonMomentViewController.m */; };
 		F4653EE122DC43AA00A77D49 /* WXChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = F4653EE022DC43A900A77D49 /* WXChatService.m */; };
+		F47C02AA22F9E2F300F87435 /* MailHomePageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C02A922F9E2F300F87435 /* MailHomePageModel.m */; };
+		F47C02AD22F9E39400F87435 /* MailHomePageAccountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C02AC22F9E39400F87435 /* MailHomePageAccountModel.m */; };
+		F47C02B122F9E5E100F87435 /* MailHomePageAModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C02B022F9E5E100F87435 /* MailHomePageAModel.m */; };
+		F47C02B422FA94AB00F87435 /* MailPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F47C02B322FA94AA00F87435 /* MailPageModel.m */; };
 		F486ADEB22D382E10030D9F0 /* WXBottomChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F486ADEA22D382E10030D9F0 /* WXBottomChooseView.xib */; };
 		F486ADED22D3887D0030D9F0 /* WXSexyChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F486ADEC22D3887D0030D9F0 /* WXSexyChooseViewController.swift */; };
 		F486ADF022D420D90030D9F0 /* WXSexyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F486ADEE22D420D90030D9F0 /* WXSexyCell.swift */; };
@@ -851,6 +855,14 @@
 		F4653ED922DC0AEC00A77D49 /* WXPersonMomentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXPersonMomentViewController.m; sourceTree = "<group>"; };
 		F4653EDF22DC43A900A77D49 /* WXChatService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WXChatService.h; path = WXFriend/Discover/main/Views/WXChatService.h; sourceTree = SOURCE_ROOT; };
 		F4653EE022DC43A900A77D49 /* WXChatService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WXChatService.m; path = WXFriend/Discover/main/Views/WXChatService.m; sourceTree = SOURCE_ROOT; };
+		F47C02A822F9E2F300F87435 /* MailHomePageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailHomePageModel.h; sourceTree = "<group>"; };
+		F47C02A922F9E2F300F87435 /* MailHomePageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailHomePageModel.m; sourceTree = "<group>"; };
+		F47C02AB22F9E39400F87435 /* MailHomePageAccountModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailHomePageAccountModel.h; sourceTree = "<group>"; };
+		F47C02AC22F9E39400F87435 /* MailHomePageAccountModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailHomePageAccountModel.m; sourceTree = "<group>"; };
+		F47C02AF22F9E5E100F87435 /* MailHomePageAModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailHomePageAModel.h; sourceTree = "<group>"; };
+		F47C02B022F9E5E100F87435 /* MailHomePageAModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailHomePageAModel.m; sourceTree = "<group>"; };
+		F47C02B222FA94AA00F87435 /* MailPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MailPageModel.h; sourceTree = "<group>"; };
+		F47C02B322FA94AA00F87435 /* MailPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MailPageModel.m; sourceTree = "<group>"; };
 		F486ADEA22D382E10030D9F0 /* WXBottomChooseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXBottomChooseView.xib; sourceTree = "<group>"; };
 		F486ADEC22D3887D0030D9F0 /* WXSexyChooseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXSexyChooseViewController.swift; sourceTree = "<group>"; };
 		F486ADEE22D420D90030D9F0 /* WXSexyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXSexyCell.swift; sourceTree = "<group>"; };
@@ -1839,6 +1851,7 @@
 			children = (
 				F407FFE422ED84070090806E /* 查看邮件详情 */,
 				F407FFE922ED84070090806E /* 查询用户邮件 */,
+				F47C02AE22F9E3A600F87435 /* New Group */,
 			);
 			path = MailModel;
 			sourceTree = "<group>";
@@ -1949,10 +1962,10 @@
 		F42BC69922E9EEBC004EFA02 /* 查看好友企业圈 */ = {
 			isa = PBXGroup;
 			children = (
-				F42BC69A22E9EEBC004EFA02 /* FriendMomentInfoList.m */,
-				F42BC69B22E9EEBC004EFA02 /* FriendMomentInfo.m */,
-				F42BC69C22E9EEBC004EFA02 /* FriendMomentInfo.h */,
 				F42BC69D22E9EEBC004EFA02 /* FriendMomentInfoList.h */,
+				F42BC69A22E9EEBC004EFA02 /* FriendMomentInfoList.m */,
+				F42BC69C22E9EEBC004EFA02 /* FriendMomentInfo.h */,
+				F42BC69B22E9EEBC004EFA02 /* FriendMomentInfo.m */,
 			);
 			path = "查看好友企业圈";
 			sourceTree = "<group>";
@@ -1966,6 +1979,21 @@
 				F42BC6A222E9EEBC004EFA02 /* CommentInfoList.m */,
 			);
 			path = "企业圈查询消息列表";
+			sourceTree = "<group>";
+		};
+		F47C02AE22F9E3A600F87435 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				F47C02B222FA94AA00F87435 /* MailPageModel.h */,
+				F47C02B322FA94AA00F87435 /* MailPageModel.m */,
+				F47C02A822F9E2F300F87435 /* MailHomePageModel.h */,
+				F47C02A922F9E2F300F87435 /* MailHomePageModel.m */,
+				F47C02AF22F9E5E100F87435 /* MailHomePageAModel.h */,
+				F47C02B022F9E5E100F87435 /* MailHomePageAModel.m */,
+				F47C02AB22F9E39400F87435 /* MailHomePageAccountModel.h */,
+				F47C02AC22F9E39400F87435 /* MailHomePageAccountModel.m */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		F4C28E5122D0A6EF00606E6D /* WXMineModule */ = {
@@ -2462,6 +2490,7 @@
 				F40E96F822E5FF5600EE8C60 /* SearchUserModel.m in Sources */,
 				2A8E785422AF9C9D0020BC57 /* WXMessageAlertViewController.m in Sources */,
 				2A8E785122AF963E0020BC57 /* WXChatListHeaderCell.m in Sources */,
+				F47C02B422FA94AB00F87435 /* MailPageModel.m in Sources */,
 				F4C28E7722D0A6F000606E6D /* ChatGroupCell.swift in Sources */,
 				2A8E7E8022B092A80020BC57 /* ConfInviteUserCell.m in Sources */,
 				F42BC65C22E89732004EFA02 /* ViewMailConfigController.m in Sources */,
@@ -2471,11 +2500,13 @@
 				CE03C2EC22C0D8A800730371 /* ZJLoginView.swift in Sources */,
 				F486AE0922D5F0C50030D9F0 /* WXNewMomentMessageViewController.m in Sources */,
 				2ADDBA1322A4D22A0006C42A /* EMSearchResultController.m in Sources */,
+				F47C02AD22F9E39400F87435 /* MailHomePageAccountModel.m in Sources */,
 				2A8E7EFE22B092A80020BC57 /* EMButton.m in Sources */,
 				2ACD5EEE227197A700A24BF6 /* WXNavigationController.m in Sources */,
 				2ADDBA2422A4EE830006C42A /* YCMenuView.m in Sources */,
 				F4FFBF2E22DF13AF003FC0F3 /* WXApiManager.m in Sources */,
 				F4653EE122DC43AA00A77D49 /* WXChatService.m in Sources */,
+				F47C02B122F9E5E100F87435 /* MailHomePageAModel.m in Sources */,
 				F407FFEF22ED84070090806E /* InBoxInfo.m in Sources */,
 				2AEE8BAF22857EEF00103A9E /* WXConversationListViewController.m in Sources */,
 				2ADDBA2D22A518F50006C42A /* UIImage+ColorImage.m in Sources */,
@@ -2494,6 +2525,7 @@
 				F4224B0422DA0A22003DA311 /* WXPrivateViewController.swift in Sources */,
 				F407FFF722EDDE0C0090806E /* WXMessageAlertListModel.m in Sources */,
 				F42BC6A322E9EEBC004EFA02 /* MomentUser.m in Sources */,
+				F47C02AA22F9E2F300F87435 /* MailHomePageModel.m in Sources */,
 				F4FFBF3222DF2895003FC0F3 /* WXContactCell.m in Sources */,
 				2A28B16E22802B1100B224F4 /* MomentConstant.m in Sources */,
 				F42BC6AB22E9EEBC004EFA02 /* MomentMessageList.m in Sources */,
@@ -2798,7 +2830,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = GJPPNRS562;
+				DEVELOPMENT_TEAM = 3H4MB6V4KU;
 				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other/PrefixHeader.pch";
@@ -2812,7 +2844,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WXChatListModule/Call/plugin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = WX.WXChat;
+				PRODUCT_BUNDLE_IDENTIFIER = WX.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Other/WXChat-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2830,7 +2862,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = GJPPNRS562;
+				DEVELOPMENT_TEAM = 3H4MB6V4KU;
 				ENABLE_BITCODE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Other/PrefixHeader.pch";
@@ -2844,7 +2876,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WXChatListModule/Call/plugin",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = WX.WXChat;
+				PRODUCT_BUNDLE_IDENTIFIER = WX.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Other/WXChat-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

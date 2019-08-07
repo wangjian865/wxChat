@@ -8,11 +8,16 @@
 
 #import "WXInboxViewController.h"
 #import "WXMailCell.h"
+#import "MailInfoList.h"
 @interface WXInboxViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  * list
  */
 @property (nonatomic, strong) UITableView *mailListView;
+/**
+ * MailInfoList
+ */
+@property (nonatomic, strong) MailInfoList *myModel;
 @end
 
 @implementation WXInboxViewController
@@ -31,6 +36,15 @@
     [super viewDidLoad];
     [self.view addSubview:self.mailListView];
     [self setNaviBar];
+    [self getData];
+}
+- (void)getData {
+    [MailViewModel getMailInfoWithMailAccount:self.account pushId:@"" accountType:self.type categoryType:self.ID successBlock:^(MailInfoList * _Nonnull model) {
+        self.myModel = model;
+        [self.mailListView reloadData];
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
 }
 - (void)setNaviBar {
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -48,10 +62,18 @@
 }
 #pragma mark -- UITableViewDelegate && Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    if (self.myModel){
+        return self.myModel.context.count;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXMailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WXMailCell" forIndexPath:indexPath];
+    MailInfo *model = _myModel.context[indexPath.row];
+    cell.model = model;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
 }
 @end

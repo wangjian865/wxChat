@@ -13,14 +13,8 @@
  * icon箭头
  */
 @property (nonatomic, strong) UIImageView *iconView;
-/**
- * accountlLabel
- */
-@property (nonatomic, strong) UILabel *accountLabel;
-/**
- * countLabel
- */
-@property (nonatomic, strong) UILabel *countLabel;
+
+
 @end
 @implementation WXMailListSectionCell
 

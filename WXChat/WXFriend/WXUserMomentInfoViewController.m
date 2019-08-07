@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *momentImages;
-
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (weak, nonatomic) UIImageView *lastImageView;
 @property (nonatomic, assign)CGRect originalFrame;
@@ -61,8 +60,8 @@
     [self.navigationController pushViewController:vc animated:true];
 }
 - (IBAction)gotoChat:(UIButton *)sender {
-    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:@"user3" conversationType:EMConversationTypeChat];
-//    viewController.title = userModel.nickname;
+    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:self.userId conversationType:EMConversationTypeChat];
+    viewController.title = self.nameLabel.text;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 //        let chatVC = WXChatViewController(conversationChatter: "user3", conversationType: EMConversationType(rawValue: 0))

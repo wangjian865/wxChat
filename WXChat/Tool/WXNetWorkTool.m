@@ -72,20 +72,21 @@ static AFHTTPSessionManager *aManager;
     
     if (type == WXHttpRequestTypePost)
     {
+        
         //添加接口统一参数
         NSMutableDictionary *muParames = [[NSMutableDictionary alloc] initWithDictionary:parameters];
 //        [MBProgressHUD showHUD];
         [[self sharedManager] POST:urlString parameters:muParames progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//            [MBProgressHUD hideHUD];
+            [MBProgressHUD hideHUD];
             if (successBlock)
             {
                 successBlock(responseObject);
             }
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            [MBProgressHUD hideHUD];
+            [MBProgressHUD hideHUD];
             if (error.code !=-999) {
                 if (failureBlock)
                 {

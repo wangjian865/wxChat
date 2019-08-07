@@ -32,3 +32,5 @@
 #import "UIImage+ColorImage.h"
 #import "UIImage+Addtions.h"
 #import "WXMessageAlertModel.h"
+#import "WXChatService.h"
+

@@ -112,6 +112,11 @@
             //成功
             self.companyView.hidden = NO;
             CompanyModel *model = [CompanyModel yy_modelWithJSON:responseBody[@"data"]];
+            if (model == nil){
+                self.companyView.hidden = YES;
+                [MBProgressHUD showError:@"未检索到该公司"];
+                return;
+            }
             [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.companylogo] placeholderImage:[UIImage imageNamed:@"normal_icon"]];
             self.companyNameLabel.text = model.companyname;
             self.companyCountLabel.text = [NSString stringWithFormat:@"%@ 人",model.companycount];

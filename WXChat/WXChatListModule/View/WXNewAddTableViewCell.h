@@ -16,7 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (weak, nonatomic) IBOutlet UIButton *agreeBtn;
 @property (copy, nonatomic) void (^handleCallBack)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

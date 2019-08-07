@@ -22,15 +22,19 @@
  * 编辑模式下存储选中的数据模型
  */
 @property (nonatomic, strong) NSMutableArray *selectedModelArray;
+
+///回去后台的用户列表数据,用以匹配头像和名字
+@property (nonatomic, strong) NSArray<FriendModel *> *myList;
 @end
 
 @implementation WXUsersListViewController
 #pragma mark -- getter
 - (UISearchController *)serachController{
     if (_serachController == nil){
-        UIViewController *resultVC = [[UIViewController alloc] init];
-        resultVC.view.backgroundColor = UIColor.redColor;
-        _serachController = [[UISearchController alloc] initWithSearchResultsController:resultVC];
+//        UIViewController *resultVC = [[UIViewController alloc] init];
+//        resultVC.view.backgroundColor = UIColor.redColor;
+//        _serachController = [[UISearchController alloc] initWithSearchResultsController:resultVC];
+        _serachController = [[UISearchController alloc] init];
         self.definesPresentationContext = YES;
         _serachController.view.backgroundColor = UIColor.whiteColor;
         _serachController.searchBar.placeholder = @"搜索";
@@ -80,6 +84,7 @@
     
     _sectionTitles = [NSMutableArray array];
     _contactArr = [NSMutableArray array];
+    [self _getMyFriendsListRequest];
     self.dataSource = self;
     self.delegate = self;
     [self.tableView setTableHeaderView:self.serachController.searchBar];
@@ -88,9 +93,21 @@
     }
     
 }
-
+//从我们后台获取
+- (void)_getMyFriendsListRequest{
+    [MineViewModel getFriendListWithNickName:@"" success:^(NSArray<FriendModel *> * list) {
+        self.myList = list;
+        for (<#type *object#> in self.contactArr) {
+            <#statements#>
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError * error) {
+        
+    }];
+}
 - (void)_setNaviBar{
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"close_gray"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(closeAction)];
+    if (self.isInfoCard){return;}
     UIButton *completeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     completeButton.size = CGSizeMake(52, 28);
     completeButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -107,10 +124,10 @@
 - (void)doneAction
 {
     if (_isGroup){
-        [MineViewModel createChatGroupWithUserIds:self.selectedModelArray success:^(UserMomentInfoModel * model) {
+        [MineViewModel createChatGroupWithUserIds:self.selectedModelArray success:^(NSString * model) {
             NSLog(@"1");
             //成功了
-            EMGroup *group = [EMGroup groupWithId:@""];
+            EMGroup *group = [EMGroup groupWithId:model];
             WS(wSelf);
             [self dismissViewControllerAnimated:YES completion:^{
                 __strong typeof(wSelf) sSelf = wSelf;
@@ -175,11 +192,17 @@
         cell = [[WXUsersListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     id<IUserModel> model = self.contactArr[indexPath.section][indexPath.row];
+//    if (_myList){
+//        NSArray *tempList = [_myList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tgusetid = %@",model.buddy]];
+//        FriendModel *temp = tempList.firstObject;
+//        model.avatarURLPath = temp.tgusetimg;
+//        model.nickname = temp.tgusetname;
+//    }
     if (model) {
         cell.model = model;
     }
     cell.CellSelected = [self.selectedModelArray containsObject:model];
-    cell.isEditing = self.isEditing;
+    cell.isEditing = self.isEditing && !(self.isInfoCard);
     WS(weakSelf);
     cell.chooseAction = ^(NSString *buddy) {
         if ([weakSelf.selectedModelArray containsObject:buddy]){
@@ -238,7 +261,12 @@
     //用户可以根据自己的用户体系，根据buddy设置用户昵称和头像
     id<IUserModel> model = nil;
     model = [[EaseUserModel alloc] initWithBuddy:buddy];
-    model.nickname = @"试试看";
+    if (_myList){
+        NSArray *tempList = [_myList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tgusetid = %@",model.buddy]];
+        FriendModel *temp = tempList.firstObject;
+        model.avatarURLPath = temp.tgusetimg;
+        model.nickname = temp.tgusetname;
+    }
     return model;
 }
 
@@ -320,11 +348,24 @@
     [self.tableView reloadData];
 }
 
-- (void)userListViewController:(EaseUsersListViewController *)userListViewController didSelectUserModel:(id<IUserModel>)userModel {
-    //不跳转
-//    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:userModel.buddy conversationType:EMConversationTypeChat];
-//    viewController.title = userModel.nickname;
-//    [self.navigationController pushViewController:viewController animated:YES];
+//- (void)userListViewController:(EaseUsersListViewController *)userListViewController didSelectUserModel:(id<IUserModel>)userModel {
+//    if (_isInfoCard && self.cardCallBack != nil){
+//        self.cardCallBack(userModel.buddy);
+//        [self dismissViewControllerAnimated:true completion:nil];
+//    }
+//    //不跳转
+////    WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:userModel.buddy conversationType:EMConversationTypeChat];
+////    viewController.title = userModel.nickname;
+////    [self.navigationController pushViewController:viewController animated:YES];
+//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    id<IUserModel> model = self.contactArr[indexPath.section][indexPath.row];
+    if (_isInfoCard && self.cardCallBack != nil){
+        self.cardCallBack(model.buddy);
+        [self dismissViewControllerAnimated:true completion:nil];
+    }
+    
 }
 /*
  *

@@ -65,6 +65,8 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
             collectionView.reloadData()
         }else{
             if isEdit{
+                let cell = collectionView.cellForItem(at: indexPath)
+                
                 deleteClosure?(dataArray?[indexPath.item] ?? SearchUserModel())
             }else{
                 //进入详情

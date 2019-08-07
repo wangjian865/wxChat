@@ -25,6 +25,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"添加好友";
     _tableView.rowHeight = 104;
     _tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [_tableView registerNib:[UINib nibWithNibName:@"WXNewAddTableViewCell" bundle:nil] forCellReuseIdentifier:@"newCell"];
@@ -53,9 +54,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXMessageAlertModel *model = _models[indexPath.row];
     WXNewAddTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"newCell" forIndexPath:indexPath];
-//    cell.handleCallBack() = {
-//
-//    }()
+    WS(wSelf);
+    cell.handleCallBack = ^{
+        [wSelf getAddList];
+    };
     cell.model = model;
     return cell;
 }

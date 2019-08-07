@@ -245,7 +245,7 @@
         <!--Navigation Controller-->
         <scene sceneID="70n-0Q-iOl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jiL-hc-1gj" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jiL-hc-1gj" customClass="WXNavigationController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mVZ-wd-4SH">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

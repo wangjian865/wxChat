@@ -374,11 +374,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="52" id="NSA-dz-bQy">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="52" id="NSA-dz-bQy">
                                         <rect key="frame" x="0.0" y="66" width="414" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NSA-dz-bQy" id="gOl-Wh-dqV">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="51.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="51.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="竹简号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5P-hY-WXo">
@@ -387,9 +387,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbp-3m-8Mc">
+                                                    <rect key="frame" x="359" y="26" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="j5P-hY-WXo" firstAttribute="leading" secondItem="gOl-Wh-dqV" secondAttribute="leading" constant="25" id="TFj-4y-I4e"/>
+                                                <constraint firstAttribute="trailing" secondItem="Zbp-3m-8Mc" secondAttribute="trailing" constant="55" id="ZoD-fc-H9w"/>
+                                                <constraint firstItem="Zbp-3m-8Mc" firstAttribute="centerY" secondItem="gOl-Wh-dqV" secondAttribute="centerY" id="fnV-Te-Xzu"/>
                                                 <constraint firstItem="j5P-hY-WXo" firstAttribute="centerY" secondItem="gOl-Wh-dqV" secondAttribute="centerY" id="m2y-ky-ffy"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -598,6 +606,7 @@
                         <outlet property="companyLabel" destination="o4K-lV-yt2" id="4Uc-c6-bWp"/>
                         <outlet property="sexyLabel" destination="aX3-Q2-K2E" id="ghR-DQ-cwg"/>
                         <outlet property="userIconView" destination="bG1-c8-309" id="eTJ-Oz-1Zt"/>
+                        <outlet property="userIdLabel" destination="Zbp-3m-8Mc" id="Qja-qh-8nR"/>
                         <outlet property="userName" destination="WOn-2l-KoE" id="PIL-3e-YiS"/>
                         <outlet property="workLabel" destination="jiO-JN-IwQ" id="n8G-dO-6Yc"/>
                     </connections>

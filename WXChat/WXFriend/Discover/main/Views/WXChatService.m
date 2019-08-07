@@ -42,4 +42,68 @@
     
 //}
 
+///获取群组会话列表
++ (NSArray *)getGroupChatConversations{
+    NSMutableArray *result = [NSMutableArray array];
+    NSArray *conversations = [[EMClient sharedClient].chatManager getAllConversations];
+    for (EMConversation *converstion in conversations) {
+        EaseConversationModel *model = nil;
+        model = [[EaseConversationModel alloc] initWithConversation:converstion];
+        if (model){
+            
+        }
+    }
+    return [NSArray array];
+}
+
+///获取某一条群聊会话
++ (EMConversation *)getAConversationWithId: (NSString *)ID{
+    return [[EMClient sharedClient].chatManager getConversation:ID type:EMConversationTypeGroupChat createIfNotExist:NO];
+}
+///删除一条会话
++ (void)deleteAConversationWithId: (NSString *)ID completion:(void (^)(NSString *aConversationId, EMError *aError))aCompletionBlock{
+    [[EMClient sharedClient].chatManager deleteConversation:ID isDeleteMessages:NO completion:aCompletionBlock];
+}
++ (NSString *)getGroupChatText:(EMConversation *)conversationModel
+{
+    NSString *latestMessageTitle = @"";
+    EMMessage *lastMessage = [conversationModel latestMessage];
+    if (lastMessage) {
+        EMMessageBody *messageBody = lastMessage.body;
+        switch (messageBody.type) {
+            case EMMessageBodyTypeImage:{
+                latestMessageTitle = @"[图片]";
+            } break;
+            case EMMessageBodyTypeText:{
+                NSString *didReceiveText = [EaseConvertToCommonEmoticonsHelper
+                                            convertToSystemEmoticons:((EMTextMessageBody *)messageBody).text];
+                latestMessageTitle = didReceiveText;
+            } break;
+            case EMMessageBodyTypeVoice:{
+                latestMessageTitle = @"[音频]";
+            } break;
+            case EMMessageBodyTypeLocation: {
+                latestMessageTitle = @"[位置]";
+            } break;
+            case EMMessageBodyTypeVideo: {
+                latestMessageTitle = @"[视频]";
+            } break;
+            case EMMessageBodyTypeFile: {
+                latestMessageTitle = @"[文件]";
+            } break;
+            default: {
+            } break;
+        }
+    }
+    return latestMessageTitle;
+}
++ (NSString *)getLastTime:(EMConversation *)conversationModel
+{
+    NSString *latestMessageTime = @"";
+    EMMessage *lastMessage = [conversationModel latestMessage];;
+    if (lastMessage) {
+        latestMessageTime = [NSDate formattedTimeFromTimeInterval:lastMessage.timestamp];
+    }
+    return latestMessageTime;
+}
 @end

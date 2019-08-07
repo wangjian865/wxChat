@@ -76,11 +76,12 @@ class WXAttendantViewController: UIViewController {
         }else{
             deleteUserRequest()
         }
+        deleteUserIDs.removeAll()
     }
     func deleteUserRequest() {
         var deleteStr = ""
         for model in deleteUserIDs {
-            deleteStr = model.tgusetId + ","
+            deleteStr = deleteStr + model.tgusetId + ","
         }
         deleteStr.removeLast()
         MineViewModel.deleCompanyUser(companysystem: deleteStr, companyid: companyID, success: { (success) in
@@ -92,7 +93,7 @@ class WXAttendantViewController: UIViewController {
     func deleteAdminRequest() {
         var deleteStr = ""
         for model in deleteUserIDs {
-            deleteStr = model.tgusetId + ","
+            deleteStr = deleteStr + model.tgusetId + ","
         }
         deleteStr.removeLast()
         MineViewModel.deleCompanyAdmin(tgusetids: deleteStr, seanceshowidadmincompanyid: companyID, success: { (success) in
@@ -136,6 +137,7 @@ class WXAttendantViewController: UIViewController {
                     })
                 }else{
                     self?.deleteUserIDs.append(model)
+                    print(self?.deleteUserIDs.count)
                 }
         }
         contentView = tempView

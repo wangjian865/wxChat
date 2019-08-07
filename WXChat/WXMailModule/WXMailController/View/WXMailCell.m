@@ -68,4 +68,12 @@
         make.bottom.equalTo(self.contentView).offset(-5);
     }];
 }
+- (void)setModel:(MailInfo *)model{
+    _model = model;
+    _nameLabel.text = model.readeamilsendtugset;
+    _titleLabel.text = model.readeamiltheme;
+    NSString *temp = [model.readeamilcontet componentsSeparatedByString:@"<td style=\"display:none;\">"].lastObject;
+    NSString *content = [temp componentsSeparatedByString:@"</td>"].firstObject;
+    _contentLabel.text = content;
+}
 @end
