@@ -277,7 +277,10 @@
     BOOL loginSuccess = isLogin;
     //此时只是后台登录成功
     if (!loginSuccess){
-        //登录不成功的状态
+        [[EMClient sharedClient] logout:true];
+        UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
+        self.window.rootViewController = loginVC;
+        [self.window makeKeyAndVisible];
         return;
     }
     EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];

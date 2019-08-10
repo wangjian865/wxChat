@@ -33,6 +33,11 @@
                                 <constraint firstAttribute="height" constant="63" id="fOw-qb-bj4"/>
                                 <constraint firstAttribute="width" constant="63" id="oN3-r3-GQc"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="31.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="周杰伦" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wdv-pf-mWe">
                             <rect key="frame" x="88" y="25.5" width="61.5" height="18"/>

@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *tgusetId;
 @property (nonatomic, copy)NSString *tgusetName;
 
+@property (nonatomic, assign)BOOL isChoose;
 @end
 
 NS_ASSUME_NONNULL_END

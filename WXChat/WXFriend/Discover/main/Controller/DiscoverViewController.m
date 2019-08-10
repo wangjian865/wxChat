@@ -73,30 +73,30 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
         [self performEyeViewAnimation];
     }
     
-    CGPoint point = [pan translationInView:pan.view];
-    [pan setTranslation:CGPointZero inView:pan.view];
-    
-    if (self.tableViewIsHidden && ![self.shortVideoController isRecordingVideo]) {
-        CGFloat tabBarTop = self.navigationController.tabBarController.tabBar.top;
-        CGFloat maxTabBarY = [UIScreen mainScreen].bounds.size.height + self.tableView.height;
-        if (!(tabBarTop > maxTabBarY && point.y > 0)) {
-            self.tableView.top += point.y;
-            self.navigationController.tabBarController.tabBar.top += point.y;
-        }
-    }
-    
-    if (pan.state == UIGestureRecognizerStateEnded) {
-        if (self.tableView.contentOffset.y < - (64 + kCraticalProgressHeight) && !self.tableViewIsHidden) {
-            [self startTableViewAnimationWithHidden:YES];
-        } else if (self.tableViewIsHidden) {
-            BOOL shouldHidde = NO;
-            if (self.tableView.top > [UIScreen mainScreen].bounds.size.height - 150) {
-                shouldHidde = YES;
-            }
-            [self startTableViewAnimationWithHidden:shouldHidde];
-        }
-        
-    }
+//    CGPoint point = [pan translationInView:pan.view];
+//    [pan setTranslation:CGPointZero inView:pan.view];
+//    
+//    if (self.tableViewIsHidden && ![self.shortVideoController isRecordingVideo]) {
+//        CGFloat tabBarTop = self.navigationController.tabBarController.tabBar.top;
+//        CGFloat maxTabBarY = [UIScreen mainScreen].bounds.size.height + self.tableView.height;
+//        if (!(tabBarTop > maxTabBarY && point.y > 0)) {
+//            self.tableView.top += point.y;
+//            self.navigationController.tabBarController.tabBar.top += point.y;
+//        }
+//    }
+//    
+//    if (pan.state == UIGestureRecognizerStateEnded) {
+//        if (self.tableView.contentOffset.y < - (64 + kCraticalProgressHeight) && !self.tableViewIsHidden) {
+//            [self startTableViewAnimationWithHidden:YES];
+//        } else if (self.tableViewIsHidden) {
+//            BOOL shouldHidde = NO;
+//            if (self.tableView.top > [UIScreen mainScreen].bounds.size.height - 150) {
+//                shouldHidde = YES;
+//            }
+//            [self startTableViewAnimationWithHidden:shouldHidde];
+//        }
+//        
+//    }
 }
 - (void)performEyeViewAnimation
 {
@@ -203,22 +203,37 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
         [self.navigationController pushViewController:controller animated:YES];
     }else if (indexPath.section == 1){
         //跳转天眼通
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sky20170605://"]];
+        BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sky20170605://"]];
+        if (!canOpen){
+            [MBProgressHUD showText:@"您尚未安装天眼通"];
+        }
     }else if (indexPath.section == 2){
         if (indexPath.row == 0){
             //百度
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"s3AgCR5i5L28k0lRVe0hsXMoYbcHPwCX://"]];
+            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"s3AgCR5i5L28k0lRVe0hsXMoYbcHPwCX://"]];
+            if (!canOpen){
+                [MBProgressHUD showText:@"您尚未安装百度客户端"];
+            }
         }else{
             //智联
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
+            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
+            if (!canOpen){
+                [MBProgressHUD showText:@"您尚未安装天眼通"];
+            }
         }
     }else if (indexPath.section == 3){
         if (indexPath.row == 0){
             //淘宝
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"taobao://"]];
+            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"taobao://"]];
+            if (!canOpen){
+                [MBProgressHUD showText:@"您尚未安装淘宝"];
+            }
         }else{
             //外卖
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"eleme://"]];
+            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"eleme://"]];
+            if (!canOpen){
+                [MBProgressHUD showText:@"您尚未安装饿了么"];
+            }
         }
         
     }

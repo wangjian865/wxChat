@@ -18,8 +18,8 @@ class RegisterViewController: InputViewController {
     
     //点击注册
     override func clickButton() {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "mankeep/register"
-        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":account,"tgusetpassword":password], successBlock: { (result) in
+        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/register"
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":account,"tgusetpassword":password,"code":code], successBlock: { (result) in
             let dic = result as! [String:Any]
             let code = dic["code"] as! Int
             if code == 200{

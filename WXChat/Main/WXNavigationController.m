@@ -29,7 +29,7 @@
     //设置非根控制器的内容
     if (self.childViewControllers.count) { // 不是根控制器
         viewController.hidesBottomBarWhenPushed = YES ;
-        UIImage *image = [[UIImage imageNamed:@"navi_back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [[UIImage imageNamed:@"返回"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     }
     [super pushViewController:viewController animated:animated];

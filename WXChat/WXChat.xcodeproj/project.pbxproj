@@ -266,6 +266,8 @@
 		F40185EB22D96D820047B1B0 /* WXNewAddTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40185E922D96D820047B1B0 /* WXNewAddTableViewCell.xib */; };
 		F40185EF22D972E60047B1B0 /* WXfriendResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F40185ED22D972E60047B1B0 /* WXfriendResultViewController.m */; };
 		F40185F022D972E60047B1B0 /* WXfriendResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40185EE22D972E60047B1B0 /* WXfriendResultViewController.xib */; };
+		F404FC8722FD017E004F1219 /* WXMailDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F404FC8522FD017C004F1219 /* WXMailDetailViewController.m */; };
+		F404FC8822FD017E004F1219 /* WXMailDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F404FC8622FD017C004F1219 /* WXMailDetailViewController.xib */; };
 		F407FFE222ED83FB0090806E /* MailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F407FFE022ED83FB0090806E /* MailViewModel.m */; };
 		F407FFEE22ED84070090806E /* MailDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = F407FFE722ED84070090806E /* MailDetails.m */; };
 		F407FFEF22ED84070090806E /* InBoxInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F407FFE822ED84070090806E /* InBoxInfo.m */; };
@@ -275,6 +277,7 @@
 		F407FFF722EDDE0C0090806E /* WXMessageAlertListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F407FFF622EDDE0C0090806E /* WXMessageAlertListModel.m */; };
 		F40E96F822E5FF5600EE8C60 /* SearchUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F40E96F722E5FF5600EE8C60 /* SearchUserModel.m */; };
 		F40E970222E6061900EE8C60 /* MomentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40E970122E6061900EE8C60 /* MomentViewModel.swift */; };
+		F41B008F22FE57BA0087F129 /* WDXUsersListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F41B008E22FE57BA0087F129 /* WDXUsersListCell.m */; };
 		F4224AF222D9DDB5003DA311 /* WXAddOrMinusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4224AF122D9DDB5003DA311 /* WXAddOrMinusView.swift */; };
 		F4224AF422D9DDC6003DA311 /* WXAddOrMinusView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4224AF322D9DDC6003DA311 /* WXAddOrMinusView.xib */; };
 		F4224AF722D9DEFF003DA311 /* WXAddOrMinusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4224AF522D9DEFF003DA311 /* WXAddOrMinusCell.swift */; };
@@ -768,6 +771,9 @@
 		F40185EC22D972E60047B1B0 /* WXfriendResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXfriendResultViewController.h; sourceTree = "<group>"; };
 		F40185ED22D972E60047B1B0 /* WXfriendResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXfriendResultViewController.m; sourceTree = "<group>"; };
 		F40185EE22D972E60047B1B0 /* WXfriendResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXfriendResultViewController.xib; sourceTree = "<group>"; };
+		F404FC8422FD017C004F1219 /* WXMailDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMailDetailViewController.h; sourceTree = "<group>"; };
+		F404FC8522FD017C004F1219 /* WXMailDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMailDetailViewController.m; sourceTree = "<group>"; };
+		F404FC8622FD017C004F1219 /* WXMailDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXMailDetailViewController.xib; sourceTree = "<group>"; };
 		F407FFE022ED83FB0090806E /* MailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailViewModel.m; sourceTree = "<group>"; };
 		F407FFE122ED83FB0090806E /* MailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailViewModel.h; sourceTree = "<group>"; };
 		F407FFE522ED84070090806E /* MailDetails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailDetails.h; sourceTree = "<group>"; };
@@ -785,6 +791,8 @@
 		F40E96F622E5FF5600EE8C60 /* SearchUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserModel.h; sourceTree = "<group>"; };
 		F40E96F722E5FF5600EE8C60 /* SearchUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserModel.m; sourceTree = "<group>"; };
 		F40E970122E6061900EE8C60 /* MomentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentViewModel.swift; sourceTree = "<group>"; };
+		F41B008D22FE57BA0087F129 /* WDXUsersListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDXUsersListCell.h; sourceTree = "<group>"; };
+		F41B008E22FE57BA0087F129 /* WDXUsersListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDXUsersListCell.m; sourceTree = "<group>"; };
 		F4224AF122D9DDB5003DA311 /* WXAddOrMinusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAddOrMinusView.swift; sourceTree = "<group>"; usesTabs = 0; };
 		F4224AF322D9DDC6003DA311 /* WXAddOrMinusView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXAddOrMinusView.xib; sourceTree = "<group>"; };
 		F4224AF522D9DEFF003DA311 /* WXAddOrMinusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAddOrMinusCell.swift; sourceTree = "<group>"; };
@@ -1634,6 +1642,8 @@
 			children = (
 				2A8E782222A8EAB10020BC57 /* WXUsersListCell.h */,
 				2A8E782322A8EAB10020BC57 /* WXUsersListCell.m */,
+				F41B008D22FE57BA0087F129 /* WDXUsersListCell.h */,
+				F41B008E22FE57BA0087F129 /* WDXUsersListCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1786,10 +1796,10 @@
 		CE5B9A1522BCD35A00B608E4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				CE5B9A1622BCD35A00B608E4 /* WXInboxViewController.m */,
-				CE5B9A1722BCD35A00B608E4 /* WXMailListViewController.m */,
 				CE5B9A1822BCD35A00B608E4 /* WXInboxViewController.h */,
+				CE5B9A1622BCD35A00B608E4 /* WXInboxViewController.m */,
 				CE5B9A1922BCD35A00B608E4 /* WXMailListViewController.h */,
+				CE5B9A1722BCD35A00B608E4 /* WXMailListViewController.m */,
 				F486AE1E22D95C670030D9F0 /* WXMailLoginViewController.h */,
 				F486AE1F22D95C670030D9F0 /* WXMailLoginViewController.m */,
 				F486AE2022D95C670030D9F0 /* WXMailLoginViewController.xib */,
@@ -1797,6 +1807,9 @@
 				F40185DE22D965460047B1B0 /* WXChooseMailTypeTableViewController.m */,
 				F42BC65A22E89732004EFA02 /* ViewMailConfigController.h */,
 				F42BC65B22E89732004EFA02 /* ViewMailConfigController.m */,
+				F404FC8422FD017C004F1219 /* WXMailDetailViewController.h */,
+				F404FC8522FD017C004F1219 /* WXMailDetailViewController.m */,
+				F404FC8622FD017C004F1219 /* WXMailDetailViewController.xib */,
 				F459CB5A22F87B5800EABDB0 /* WXWriteEmailViewController.h */,
 				F459CB5B22F87B5800EABDB0 /* WXWriteEmailViewController.m */,
 				F459CB5C22F87B5800EABDB0 /* WXWriteEmailViewController.xib */,
@@ -1808,14 +1821,14 @@
 			isa = PBXGroup;
 			children = (
 				CE5B9A1B22BCD35A00B608E4 /* WXMailCell.h */,
+				CE5B9A2122BCD35A00B608E4 /* WXMailCell.m */,
 				CE5B9A1C22BCD35A00B608E4 /* WXMailListSubCell.h */,
+				CE5B9A2022BCD35A00B608E4 /* WXMailListSubCell.m */,
+				CE5B9A2322BCD35A00B608E4 /* WXMailListSectionCell.h */,
 				CE5B9A1D22BCD35A00B608E4 /* WXMailListSectionCell.m */,
 				CE5B9A1E22BCD35A00B608E4 /* WXMailListHeaderView.h */,
-				CE5B9A1F22BCD35A00B608E4 /* WXMailBottomCell.h */,
-				CE5B9A2022BCD35A00B608E4 /* WXMailListSubCell.m */,
-				CE5B9A2122BCD35A00B608E4 /* WXMailCell.m */,
 				CE5B9A2222BCD35A00B608E4 /* WXMailListHeaderView.m */,
-				CE5B9A2322BCD35A00B608E4 /* WXMailListSectionCell.h */,
+				CE5B9A1F22BCD35A00B608E4 /* WXMailBottomCell.h */,
 				CE5B9A2422BCD35A00B608E4 /* WXMailBottomCell.m */,
 			);
 			path = View;
@@ -2280,6 +2293,7 @@
 				2A8E7ED322B092A80020BC57 /* recorder_white@3x.png in Resources */,
 				2A8E7E8822B092A80020BC57 /* bg_micro@2x.png in Resources */,
 				2ACD5EB92271539600A24BF6 /* Assets.xcassets in Resources */,
+				F404FC8822FD017E004F1219 /* WXMailDetailViewController.xib in Resources */,
 				2A8E7EB522B092A80020BC57 /* animate_00058.png in Resources */,
 				2ACD5EB72271539400A24BF6 /* Main.storyboard in Resources */,
 				CE5B9A3D22C05EED00B608E4 /* scanFlashlight@3x.png in Resources */,
@@ -2483,6 +2497,7 @@
 				F486AE1D22D8DCC70030D9F0 /* WXNewMomentViewController.m in Sources */,
 				2A8E782A22AE101C0020BC57 /* WXResultViewCell.m in Sources */,
 				2A8E7EFD22B092A80020BC57 /* CallSettingViewController.m in Sources */,
+				F404FC8722FD017E004F1219 /* WXMailDetailViewController.m in Sources */,
 				2AF0B92322B7411B00854BFE /* SDEyeAnimationView.m in Sources */,
 				2A8E784B22AF8DAC0020BC57 /* MBProgressHUD+NJ.m in Sources */,
 				2A28B18F2280311500B224F4 /* NSString+Letter.m in Sources */,
@@ -2616,6 +2631,7 @@
 				2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */,
 				2ADDBA2122A4D4E70006C42A /* EMBadgeLabel.m in Sources */,
 				F4C28E6822D0A6F000606E6D /* GroupChatVC.swift in Sources */,
+				F41B008F22FE57BA0087F129 /* WDXUsersListCell.m in Sources */,
 				F4D2E16422F6F7D700CFDBAE /* WDXUserListViewController.m in Sources */,
 				2A28B17422802B1100B224F4 /* MPicture.m in Sources */,
 				2A8E782422A8EAB10020BC57 /* WXUsersListCell.m in Sources */,

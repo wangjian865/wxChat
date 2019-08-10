@@ -69,6 +69,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
                 
             })
         }
+        
         vc.isEditing = true
         vc.isInfoCard = true
         let nav = WXPresentNavigationController.init(rootViewController: vc)
@@ -153,6 +154,9 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
             vc.chooseCompletion = { (IDs) in
                 MineViewModel.addGroupMember(groupID: self.groupID ?? "", users: IDs, success: { (msg) in
                     MBProgressHUD.showSuccess(msg)
+                    if ((msg?.contains("已在群里"))!){
+                        return
+                    }
                     self.getUsers()
                 }, failure: { (error) in
                     
@@ -160,6 +164,13 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
             }
             vc.isEditing = true
             vc.isGroup = false
+            if let temps = users{
+                var temp: [String] = []
+                for user in temps {
+                    temp.append(user.tgusetid)
+                }
+                vc.hasIDs = temp
+            }
             let nav = WXPresentNavigationController.init(rootViewController: vc)
             present(nav, animated: true, completion: nil)
         }

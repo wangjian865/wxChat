@@ -13,6 +13,8 @@ class WXAttendantViewController: UIViewController {
     var companyID = ""
     var dataArr: [SearchUserModel]?
     var contentView: WXAddOrMinusView!
+    
+    var IDs: [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
@@ -31,6 +33,7 @@ class WXAttendantViewController: UIViewController {
     func getAdminData() {
         MineViewModel.getCompanyAdminList(companyid: companyID, success: { (adminModels) in
             self.dataArr = adminModels
+            self.getIDs()
             self.contentView.dataArray = adminModels
             self.contentView.collectionView.reloadData()
         }) { (error) in
@@ -40,34 +43,40 @@ class WXAttendantViewController: UIViewController {
     func getUserData() {
         MineViewModel.getCompanyUserList(companyid: companyID, success: { (friendModels) in
             self.dataArr = friendModels
+            self.getIDs()
             self.contentView.dataArray = friendModels
             self.contentView.collectionView.reloadData()
+            
         }) { (error) in
             print("获取成员失败")
         }
     }
+    func getIDs() {
+        IDs.removeAll()
+        if let data = dataArr{
+            for temp in data {
+                IDs.append(temp.tgusetId)
+            }
+        }
+    }
     func setNaviBar() {
-        let button = UIButton.init(type: .custom)
-        button.setTitle("保存", for: .normal)
-        button.frame.size = CGSize.init(width: 52, height: 28)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.layer.cornerRadius = 2
-        button.layer.backgroundColor = UIColor.clear.cgColor
-        button.layer.borderColor = UIColor(red: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0).cgColor
-        button.layer.borderWidth = 0.5;
-        button.addTarget(self, action: #selector(checkOutAction), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: button)
+        let rightBtn = UIButton.init(type: .custom)
+        rightBtn.setTitle("保存", for: .normal)
+        rightBtn.backgroundColor = UIColor.clear
+        rightBtn.layer.cornerRadius = 3
+        rightBtn.layer.borderColor = UIColor.white.cgColor
+        rightBtn.layer.borderWidth = 1
+        rightBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        rightBtn.frame.size = CGSize.init(width: 52, height: 28)
+        rightBtn.addTarget(self, action: #selector(checkOutAction), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(customView: rightBtn)
     }
     
     //记录去掉的用户id
-    var deleteUserIDs: [SearchUserModel] = []
+    var deleteUserIDs: [String] = []
     //确认按钮
     @objc func checkOutAction() {
-        contentView.isEdit = false
-        contentView.collectionView.reloadData()
-        if deleteUserIDs.count > 0{
-            deleteRequest()
-        }
+        deleteRequest()
     }
     //删除操作
     func deleteRequest() {
@@ -79,11 +88,12 @@ class WXAttendantViewController: UIViewController {
         deleteUserIDs.removeAll()
     }
     func deleteUserRequest() {
-        var deleteStr = ""
-        for model in deleteUserIDs {
-            deleteStr = deleteStr + model.tgusetId + ","
-        }
-        deleteStr.removeLast()
+        
+        let deleteStr = deleteUserIDs.joined(separator: ",")
+//        for tgID in deleteUserIDs {
+//            deleteStr = deleteStr + model.tgusetId + ","
+//        }
+//        deleteStr.removeLast()
         MineViewModel.deleCompanyUser(companysystem: deleteStr, companyid: companyID, success: { (success) in
             self.getdata()
         }) { (error) in
@@ -91,11 +101,12 @@ class WXAttendantViewController: UIViewController {
         }
     }
     func deleteAdminRequest() {
-        var deleteStr = ""
-        for model in deleteUserIDs {
-            deleteStr = deleteStr + model.tgusetId + ","
-        }
-        deleteStr.removeLast()
+
+//        for model in deleteUserIDs {
+//            deleteStr = deleteStr + model.tgusetId + ","
+//        }
+//        deleteStr.removeLast()
+        let deleteStr = deleteUserIDs.joined(separator: ",")
         MineViewModel.deleCompanyAdmin(tgusetids: deleteStr, seanceshowidadmincompanyid: companyID, success: { (success) in
             self.getdata()
         }) { (error) in
@@ -106,6 +117,7 @@ class WXAttendantViewController: UIViewController {
         let tempView = Bundle.main.loadNibNamed("WXAddOrMinusView", owner: nil, options: nil)?.last as! WXAddOrMinusView
         tempView.addClosure = {[weak self] in
             let vc = WXUsersListViewController.init()
+            vc.hasIDs = self!.IDs
             vc.chooseCompletion = { (IDs) in
                 let ids = IDs.joined(separator: ",")
                 if (self?.title == "管理员设置"){
@@ -129,16 +141,16 @@ class WXAttendantViewController: UIViewController {
             let nav = WXPresentNavigationController.init(rootViewController: vc)
             self?.present(nav, animated: true, completion: nil)
         }
-        tempView.deleteClosure = { [weak self] model in
-            
-            if (self?.deleteUserIDs.contains(model))!{
-                    self?.deleteUserIDs.removeAll(where: { (temp) -> Bool in
-                        return temp == model
-                    })
-                }else{
-                    self?.deleteUserIDs.append(model)
-                    print(self?.deleteUserIDs.count)
-                }
+        
+        tempView.newDeleteClosure = { [weak self] in
+            let vc = WDXUserListViewController()
+            vc.chooseCompletion = { [weak self](idArray) in
+                self?.deleteUserIDs = idArray
+                self?.deleteRequest()
+            }
+            vc.users = self!.dataArr!
+            let nav = WXPresentNavigationController.init(rootViewController: vc)
+            self?.present(nav, animated: true, completion: nil)
         }
         contentView = tempView
         tempView.dataArray = dataArr

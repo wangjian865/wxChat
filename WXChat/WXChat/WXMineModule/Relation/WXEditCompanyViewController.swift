@@ -71,7 +71,6 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
             if index == 102{
                 //101作为title  无视点击事件
                 self?.deleComRequest()
-                
             }
         }
         view.window?.addSubview(sheet)

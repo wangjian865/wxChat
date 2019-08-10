@@ -80,16 +80,16 @@
     //先获取搜索结果后跳转
     [MineViewModel getUserInfo:account success:^(UserInfoModel * model) {
         NSLog(@"1");
+        
         WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
         resultVC.model = model;
         [self.navigationController pushViewController:resultVC animated:true];
     } failure:^(NSError * error) {
         
     }];
-    
-    
     return YES;
 }
+
 //不跳转
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];

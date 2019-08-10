@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXAccountTool : NSObject
+///登出
++ (void)logout;
 //判断用户是否登录
 + (BOOL)isLogin;
 //获取token

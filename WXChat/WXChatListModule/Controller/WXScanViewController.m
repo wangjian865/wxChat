@@ -10,6 +10,8 @@
 #import "WSLScanView.h"
 #import "WSLNativeScanTool.h"
 #import "WSLCreateQRCodeController.h"
+#import "WXfriendResultViewController.h"
+
 @interface WXScanViewController ()<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (nonatomic, strong)  WSLNativeScanTool * scanTool;
 @property (nonatomic, strong)  WSLScanView * scanView;
@@ -24,7 +26,7 @@
     [photoBtn setTitle:@"相册" forState:UIControlStateNormal];
     [photoBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [photoBtn addTarget:self action:@selector(photoBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.title = @"二维码/条码";
+    self.navigationItem.title = @"二维码";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:photoBtn];
     
     //输出流视图
@@ -62,16 +64,42 @@
     _scanTool = [[WSLNativeScanTool alloc] initWithPreview:preview andScanFrame:_scanView.scanRetangleRect];
     _scanTool.scanFinishedBlock = ^(NSString *scanString) {
         NSLog(@"扫描结果 %@",scanString);
-        [weakSelf.scanView handlingResultsOfScan];
-        // 获取指定的Storyboard，name填写Storyboard的文件名
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        // 从Storyboard上按照identifier获取指定的界面（VC），identifier必须是唯一的
-        WSLCreateQRCodeController *createQRCodeController = [storyboard instantiateViewControllerWithIdentifier:@"createQRCode"];
-        createQRCodeController.qrImage =  [WSLNativeScanTool createQRCodeImageWithString:scanString andSize:CGSizeMake(250, 250) andBackColor:[UIColor colorWithRed:arc4random()%255/256.0 green:arc4random()%255/256.0 blue:arc4random()%255/256.0 alpha:1.0] andFrontColor:[UIColor colorWithRed:arc4random()%255/256.0 green:arc4random()%255/256.0 blue:arc4random()%255/256.0 alpha:1.0] andCenterImage:[UIImage imageNamed:@"piao"]];
-        createQRCodeController.qrString = scanString;
-        [weakSelf.navigationController pushViewController:createQRCodeController animated:YES];
+//        [weakSelf.scanView handlingResultsOfScan];
+//        // 获取指定的Storyboard，name填写Storyboard的文件名
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        // 从Storyboard上按照identifier获取指定的界面（VC），identifier必须是唯一的
+//        WSLCreateQRCodeController *createQRCodeController = [storyboard instantiateViewControllerWithIdentifier:@"createQRCode"];
+//        createQRCodeController.qrImage =  [WSLNativeScanTool createQRCodeImageWithString:scanString andSize:CGSizeMake(250, 250) andBackColor:[UIColor colorWithRed:arc4random()%255/256.0 green:arc4random()%255/256.0 blue:arc4random()%255/256.0 alpha:1.0] andFrontColor:[UIColor colorWithRed:arc4random()%255/256.0 green:arc4random()%255/256.0 blue:arc4random()%255/256.0 alpha:1.0] andCenterImage:[UIImage imageNamed:@"piao"]];
+//        createQRCodeController.qrString = scanString;
+        
+//        [weakSelf.navigationController pushViewController:createQRCodeController animated:YES];
         [weakSelf.scanTool sessionStopRunning];
-        [weakSelf.scanTool openFlashSwitch:NO];
+        [weakSelf.scanTool openFlashSwitch:NO]; 
+        if ([scanString containsString:@"addFriend://www.friendID"]){
+            NSString *ID = [scanString componentsSeparatedByString:@"addFriend://www.friendID"].lastObject;
+            [MineViewModel judgeIsFriendWithFriendID:ID success:^(NSString * msg) {
+                if ([msg isEqualToString:@"是"]){
+                    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+                    controller.userId = ID;
+                    [weakSelf.navigationController pushViewController:controller animated:YES];
+                }else{
+                    [MineViewModel getUserInfo:ID success:^(UserInfoModel * model) {
+                        WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+                        resultVC.model = model;
+                        [weakSelf.navigationController pushViewController:resultVC animated:true];
+                    } failure:^(NSError * error) {
+                        
+                    }];
+                    
+                }
+            } failure:^(NSError * error) {
+                
+            }];
+        }else{
+            [self showHint:@"无法识别"];
+            [weakSelf.scanTool sessionStartRunning];
+        }
+        
     };
     _scanTool.monitorLightBlock = ^(float brightness) {
         NSLog(@"环境光感 ： %f",brightness);

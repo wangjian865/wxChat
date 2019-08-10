@@ -9,11 +9,6 @@
 #import "WXMailListSectionCell.h"
 #import "Masonry.h"
 @interface WXMailListSectionCell ()
-/**
- * icon箭头
- */
-@property (nonatomic, strong) UIImageView *iconView;
-
 
 @end
 @implementation WXMailListSectionCell
@@ -30,7 +25,7 @@
     
     _iconView = [[UIImageView alloc] init];
     [self.contentView addSubview:_iconView];
-    
+    _iconView.image = [UIImage imageNamed:@"蓝色箭头"];
     _accountLabel = [[UILabel alloc] init];
     _accountLabel.textColor = rgb(48,134,191);
     _accountLabel.font = [UIFont systemFontOfSize:14];
@@ -56,5 +51,17 @@
         make.right.equalTo(@-19);
         make.centerY.equalTo(self.contentView);
     }];
+}
+- (void)setIsShow:(BOOL)isShow{
+    _isShow = isShow;
+    if (isShow){
+        [UIView animateWithDuration:0.3 animations:^{
+            self.iconView.transform = CGAffineTransformMakeRotation(M_PI/4*3);
+        }];
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            self.iconView.transform = CGAffineTransformMakeRotation(0);
+        }];
+    }
 }
 @end

@@ -26,7 +26,12 @@
     _companyLable.text = _model.tgusetcompany;
 }
 - (IBAction)addFriendAction:(UIButton *)sender {
-    [MineViewModel addFriendWithFriendID:_model.tgusetid context:@""];
+    [MineViewModel addFriendWithFriendID:_model.tgusetid context:@"" success:^(NSString * msg) {
+        [MBProgressHUD showText:msg];
+    } failure:^(NSError * error) {
+        
+    }];
+    
 }
 
 /*

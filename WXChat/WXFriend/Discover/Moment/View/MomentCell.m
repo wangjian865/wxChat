@@ -211,10 +211,14 @@ CGFloat lineSpacing = 5;
     CGFloat width = k_screen_width - kRightMargin - _avatarImageView.left;
     if ([model.namelike count]){
         UIView *likeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 48)];
+        likeView.clipsToBounds = YES;
         CGFloat iconX = 30;
         //idx增加后增加的x
         CGFloat marginWidth = 40;
         //这里需要加一个点赞图标
+        UIImageView *likeIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"收藏蓝色"]];
+        likeIcon.frame = CGRectMake(10, 19, 13, 13);
+        [likeView addSubview:likeIcon];
         [model.namelike enumerateObjectsUsingBlock:^(LikeListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             MMImageView *iconLike = [[MMImageView alloc] initWithFrame:CGRectMake(iconX + marginWidth * idx, 8, kLikeIconWidth, kLikeIconWidth)];
             WS(wSelf);
@@ -242,6 +246,12 @@ CGFloat lineSpacing = 5;
     NSInteger count = [model.commes count];
     for (NSInteger i = 0; i < count; i ++) {
         CommentLabel * label = [[CommentLabel alloc] initWithFrame:CGRectMake(0, top, width, 0)];
+        if (i == 0){
+            UIImageView *commentIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"评论蓝色"]];
+            commentIcon.frame = CGRectMake(10, 20, 13, 13);
+            
+            [label addSubview:commentIcon];
+        }
         label.wxComment = [model.commes objectAtIndex:i];
         // 点击评论
         

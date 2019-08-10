@@ -88,6 +88,7 @@
     self.dataSource = self;
     self.delegate = self;
     [self.tableView setTableHeaderView:self.serachController.searchBar];
+    self.tableView.rowHeight = 48;
     if (_isEditing){//选取模式下才有
         [self _setNaviBar];
     }
@@ -97,9 +98,9 @@
 - (void)_getMyFriendsListRequest{
     [MineViewModel getFriendListWithNickName:@"" success:^(NSArray<FriendModel *> * list) {
         self.myList = list;
-        for (<#type *object#> in self.contactArr) {
-            <#statements#>
-        }
+//        for (<#type *object#> in self.contactArr) {
+//            <#statements#>
+//        }
         [self.tableView reloadData];
     } failure:^(NSError * error) {
         
@@ -192,12 +193,9 @@
         cell = [[WXUsersListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     id<IUserModel> model = self.contactArr[indexPath.section][indexPath.row];
-//    if (_myList){
-//        NSArray *tempList = [_myList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"tgusetid = %@",model.buddy]];
-//        FriendModel *temp = tempList.firstObject;
-//        model.avatarURLPath = temp.tgusetimg;
-//        model.nickname = temp.tgusetname;
-//    }
+    if (_hasIDs && [_hasIDs containsObject:model.buddy]){
+        cell.showCoverView = YES;
+    }
     if (model) {
         cell.model = model;
     }
@@ -218,17 +216,27 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 22;
+    return 31;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *contentView = [[UIView alloc] init];
-    [contentView setBackgroundColor:[UIColor colorWithRed:0.88 green:0.88 blue:0.88 alpha:1.0]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 22)];
+    [contentView setBackgroundColor:[UIColor whiteColor]];
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = rgb(48, 134, 191);
+    label.font = [UIFont systemFontOfSize:13];
+    label.left = 14;
+    label.top = 0;
+    label.height = 31;
+    label.width = 200;
     label.backgroundColor = [UIColor clearColor];
     [label setText:[self.sectionTitles objectAtIndex:(section)]];
     [contentView addSubview:label];
+    //底部线
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 30, k_screen_width, 1)];
+    line.backgroundColor = rgb(224, 224, 224);
+    [contentView addSubview:line];
     return contentView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -311,7 +319,10 @@
         if (model) {
 //            model.avatarImage = [UIImage imageNamed:@"EaseUIResource.bundle/user"];
             
-            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString: model.buddy];
+            NSString *firstLetter = [EaseChineseToPinyin pinyinFromChineseString: model.nickname];
+            if (!firstLetter){
+                firstLetter = @"xxx";
+            }
             NSInteger section = [indexCollation sectionForObject:[firstLetter substringToIndex:1] collationStringSelector:@selector(uppercaseString)];
             
             NSMutableArray *array = [sortedArray objectAtIndex:section];
@@ -322,10 +333,10 @@
     //每个section内的数组排序
     for (int i = 0; i < [sortedArray count]; i++) {
         NSArray *array = [[sortedArray objectAtIndex:i] sortedArrayUsingComparator:^NSComparisonResult(EaseUserModel *obj1, EaseUserModel *obj2) {
-            NSString *firstLetter1 = [EaseChineseToPinyin pinyinFromChineseString:obj1.buddy];
+            NSString *firstLetter1 = [EaseChineseToPinyin pinyinFromChineseString:obj1.nickname];
             firstLetter1 = [[firstLetter1 substringToIndex:1] uppercaseString];
             
-            NSString *firstLetter2 = [EaseChineseToPinyin pinyinFromChineseString:obj2.buddy];
+            NSString *firstLetter2 = [EaseChineseToPinyin pinyinFromChineseString:obj2.nickname];
             firstLetter2 = [[firstLetter2 substringToIndex:1] uppercaseString];
             
             return [firstLetter1 caseInsensitiveCompare:firstLetter2];

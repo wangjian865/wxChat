@@ -60,6 +60,11 @@
     _titleLabel.text = model.nickname;
     [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.avatarURLPath]];
 }
+- (void)setWxModel:(SearchUserModel *)wxModel{
+    _wxModel = wxModel;
+    _titleLabel.text = wxModel.tgusetName;
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:wxModel.tgusetImg]];
+}
 - (void)setCellSelected:(BOOL)CellSelected{
     _CellSelected = CellSelected;
     _selectButton.selected = CellSelected;
@@ -89,21 +94,22 @@
     _avatarView = [[UIImageView alloc] init];
     _avatarView.image = [UIImage imageNamed:@"normal_icon"];
     _avatarView.translatesAutoresizingMaskIntoConstraints = NO;
+    _avatarView.cornerRadius = 19;
     [self.contentView addSubview:_avatarView];
     
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.accessibilityIdentifier = @"title";
     _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    _titleLabel.numberOfLines = 2;
+    _titleLabel.numberOfLines = 1;
     _titleLabel.backgroundColor = [UIColor clearColor];
-    _titleLabel.font = [UIFont systemFontOfSize:14];
+    _titleLabel.font = [UIFont systemFontOfSize:15];
     _titleLabel.textColor = UIColor.blackColor;
     [self.contentView addSubview:_titleLabel];
     
     [_selectButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(@21);
         make.centerY.equalTo(self.contentView);
-        make.left.offset(21);
+        make.left.offset(14);
     }];
     [_avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.equalTo(@38);

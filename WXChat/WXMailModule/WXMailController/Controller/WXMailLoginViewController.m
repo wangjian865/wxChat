@@ -10,6 +10,8 @@
 #import "ViewMailConfigController.h"
 #import "MailViewModel.h"
 @interface WXMailLoginViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *accountTF;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTF;
 
 @end
 
@@ -28,9 +30,17 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 - (void)mailLoginAction {
-    NSLog(@"登录邮箱");
-    [MailViewModel loginMailWithMailAccount:@"wdxzstdl@163.com" password:@"wj86565902" accountType:@"163" successBlock:^(NSString * _Nonnull data) {
-        NSLog(@"1");
+    if (self.accountTF.text.length <= 0){
+        [MBProgressHUD showError:@"请输入账号"];
+        return;
+    }
+    if (self.passwordTF.text.length <= 0){
+        [MBProgressHUD showError:@"请输入密码"];
+        return;
+    }
+    [MailViewModel loginMailWithMailAccount:self.accountTF.text password:self.passwordTF.text accountType:self.type successBlock:^(NSString * _Nonnull data) {
+        [MBProgressHUD showSuccess:data];
+        [self.navigationController popToRootViewControllerAnimated:true];
     } failBlock:^(NSError * _Nonnull error) {
         
     }];

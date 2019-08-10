@@ -9,6 +9,8 @@
 #import "WXInboxViewController.h"
 #import "WXMailCell.h"
 #import "MailInfoList.h"
+#import "WXMailDetailViewController.h"
+#import "WXWriteEmailViewController.h"
 @interface WXInboxViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  * list
@@ -29,13 +31,26 @@
         _mailListView.rowHeight = UITableViewAutomaticDimension;
         _mailListView.estimatedRowHeight = 75;
         [_mailListView registerClass:[WXMailCell class] forCellReuseIdentifier:@"WXMailCell"];
+        _mailListView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _mailListView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.mailListView];
-    [self setNaviBar];
+    if ([_ID isEqual: @"1"]){
+        self.title = @"收件箱";
+        [self setNaviBar];
+    }else if ([_ID isEqual: @"2"]){
+        self.title = @"草稿箱";
+    }else if ([_ID isEqual: @"3"]){
+        self.title = @"发送箱";
+    }else if ([_ID isEqual: @"4"]){
+        self.title = @"垃圾箱";
+    }
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     [self getData];
 }
 - (void)getData {
@@ -47,13 +62,14 @@
     }];
 }
 - (void)setNaviBar {
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(writeEmail) forControlEvents:UIControlEventTouchUpInside];
-    [rightBtn setTitle:@"发邮件" forState:UIControlStateNormal];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"已发送"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeEmail)];
 }
 - (void)writeEmail {
-    NSLog(@"写邮件啦");
+    WXWriteEmailViewController *writeVC = [[WXWriteEmailViewController alloc] init];
+    writeVC.type = _type;
+    writeVC.account = _account;
+    
+    [self.navigationController pushViewController:writeVC animated:true];
 }
 - (void)viewDidLayoutSubviews {
     [self.mailListView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,5 +91,27 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    WXMailDetailViewController *detailVC = [[WXMailDetailViewController alloc] init];
+    MailInfo *model = _myModel.context[indexPath.row];
+    detailVC.account = self.account;
+    detailVC.user = _myModel.user;
+    detailVC.typeName = _type;
+    detailVC.categoryType = _ID;
+    detailVC.emailId = model.readmailmessageid;
+    [self.navigationController pushViewController:detailVC animated:true];
+}
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return true;
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        MailInfo *model = _myModel.context[indexPath.row];
+        [MailViewModel deleteMailWithMailAccount:_myModel.user typeName:_type categoryType:_ID emailId:model.readmailmessageid successBlock:^(NSString * _Nonnull successMessage) {
+            [self getData];
+        } failBlock:^(NSError * _Nonnull error) {
+            
+        }];
+    }
 }
 @end

@@ -388,7 +388,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbp-3m-8Mc">
-                                                    <rect key="frame" x="359" y="26" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="384" y="26" width="0.0" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -396,7 +396,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="j5P-hY-WXo" firstAttribute="leading" secondItem="gOl-Wh-dqV" secondAttribute="leading" constant="25" id="TFj-4y-I4e"/>
-                                                <constraint firstAttribute="trailing" secondItem="Zbp-3m-8Mc" secondAttribute="trailing" constant="55" id="ZoD-fc-H9w"/>
+                                                <constraint firstAttribute="trailing" secondItem="Zbp-3m-8Mc" secondAttribute="trailing" constant="30" id="ZoD-fc-H9w"/>
                                                 <constraint firstItem="Zbp-3m-8Mc" firstAttribute="centerY" secondItem="gOl-Wh-dqV" secondAttribute="centerY" id="fnV-Te-Xzu"/>
                                                 <constraint firstItem="j5P-hY-WXo" firstAttribute="centerY" secondItem="gOl-Wh-dqV" secondAttribute="centerY" id="m2y-ky-ffy"/>
                                             </constraints>
@@ -640,6 +640,9 @@
                                             <real key="value" value="3"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="logoutAction:" destination="umh-G1-ztL" eventType="touchUpInside" id="qhK-0c-gsy"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>

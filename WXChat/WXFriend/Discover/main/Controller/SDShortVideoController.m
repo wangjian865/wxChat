@@ -492,19 +492,19 @@ typedef void(^PropertyChangeBlock)(AVCaptureDevice *captureDevice);
     }
     NSLog(@"视频录制完成.");
     //视频录入完成之后在后台将视频存储到相簿
-    self.enableRotation=YES;
-    UIBackgroundTaskIdentifier lastBackgroundTaskIdentifier=self.backgroundTaskIdentifier;
-    self.backgroundTaskIdentifier=UIBackgroundTaskInvalid;
-    ALAssetsLibrary *assetsLibrary=[[ALAssetsLibrary alloc]init];
-    [assetsLibrary writeVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-        if (error) {
-            NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
-        }
-        if (lastBackgroundTaskIdentifier!=UIBackgroundTaskInvalid) {
-            [[UIApplication sharedApplication] endBackgroundTask:lastBackgroundTaskIdentifier];
-        }
-        NSLog(@"成功保存视频到相簿.");
-    }];
+    self.enableRotation = YES;
+//    UIBackgroundTaskIdentifier lastBackgroundTaskIdentifier = self.backgroundTaskIdentifier;
+//    self.backgroundTaskIdentifier = UIBackgroundTaskInvalid;
+//    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+//    [assetsLibrary writeVideoAtPathToSavedPhotosAlbum:outputFileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+//        if (error) {
+//            NSLog(@"保存视频到相簿过程中发生错误，错误信息：%@",error.localizedDescription);
+//        }
+//        if (lastBackgroundTaskIdentifier!=UIBackgroundTaskInvalid) {
+//            [[UIApplication sharedApplication] endBackgroundTask:lastBackgroundTaskIdentifier];
+//        }
+//        [MBProgressHUD showSuccess:@"成功保存视频到相簿"]
+//    }];
     
 }
 

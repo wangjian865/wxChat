@@ -9,5 +9,8 @@
 #import "MailDetails.h"
 
 @implementation MailDetails
-
+//+ (NSDictionary *)modelContainerPropertyGenericClass {
+//    return @{@"context":[MailInfo class],
+//             @"inbox":[InBoxInfo class]};
+//}
 @end

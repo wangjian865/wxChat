@@ -12,11 +12,13 @@
 @property (nonatomic, strong)UITextField *inputView;
 @property (nonatomic, strong)UILabel *promptLabel;
 @property (nonatomic, strong)UIView *companyView;
-
+@property (nonatomic, strong)UIButton *makeSureBtn;
 @property (nonatomic, strong)UIImageView *iconView;
 @property (nonatomic, strong)UILabel *companyNameLabel;
 @property (nonatomic, strong)UILabel *companyDescriptionLabel;
 @property (nonatomic, strong)UILabel *companyCountLabel;
+//return后存储  防止tf里的值被改
+@property (nonatomic, copy)NSString *companyId;
 @end
 
 @implementation WXAddCompanyViewController
@@ -101,19 +103,39 @@
     [self.view addSubview:textField];
     [self.view addSubview:self.companyView];
     _companyView.hidden = YES;
+    
+    _makeSureBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _makeSureBtn.backgroundColor = rgb(0,135,196);
+    [_makeSureBtn setTitle:@"申请" forState:UIControlStateNormal];
+    _makeSureBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [self.view addSubview:_makeSureBtn];
+    _makeSureBtn.hidden = YES;
+    [_makeSureBtn addTarget:self action:@selector(applyAction) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)applyAction {
+    [MineViewModel addCompanyApplyWithCompanyId:_companyId success:^(NSString * msg) {
+        [MBProgressHUD showText:msg];
+        [self.navigationController popViewControllerAnimated:true];
+    } failure:^(NSError * error) {
+        
+    }];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField endEditing:true];
+    _companyId = textField.text;
     NSString *urlStr = [WXApiManager getRequestUrl:@"company/selectCompany"];
     NSDictionary *params = @{@"companyid":textField.text,@"companytgusettgusetid":[WXAccountTool getUserID]};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
+            
             self.companyView.hidden = NO;
+            self.makeSureBtn.hidden = NO;
             CompanyModel *model = [CompanyModel yy_modelWithJSON:responseBody[@"data"]];
             if (model == nil){
                 self.companyView.hidden = YES;
+                self.makeSureBtn.hidden = YES;
                 [MBProgressHUD showError:@"未检索到该公司"];
                 return;
             }
@@ -124,9 +146,11 @@
         }else{
             [MBProgressHUD showError:@"未检索到该公司"];
             self.companyView.hidden = YES;
+            self.makeSureBtn.hidden = YES;
         }
     } failureBlock:^(NSError * _Nonnull error) {
         self.companyView.hidden = YES;
+        self.makeSureBtn.hidden = YES;
     }];
     return true;
 }
@@ -145,6 +169,12 @@
         make.left.right.equalTo(self.view);
         make.height.mas_equalTo(68);
         make.top.offset(74);
+    }];
+    [_makeSureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(14);
+        make.right.mas_equalTo(-14);
+        make.top.equalTo(self.companyView.mas_bottom).offset(27);
+        make.height.mas_equalTo(47);
     }];
 }
 

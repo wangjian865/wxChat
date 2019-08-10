@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
  * countLabel
  */
 @property (nonatomic, strong) UILabel *countLabel;
+/**
+ * icon箭头
+ */
+@property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, assign) BOOL isShow;
 @end
 
 NS_ASSUME_NONNULL_END

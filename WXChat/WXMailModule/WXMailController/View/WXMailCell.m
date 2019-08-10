@@ -55,10 +55,12 @@
     }];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView.mas_right).offset(17);
+        make.right.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.contentView).offset(11);
     }];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel);
+        make.right.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(6);
     }];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -70,7 +72,7 @@
 }
 - (void)setModel:(MailInfo *)model{
     _model = model;
-    _nameLabel.text = model.readeamilsendtugset;
+    _nameLabel.text = [model.readeamilsendtugset componentsSeparatedByString:@"<"].firstObject;
     _titleLabel.text = model.readeamiltheme;
     NSString *temp = [model.readeamilcontet componentsSeparatedByString:@"<td style=\"display:none;\">"].lastObject;
     NSString *content = [temp componentsSeparatedByString:@"</td>"].firstObject;

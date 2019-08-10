@@ -9,6 +9,7 @@
 #import "WXChatViewController.h"
 #import "WXPersonInfoCell.h"
 #import "WXUserMomentInfoViewController.h"
+#import "WXfriendResultViewController.h"
 @interface WXChatViewController ()<EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource,UIDocumentPickerDelegate,EMCallManagerDelegate>
 
 @end
@@ -18,7 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.delegate = self;
-    self.tableView.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = rgb(240, 240, 240);
+    self.tableView.backgroundColor = rgb(240, 240, 240);
     self.dataSource = self;
     //设置聊天会话样式
     [self setChatAppearance];
@@ -30,11 +32,12 @@
 }
 //设置右边按钮
 - (void)setNaviRightButton{
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [rightBtn setTitle:@"更多" forState:UIControlStateNormal];
-    [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+//    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//    [rightBtn setTitle:@"更多" forState:UIControlStateNormal];
+//    [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"椭圆4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnAction)];
 }
 - (void)rightBtnAction{
     if (self.conversation.type == EMConversationTypeGroupChat){
@@ -74,13 +77,20 @@
     [[EaseBaseMessageCell appearance] setRecvMessageVoiceAnimationImages:@[[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing_full"],[UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing000"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing001"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing002"], [UIImage imageNamed:@"EaseUIResource.bundle/chat_receiver_audio_playing003"]]];//接收者语音消息播放图片
 }
 - (void)insetItemForChatBar {
-    [self.chatBarMoreView insertItemWithImage:[UIImage imageNamed:@"tabbar_maillist_sel"] highlightedImage:[UIImage imageNamed:@"tabbar_maillist_sel"] title:@"名片"];
+    
+    self.chatBarMoreView.moreViewBackgroundColor = rgb(240, 240, 240);
+    [self.chatBarMoreView removeItematIndex:3];
+    [self.chatBarMoreView removeItematIndex:3];
+    [self.chatBarMoreView updateItemWithImage:[UIImage imageNamed:@"照片"] highlightedImage:[UIImage imageNamed:@"照片"] title:@"照片" atIndex:0];
+    [self.chatBarMoreView updateItemWithImage:[UIImage imageNamed:@"坐标"] highlightedImage:[UIImage imageNamed:@"坐标"] title:@"坐标" atIndex:1];
+    [self.chatBarMoreView updateItemWithImage:[UIImage imageNamed:@"拍摄"] highlightedImage:[UIImage imageNamed:@"拍摄"] title:@"拍摄" atIndex:2];
+    [self.chatBarMoreView insertItemWithImage:[UIImage imageNamed:@"名片"] highlightedImage:[UIImage imageNamed:@"名片"] title:@"名片"];
 }
 
 //自定义功能的回调
 - (void)moreView:(EaseChatBarMoreView *)moreView didItemInMoreViewAtIndex:(NSInteger)index{
     //只加了名片,所以这里无需判断index
-    if (self.conversation.type == EMConversationTypeChat) {
+//    if (self.conversation.type == EMConversationTypeChat) {
         WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] init];
         userListVC.cardCallBack = ^(NSString * _Nonnull userID) {
             
@@ -97,7 +107,9 @@
         [self presentViewController:nav animated:YES completion:nil];
         //私聊
         
-    }
+//    }else{
+        //群聊
+//    }
     
     
 //    [self presentDocumentPicker];
@@ -122,16 +134,43 @@
     if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){
         NSString *ID = [NSString stringWithFormat:@"%@",messageModel.message.ext[@"userID"]];
         //可能要先判断是不是好友
-        WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
-        controller.userId = ID;
-        [self.navigationController pushViewController:controller animated:YES];
+        [MineViewModel judgeIsFriendWithFriendID:ID success:^(NSString * msg) {
+            if ([msg isEqualToString:@"是"]){
+                WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+                controller.userId = ID;
+                [self.navigationController pushViewController:controller animated:YES];
+            }else{
+                [MineViewModel getUserInfo:ID success:^(UserInfoModel * model) {
+                    WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+                    resultVC.model = model;
+                    [self.navigationController pushViewController:resultVC animated:true];
+                } failure:^(NSError * error) {
+                    
+                }];
+//                //不是好友// 接口不支持
+//                [MineViewModel getFriendInfoWithFriendID:ID success:^(FriendModel * model) {
+//                    UserInfoModel *temp = [[UserInfoModel alloc] init];
+//                    temp.tgusetid = model.tgusetid;
+//                    temp.tgusetname = model.tgusetname;
+//                    temp.tgusetimg = model.tgusetimg;
+//                    temp.tgusetcompany = model.tgusetcompany;
+//                    temp.tgusetposition = model.tgusetposition;
+//
+//                } failure:^(NSError * error) {
+//
+//                }];
+            }
+        } failure:^(NSError * error) {
+            
+        }];
+
         return YES;
     }
     return NO;
 }
 //文件选择器
 - (void)presentDocumentPicker {
-    NSArray *types = @[]; // 可以选择的文件类型
+    NSArray *types = @[@"com.apple.iwork.pages.pages",@"com.apple.iwork.numbers.numbers",@"com.apple.iwork.keynote.key"]; // 可以选择的文件类型
     UIDocumentPickerViewController *documentPicker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:types inMode:UIDocumentPickerModeOpen];
     documentPicker.delegate = self;
     documentPicker.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -191,6 +230,7 @@
     if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){
         NSString *cellid = [WXPersonInfoCell cellIdentifierWithModel:messageModel];
         WXPersonInfoCell *infoCell = (WXPersonInfoCell *)[tableView dequeueReusableCellWithIdentifier:cellid];
+        infoCell.hasRead.hidden = true;
         if (!infoCell){
             infoCell = [[WXPersonInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid model:messageModel];
         }

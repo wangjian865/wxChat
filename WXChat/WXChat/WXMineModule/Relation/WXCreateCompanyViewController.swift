@@ -60,7 +60,8 @@ class WXCreateCompanyViewController: UITableViewController {
     @IBAction func createCompanyAction(_ sender: UIButton) {
         
         MineViewModel.createCompany(companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: myTextView.text, companyindustry: induTF.text ?? "", companyregion: locationTF.text ?? "", success: { (model) in
-            print("1")
+            MBProgressHUD.showSuccess("创建成功")
+            self.navigationController?.popViewController(animated: true)
         }) { (error) in
             
         }

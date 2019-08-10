@@ -17,6 +17,7 @@ class GroupChatVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "ChatGroupCell", bundle: nil), forCellReuseIdentifier: "ChatGroupCell")
         tableView.rowHeight = 90
+        tableView.tableFooterView = UIView.init()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

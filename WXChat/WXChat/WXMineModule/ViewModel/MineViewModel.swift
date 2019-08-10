@@ -35,15 +35,20 @@ class MineViewModel: NSObject {
         }
     }
     //添加好友
-    @objc class func addFriend(friendID: String,context: String) {
+    @objc class func addFriend(friendID: String,
+                               context: String,
+                               success: @escaping (_ response: String?) ->(),
+                               failure: @escaping (_ error: NSError?) ->()) {
         
-        let params = ["friendshowfuserid":friendID,"friendshowcontext":"交个朋友吧","friendshowifconsend":"0","friendshowtgusetname":"啦啦啦"]
+        let params = ["friendshowfuserid":friendID,"friendshowcontext":"交个朋友吧","friendshowtgusetname":"简问用户"]
         WXNetWorkTool.request(with: .post, urlString: WXApiManager.getRequestUrl("userFriend/addUserFriendConSend"), parameters: params, successBlock: { (result) in
-            print(result)
+            
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
-            guard let result = resultModel else {return }
-            if result.code.elementsEqual("200"){
-                
+            guard let temp = resultModel else {return }
+            if temp.code.elementsEqual("200"){
+                let temp = result as! [String : Any]
+                let str = temp["data"] as! String
+                success(str)
             }
         }) { (error) in
             
@@ -61,7 +66,28 @@ class MineViewModel: NSObject {
             
         }
     }
-    //判断用户是否为好友
+    ///判断用户是否为好友
+    @objc class func judgeIsFriend(friendID: String,
+                                   success: @escaping (_ response: String?) ->(),
+                                   failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("userFriend/SelectFriendBoolean")
+        let params:[String:Any] = ["friendfriendid":friendID]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
+            let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
+            guard let temp = resultModel else {return }
+            if temp.code.elementsEqual("200"){
+                let temp = result as! [String : Any]
+                let isFriend = temp["data"] as! Bool
+                if isFriend{
+                    success("是")
+                }else{
+                    success("否")
+                }
+            }
+        }) { (error) in
+            
+        }
+    }
     ///获取好友申请列表
     @objc class func getAddFriendList(success: @escaping (_ response: [WXMessageAlertModel]?) ->(),
                                       failure: @escaping (_ error: NSError?) ->()){
@@ -106,6 +132,18 @@ class MineViewModel: NSObject {
             
         }
     }
+    ///删除好友请求
+    @objc class func deleteAddRequest(showId: String,
+                                      success: @escaping (_ response: String?) ->(),
+                                      failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("userFriend/deleteUserFriendConSendRecord")
+        let params:[String:Any] = ["friendshowid":showId]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (succsee) in
+            success("成功")
+        }) { (error) in
+            
+        }
+    }
     //更新头像
     class func updateUserIcon(image: UIImage,
                               success: @escaping (_ response: [String: Any]?) ->(),
@@ -138,8 +176,8 @@ class MineViewModel: NSObject {
 //    模糊查询参数    tgusetname
     //人脉  获取好友列表
     @objc class func getFriendList(nickName: String = "",
-                             success: @escaping (_ response: [FriendModel]) ->(),
-                             failure: @escaping (_ error: NSError?) ->()) {
+                                   success: @escaping (_ response: [FriendModel]) ->(),
+                                   failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/userFriends")
         let params:[String:Any] = ["tgusetname":nickName]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
@@ -172,8 +210,8 @@ class MineViewModel: NSObject {
     }
     //人脉 好友详情
     @objc class func getFriendInfo(friendID: String,
-                             success: @escaping (_ response: FriendModel?) ->(),
-                             failure: @escaping (_ error: NSError?) ->()) {
+                                   success: @escaping (_ response: FriendModel?) ->(),
+                                   failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/showFriendInfo")
         let params:[String:Any] = ["friendid":friendID]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
@@ -349,7 +387,7 @@ class MineViewModel: NSObject {
                                 success: @escaping (_ response: [String:Any]?) ->(),
                                 failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/deleteComTg")
-        let params:[String:Any] = ["companytgusettgusetids":companysystem,"seanceshowidadmincompanyid":companyid]
+        let params:[String:Any] = ["companytgusettgusetids":companysystem,"companytgusetcompanyid":companyid]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
             print(result)
             let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
@@ -538,7 +576,25 @@ class MineViewModel: NSObject {
             
         }
     }
-    //获取群聊列表
+    ///用户申请加入公司
+    @objc class func addCompanyApply(companyId: String,
+                                     success: @escaping (_ response: String?) ->(),
+                                     failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("company/addComApproval")
+        let params:[String:Any] = ["approvalTgusetid":WXAccountTool.getUserID(),"approvalTgusetname":WXAccountTool.getUserName(),"approvalCompanyid":companyId]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                success(result.msg)
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    ///获取群聊列表
     @objc class func getChatGroupList(success: @escaping (_ response: GroupListModel?) ->(),
                                  failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("manKeepToken/getSeaByTgid")
@@ -707,6 +763,23 @@ class MineViewModel: NSObject {
             if result.code.elementsEqual("200"){
                 let model = UserInfoModel.yy_model(with: result.data)
                 success(model?.tgusetid)
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    ///退出登录
+    class func logoutRequest(success: @escaping (_ response: String?) ->(),
+                             failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("manKeep/loginOut")
+        let params:[String:Any] = [:]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                success("成功")
             }else{
                 //code != 200的情况
             }

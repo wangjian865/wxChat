@@ -33,6 +33,25 @@
         failure(error);
     }];
 }
+///邮箱退出
++(void)logoutMailWithMailAccount:(NSString *)account
+                    successBlock:(void(^) (NSString *data))success
+                       failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"email/deleteMail"];
+    NSDictionary *params = @{@"tguseteamilaccount": account};
+    [MBProgressHUD showHUD];
+    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
+        if ([code isEqualToString:@"200"]){
+            //成功
+            success(@"成功");
+        }else{
+            [MBProgressHUD showError: responseBody[@"msg"]];
+        }
+    } failureBlock:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
 ///获取邮件首页信息
 +(void)getMailHomeDataWithSuccessBlock:(void(^) (MailPageModel *model))success
                              failBlock:(void(^) (NSError *error))failure{
@@ -74,27 +93,25 @@
             MailInfoList *model = [MailInfoList yy_modelWithJSON:responseBody[@"data"]];
             success(model);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+//            [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
         failure(error);
     }];
 }
 
-///删除邮件 ==>不确定参数对不对
+///删除邮件
 +(void)deleteMailWithMailAccount:(NSString *)account
                         typeName: (NSString *)typeName
                     categoryType:(NSString *)categoryType
-                     accountType:(NSString *)type
-                       serviceId:(NSString *)serviceId
+                       emailId:(NSString *)emailId
                     successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure{
     [MBProgressHUD showHUD];
     NSString *urlStr =  [WXApiManager getRequestUrl:@"emailS/emailDelete"];
     NSDictionary *params = @{@"account": account,
                              @"typeName": typeName,//邮箱类型
                              @"id": categoryType,//1收件箱，2 草稿箱，3发件箱 4垃圾箱
-                             @"emailId": serviceId
-                             
+                             @"emailId": @[emailId]
                              };
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
@@ -109,7 +126,7 @@
     }];
 }
 
-///发送邮件
+///发送邮件(失效)
 +(void)sendMailWithMailAccount:(NSString *)account
                      mailTitle:(NSString *)title
                     receiver:(NSString *)receiver
@@ -164,7 +181,7 @@
     }];
 }
 
-///发送邮件（回复邮件）
+///发送邮件
 +(void)sendMailWithMailAccount:(NSString *)account
                      mailTitle:(NSString *)title
                        receiver:(NSString *)receiver
@@ -173,23 +190,26 @@
                     attachment:(NSString *)attachment
                   successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"emailT/emailSend"];
+//    @"files":attachment,//附件，最多3个
     NSDictionary *params = @{@"account": account,//邮箱账号
                              @"sendeamiltheme": title,//标题
                              @"sendeamilcontext": content,//内容
                              @"sendeamilreceive": receiver,//收件人
                              @"typeName": accountType,//内容
-                             @"files":attachment,//附件，最多3个
-                             };//登录账号（非邮箱账号）
-    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+                             };
+    [WXNetWorkTool uploadFileWithUrl:urlStr imageName:@[] image:@[] parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
+        NSLog(@"%@",downloadProgress);
+    } successBlock:^(id  _Nonnull responseBody) {
+        //成功
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
-            //成功
-            success(@"成功");
+            success(responseBody[@"data"]);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+            [MBProgressHUD showError:@"发送失败"];
         }
+        
     } failureBlock:^(NSError * _Nonnull error) {
-        failure(error);
+        //失败
     }];
 }
 
@@ -198,27 +218,30 @@
                      serviceId:(NSString *)serviceId
                        title:(NSString *)title
                    receiver:(NSString *)receiver
-                       content: (NSString *)content
-                  successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure{
-    NSString *urlStr =  [WXApiManager getRequestUrl:@"oneemail/MailSTMPreply"];
-    NSDictionary *params = @{@"tguseteamiltgusetId": [WXAccountTool getUserID],
-                             @"tguseteamilaccount": account,//邮箱账号
+                accountType:(NSString *)accountType
+                    content: (NSString *)content
+                   successBlock:(void(^) (NSString *successMessage))success
+                      failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"emailT/emailReply"];
+    NSDictionary *params = @{@"sendeamilaccount": account,//邮箱账号
                              @"messageId": serviceId,
                              @"sendeamiltheme": title,//标题
                              @"sendeamilreceive": receiver,//收件人
                              @"sendeamilcontext": content,//内容
-                             @"companyid": [WXAccountTool getUserPhone]
-                             };//登录账号（非邮箱账号）
-    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+                             @"typeName":accountType
+                             };//还差一个文件
+    [WXNetWorkTool uploadFileWithUrl:urlStr imageName:@[] image:@[] parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
+        NSLog(@"%@",downloadProgress);
+    } successBlock:^(id  _Nonnull responseBody) {
+        //成功
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
-            //成功
-            success(@"成功");
+            success(responseBody[@"data"]);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+            [MBProgressHUD showError:@"发送失败"];
         }
     } failureBlock:^(NSError * _Nonnull error) {
-        failure(error);
+        //失败
     }];
 }
 
@@ -227,27 +250,29 @@
                       serviceId:(NSString *)serviceId
                           title:(NSString *)title
                        receiver:(NSString *)receiver
+                    accountType:(NSString *)accountType
                         content: (NSString *)content
                    successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure{
-    NSString *urlStr =  [WXApiManager getRequestUrl:@"163email/MailSMTPZ"];
-    NSDictionary *params = @{@"tguseteamiltgusetId": [WXAccountTool getUserID],
-                             @"tguseteamilaccount": account,//邮箱账号
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"emailT/emailForward"];
+    NSDictionary *params = @{@"sendeamilaccount": account,//邮箱账号
                              @"messageId": serviceId,
                              @"sendeamiltheme": title,//标题
                              @"sendeamilreceive": receiver,//收件人
                              @"sendeamilcontext": content,//内容
-                             @"companyid": [WXAccountTool getUserPhone]
-                             };//登录账号（非邮箱账号）
-    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+                             @"typeName":accountType
+                             };//少一个文件
+    [WXNetWorkTool uploadFileWithUrl:urlStr imageName:@[] image:@[] parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
+        NSLog(@"%@",downloadProgress);
+    } successBlock:^(id  _Nonnull responseBody) {
+        //成功
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
-            //成功
-            success(@"成功");
+            success(responseBody[@"data"]);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+            [MBProgressHUD showError:@"发送失败"];
         }
     } failureBlock:^(NSError * _Nonnull error) {
-        failure(error);
+        //失败
     }];
 }
 

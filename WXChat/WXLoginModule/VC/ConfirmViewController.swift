@@ -16,7 +16,7 @@ class ConfirmViewController: InputViewController {
         title = "找回密码"
         type = .confirm
     }
-    var code: String = ""
+    
     //点击设置新密码
     override func clickButton() {
         let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/updateTgusetPwd"

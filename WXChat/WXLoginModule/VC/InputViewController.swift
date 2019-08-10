@@ -40,6 +40,7 @@ class InputViewController: UIViewController {
     private var model: InputModel?
     var password = ""
     var account = ""
+    var code = ""
     var type = PageType.getPassword {
         didSet {
             switch type {
@@ -91,7 +92,7 @@ class InputViewController: UIViewController {
         view.addSubview(remindLabel)
         button.isEnabled = false
         contentView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(84 + 40)
+            make.top.equalToSuperview().offset(40)
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-30)
             make.height.greaterThanOrEqualTo(112)
@@ -165,12 +166,14 @@ extension InputViewController: UITextFieldDelegate {
                 }
             }
             if type == .register{
+                
                 let inputFirst = contentView.arrangedSubviews[2] as? ZJTextField
                 let inputSecond = contentView.arrangedSubviews[3] as? ZJTextField
                 if let pwd1 = inputFirst?.inputTextField.text,
                     let pwd2 = inputSecond?.inputTextField.text, pwd1 == pwd2 {
                     password = pwd1
                     button.isEnabled = true
+                    code = (contentView.arrangedSubviews[1] as? ZJTextField)?.inputTextField.text ?? ""
                 } else {
                     button.isEnabled = false
                     return

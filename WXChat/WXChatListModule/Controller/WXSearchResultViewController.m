@@ -46,7 +46,8 @@
 }
 #pragma mark -- UITableViewDelegate && Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+//    return 3;
+    return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;

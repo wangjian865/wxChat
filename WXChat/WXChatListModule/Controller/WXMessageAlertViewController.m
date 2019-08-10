@@ -86,7 +86,7 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete){
         //操作数据源
-        NSLog(@"delete %ld",indexPath.section);
+        
     }
 }
 // 定义编辑样式

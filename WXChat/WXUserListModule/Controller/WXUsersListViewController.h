@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^cardCallBack)(NSString *userID);
 
 //给一个数组用来接收外面来的用户id,用来给cell设置已选中的状态
-@property (nonatomic, strong) NSArray *hasIDs;
+@property (nonatomic, strong) NSArray<NSString *> *hasIDs;
 @end
 
 NS_ASSUME_NONNULL_END

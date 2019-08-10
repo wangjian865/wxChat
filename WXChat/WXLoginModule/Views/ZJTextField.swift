@@ -33,9 +33,9 @@ class ZJTextField: UIView {
                 inputTextField.placeholder = "输入手机号"
             case .password:
                 verficationButton.isHidden = true
-            
                 inputTextField.isSecureTextEntry = true
                 inputTextField.placeholder = data.placeHolder
+                inputTextField.keyboardType = .default
                 if let title = data.title {
                     titleLabel.text = title
                 } else {

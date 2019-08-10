@@ -18,6 +18,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self){
         [self setupUI];
+        self.separatorInset = UIEdgeInsetsMake(0, 700, 0, 0);
     }
     return self;
 }
@@ -25,7 +26,6 @@
     _iconView = [[UIImageView alloc] init];
     [self.contentView addSubview:_iconView];
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(@11);
         make.left.equalTo(@15);
         make.centerY.equalTo(self.contentView);
     }];
@@ -39,9 +39,25 @@
         make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.iconView.mas_right).offset(22);
     }];
+    
+    UIView *topLine = [[UIView alloc] init];
+    topLine.backgroundColor = rgb(224, 224, 224);
+    
+    UIView *bottomLine = [[UIView alloc] init];
+    bottomLine.backgroundColor = rgb(224, 224, 224);
+    [self.contentView addSubview:topLine];
+    [self.contentView addSubview:bottomLine];
+    [topLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(0.5);
+    }];
+    [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(0.5);
+    }];
 }
 - (void)setTitle:(NSString *)title{
     _titleLabel.text = title;
-    _iconView.image = [UIImage imageNamed:@""];
+    _iconView.image = [UIImage imageNamed:title];
 }
 @end

@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///是否显示遮盖
 @property (nonatomic, assign) BOOL *showCoverView;
+
+///wdxuserlist
+@property (nonatomic, assign) SearchUserModel *wxModel;
 @end
 
 NS_ASSUME_NONNULL_END

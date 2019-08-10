@@ -20,7 +20,7 @@
 /** 分割线 */
 @property (nonatomic, strong) UIView *lienView;
 /** 底部 图片+文字 but */
-@property (nonatomic, strong) UIButton *bottomView;
+@property (nonatomic, strong) UILabel *bottomView;
 @end
 @implementation WXPersonInfoCell
 
@@ -64,11 +64,15 @@
 /** 根据消息model变更气泡样式 */
 - (void)setCustomModel:(id<IMessageModel>)model
 {
+    
+    
+    _bubbleView.backgroundImageView.hidden = model.isSender;
+
     UIImage *image = model.image;
     if (!image) {
         [self.bubbleView.imageView sd_setImageWithURL:[NSURL URLWithString:model.fileURLPath] placeholderImage:[UIImage imageNamed:model.failImageName]];
     } else {
-        _bubbleView.imageView.image = image;
+        _bubbleView.imageView.image = [UIImage imageNamed:@"白色气泡"];
     }
     
     if (model.avatarURLPath) {
@@ -80,7 +84,19 @@
 
 /** 根据消息改变气泡样式 */
 - (void)setCustomBubbleView:(id)model{
-    _bubbleView.imageView.image = [UIImage imageNamed:@"imageDownloadFail"];
+    self.bubbleView.backgroundImageView.image = nil;
+//    _bubbleView.backgroundColor = UIColor.yellowColor;
+//    _bubbleView.imageView = [[UIImageView alloc] init];
+//    [_bubbleView addSubview:_bubbleView.imageView];
+//    [_bubbleView.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.bottom.right.offset(0);
+//    }];
+//
+//    _bubbleView.imageView.translatesAutoresizingMaskIntoConstraints = NO;
+//    _bubbleView.imageView.backgroundColor = [UIColor greenColor];
+    
+    
+//    _bubbleView.imageView.image = [UIImage imageNamed:@"蓝色对话框"];
 }
 
 /** 更新自定义气泡的边距 */
@@ -90,9 +106,9 @@
     CGFloat nameLabelHeight = 15;// 昵称label的高度
     if (mode.isSender) {
         _bubbleView.frame =
-        CGRectMake([UIScreen mainScreen].bounds.size.width - 340, nameLabelHeight, 280, bubbleViewHeight);
+        CGRectMake([UIScreen mainScreen].bounds.size.width - 300, nameLabelHeight, 250, bubbleViewHeight);
     }else{
-        _bubbleView.frame = CGRectMake(55, nameLabelHeight, 280, bubbleViewHeight);
+        _bubbleView.frame = CGRectMake(55, nameLabelHeight, 250, bubbleViewHeight);
     }
 }
 
@@ -102,13 +118,18 @@
 {
     NSLog(@"扩展消息 === %@",model.message.ext);
     self.hasRead.hidden = YES;
-    
-    [self.bubbleView.backgroundImageView addSubview:self.titleLb];
-    [self.bubbleView.backgroundImageView addSubview:self.describeLb];
-    [self.bubbleView.backgroundImageView addSubview:self.iconImgView];
-    [self.bubbleView.backgroundImageView addSubview:self.lienView];
-    [self.bubbleView.backgroundImageView addSubview:self.bottomView];
-    
+    UIImageView *backImg = [[UIImageView alloc] init];
+    backImg.hidden = !model.isSender;
+    backImg.image = [UIImage imageNamed:@"白色气泡"];
+    [self.bubbleView addSubview:backImg];
+    [self.bubbleView addSubview:self.titleLb];
+    [self.bubbleView addSubview:self.describeLb];
+    [self.bubbleView addSubview:self.iconImgView];
+    [self.bubbleView addSubview:self.lienView];
+    [self.bubbleView addSubview:self.bottomView];
+    [backImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.offset(0);
+    }];
     [_iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(8);
         make.top.mas_equalTo(15);
@@ -121,13 +142,17 @@
     [_describeLb mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.titleLb);
         make.top.equalTo(self.titleLb.mas_bottom).offset(8);
-        make.right.equalTo(self.bubbleView.backgroundImageView).offset(-8);
+        make.right.offset(-8);
     }];
     [_lienView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(2);
-        make.right.mas_equalTo(-8);
+        make.width.mas_equalTo(0);
         make.height.mas_equalTo(0.6);
         make.bottom.mas_equalTo(-20);
+    }];
+    [_bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.offset(-5);
+        make.left.offset(15);
     }];
 }
 - (void)setModel:(id<IMessageModel>)model{
@@ -167,6 +192,7 @@
         _iconImgView.image = [UIImage imageNamed:@"sports"];
         _iconImgView.backgroundColor = UIColor.grayColor;
         _iconImgView.layer.cornerRadius = 28;
+        _iconImgView.layer.masksToBounds = true;
     }
     return _iconImgView;
 }
@@ -179,20 +205,27 @@
     }
     return _lienView;
 }
-
-- (UIButton *)bottomView
-{
+- (UILabel *)bottomView{
     if (!_bottomView) {
-        _bottomView = [UIButton buttonWithType:UIButtonTypeCustom];
-        _bottomView.frame = CGRectMake(0, bubbleViewHeight - 20, 90, 20);
-        _bottomView.backgroundColor = [UIColor clearColor];
-        [_bottomView setTitle:@"名片" forState:UIControlStateNormal];
-        [_bottomView setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        _bottomView.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -30);
-        [_bottomView setImage:[UIImage imageNamed:@"sports_icon"] forState:UIControlStateNormal];
-        _bottomView.titleLabel.font = [UIFont systemFontOfSize:11];
+        _bottomView = [[UILabel alloc] init];
+        _bottomView.font = [UIFont systemFontOfSize:11];
+        _bottomView.text = @"名片";
     }
     return _bottomView;
 }
+//- (UIButton *)bottomView
+//{
+//    if (!_bottomView) {
+//        _bottomView = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _bottomView.frame = CGRectMake(0, bubbleViewHeight - 20, 90, 20);
+//        _bottomView.backgroundColor = [UIColor clearColor];
+//        [_bottomView setTitle:@"名片" forState:UIControlStateNormal];
+//        [_bottomView setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        _bottomView.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -30);
+//        [_bottomView setImage:[UIImage imageNamed:@"sports_icon"] forState:UIControlStateNormal];
+//        _bottomView.titleLabel.font = [UIFont systemFontOfSize:11];
+//    }
+//    return _bottomView;
+//}
 
 @end

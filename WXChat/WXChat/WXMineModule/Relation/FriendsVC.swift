@@ -17,6 +17,7 @@ class FriendsVC: UITableViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "FriendInfoCell", bundle: nil), forCellReuseIdentifier: "FriendInfoCell")
         tableView.rowHeight = 85
+        tableView.tableFooterView = UIView.init(frame: CGRect.zero)
         //WDX http
 //        getFriendListRequest()
     }

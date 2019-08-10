@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
                     accountType:(NSString *)type
                    successBlock:(void(^) (NSString *data))success
                       failBlock:(void(^) (NSError *error))failure;
+///邮箱登出
++(void)logoutMailWithMailAccount:(NSString *)account
+                    successBlock:(void(^) (NSString *data))success
+                       failBlock:(void(^) (NSError *error))failure;
 ///获取邮箱首页信息
 +(void)getMailHomeDataWithSuccessBlock:(void(^) (MailPageModel *model))success
                              failBlock:(void(^) (NSError *error))failure;
@@ -33,8 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)deleteMailWithMailAccount:(NSString *)account
                         typeName: (NSString *)typeName
                     categoryType:(NSString *)categoryType
-                     accountType:(NSString *)type
-                       serviceId:(NSString *)serviceId
+                         emailId:(NSString *)emailId
                     successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure;
 
 ///发送邮件
@@ -66,6 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
                       serviceId:(NSString *)serviceId
                           title:(NSString *)title
                        receiver:(NSString *)receiver
+                    accountType:(NSString *)accountType
                         content: (NSString *)content
                    successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure;
 
@@ -74,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
                         serviceId:(NSString *)serviceId
                             title:(NSString *)title
                          receiver:(NSString *)receiver
+                      accountType:(NSString *)accountType
                           content: (NSString *)content
                      successBlock:(void(^) (NSString *successMessage))success failBlock:(void(^) (NSError *error))failure;
 @end

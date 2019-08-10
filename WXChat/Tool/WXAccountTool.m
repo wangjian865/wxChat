@@ -9,6 +9,15 @@
 #import "WXAccountTool.h"
 
 @implementation WXAccountTool
++ (void)logout{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    [userDefault removeObjectForKey:@"token"];
+    [userDefault removeObjectForKey:@"account"];
+    [userDefault removeObjectForKey:@"userID"];
+    [userDefault removeObjectForKey:@"huanxinID"];
+    [userDefault removeObjectForKey:@"userName"];
+    [userDefault removeObjectForKey:@"userImage"];
+}
 + (BOOL)isLogin{
     if ([WXAccountTool getToken] != nil){
         return true;
@@ -39,6 +48,7 @@
     }
     return name;
 }
+
 + (NSString *)getUserImage{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *img = [userDefault stringForKey:@"userImage"];

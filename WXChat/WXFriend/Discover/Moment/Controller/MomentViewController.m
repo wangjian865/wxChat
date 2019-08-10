@@ -66,7 +66,9 @@
     [self configUI];
     //自定义导航栏
     [self setNaviBarStyle];
-    
+    _page = 1;
+    //初始化数据
+    [self getMoments];
 }
 
 - (void)getMoments {
@@ -108,17 +110,15 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
     [self.navigationController.navigationBar setTranslucent:true];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    _page = 1;
-    //初始化数据
-    [self getMoments];
+    
 }
 #pragma mark - 设置导航栏样式
 - (void)setNaviBarStyle{
 //    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    UIBarButtonItem *first = [[UIBarButtonItem alloc] initWithTitle:@"拍照" style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
-    UIBarButtonItem *second = [[UIBarButtonItem alloc] initWithTitle:@"消息列表" style:UIBarButtonItemStylePlain target:self action:@selector(newComment)];
+    UIBarButtonItem *first = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"相机"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
+    UIBarButtonItem *second = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"圆角矩形1"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(newComment)];
+//    UIBarButtonItem *second = [[UIBarButtonItem alloc] initWithTitle:@"消息列表" style:UIBarButtonItemStylePlain target:self action:@selector(newComment)];
     self.navigationItem.rightBarButtonItems = @[second,first];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"moment_camera"] style:UIBarButtonItemStylePlain target:self action:@selector(addMoment)];
     
 }
 #pragma mark - 模拟数据

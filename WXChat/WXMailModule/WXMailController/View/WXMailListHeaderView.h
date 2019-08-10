@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 数量
  */
 @property (nonatomic, strong) UILabel *countLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

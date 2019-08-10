@@ -90,7 +90,7 @@
             FriendMomentInfoList *model = [FriendMomentInfoList yy_modelWithJSON:responseBody[@"data"]];
             success(model);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+//            [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
         failure(error);

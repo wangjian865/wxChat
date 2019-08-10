@@ -32,12 +32,12 @@
 - (void)setTitle:(NSString *)title{
     _title = title;
     _titleLabel.text = title;
+    _iconView.image = [UIImage imageNamed:title];
 }
 - (void)setupUI{
     _iconView = [[UIImageView alloc] init];
     [self.contentView addSubview:_iconView];
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.equalTo(@29);
         make.left.equalTo(@15);
         make.centerY.equalTo(self.contentView);
     }];
