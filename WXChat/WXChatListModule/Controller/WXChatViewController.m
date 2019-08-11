@@ -10,6 +10,7 @@
 #import "WXPersonInfoCell.h"
 #import "WXUserMomentInfoViewController.h"
 #import "WXfriendResultViewController.h"
+#import "WXUserMomentInfoViewController.h"
 @interface WXChatViewController ()<EaseMessageViewControllerDelegate,EaseMessageViewControllerDataSource,UIDocumentPickerDelegate,EMCallManagerDelegate>
 
 @end
@@ -47,7 +48,9 @@
         [self.navigationController pushViewController:vc animated:true];
     }else{
         //单聊
-        
+        WXUserMomentInfoViewController *momentVC = [[WXUserMomentInfoViewController alloc] init];
+        momentVC.userId = self.conversation.conversationId;
+        [self.navigationController pushViewController:momentVC animated:true];
     }
    
 }
@@ -59,7 +62,7 @@
     
 //    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
     [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"白色对话框"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
-    [[EaseBaseMessageCell appearance] setBubbleMaxWidth: 500];
+    [[EaseBaseMessageCell appearance] setBubbleMaxWidth: k_screen_width - 100];
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];//设置头像大小
     
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];//设置头像圆角

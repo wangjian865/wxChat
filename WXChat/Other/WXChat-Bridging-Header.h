@@ -30,7 +30,7 @@
 #import "MMImageListView.h"
 #import "Utility.h"
 #import "UIImage+ColorImage.h"
-#import "UIImage+Addtions.h"
 #import "WXMessageAlertModel.h"
 #import "WXChatService.h"
 #import "WDXUserListViewController.h"
+#import "UIImage+WXGroup.h"

@@ -67,7 +67,11 @@
     
     
     _bubbleView.backgroundImageView.hidden = model.isSender;
-
+    if (!model.isSender){
+        [_lienView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(250-4);
+        }];
+    }
     UIImage *image = model.image;
     if (!image) {
         [self.bubbleView.imageView sd_setImageWithURL:[NSURL URLWithString:model.fileURLPath] placeholderImage:[UIImage imageNamed:model.failImageName]];
@@ -145,7 +149,7 @@
         make.right.offset(-8);
     }];
     [_lienView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(2);
+        make.left.mas_equalTo(4);
         make.width.mas_equalTo(0);
         make.height.mas_equalTo(0.6);
         make.bottom.mas_equalTo(-20);
@@ -201,7 +205,7 @@
 {
     if (!_lienView) {
         _lienView = [[UIView alloc] initWithFrame:CGRectMake(2, bubbleViewHeight - 20, 213-11, 0.5)];
-        _lienView.backgroundColor = [UIColor grayColor];
+        _lienView.backgroundColor = rgb(240, 240, 240);
     }
     return _lienView;
 }

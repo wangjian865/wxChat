@@ -80,7 +80,7 @@
 //单删
 - (void)deleteSingleMessage:(int )index {
     CommentInfo *model = _listModel.data[index];
-    [CompanyViewModel deleteMomentsMessageListWithCommentId:model.commentszid successBlock:^(NSString * _Nonnull successMsg) {
+    [CompanyViewModel deleteMomentsMessageListWithCommentId:@[model.commentszid] successBlock:^(NSString * _Nonnull successMsg) {
         NSLog(@"删除单条成功");
         [self getMessageList];
     } failBlock:^(NSError * _Nonnull error) {

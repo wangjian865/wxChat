@@ -25,7 +25,7 @@
     
     _countLabel = [[UILabel alloc] init];
     _countLabel.font = [UIFont systemFontOfSize:14];
-    _countLabel.text = @"999";
+    _countLabel.text = @"0";
     _countLabel.textColor = rgb(48,134,191);
     
     [self addSubview:label];

@@ -277,10 +277,15 @@
     BOOL loginSuccess = isLogin;
     //此时只是后台登录成功
     if (!loginSuccess){
-        [[EMClient sharedClient] logout:true];
-        UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
-        self.window.rootViewController = loginVC;
-        [self.window makeKeyAndVisible];
+        EMError *error = [[EMClient sharedClient] logout:true];
+        if (!error){
+            UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
+            self.window.rootViewController = loginVC;
+            [self.window makeKeyAndVisible];
+        }else{
+            [MBProgressHUD showError:@"服务器异常"];
+        }
+        
         return;
     }
     EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];

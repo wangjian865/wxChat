@@ -103,6 +103,7 @@
     UIImage *image = [UIImage getImageWithColor:rgb(48,134,191)];
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -110,7 +111,11 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
     [self.navigationController.navigationBar setTranslucent:true];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
-    
+    if (_isNeedRefresh){
+        self.page = 1;
+        [self getMoments];
+        _isNeedRefresh = NO;
+    }
 }
 #pragma mark - 设置导航栏样式
 - (void)setNaviBarStyle{
@@ -218,6 +223,7 @@
 {
     NSLog(@"新增");
     WXNewMomentViewController *newInfoVC = [[WXNewMomentViewController alloc] init];
+    newInfoVC.parentVC = self;
     [self.navigationController pushViewController:newInfoVC animated:true];
 }
 #pragma mark - 新的消息

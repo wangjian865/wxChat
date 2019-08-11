@@ -72,10 +72,28 @@
 }
 - (void)setModel:(MailInfo *)model{
     _model = model;
-    _nameLabel.text = [model.readeamilsendtugset componentsSeparatedByString:@"<"].firstObject;
+    _nameLabel.text = [[model.readeamilsendtugset componentsSeparatedByString:@"<"].firstObject stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     _titleLabel.text = model.readeamiltheme;
-    NSString *temp = [model.readeamilcontet componentsSeparatedByString:@"<td style=\"display:none;\">"].lastObject;
-    NSString *content = [temp componentsSeparatedByString:@"</td>"].firstObject;
+//    NSString *temp = [model.readeamilcontet componentsSeparatedByString:@"<td style=\"display:none;\">"].lastObject;
+//    NSString *content = [temp componentsSeparatedByString:@"</td>"].firstObject;
+    
+    NSString *content = [self filterHTML:model.readeamilcontet];
     _contentLabel.text = content;
+}
+- (NSString *)filterHTML:(NSString *)html
+{
+    NSScanner * scanner = [NSScanner scannerWithString:html];
+    NSString * text = nil;
+    while([scanner isAtEnd]==NO)
+    {
+        //找到标签的起始位置
+        [scanner scanUpToString:@"<" intoString:nil];
+        //找到标签的结束位置
+        [scanner scanUpToString:@">" intoString:&text];
+        //替换字符
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>",text] withString:@""];
+    }
+    
+    return html;
 }
 @end

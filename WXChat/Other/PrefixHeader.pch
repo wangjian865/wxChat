@@ -47,6 +47,7 @@
 #import "WXMessageAlertModel.h"
 #import "MailPageModel.h"
 #import "MailViewModel.h"
+#import "UIImage+WXGroup.h"
 /*
  颜色
  */

@@ -148,7 +148,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == users!.count{
+        if indexPath.item == (users?.count ?? 0){
             //邀请新人入群聊
             let vc = WXUsersListViewController.init()
             vc.chooseCompletion = { (IDs) in

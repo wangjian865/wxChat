@@ -26,10 +26,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="normal_icon" translatesAutoresizingMaskIntoConstraints="NO" id="BD3-jU-847">
-                        <rect key="frame" x="14" y="5.5" width="68" height="68"/>
+                        <rect key="frame" x="14" y="9.5" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="BD3-jU-847" secondAttribute="height" multiplier="1:1" id="1sE-Uh-obh"/>
-                            <constraint firstAttribute="width" constant="68" id="Xhx-NV-9Jg"/>
+                            <constraint firstAttribute="width" constant="60" id="Xhx-NV-9Jg"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -44,7 +44,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf2-pA-ARx" userLabel="messageLabel">
-                        <rect key="frame" x="94" y="49.5" width="263" height="17"/>
+                        <rect key="frame" x="86" y="49.5" width="271" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

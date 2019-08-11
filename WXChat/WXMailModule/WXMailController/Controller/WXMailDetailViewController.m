@@ -47,21 +47,26 @@
         self.model = model;
         self.titleLabel.text = [NSString stringWithFormat:@"    %@",model.context.readeamiltheme];
         //发件赋值
-        NSString *senderTotal = model.context.readeamilsendtugset;
-        if ([senderTotal containsString:@"\""]){
-            NSString *senderName = [senderTotal componentsSeparatedByString:@"\""][1];
+//        NSString *senderTotal = model.context.readeamilsendtugset;
+        NSString *senderTotal = [[[model.context.readeamilsendtugset stringByReplacingOccurrencesOfString:@"\\" withString:@""] stringByReplacingOccurrencesOfString:@"," withString:@""]stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+//        if ([senderTotal containsString:@"\""]){
+//            NSString *senderName = [senderTotal componentsSeparatedByString:@"\""][1];
+//            self.senderNameLabel.text = senderName;
+//            self.detailSenderNameLabel.text = senderName;
+//        }else{
+            ///www 情况
+            NSString *senderName = [senderTotal componentsSeparatedByString:@"<"][0];
             self.senderNameLabel.text = senderName;
             self.detailSenderNameLabel.text = senderName;
-            
-        }else{
-            
-        }
+//        }
         if ([senderTotal containsString:@"<"]){
             NSString *senderEmail = [senderTotal componentsSeparatedByString:@"<"].lastObject;
             self.senderEmail.text = [senderEmail componentsSeparatedByString:@">"].firstObject;
         }else{
             
         }
+        
+        
         //收件赋值
         NSString *receiverTotal = [[[[model.context.readeamilshowtugset stringByReplacingOccurrencesOfString:@"\\" withString:@""] stringByReplacingOccurrencesOfString:@"," withString:@""] stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""];
         if ([receiverTotal containsString:@"\""]){

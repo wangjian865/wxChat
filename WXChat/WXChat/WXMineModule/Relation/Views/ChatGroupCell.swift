@@ -16,15 +16,31 @@ class ChatGroupCell: UITableViewCell {
     
     var groupModel: GroupModel?{
         didSet {
-//            iconImage.sd_setImage(with: URL.init(string:groupModel. ))
-//            var urlArr: [String] = []
-//            for friend in groupModel!.tgusets{
-//                urlArr.append(friend.tgusetimg)
+            
+//            DispatchQueue.global().async {
+                var iconUrls: [URL] = []
+                if let users = self.groupModel?.tgusets{
+                    for model in users{
+                        if let url = URL.init(string: model.tgusetimg){
+                            iconUrls.append(url)
+                        }
+                    }
+                }
+//                let image = UIImage.groupIcon(withURLArray: iconUrls, bgColor: UIColor.lightGray)
+//                DispatchQueue.main.async {
+//                    self.iconImage.image = image
+//                }
 //            }
-//            iconImage.image = UIImage.groupIcon(withURLArray: urlArr, bgColor: UIColor.white)
+            if iconUrls.count == 1{
+                self.iconImage.sd_setImage(with: iconUrls.first);
+            }else{
+                UIImage.groupIcon(withURLArray: iconUrls, bgColor: UIColor.init(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 1.0)) { (groupIcon) in
+                    self.iconImage.image = groupIcon
+                }
+            }
+            
             nameLabel.text = groupModel?.seanceshowname
-//            messageLabel.text = "聊天聊天"
-//            timeLabel.text = "时间"
+
         }
     }
     override func awakeFromNib() {

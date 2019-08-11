@@ -238,7 +238,7 @@
 
 //====================
 //企业圈-删除消息列表 ==》 400 ok？？
-+(void)deleteMomentsMessageListWithCommentId:(NSString *)commentId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
++(void)deleteMomentsMessageListWithCommentId:(NSArray *)commentId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/commentRM"];
     NSDictionary *params = @{@"tid": commentId};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {

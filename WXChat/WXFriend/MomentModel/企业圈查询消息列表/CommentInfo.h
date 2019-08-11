@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *commentszid;
 @property (nonatomic, copy)NSString *commentstguset;
 @property (nonatomic, copy)NSString *commentscontext;
-@property (nonatomic, copy)NSString *commentsdatetime;
+@property (nonatomic, assign)long long commentsdatetime;
 @property (nonatomic, assign)BOOL commentsreply;
 @property (nonatomic, copy)NSString *commentstgusetname;//null
 @property (nonatomic, copy)NSString *commentstgusethfid;//null

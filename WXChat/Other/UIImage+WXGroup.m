@@ -1,41 +1,85 @@
 //
-//  UIImage+Addtions.m
+//  UIImage+WXGroup.m
+//  WXChat
 //
-//  Created by Admin on 15/07/18.
-//  Copyright © 2015年 Ad. All rights reserved.
+//  Created by WX on 2019/8/11.
+//  Copyright © 2019 WDX. All rights reserved.
 //
 
-#import "UIImage+Addtions.h"
+#import "UIImage+WXGroup.h"
 
-@implementation UIImage (Addtions)
-
-+ (UIImage *)groupIconWithURLArray:(NSArray *)URLArray bgColor:(UIColor *)bgColor;
+@implementation UIImage (WXGroup)
++ (void)groupIconWithURLArray:(NSArray *)URLArray bgColor:(UIColor *)bgColor successBlock:(void(^) (UIImage *image))success;
 {
-    UIImageView *imageView = [[UIImageView alloc] init];
-    
     NSMutableArray *imageArray = [NSMutableArray array];
     
-    for (int i = 0; i<URLArray.count;  i++) {
-        NSData * data = [[NSData alloc]initWithContentsOfURL:URLArray[i]];
-        UIImage *image = [[UIImage alloc]initWithData:data];
-        [imageArray addObject:image];
-    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+        
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                for (NSURL *url in URLArray) {
+                    //下载图片
+                    NSData *data = [NSData dataWithContentsOfURL:url];
+                    //把二进制数据转换成图片
+                    UIImage *temp = [UIImage imageWithData:data];
+                    [imageArray addObject:temp];
+                }
+                UIImage *resultImg = [UIImage groupIconWith:imageArray bgColor:bgColor];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    success(resultImg);
+//                    NSLog(@"%@--刷新UI", [NSThread currentThread]);
+                });
+        });
+    });
     
-    imageView.image = [UIImage groupIconWith:imageArray bgColor:[UIColor groupTableViewBackgroundColor]];
     
-    return imageView.image;
+    //并发的实现方式会导致图片每次加载顺序不一致
+//    dispatch_group_t group = dispatch_group_create();
+//    //创建队列（并发队列）
+//    dispatch_queue_t queue = dispatch_get_global_queue(0, 0);
+//    for (NSURL *url in URLArray) {
+//        __block UIImage *temp = [UIImage new];
+//        dispatch_group_async(group, queue, ^{
+//            //下载图片
+//            NSData *data = [NSData dataWithContentsOfURL:url];
+//            //把二进制数据转换成图片
+//            temp = [UIImage imageWithData:data];
+//            [imageArray addObject:temp];
+//        });
+//    }
+//    dispatch_group_notify(group, queue, ^{
+//        //开启图形上下文
+////        UIGraphicsBeginImageContext(CGSizeMake(200, 200));
+//
+//        //画图1
+////        [self.image1 drawInRect:CGRectMake(0, 0, 200, 100)];
+////
+////        //画图2
+////        [self.image2 drawInRect:CGRectMake(0, 100, 200, 100)];
+////
+////        //根据图形上下文获取图片
+////        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+////
+////        //关闭上下文
+////        UIGraphicsEndImageContext();
+//
+//        UIImage *resultImg = [UIImage groupIconWith:imageArray bgColor:bgColor];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            success(resultImg);
+//            NSLog(@"%@--刷新UI", [NSThread currentThread]);
+//        });
+//    });
 }
 
 + (UIImage *)groupIconWith:(NSArray *)array bgColor:(UIColor *)bgColor {
-
+    
     CGSize finalSize = CGSizeMake(100, 100);
     CGRect rect = CGRectZero;
     rect.size = finalSize;
-
+    
     UIGraphicsBeginImageContext(finalSize);
-
+    
     if (bgColor) {
-
+        
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSetStrokeColorWithColor(context, bgColor.CGColor);
         CGContextSetFillColorWithColor(context, bgColor.CGColor);
@@ -48,19 +92,19 @@
         CGContextClosePath(context);
         CGContextDrawPath(context, kCGPathFillStroke);
     }
-
+    
     if (array.count >= 2) {
-
+        
         NSArray *rects = [self eachRectInGroupWithCount2:array.count];
         int count = 0;
         for (id obj in array) {
-
+            
             if (count > rects.count-1) {
                 break;
             }
-
+            
             UIImage *image;
-
+            
             if ([obj isKindOfClass:[NSString class]]) {
                 image = [UIImage imageNamed:(NSString *)obj];
             } else if ([obj isKindOfClass:[UIImage class]]){
@@ -69,7 +113,7 @@
                 NSLog(@"%s Unrecognizable class type", __FUNCTION__);
                 break;
             }
-
+            
             CGRect rect = CGRectFromString([rects objectAtIndex:count]);
             [image drawInRect:rect];
             count++;
@@ -82,7 +126,7 @@
 }
 
 + (NSArray *)eachRectInGroupWithCount:(NSInteger)count {
-
+    
     NSArray *rects = nil;
     
     CGFloat sizeValue = 100;
@@ -123,7 +167,7 @@
         eachWidth = (sizeValue - padding*4) / 3;
         [self getRects:array padding:padding width:eachWidth count:9];
     }
-
+    
     if (count < 4) {
         [array removeObjectAtIndex:0];
         CGRect rect = CGRectFromString([array objectAtIndex:0]);
@@ -144,7 +188,7 @@
     } else if (count != 4 && count <= 6) {
         [array removeObjectsInRange:NSMakeRange(0, 3)];
         NSMutableArray *tempArray = [[NSMutableArray alloc] initWithCapacity:6];
-
+        
         for (NSString *rectStr in array) {
             CGRect rect = CGRectFromString(rectStr);
             rect.origin.y -= (padding+eachWidth)/2;
@@ -180,12 +224,12 @@
             [array removeObjectAtIndex:0];
         }
     }
-
+    
     return array;
 }
 
 + (void)getRects:(NSMutableArray *)array padding:(CGFloat)padding width:(CGFloat)eachWidth count:(int)count {
-
+    
     for (int i=0; i<count; i++) {
         int sqrtInt = (int)sqrt(count);
         int line = i%sqrtInt;
@@ -194,5 +238,4 @@
         [array addObject:NSStringFromCGRect(rect)];
     }
 }
-
 @end

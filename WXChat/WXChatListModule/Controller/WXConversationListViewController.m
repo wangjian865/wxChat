@@ -83,6 +83,7 @@
     [super viewWillAppear:animated];
     [self tableViewDidTriggerHeaderRefresh];
     _isViewAppear = YES;
+    [self getUserList];
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -95,7 +96,7 @@
     self.dataSource = self;
     [self setupNavi];
     [self.tableView setTableHeaderView:self.serachController.searchBar];
-    [self getUserList];
+    
 }
 - (void)getUserList{
     [MineViewModel getFriendListWithNickName:@"" success:^(NSArray<FriendModel *> * list) {

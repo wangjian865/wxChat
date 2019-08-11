@@ -67,7 +67,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete){
         //删除事件
-        
+        WXMessageAlertModel *model = _models[indexPath.row];
+        [MineViewModel deleteAddRequestWithShowId:model.friendshowid success:^(NSString * msg) {
+            [self getAddList];
+        } failure:^(NSError * error) {
+            
+        }];
     }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{

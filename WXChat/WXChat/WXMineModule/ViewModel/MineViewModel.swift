@@ -164,7 +164,7 @@ class MineViewModel: NSObject {
                               success: @escaping (_ response: [String: Any]?) ->(),
                               failure: @escaping (_ error: NSError?) ->()) {
     let urlString =  WXApiManager.getRequestUrl("manKeepToken/updateTgInfo")
-        let params:[String:Any] = ["tgusetname":nickName,"tgusetsex":sex,"tgusetcompany":company,"codes":position]
+        let params:[String:Any] = ["tgusetname":nickName,"tgusetsex":sex,"tgusetcompany":company,"tgusetposition":position]
     WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (succsee) in
             success([:])
         }) { (error) in

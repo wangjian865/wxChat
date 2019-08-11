@@ -61,11 +61,17 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
 }
 - (void)rightButtonAction{
+    if (!(self.photos > 0 || self.textTF.text.length > 0)){
+        [MBProgressHUD showError:@"您还未输入"];
+    }
     NSMutableArray *names = [NSMutableArray array];
     for (UIImage *image in self.photos) {
         [names addObject:@"files"];
     }
     [CompanyViewModel publicMomentsMessage:self.textTF.text files:self.photos fileNames:names successBlock:^(NSString * _Nonnull successMsg) {
+        if (self.parentVC){
+            self.parentVC.isNeedRefresh = YES;
+        }
         [self.navigationController popViewControllerAnimated:true];
     } failBlock:^(NSError * _Nonnull error) {
         
@@ -114,10 +120,12 @@
     WXPhotoCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
     if (indexPath.row < self.photos.count){
         cell.myImageView.image = _photos[indexPath.row];
+        cell.myImageView.contentMode = UIViewContentModeScaleAspectFill;
         //照片
     }else if(indexPath.row == self.photos.count){
         //加号
         cell.myImageView.image = [UIImage imageNamed:@"plus_moment"];
+        cell.myImageView.contentMode = UIViewContentModeScaleToFill;
     }
     return cell;
 }

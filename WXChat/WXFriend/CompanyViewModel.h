@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)getMomentMessageListSuccessBlock:(void(^) (MomentMessageList *model))success failBlock:(void(^) (NSError *error))failure;
 
 ///企业圈-删除消息列表
-+(void)deleteMomentsMessageListWithCommentId:(NSString *)commentId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure;
++(void)deleteMomentsMessageListWithCommentId:(NSArray *)commentId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure;
 
 ///发布企业圈  /替换account 用户id
 +(void)publicMomentsMessage:(NSString *)message files:(NSArray *)files fileNames: (NSArray *)fileNames successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure;

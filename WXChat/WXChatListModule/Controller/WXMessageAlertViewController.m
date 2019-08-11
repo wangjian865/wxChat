@@ -49,18 +49,19 @@
     }];
 }
 - (void)setupUI{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setTitle:@"清空" forState:UIControlStateNormal];
-    [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:13];
-    button.size = CGSizeMake(40, 100);
-    [button addTarget:self action:@selector(rightNaviItemAction) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    self.navigationItem.rightBarButtonItem = rightItem;
+    ///无接口
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button setTitle:@"清空" forState:UIControlStateNormal];
+//    [button setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
+//    button.titleLabel.font = [UIFont systemFontOfSize:13];
+//    button.size = CGSizeMake(40, 100);
+//    [button addTarget:self action:@selector(rightNaviItemAction) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+//    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 - (void)rightNaviItemAction{
-    NSLog(@"do sth");
+    
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -76,8 +77,8 @@
     return k_current_Height(30);
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-//    return [Utility getMomentTime:<#(long long)#>]
-    return @"2019年5月28日 19:00";
+    WXMessageAlertModel *model = _model.data[section];
+    return [Utility getMomentTime:model.friendshowktime];
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
@@ -86,7 +87,12 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete){
         //操作数据源
-        
+        WXMessageAlertModel *model = _model.data[indexPath.section];
+        [MineViewModel deleteAddRequestWithShowId:model.friendshowid success:^(NSString * msg) {
+            [self getdata];
+        } failure:^(NSError * error) {
+            
+        }];
     }
 }
 // 定义编辑样式
