@@ -78,7 +78,7 @@ class ZJTextField: UIView {
 //                print(error)
 //            }
         } else {
-            print("不是手机号码")
+            MBProgressHUD.showText("请输入正确的手机号")
             return
         }
         sender.isEnabled.toggle()

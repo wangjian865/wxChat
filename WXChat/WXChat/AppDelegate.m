@@ -35,7 +35,7 @@
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     
     //默认登录的状态
-    if ([WXAccountTool isLogin]){
+    if (![WXAccountTool isLogin]){
         //[WXAccountTool getHuanXinID]
         EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];
         if (!error) {

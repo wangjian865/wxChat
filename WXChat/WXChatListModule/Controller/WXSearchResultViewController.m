@@ -89,5 +89,11 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [_searchBar endEditing:YES];
 }
-
+#pragma mark - UISearchResultsUpdating
+//每输入一个字符都会执行一次
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
+    
+    NSLog(@"1");
+//    [self.tableView reloadData];
+}
 @end

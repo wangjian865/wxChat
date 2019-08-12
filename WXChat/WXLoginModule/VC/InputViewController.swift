@@ -104,11 +104,11 @@ class InputViewController: UIViewController {
             make.height.equalTo(47)
         }
         icon.snp.makeConstraints { (make) in
-            make.height.width.equalTo(110)
+            make.height.width.equalTo(61)
             make.bottom.equalToSuperview().offset(-110)
             make.centerX.equalToSuperview()
         }
-        icon.backgroundColor = .lightGray
+        icon.image = UIImage.init(named: "loginIcon");
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
     }
     

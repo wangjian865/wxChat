@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WXSearchResultViewController : UIViewController
+@interface WXSearchResultViewController : UIViewController<UISearchResultsUpdating>
 /**
  * 弱引用searchBar
  */

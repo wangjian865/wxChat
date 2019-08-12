@@ -150,7 +150,7 @@ extension WXEditPersonInfoViewController: UIImagePickerControllerDelegate,UINavi
         changeUserIcon()
     }
     func changeUserIcon() {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeepToken/updateTgInfoImg"
+        let urlString = WXApiManager.getRequestUrl("manKeepToken/updateTgInfoImg")
         let account = UserDefaults.standard.string(forKey: "account")
         let params:[String:String] = ["tgusetaccount":account ?? ""]
         WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["img"], image: [userIconView.image!], parameters: params, progressBlock: { (progress) in

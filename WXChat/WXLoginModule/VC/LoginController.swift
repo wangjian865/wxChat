@@ -61,12 +61,12 @@ class LoginController: UIViewController {
         var urlString = ""
         var params:[String:String] = [:]
         if isFirstPage {
-            urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/msmLogin"
+            urlString = WXApiManager.getRequestUrl("manKeep/msmLogin")
             params["tgusetaccount"] = account
             params["code"] = pwd
         }else{
             //密码登录
-            urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/pwdLogin"
+            urlString = WXApiManager.getRequestUrl("manKeep/pwdLogin") 
             params["tgusetaccount"] = account
             params["tgusetpassword"] = pwd
         }

@@ -345,6 +345,8 @@
 		F499B78922FF1B0E0020053E /* WXInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F499B78722FF1B0E0020053E /* WXInputCell.m */; };
 		F499B78A22FF1B0E0020053E /* WXInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499B78822FF1B0E0020053E /* WXInputCell.xib */; };
 		F499B78D22FFBAAE0020053E /* UIImage+WXGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */; };
+		F4AC7BC92300F8C800B47084 /* WXSearchNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */; };
+		F4AC7BCB2300F8DF00B47084 /* WXSearchNormalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */; };
 		F4C28E6622D0A6F000606E6D /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */; };
 		F4C28E6722D0A6F000606E6D /* RelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5422D0A6EF00606E6D /* RelationViewController.swift */; };
 		F4C28E6822D0A6F000606E6D /* GroupChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5522D0A6EF00606E6D /* GroupChatVC.swift */; };
@@ -905,6 +907,9 @@
 		F499B78822FF1B0E0020053E /* WXInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXInputCell.xib; sourceTree = "<group>"; };
 		F499B78B22FFBAAE0020053E /* UIImage+WXGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WXGroup.h"; sourceTree = "<group>"; };
 		F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WXGroup.m"; sourceTree = "<group>"; };
+		F4AC7BC72300F8C800B47084 /* WXSearchNormalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSearchNormalView.h; sourceTree = "<group>"; };
+		F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSearchNormalView.m; sourceTree = "<group>"; };
+		F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXSearchNormalView.xib; sourceTree = "<group>"; };
 		F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsVC.swift; sourceTree = "<group>"; };
 		F4C28E5422D0A6EF00606E6D /* RelationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelationViewController.swift; sourceTree = "<group>"; };
 		F4C28E5522D0A6EF00606E6D /* GroupChatVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupChatVC.swift; sourceTree = "<group>"; };
@@ -1693,6 +1698,9 @@
 				F4FFBF3022DF2895003FC0F3 /* WXContactCell.m */,
 				F4FFBF3122DF2895003FC0F3 /* WXContactCell.xib */,
 				F4FFBF3422DF532D003FC0F3 /* WXContactView.xib */,
+				F4AC7BC72300F8C800B47084 /* WXSearchNormalView.h */,
+				F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */,
+				F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2329,6 +2337,7 @@
 				2A8E7EBF22B092A80020BC57 /* animate_00074.png in Resources */,
 				2A8E7EEC22B092A80020BC57 /* switchCamera_white@3x.png in Resources */,
 				2A8E7E8C22B092A80020BC57 /* animate_00032.png in Resources */,
+				F4AC7BCB2300F8DF00B47084 /* WXSearchNormalView.xib in Resources */,
 				2A8E7EC522B092A80020BC57 /* animate_00039.png in Resources */,
 				F486ADEB22D382E10030D9F0 /* WXBottomChooseView.xib in Resources */,
 				2A8E7E8B22B092A80020BC57 /* animate_00026.png in Resources */,
@@ -2659,6 +2668,7 @@
 				F4FFBF1722DE18E9003FC0F3 /* WXMomentDetailViewController.swift in Sources */,
 				F42BC6AC22E9EEBC004EFA02 /* FriendMomentInfoList.m in Sources */,
 				F4FFBEF322DDE0FD003FC0F3 /* FriendModel.m in Sources */,
+				F4AC7BC92300F8C800B47084 /* WXSearchNormalView.m in Sources */,
 				F4224B0222D9ED25003DA311 /* WXSettingTableViewController.swift in Sources */,
 				2AF0B92D22B741B300854BFE /* WXDiscoverViewCell.m in Sources */,
 				F42BC6A722E9EEBC004EFA02 /* CompanyMoment.m in Sources */,

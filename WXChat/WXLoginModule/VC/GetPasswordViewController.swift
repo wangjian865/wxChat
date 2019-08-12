@@ -24,9 +24,10 @@ class GetPasswordViewController: InputViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     override func getCode(num: String) {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/checkPhone"
+        let urlString = WXApiManager.getRequestUrl("manKeep/checkPhone")
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"3"], successBlock: { (result) in
             print(result)
+            MBProgressHUD.showSuccess("验证码已发送")
         }) { (error) in
             print(error)
         }

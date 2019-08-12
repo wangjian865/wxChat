@@ -19,7 +19,7 @@ class ConfirmViewController: InputViewController {
     
     //点击设置新密码
     override func clickButton() {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/updateTgusetPwd"
+        let urlString = WXApiManager.getRequestUrl("manKeep/updateTgusetPwd")
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":account,"tgusetpassword":password,"code":code], successBlock: { (result) in
             if let dic = result as? [String:Any],let msg = dic["msg"] as? String{
                 MBProgressHUD.showSuccess(msg)

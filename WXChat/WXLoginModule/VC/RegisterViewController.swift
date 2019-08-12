@@ -18,7 +18,7 @@ class RegisterViewController: InputViewController {
     
     //点击注册
     override func clickButton() {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/register"
+        let urlString = WXApiManager.getRequestUrl("manKeep/register")
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":account,"tgusetpassword":password,"code":code], successBlock: { (result) in
             let dic = result as! [String:Any]
             let code = dic["code"] as! Int
@@ -34,9 +34,10 @@ class RegisterViewController: InputViewController {
         
     }
     override func getCode(num: String) {
-        let urlString = "http://106.52.2.54:8080/SMIMQ/" + "manKeep/checkPhone"
+        let urlString = WXApiManager.getRequestUrl("manKeep/checkPhone")
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"1"], successBlock: { (result) in
             print(result)
+            MBProgressHUD.showSuccess("验证码已发送")
         }) { (error) in
             print(error)
         }

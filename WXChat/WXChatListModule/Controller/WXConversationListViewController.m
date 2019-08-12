@@ -25,7 +25,8 @@
 #import "WXAddCompanyViewController.h"
 #import "GroupModel.h"
 #import "FriendModel.h"
-@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate>
+#import "WXSearchNormalView.h"
+@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate,UISearchBarDelegate>
 /**
  * 用户数据模型,从自身数据库获取
  */
@@ -38,6 +39,8 @@
  * 搜索框
  */
 @property (nonatomic, strong) UISearchController *serachController;
+///搜索页面的推荐视图
+@property (nonatomic, strong) WXSearchNormalView *searchNormalView;
 ///好友列表数据
 @property (nonatomic, strong) NSArray<FriendModel *> *userListModel;
 ///群组列表数据
@@ -50,18 +53,23 @@
 - (UISearchController *)serachController{
     if (_serachController == nil){
         WXSearchResultViewController *resultVC = [[WXSearchResultViewController alloc] init];
-//        resultVC.view.backgroundColor = UIColor.whiteColor;
         _serachController = [[UISearchController alloc] initWithSearchResultsController:resultVC];
         self.definesPresentationContext = YES;
         _serachController.view.backgroundColor = UIColor.whiteColor;
         _serachController.searchBar.placeholder = @"搜索";
         // 默认为YES,设置开始搜索时背景显示与否
-        _serachController.dimsBackgroundDuringPresentation = YES;
+        _serachController.dimsBackgroundDuringPresentation = NO;
         // 默认为YES,控制搜索时，是否隐藏导航栏
         _serachController.hidesNavigationBarDuringPresentation = YES;
         _serachController.delegate = self;
+        _serachController.searchResultsUpdater = resultVC;
         //searchController.view添加提示试图
+        WXSearchNormalView *normalView = [[NSBundle mainBundle] loadNibNamed:@"WXSearchNormalView" owner:nil options:nil].lastObject;
+        _searchNormalView = normalView;
+        normalView.frame = CGRectMake(0, 100, k_screen_width, 250);
+        [_serachController.view addSubview:normalView];
         UISearchBar *bar = _serachController.searchBar;
+        bar.delegate = self;
         resultVC.searchBar = bar;
         bar.barStyle = UISearchBarStyleDefault;
         [bar setBackgroundImage:[UIImage getImageWithColor:[UIColor whiteColor]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -81,6 +89,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    
     [self tableViewDidTriggerHeaderRefresh];
     _isViewAppear = YES;
     [self getUserList];
@@ -91,6 +100,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UIColor.whiteColor;
     self.showRefreshHeader = YES;
     self.delegate = self;
     self.dataSource = self;
@@ -121,9 +131,6 @@
 - (void)clickRightBarBtn: (UIButton *)sender{
     WS(weaklf);
     YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"发起聊天" image:[UIImage imageNamed:@"pop_groupChat"] handler:^(YCMenuAction *action) {
-//        EMInviteGroupMemberViewController *inviteGroupVC = [[EMInviteGroupMemberViewController alloc] init];
-//        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:inviteGroupVC];
-//        [weaklf presentViewController:nav animated:YES completion:nil];
         WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] init];
         userListVC.doneCompletion = ^(EMGroup * _Nonnull group) {
             //跳转会话页面
@@ -368,5 +375,43 @@
 - (void)selectIndexPathRow:(NSInteger)index {
     NSLog(@"%ld",index);
 }
+#pragma mark - UISearchBarDelegate
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    [searchBar setShowsCancelButton:YES animated:YES];
+    for (id obj in [searchBar subviews]) {
+        if ([obj isKindOfClass:[UIView class]]) {
+            for (id obj2 in [obj subviews]) {
+                if ([obj2 isKindOfClass:[UIButton class]]) {
+                    UIButton *btn = (UIButton *)obj2;
+                    [btn setTitle:@"取消" forState:UIControlStateNormal];
+                }
+            }
+        }
+    }
+    return YES;
+}
+#pragma mark - UISearchControllerDelegate代理
+//测试UISearchController的执行过程
+- (void)willPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"willPresentSearchController");
+    _searchNormalView.hidden = false;
+}
 
+- (void)didPresentSearchController:(UISearchController *)searchController {
+    NSLog(@"didPresentSearchController");
+//    self.searchVC.dataListArry = self.dataListArry;
+}
+
+- (void)willDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"willDismissSearchController");
+    _searchNormalView.hidden = true;
+}
+
+- (void)didDismissSearchController:(UISearchController *)searchController {
+    NSLog(@"didDismissSearchController");
+}
+
+- (void)presentSearchController:(UISearchController *)searchController {
+    NSLog(@"presentSearchController");
+}
 @end
