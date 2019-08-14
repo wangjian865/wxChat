@@ -75,7 +75,7 @@ static AFHTTPSessionManager *aManager;
         
         //添加接口统一参数
         NSMutableDictionary *muParames = [[NSMutableDictionary alloc] initWithDictionary:parameters];
-//        [MBProgressHUD showHUD];
+
         [[self sharedManager] POST:urlString parameters:muParames progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -87,6 +87,12 @@ static AFHTTPSessionManager *aManager;
             
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [MBProgressHUD hideHUD];
+            if (error.code == 203){
+                //token失效
+                [WXAccountTool logout];
+                [[AppDelegate sharedInstance] loginStateChange:NO huanxinID:@""];
+                
+            }
             if (error.code !=-999) {
                 if (failureBlock)
                 {

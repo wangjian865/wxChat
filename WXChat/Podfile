@@ -22,5 +22,6 @@ pod 'YYModel'
 pod 'SnapKit'
 pod 'HMSegmentedControl'
 pod 'IQKeyboardManager'
-
+pod 'ZLPhotoBrowser'
+pod 'JPush'
 end

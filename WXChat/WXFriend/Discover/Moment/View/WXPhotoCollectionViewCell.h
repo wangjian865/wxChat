@@ -12,7 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WXPhotoCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *myImageView;
-
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (copy, nonatomic) void (^deletePhotoAction)(void);
+- (void)beginShake;
+- (void)stopShake;
 @end
 
 NS_ASSUME_NONNULL_END

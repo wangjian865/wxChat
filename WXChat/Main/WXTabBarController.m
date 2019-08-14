@@ -11,7 +11,7 @@
 #import "WXChat-Swift.h"
 #import "WXUsersListViewController.h"
 #define Controller_First         @"WXConversationListViewController"
-#define Controller_Second        @"WXMailListViewController"
+#define Controller_Second        @"WXChooseMailTypeTableViewController"
 #define Controller_Third         @"DiscoverViewController"
 #define Controller_Fourth        @"RelationViewController"
 @interface WXTabBarController ()
@@ -80,8 +80,11 @@
         }else if([className isEqualToString:@"RelationViewController"]) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RelationViewController" bundle:nil];
             childVC = [storyboard instantiateViewControllerWithIdentifier:@"relationVC"];
+        }else if([className isEqualToString:@"WXChooseMailTypeTableViewController"]) {
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            childVC = [sb instantiateViewControllerWithIdentifier:@"chooseMailTypeVC"];
         }else{
-            childVC = [[NSClassFromString(className)alloc]init];
+            childVC = [[NSClassFromString(className) alloc]init];
         }
         [self setUpChildViewController:childVC
                                      image:[self.normalImageArray objectAtIndex:index]

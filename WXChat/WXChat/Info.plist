@@ -47,6 +47,8 @@
 	<string>竹简想要获取您的照片存储权限</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>竹简请求访问您的相册</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>竹简需要获得您的定位信息</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

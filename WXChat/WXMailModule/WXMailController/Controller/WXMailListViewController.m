@@ -144,7 +144,6 @@
     if (indexPath.row == 0){
         cell = [tableView dequeueReusableCellWithIdentifier:@"WXMailListSectionCell" forIndexPath:indexPath];
         WXMailListSectionCell *temp = (WXMailListSectionCell *)cell;
-        
         MailHomePageAccountModel *accountModel = self.pageModel.data.email[indexPath.row].accountMail;
         int junk = [NSString stringWithFormat:@"%@",accountModel.state[@"junk"][@"Emailunreadcount"]].intValue;
         int drafts = [NSString stringWithFormat:@"%@",accountModel.state[@"drafts"][@"Emailunreadcount"]].intValue;
@@ -182,9 +181,10 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section > self.count - 1){
         if (indexPath.section == self.pageModel.data.email.count){
-            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            WXChooseMailTypeTableViewController *vc = [sb instantiateViewControllerWithIdentifier:@"chooseMailTypeVC"];
-            [self.navigationController pushViewController:vc animated:true];
+//            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            WXChooseMailTypeTableViewController *vc = [sb instantiateViewControllerWithIdentifier:@"chooseMailTypeVC"];
+//            [self.navigationController pushViewController:vc animated:true];
+            [self.navigationController popViewControllerAnimated:true];
         }else{
             //删除邮箱
             tableView.editing = true;

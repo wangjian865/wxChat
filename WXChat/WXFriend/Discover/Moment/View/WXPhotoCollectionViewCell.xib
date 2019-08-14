@@ -22,21 +22,34 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="52e-fY-mHg">
                         <rect key="frame" x="0.0" y="0.0" width="111" height="111"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQg-L2-hgI">
+                        <rect key="frame" x="87" y="0.0" width="24" height="24"/>
+                        <state key="normal" image="moment_closeIcon"/>
+                        <connections>
+                            <action selector="deleteAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="2Bk-gj-HFo"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="52e-fY-mHg" secondAttribute="bottom" id="GUx-IF-3ma"/>
+                <constraint firstAttribute="trailing" secondItem="kQg-L2-hgI" secondAttribute="trailing" id="Gdm-mc-nre"/>
                 <constraint firstItem="52e-fY-mHg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NyN-wd-D8m"/>
                 <constraint firstItem="52e-fY-mHg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="l22-lU-MGO"/>
+                <constraint firstItem="kQg-L2-hgI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="l61-KT-l7s"/>
                 <constraint firstAttribute="trailing" secondItem="52e-fY-mHg" secondAttribute="trailing" id="zTq-xS-41a"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <size key="customSize" width="131" height="124"/>
             <connections>
+                <outlet property="closeButton" destination="kQg-L2-hgI" id="f1T-WH-3ef"/>
                 <outlet property="myImageView" destination="52e-fY-mHg" id="r5A-WZ-uvU"/>
             </connections>
             <point key="canvasLocation" x="196.37681159420291" y="154.35267857142856"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="moment_closeIcon" width="24" height="24"/>
+    </resources>
 </document>

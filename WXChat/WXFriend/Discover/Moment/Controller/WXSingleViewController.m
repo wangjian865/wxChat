@@ -183,7 +183,7 @@
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 Enterprise * moment = cell.model;
-                [CompanyViewModel deleteMomentWithPriseid:moment.enterprisezEnterpriseId successBlock:^(NSString * _Nonnull successMsg) {
+                [CompanyViewModel deleteMomentWithPriseid:moment.enterprisezId successBlock:^(NSString * _Nonnull successMsg) {
                     self.page = 1;
                     [self getMoments];
                 } failBlock:^(NSError * _Nonnull error) {

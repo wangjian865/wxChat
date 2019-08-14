@@ -62,7 +62,7 @@
     }];
 }
 - (void)setNaviBar {
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"已发送"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeEmail)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"编辑"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(writeEmail)];
 }
 - (void)writeEmail {
     WXWriteEmailViewController *writeVC = [[WXWriteEmailViewController alloc] init];

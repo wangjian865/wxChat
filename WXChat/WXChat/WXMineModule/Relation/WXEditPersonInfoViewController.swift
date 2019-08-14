@@ -20,6 +20,13 @@ class WXEditPersonInfoViewController: UITableViewController {
     @IBOutlet weak var companyLabel: UILabel!
     
     @IBOutlet weak var userIdLabel: UILabel!
+    
+    ///支持图片放大的属性
+    var scrollView: UIScrollView?
+    var lastImageView: UIImageView?
+    var originalFrame: CGRect!
+    var isDoubleTap: ObjCBool!
+    
     var userInfoModel: UserInfoModel?
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -54,7 +61,7 @@ class WXEditPersonInfoViewController: UITableViewController {
             bottomView.chooseClosure = {[weak self] (tag) in
                 print(tag)
                 if tag == 0{
-                    //查看大图
+                    self?.showZoomImageView()
                 }else if tag == 1{
                     //相机
                     self?.openCamera()
@@ -156,6 +163,11 @@ extension WXEditPersonInfoViewController: UIImagePickerControllerDelegate,UINavi
         WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["img"], image: [userIconView.image!], parameters: params, progressBlock: { (progress) in
             print(progress)
         }, successBlock: { (success) in
+            if let dic = success as? [String:Any]{
+                if let urlStr = dic["data"] as? String{
+                    UserDefaults.standard.set(urlStr, forKey: "userImage")
+                }
+            }
             print(success)
         }) { (error) in
             print(error)
@@ -180,5 +192,58 @@ extension WXEditPersonInfoViewController: UIImagePickerControllerDelegate,UINavi
         let newImage:UIImage=UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext();
         return newImage;
+    }
+}
+///放大图片
+extension WXEditPersonInfoViewController {
+    func showZoomImageView() {
+        let bgView = UIScrollView.init(frame: UIScreen.main.bounds)
+        bgView.backgroundColor = UIColor.black
+        let tapBg = UITapGestureRecognizer.init(target: self, action: #selector(tapBgView(tapBgRecognizer:)))
+        bgView.addGestureRecognizer(tapBg)
+        let picView = userIconView!
+        let imageView = UIImageView.init()
+        imageView.image = picView.image;
+        imageView.frame = bgView.convert(picView.frame, from: self.view)
+        bgView.addSubview(imageView)
+        UIApplication.shared.keyWindow?.addSubview(bgView)
+        self.lastImageView = imageView
+        self.originalFrame = imageView.frame
+        self.scrollView = bgView
+        self.scrollView?.maximumZoomScale = 1.5
+        self.scrollView?.delegate = self
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.0,
+            options: .beginFromCurrentState,
+            animations: {
+                var frame = imageView.frame
+                frame.size.width = bgView.frame.size.width
+                frame.size.height = frame.size.width * ((imageView.image?.size.height)! / (imageView.image?.size.width)!)
+                frame.origin.x = 0
+                frame.origin.y = (bgView.frame.size.height - frame.size.height) * 0.5
+                imageView.frame = frame
+        }, completion: nil
+        )
+        
+    }
+    
+    @objc func tapBgView(tapBgRecognizer:UITapGestureRecognizer)
+    {
+        self.scrollView?.contentOffset = CGPoint.zero
+        UIView.animate(withDuration: 0.5, animations: {
+            self.lastImageView?.frame = self.originalFrame
+            tapBgRecognizer.view?.backgroundColor = UIColor.clear
+        }) { (finished:Bool) in
+            tapBgRecognizer.view?.removeFromSuperview()
+            self.scrollView = nil
+            self.lastImageView = nil
+        }
+    }
+    
+    //正确代理回调方法
+    override func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.lastImageView
     }
 }

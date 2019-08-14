@@ -87,6 +87,7 @@
                              @"typeName": type,
                              @"id": categoryType};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        [MBProgressHUD hideHUD];
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
@@ -96,6 +97,7 @@
 //            [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
+        [MBProgressHUD hideHUD];
         failure(error);
     }];
 }
@@ -200,6 +202,7 @@
     [WXNetWorkTool uploadFileWithUrl:urlStr imageName:@[] image:@[] parameters:params progressBlock:^(NSProgress * _Nonnull downloadProgress) {
         NSLog(@"%@",downloadProgress);
     } successBlock:^(id  _Nonnull responseBody) {
+        [MBProgressHUD hideHUD];
         //成功
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -210,6 +213,7 @@
         
     } failureBlock:^(NSError * _Nonnull error) {
         //失败
+        [MBProgressHUD hideHUD];
     }];
 }
 

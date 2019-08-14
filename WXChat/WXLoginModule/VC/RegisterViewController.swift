@@ -26,6 +26,9 @@ class RegisterViewController: InputViewController {
                 //成功
                 //showalert
                 self.navigationController?.popViewController(animated: true)
+            }else{
+                let msg = dic["msg"] as! String
+                MBProgressHUD.showError(msg)
             }
             print(result)
         }) { (error) in
@@ -37,7 +40,16 @@ class RegisterViewController: InputViewController {
         let urlString = WXApiManager.getRequestUrl("manKeep/checkPhone")
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"1"], successBlock: { (result) in
             print(result)
-            MBProgressHUD.showSuccess("验证码已发送")
+            let dic = result as! [String:Any]
+            let code = dic["code"] as! Int
+            if code == 200{
+                //成功
+                //showalert
+                self.navigationController?.popViewController(animated: true)
+            }else{
+                let msg = dic["msg"] as! String
+                MBProgressHUD.showError(msg)
+            }
         }) { (error) in
             print(error)
         }

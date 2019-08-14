@@ -17,6 +17,11 @@ class WXCreateCompanyViewController: UITableViewController {
     @IBOutlet weak var induTF: UITextField!
     @IBOutlet weak var locationTF: UITextField!
     
+    ///支持图片放大的属性
+    var scrollView: UIScrollView?
+    var lastImageView: UIImageView?
+    var originalFrame: CGRect!
+    var isDoubleTap: ObjCBool!
     
     lazy var pickerView: UIImagePickerController = {
         let picker = UIImagePickerController()
@@ -41,6 +46,7 @@ class WXCreateCompanyViewController: UITableViewController {
                         MBProgressHUD.showText("您还未设置图片")
                         return
                     }
+                    self?.showZoomImageView()
                     //大图模式
                 }else if tag == 1{
                     //相机
@@ -115,9 +121,54 @@ extension WXCreateCompanyViewController: UIImagePickerControllerDelegate,UINavig
 }
 //大图预览
 extension WXCreateCompanyViewController {
-    func showBigImage() {
-        let scrollView = UIScrollView.init()
-        scrollView.frame = UIScreen.main.bounds
-        scrollView.backgroundColor = UIColor.black
+    func showZoomImageView() {
+        let bgView = UIScrollView.init(frame: UIScreen.main.bounds)
+        bgView.backgroundColor = UIColor.black
+        let tapBg = UITapGestureRecognizer.init(target: self, action: #selector(tapBgView(tapBgRecognizer:)))
+        bgView.addGestureRecognizer(tapBg)
+        let picView = companyIconView!
+        let imageView = UIImageView.init()
+        imageView.image = picView.image;
+        imageView.frame = bgView.convert(picView.frame, from: self.view)
+        bgView.addSubview(imageView)
+        UIApplication.shared.keyWindow?.addSubview(bgView)
+        self.lastImageView = imageView
+        self.originalFrame = imageView.frame
+        self.scrollView = bgView
+        self.scrollView?.maximumZoomScale = 1.5
+        self.scrollView?.delegate = self
+        
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.0,
+            options: .beginFromCurrentState,
+            animations: {
+                var frame = imageView.frame
+                frame.size.width = bgView.frame.size.width
+                frame.size.height = frame.size.width * ((imageView.image?.size.height)! / (imageView.image?.size.width)!)
+                frame.origin.x = 0
+                frame.origin.y = (bgView.frame.size.height - frame.size.height) * 0.5
+                imageView.frame = frame
+        }, completion: nil
+        )
+        
+    }
+    
+    @objc func tapBgView(tapBgRecognizer:UITapGestureRecognizer)
+    {
+        self.scrollView?.contentOffset = CGPoint.zero
+        UIView.animate(withDuration: 0.5, animations: {
+            self.lastImageView?.frame = self.originalFrame
+            tapBgRecognizer.view?.backgroundColor = UIColor.clear
+        }) { (finished:Bool) in
+            tapBgRecognizer.view?.removeFromSuperview()
+            self.scrollView = nil
+            self.lastImageView = nil
+        }
+    }
+    
+    //正确代理回调方法
+    override func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.lastImageView
     }
 }

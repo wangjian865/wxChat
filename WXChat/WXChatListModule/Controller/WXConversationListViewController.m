@@ -26,7 +26,7 @@
 #import "GroupModel.h"
 #import "FriendModel.h"
 #import "WXSearchNormalView.h"
-@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate,UISearchBarDelegate>
+@interface WXConversationListViewController ()<EaseConversationListViewControllerDataSource,EaseConversationListViewControllerDelegate,UISearchControllerDelegate,UISearchBarDelegate,EMContactManagerDelegate>
 /**
  * 用户数据模型,从自身数据库获取
  */
@@ -106,7 +106,12 @@
     self.dataSource = self;
     [self setupNavi];
     [self.tableView setTableHeaderView:self.serachController.searchBar];
-    
+    ///添加好友回调
+    [[EMClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
+}
+///好友回调
+- (void)friendRequestDidReceiveFromUser:(NSString *)aUsername message:(NSString *)aMessage{
+    ///此处收到好友申请  WDX
 }
 - (void)getUserList{
     [MineViewModel getFriendListWithNickName:@"" success:^(NSArray<FriendModel *> * list) {

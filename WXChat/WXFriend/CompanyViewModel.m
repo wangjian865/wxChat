@@ -219,9 +219,9 @@
 }
 
 //企业圈-查询消息列表  /替换userid  ==>ok
-+(void)getMomentMessageListSuccessBlock:(void(^) (MomentMessageList *model))success failBlock:(void(^) (NSError *error))failure{
++(void)getMomentMessageListWithPage:(int )page SuccessBlock:(void(^) (MomentMessageList *model))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/commentsListLook"];
-    NSDictionary *params = @{@"commentstguset":WXAccountTool.getUserID,@"page":@1};
+    NSDictionary *params = @{@"commentstguset":WXAccountTool.getUserID,@"page":[NSNumber numberWithInt:page]};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -238,16 +238,16 @@
 
 //====================
 //企业圈-删除消息列表 ==》 400 ok？？
-+(void)deleteMomentsMessageListWithCommentId:(NSArray *)commentId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
-    NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/commentRM"];
-    NSDictionary *params = @{@"tid": commentId};
++(void)deleteMomentsMessageListWithCommentId:(NSString *)commentId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/commentDM"];
+    NSDictionary *params = @{@"commentsid": commentId};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
             success(@"删除成功");
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+//            [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
         failure(error);

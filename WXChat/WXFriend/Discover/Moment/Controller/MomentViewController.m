@@ -62,8 +62,9 @@
     [super viewDidLoad];
     self.title = @"企业圈";
     self.view.backgroundColor = [UIColor whiteColor];
-//    [self configData];
+
     [self configUI];
+    
     //自定义导航栏
     [self setNaviBarStyle];
     _page = 1;
@@ -84,8 +85,10 @@
         self.mine = model.userQ;
         [self setUIData];
         self.page += 1;
+        [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     } failBlock:^(NSError * _Nonnull error) {
+        [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
     }];
 }
@@ -147,6 +150,12 @@
     self.coverImageView = imageView;
     // 用户头像
     imageView = [[MMImageView alloc] initWithFrame:CGRectMake(k_screen_width-85, self.coverImageView.bottom-40, 75, 75)];
+    WS(wSelf);
+    [imageView setClickHandler:^(MMImageView *imageView) {
+        WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+        controller.userId = wSelf.mine.tgusetId;
+        [wSelf.navigationController pushViewController:controller animated:YES];
+    }];
     imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
     imageView.layer.borderWidth = 2;
     imageView.image = [UIImage imageNamed:@"moment_head"];
@@ -193,10 +202,17 @@
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:tableView];
     self.tableView = tableView;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        wSelf.page = 1;
+        [wSelf getMoments];
+    }];
+    [header setTitle:@"立即刷新" forState:MJRefreshStatePulling];
+    [header setTitle:@"正在获取数据" forState:MJRefreshStateRefreshing];
+    self.tableView.mj_header = header;
     // 上拉加载更多
     MJRefreshBackNormalFooter * footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        [self getMoments];
-        
+        [wSelf getMoments];
     }];
     [footer.arrowView setImage:[UIImage imageNamed:@"refresh_pull"]];
     [footer setTitle:@"上拉加载更多" forState:MJRefreshStateIdle];
@@ -313,7 +329,7 @@
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                 Enterprise * moment = cell.model;
-                [CompanyViewModel deleteMomentWithPriseid:moment.enterprisezEnterpriseId successBlock:^(NSString * _Nonnull successMsg) {
+                [CompanyViewModel deleteMomentWithPriseid:moment.enterprisezId successBlock:^(NSString * _Nonnull successMsg) {
                     self.page = 1;
                     [self getMoments];
                 } failBlock:^(NSError * _Nonnull error) {

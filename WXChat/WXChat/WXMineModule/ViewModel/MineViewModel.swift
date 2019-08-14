@@ -55,13 +55,13 @@ class MineViewModel: NSObject {
         }
     }
     //删除好友
-    class func deleteFriend(friendID: String,
+    @objc class func deleteFriend(friendID: String,
                             success: @escaping (_ response: [String: Any]?) ->(),
                             failure: @escaping (_ error: NSError?) ->()){
-        let urlString =  WXApiManager.getRequestUrl("manKeepToken/deletefriend")
-        let params:[String:Any] = ["friendtgusetid":"","friendfriendid":friendID]
-        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (succsee) in
-            
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/deleteFriend")
+        let params:[String:Any] = ["friendfriendid":friendID]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
+            success(result as? [String : Any])
         }) { (error) in
             
         }

@@ -12,10 +12,13 @@
 #import "DemoConfManager.h"
 #import "WXAccountTool.h"
 #import <IQKeyboardManager.h>
+#import "JPUSHService.h"
 @interface AppDelegate ()<EMChatManagerDelegate>
 
 @end
-
+//JPUSH
+static NSString *appKey = @"3c3c96021e26f9166346c483";
+static NSString *channel = @"Publish channel";
 @implementation AppDelegate
 
 + (AppDelegate *)sharedInstance
@@ -24,7 +27,11 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    ///键盘设置
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+    [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
+    ///JPUSH服务
+//    [self jpushInitWith:launchOptions];
     //easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
     //环信服务注册
@@ -35,7 +42,7 @@
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     
     //默认登录的状态
-    if (![WXAccountTool isLogin]){
+    if ([WXAccountTool isLogin]){
         //[WXAccountTool getHuanXinID]
         EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];
         if (!error) {

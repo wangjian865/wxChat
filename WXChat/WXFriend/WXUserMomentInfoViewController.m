@@ -10,6 +10,7 @@
 #import "WXPersonMomentViewController.h"
 #import "WXChatViewController.h"
 #import "CompanyViewModel.h"
+#import "YCMenuView.h"
 @interface WXUserMomentInfoViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UIView *momentView;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *momentImages;
+@property (nonatomic, copy) NSString *userID;
 @property (weak, nonatomic) UIScrollView *scrollView;
 @property (weak, nonatomic) UIImageView *lastImageView;
 @property (nonatomic, assign)CGRect originalFrame;
@@ -29,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setNaviRightButton];
     [self getRequestData];
     UITapGestureRecognizer *iconTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showZoomImageView:)];
     self.iconView.userInteractionEnabled = YES;
@@ -44,6 +46,7 @@
         self.nameLabel.text = model.tgusetName;
         self.zhiweiLabel.text = model.tgusetPosition;
         self.companyLabel.text = model.tgusetCompany;
+        self.userID = model.tgusetId;
         for (int i = 0;i < model.urlName.count && i < 5;i++){
             UIImageView *imageV = self.momentImages[i];
             [imageV sd_setImageWithURL:[NSURL URLWithString:model.urlName[i]]];
@@ -118,5 +121,31 @@
         self.scrollView = nil;
         self.lastImageView = nil;
     }];
+}
+//popMenu
+//设置右边按钮
+- (void)setNaviRightButton{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"椭圆4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn:)];
+}
+- (void)clickRightBarBtn: (UIButton *)sender{
+    WS(weaklf);
+    YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"删除好友" image:[UIImage imageNamed:@"pop_groupChat"] handler:^(YCMenuAction *action) {
+        [MineViewModel deleteFriendWithFriendID:weaklf.userID success:^(NSDictionary<NSString *,id> * result) {
+            NSString *code = [NSString stringWithFormat:@"%@",result[@"code"]];
+            if ([code isEqualToString:@"200"]){
+                [MBProgressHUD showSuccess:@"删除成功"];
+                [self.navigationController popViewControllerAnimated:true];
+            }
+        } failure:^(NSError * error) {
+            
+        }];
+    }];
+    NSArray *arr = @[action1];
+    YCMenuView *view = [YCMenuView menuWithActions:arr width:140 relyonView:sender];
+    view.textFont = [UIFont systemFontOfSize:14];
+    view.textColor = UIColor.whiteColor;
+    view.maxDisplayCount = 7;
+    [view show];
+//    self.menuView = view;
 }
 @end

@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *tgusetsalt;//接口上值类型为null
 @property (nonatomic, copy)NSString *tgusetnterprise;//接口上值类型为null
 @property (nonatomic, copy)NSString *seanceshows;//接口上值类型为
-@property (nonatomic, assign) int commentsid;
+@property (nonatomic, copy)NSString *commentsid;
 @property (nonatomic, copy)NSString *commentszid;
 @property (nonatomic, copy)NSString *commentstguset;
 @property (nonatomic, copy)NSString *commentscontext;

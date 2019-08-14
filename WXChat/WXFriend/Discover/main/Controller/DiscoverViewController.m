@@ -173,8 +173,7 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     WXDiscoverViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"MomentCell"];
     if (!cell) {
         cell = [[WXDiscoverViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MomentCell"];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.backgroundColor = [UIColor whiteColor];
+        
     }
     cell.iconView.image = [UIImage imageNamed:[NSString stringWithFormat:@"discover_%ld_%ld",indexPath.section,indexPath.row]];
     cell.titleLabel.text = [[self.titles objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
@@ -205,20 +204,26 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
         //跳转天眼通
         BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sky20170605://"]];
         if (!canOpen){
-            [MBProgressHUD showText:@"您尚未安装天眼通"];
+            NSString *appID = @"1048918751";
+            NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
         }
     }else if (indexPath.section == 2){
         if (indexPath.row == 0){
             //百度
             BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"s3AgCR5i5L28k0lRVe0hsXMoYbcHPwCX://"]];
             if (!canOpen){
-                [MBProgressHUD showText:@"您尚未安装百度客户端"];
+                NSString *appID = @"382201985";
+                 NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
             }
         }else{
             //智联
             BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
             if (!canOpen){
-                [MBProgressHUD showText:@"您尚未安装天眼通"];
+                NSString *appID = @"488033535";
+                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
             }
         }
     }else if (indexPath.section == 3){
@@ -226,13 +231,17 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
             //淘宝
             BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"taobao://"]];
             if (!canOpen){
-                [MBProgressHUD showText:@"您尚未安装淘宝"];
+                NSString *appID = @"387682726";
+                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
             }
         }else{
             //外卖
             BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"eleme://"]];
             if (!canOpen){
-                [MBProgressHUD showText:@"您尚未安装饿了么"];
+                NSString *appID = @"507161324";
+                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
             }
         }
         
