@@ -12,6 +12,7 @@
 @interface WXMailCell ()
 @property (nonatomic, strong)UIImageView *iconView;
 @property (nonatomic, strong)UILabel *nameLabel;
+@property (nonatomic, strong)UILabel *timeLabel;
 @property (nonatomic, strong)UILabel *titleLabel;
 @property (nonatomic, strong)UILabel *contentLabel;
 
@@ -36,6 +37,12 @@
     _nameLabel.textColor = rgb(21,21,21);
     [self.contentView addSubview:_nameLabel];
     
+    _timeLabel = [[UILabel alloc] init];
+    _timeLabel.text = @"This is name label";
+    _timeLabel.font = [UIFont systemFontOfSize:13];
+    _timeLabel.textColor = rgb(21,21,21);
+    [self.contentView addSubview:_timeLabel];
+    
     _titleLabel = [[UILabel alloc] init];
     _titleLabel.text = @"This is title label";
     _titleLabel.font = [UIFont systemFontOfSize:12];
@@ -51,17 +58,22 @@
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(10);
         make.left.equalTo(self.contentView).offset(15);
-        make.width.height.mas_equalTo(39);
+        make.width.height.mas_equalTo(50);
     }];
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.iconView.mas_right).offset(17);
         make.right.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.contentView).offset(11);
     }];
-    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel);
         make.right.equalTo(self.contentView).offset(-10);
         make.top.equalTo(self.nameLabel.mas_bottom).offset(6);
+    }];
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel);
+        make.right.equalTo(self.contentView).offset(-10);
+        make.top.equalTo(self.timeLabel.mas_bottom).offset(6);
     }];
     [_contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.nameLabel);
@@ -74,6 +86,7 @@
     _model = model;
     _nameLabel.text = [[model.readeamilsendtugset componentsSeparatedByString:@"<"].firstObject stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     _titleLabel.text = model.readeamiltheme;
+    _timeLabel.text = model.readeamiltime;
 //    NSString *temp = [model.readeamilcontet componentsSeparatedByString:@"<td style=\"display:none;\">"].lastObject;
 //    NSString *content = [temp componentsSeparatedByString:@"</td>"].firstObject;
     

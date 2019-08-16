@@ -22,9 +22,18 @@
 }
 - (void)setInfoModel:(FriendMomentInfo *)infoModel{
     _infoModel = infoModel;
-    _timeLabel.text = [Utility getMomentTime:infoModel.enterpriseztime];
+//    _timeLabel.text = [Utility getMomentTime:infoModel.enterpriseztime];
+    _timeLabel.text = [Utility getMessageTime:infoModel.enterpriseztime];
     NSArray *urlArr = [infoModel.enterprisezfujina componentsSeparatedByString:@","];
-    [_iconView sd_setImageWithURL:[NSURL URLWithString:urlArr.firstObject]];
+    NSString *url = urlArr.firstObject;
+    if ([url isEqualToString:@""] || url == nil){
+        //无图片
+        _imgWidth.constant = 0;
+    }else{
+        _imgWidth.constant = 68;
+        [_iconView sd_setImageWithURL:[NSURL URLWithString:urlArr.firstObject]];
+    }
+    
     _contentLabel.text = infoModel.enterprisezcontent;
 }
 @end

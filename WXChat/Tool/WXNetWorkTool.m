@@ -91,7 +91,6 @@ static AFHTTPSessionManager *aManager;
                 //token失效
                 [WXAccountTool logout];
                 [[AppDelegate sharedInstance] loginStateChange:NO huanxinID:@""];
-                
             }
             if (error.code !=-999) {
                 if (failureBlock)

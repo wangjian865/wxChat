@@ -269,16 +269,23 @@
         //失败
     }];
 
-//    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
-//        NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
-//        if ([code isEqualToString:@"200"]){
-//            //成功
-//            success(@"发布成功");
-//        }else{
-//            [MBProgressHUD showError: responseBody[@"msg"]];
-//        }
-//    } failureBlock:^(NSError * _Nonnull error) {
-//        failure(error);
-//    }];
+}
+///获取用户在公司的职位
++(void)getMyPositionOfCompany:(NSString *)companyID
+                 successBlock:(void(^) (NSString *successMsg))success
+                    failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"company/getIdentityFromCom"];
+    NSDictionary *params = @{@"companyid": companyID};
+    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
+        if ([code isEqualToString:@"200"]){
+            //成功
+            success( [NSString stringWithFormat:@"%@",responseBody[@"data"]]);
+        }else{
+            //            [MBProgressHUD showError: responseBody[@"msg"]];
+        }
+    } failureBlock:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
 }
 @end

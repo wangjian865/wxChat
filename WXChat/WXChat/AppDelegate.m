@@ -12,9 +12,11 @@
 #import "DemoConfManager.h"
 #import "WXAccountTool.h"
 #import <IQKeyboardManager.h>
-#import "JPUSHService.h"
-@interface AppDelegate ()<EMChatManagerDelegate>
 
+#import "JPUSHService.h"
+#import <UserNotifications/UserNotifications.h>
+#import <AdSupport/AdSupport.h>
+@interface AppDelegate ()<EMChatManagerDelegate,JPUSHRegisterDelegate>
 @end
 //JPUSH
 static NSString *appKey = @"3c3c96021e26f9166346c483";
@@ -31,8 +33,32 @@ static NSString *channel = @"Publish channel";
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
     ///JPUSH服务
-//    [self jpushInitWith:launchOptions];
-    //easeUI注册
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    if (@available(iOS 12.0, *)) {
+        entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound|JPAuthorizationOptionProvidesAppNotificationSettings;
+    } else {
+        // Fallback on earlier versions
+    }
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义 categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    // Optional
+    // 获取 IDFA
+    // 如需使用 IDFA 功能请添加此代码并在初始化方法的 advertisingIdentifier 参数中填写对应值
+    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    
+    // Required
+    // init Push
+    // notice: 2.1.5 版本的 SDK 新增的注册方法，改成可上报 IDFA，如果没有使用 IDFA 直接传 nil
+    [JPUSHService setupWithOption:launchOptions appKey:appKey
+                          channel:channel
+                 apsForProduction:0
+            advertisingIdentifier:advertisingId];
+    
+    ///easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
     //环信服务注册
 //    EMOptions *options = [EMOptions optionsWithAppkey:@"1128190420216118#testdemo"];
@@ -40,7 +66,7 @@ static NSString *channel = @"Publish channel";
     // apnsCertName是证书名称，可以先传nil，等后期配置apns推送时在传入证书名称
     options.apnsCertName = nil;
     [[EMClient sharedClient] initializeSDKWithOptions:options];
-    
+
     //默认登录的状态
     if ([WXAccountTool isLogin]){
         //[WXAccountTool getHuanXinID]
@@ -70,7 +96,7 @@ static NSString *channel = @"Publish channel";
             UIViewController *loginVC = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
             self.window.rootViewController = loginVC;
             [self.window makeKeyAndVisible];
-            
+
         }
     }else{
 //        self.window.rootViewController = [[WXTabBarController alloc] init];
@@ -87,6 +113,8 @@ static NSString *channel = @"Publish channel";
     
     return YES;
 }
+///极光
+///环信
 - (void)_initNotification
 {
     //注册登录状态监听
@@ -97,7 +125,7 @@ static NSString *channel = @"Publish channel";
     //显示内容
     pushOptions.displayStyle = 1;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0 ), ^{
-        //更新配置到服务器，该方法为同步方法，如果需要，请放到单独线程
+        
         EMError *error = [[EMClient sharedClient] updatePushOptionsToServer];
         if(!error) {
             // 成功
@@ -249,11 +277,29 @@ static NSString *channel = @"Publish channel";
     return result;
 }
 
-//远程消息推送点击处理
+////远程消息推送点击处理
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if(userInfo){
-        
+
     }
+}
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {///极光
+    
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // Required, iOS 7 Support
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -322,4 +368,35 @@ static NSString *channel = @"Publish channel";
     self.window.rootViewController = rootController;
     [self.window makeKeyAndVisible];
 }
+
+///delegate
+
+/*
+ * @brief handle UserNotifications.framework [willPresentNotification:withCompletionHandler:]
+ * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心
+ * @param notification 前台得到的的通知对象
+ * @param completionHandler 该callback中的options 请使用UNNotificationPresentationOptions
+ */
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger options))completionHandler  API_AVAILABLE(ios(10.0)){
+    
+}
+/*
+ * @brief handle UserNotifications.framework [didReceiveNotificationResponse:withCompletionHandler:]
+ * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心
+ * @param response 通知响应对象
+ * @param completionHandler
+ */
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)(void))completionHandler  API_AVAILABLE(ios(10.0)){
+    
+}
+
+/*
+ * @brief handle UserNotifications.framework [openSettingsForNotification:]
+ * @param center [UNUserNotificationCenter currentNotificationCenter] 新特性用户通知中心
+ * @param notification 当前管理的通知对象
+ */
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(nullable UNNotification *)notification  API_AVAILABLE(ios(10.0)){
+    
+}
+
 @end

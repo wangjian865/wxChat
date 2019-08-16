@@ -72,6 +72,7 @@
     imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
     imageView.layer.borderWidth = 2;
     imageView.image = [UIImage imageNamed:@"moment_head"];
+    imageView.cornerRadius = 75/2;
     self.avatarImageView = imageView;
     //用户名
     UILabel *nameLabel = [[UILabel alloc] init];

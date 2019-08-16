@@ -35,7 +35,7 @@ class InputViewController: UIViewController {
         return view
     }()
     private var button = ZJButton()
-    private var icon = UIImageView()
+    var icon = UIImageView()
     private var remindLabel = UILabel()
     private var model: InputModel?
     var password = ""

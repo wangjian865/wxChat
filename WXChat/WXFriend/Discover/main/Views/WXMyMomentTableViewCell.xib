@@ -57,6 +57,7 @@
             <connections>
                 <outlet property="contentLabel" destination="iXA-HV-HvQ" id="BsM-Hd-lMF"/>
                 <outlet property="iconView" destination="Oau-tg-vV9" id="CWO-rL-Dsw"/>
+                <outlet property="imgWidth" destination="181-TE-gwQ" id="eti-mm-tCY"/>
                 <outlet property="timeLabel" destination="SlX-a7-O4h" id="o0M-Fw-I9Y"/>
             </connections>
             <point key="canvasLocation" x="155.07246376811597" y="101.78571428571428"/>

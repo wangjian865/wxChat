@@ -34,6 +34,7 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
                    @[@"企业圈"],@[@"企业查询"],
                    @[@"简问百科",@"竹简招聘"],
                    @[@"购物",@"外卖"], nil];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = k_background_color;
     [self.view addSubview:self.tableView];
     if (!self.eyeAnimationView) {
@@ -70,7 +71,7 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 {
     
     if (self.tableView.contentOffset.y < -64) {
-        [self performEyeViewAnimation];
+//        [self performEyeViewAnimation];
     }
     
 //    CGPoint point = [pan translationInView:pan.view];

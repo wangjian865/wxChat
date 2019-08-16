@@ -130,7 +130,7 @@
     }];
     
 }
-- (void)setShowCoverView:(BOOL *)showCoverView{
+- (void)setShowCoverView:(BOOL )showCoverView{
     _showCoverView = showCoverView;
     _coverView.hidden = !showCoverView;
 }

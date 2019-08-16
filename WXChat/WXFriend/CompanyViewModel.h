@@ -58,6 +58,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///发布企业圈  /替换account 用户id
 +(void)publicMomentsMessage:(NSString *)message files:(NSArray *)files fileNames: (NSArray *)fileNames successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure;
+
+///获取用户在公司的职位
++(void)getMyPositionOfCompany:(NSString *)companyID
+                 successBlock:(void(^) (NSString *successMsg))success
+                    failBlock:(void(^) (NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -45,34 +45,47 @@
         return @"刚刚";
     }
 }
-
+//+ (NSString *)getMomentListTime:(long long)timestamp{
+//
+//}
 + (NSString *)getMessageTime:(long long)timestamp
 {
     // 入参日期
-    NSTimeZone * timeZone = [[NSTimeZone alloc] initWithName:@"Asia/Shanghai"];
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-    [dateFormatter setTimeZone:timeZone];
     NSDate * date = [NSDate dateWithTimeIntervalSince1970:timestamp];
     // 当前日期
     NSDate * curDate = [NSDate date];
     // 日历
     NSCalendar * calendar = [NSCalendar currentCalendar];
-    NSCalendarUnit unit = NSCalendarUnitDay;
+    NSCalendarUnit unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     // 获取日期差
-    NSDateComponents * delta = [calendar components:unit fromDate:curDate toDate:date options:0];
+    NSDateComponents * delta = [calendar components:unitFlags fromDate:date toDate:curDate options:0];
+    NSInteger year = delta.year;
+    NSInteger month = delta.month;
     NSInteger day = delta.day;
-    NSString * temString = nil;
-    if (day == 0) { // 今天
-        [dateFormatter setDateFormat:@"HH:mm"];
-        temString = [dateFormatter stringFromDate:date];
-    } else if (day == 1) { // 昨天
-        return @"昨天";
+    NSInteger hour = delta.hour;
+    NSInteger minute = delta.minute;
+    NSInteger second = delta.second;
+    
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"YYYY年 M月d日"];
+    if (1 <= year) {
+        
+        return [dateFormatter stringFromDate:date];
+    } else if(1 <= month) {
+        
+        return [dateFormatter stringFromDate:date];
+    } else if(1 <= day) {
+        
+        return [dateFormatter stringFromDate:date];
+    } else if(1 <= hour) {
+        return [NSString stringWithFormat:@"%ld小时前",hour];
+    } else if(1 <= minute) {
+        return [NSString stringWithFormat:@"%ld分钟前",minute];
+    } else if(1 <= second) {
+        return [NSString stringWithFormat:@"%ld秒前",second];
     } else {
-        [dateFormatter setDateFormat:@"yyyy/M/d"];
-        temString = [dateFormatter stringFromDate:date];
+        return @"刚刚";
     }
-    return temString;
 }
 
 // 获取单张图片的实际size

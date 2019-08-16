@@ -33,11 +33,6 @@
 }
 //设置右边按钮
 - (void)setNaviRightButton{
-//    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-//    [rightBtn setTitle:@"更多" forState:UIControlStateNormal];
-//    [rightBtn addTarget:self action:@selector(rightBtnAction) forControlEvents:UIControlEventTouchUpInside];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"椭圆4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(rightBtnAction)];
 }
 - (void)rightBtnAction{
@@ -47,10 +42,17 @@
         vc.groupID = self.conversation.conversationId;
         [self.navigationController pushViewController:vc animated:true];
     }else{
-        //单聊
-        WXUserMomentInfoViewController *momentVC = [[WXUserMomentInfoViewController alloc] init];
-        momentVC.userId = self.conversation.conversationId;
-        [self.navigationController pushViewController:momentVC animated:true];
+        WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] init];
+        userListVC.doneCompletion = ^(EMGroup * _Nonnull group) {
+            //跳转会话页面
+            WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:group.groupId conversationType:EMConversationTypeGroupChat];
+            viewController.title = group.subject;
+            [self.navigationController pushViewController:viewController animated:YES];
+        };
+        userListVC.isEditing = YES;
+        userListVC.isGroup = YES;
+        WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:userListVC];
+        [self presentViewController:nav animated:YES completion:nil];
     }
    
 }
@@ -132,6 +134,39 @@
     [Muext setObject:[WXAccountTool getUserImage] forKey:@"from_heading_user"];
     message.ext= Muext;
     [super sendMessage:message isNeedUploadFile:isUploadFile];
+}
+///点击头像的回调
+- (void)messageViewController:(EaseMessageViewController *)viewController didSelectAvatarMessageModel:(id<IMessageModel>)messageModel{
+    NSString *userID = messageModel.message.from;
+    if (userID == [WXAccountTool getUserID]){
+        //本人
+        WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+        controller.userId = userID;
+        [self.navigationController pushViewController:controller animated:YES];
+
+    }else{
+        ///新增逻辑 可能存在问题
+        ///先判断是不是好友
+        [MineViewModel judgeIsFriendWithFriendID:userID success:^(NSString * msg) {
+            if ([msg isEqualToString:@"是"]){
+                WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+                controller.userId = userID;
+                [self.navigationController pushViewController:controller animated:YES];
+            }else{
+                [MineViewModel getUserInfo:userID success:^(UserInfoModel * model) {
+                    WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+                    resultVC.model = model;
+                    [self.navigationController pushViewController:resultVC animated:true];
+                } failure:^(NSError * error) {
+                    
+                }];
+            }
+        } failure:^(NSError * error) {
+            
+        }];
+    }
+    
+
 }
 - (BOOL)messageViewController:(EaseMessageViewController *)viewController didSelectMessageModel:(id<IMessageModel>)messageModel{
     if (messageModel.bodyType == EMMessageBodyTypeText && [[messageModel text] hasPrefix:@"[名片]"]){

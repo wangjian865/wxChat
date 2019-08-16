@@ -30,6 +30,10 @@
     _titleLabel.text = @"企业圈";
     [self.contentView addSubview:_titleLabel];
     
+    _line = [[UIView alloc] init];
+    _line.backgroundColor = k_background_color;
+    [self.contentView addSubview:_line];
+    
 }
 - (void)layoutSubviews{
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -40,6 +44,10 @@
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.iconView);
         make.left.equalTo(self.iconView.mas_right).offset(17);
+    }];
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self.contentView);
+        make.height.mas_equalTo(1);
     }];
 }
 @end

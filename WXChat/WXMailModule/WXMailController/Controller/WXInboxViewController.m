@@ -85,14 +85,16 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WXMailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WXMailCell" forIndexPath:indexPath];
-    MailInfo *model = _myModel.context[indexPath.row];
+    int count = (int)_myModel.context.count - 1;
+    MailInfo *model = _myModel.context[count - indexPath.row];
     cell.model = model;
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     WXMailDetailViewController *detailVC = [[WXMailDetailViewController alloc] init];
-    MailInfo *model = _myModel.context[indexPath.row];
+    int count = (int)_myModel.context.count - 1;
+    MailInfo *model = _myModel.context[count - indexPath.row];
     detailVC.account = self.account;
     detailVC.user = _myModel.user;
     detailVC.typeName = _type;
@@ -106,7 +108,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        MailInfo *model = _myModel.context[indexPath.row];
+        int count = (int)_myModel.context.count - 1;
+        MailInfo *model = _myModel.context[count - indexPath.row];
         [MailViewModel deleteMailWithMailAccount:_myModel.user typeName:_type categoryType:_ID emailId:model.readmailmessageid successBlock:^(NSString * _Nonnull successMessage) {
             [self getData];
         } failBlock:^(NSError * _Nonnull error) {

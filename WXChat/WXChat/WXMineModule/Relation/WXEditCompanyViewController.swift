@@ -19,7 +19,11 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     @IBOutlet weak var descTF: YYTextView!
     @IBOutlet weak var indusTF: UITextField!
     @IBOutlet weak var locationTF: UITextField!
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var outBtn: UIButton!
     
+    //公司权限标识
+    var companyPositionStr = "0"
     ///支持图片放大的属性
     var scrollView: UIScrollView?
     var lastImageView: UIImageView?
@@ -54,6 +58,23 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
         descTF.text = myModel?.companysynopsis
         indusTF.text = myModel?.companyindustry
         locationTF.text = myModel?.companyregion
+        getUserPositionOfCompany()
+    }
+    ///判断用户的公司权利
+    func getUserPositionOfCompany() {
+        CompanyViewModel.getMyPosition(ofCompany: myModel?.companyid ?? "" , successBlock: { (data) in
+            self.companyPositionStr = data
+            if data == "2"{
+                self.deleteBtn.isHidden = false
+                self.outBtn.isHidden = true
+            }else{
+                self.deleteBtn.isHidden = true
+                self.outBtn.isHidden = false
+            }
+            self.tableView.reloadData()
+        }) { (error) in
+            
+        }
     }
     @objc func editCompany(){
         
@@ -65,7 +86,6 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     }
     func setContentData(model: CompanyModel){
         myModel = model
-        
     }
     
     //action
@@ -98,7 +118,38 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
             print("退出公司出现错误")
         }
     }
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = indexPath.row
+        switch row {
+        case 0:
+            return 150
+            
+        case 1:
+            if companyPositionStr == "0"{
+                return 0
+            }
+            return 44
+            
+        case 2:
+            if companyPositionStr == "0" || companyPositionStr == "1"{
+                return 0
+            }
+            return 44
+            
+        case 3:
+            if companyPositionStr == "0" || companyPositionStr == "1"{
+                return 0
+            }
+            return 44
+            
+        case 4:
+            return 333
+            
+        default:
+            return 44
+            
+        }
+    }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         switch row {

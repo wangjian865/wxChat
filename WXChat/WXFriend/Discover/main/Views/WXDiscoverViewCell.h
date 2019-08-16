@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
  * title
  */
 @property (nonatomic, strong) UILabel *titleLabel;
+/**
+ * 底部线
+ */
+@property (nonatomic, strong) UIView *line;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^chooseAction)(NSString *buddy);
 
 ///是否显示遮盖
-@property (nonatomic, assign) BOOL *showCoverView;
+@property (nonatomic, assign) BOOL showCoverView;
 
 ///wdxuserlist
 @property (nonatomic, assign) SearchUserModel *wxModel;

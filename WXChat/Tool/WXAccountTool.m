@@ -48,7 +48,18 @@
     }
     return name;
 }
-
+///获取职位
++ (NSString *)getUserPosition{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *position = [userDefault stringForKey:@"userPosition"];
+    return position;
+}
+///获取公司
++ (NSString *)getUserXCompany{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    NSString *company = [userDefault stringForKey:@"userCompany"];
+    return company;
+}
 + (NSString *)getUserImage{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *img = [userDefault stringForKey:@"userImage"];

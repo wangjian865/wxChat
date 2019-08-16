@@ -34,3 +34,4 @@
 #import "WXChatService.h"
 #import "WDXUserListViewController.h"
 #import "UIImage+WXGroup.h"
+#import "JPUSHService.h"

@@ -47,8 +47,8 @@ class MineViewModel: NSObject {
             guard let temp = resultModel else {return }
             if temp.code.elementsEqual("200"){
                 let temp = result as! [String : Any]
-                let str = temp["data"] as! String
-                success(str)
+//                let str = temp["data"] as! String
+                success("成功")
             }
         }) { (error) in
             

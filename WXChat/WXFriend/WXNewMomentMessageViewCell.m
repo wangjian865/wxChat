@@ -16,10 +16,10 @@
 }
 - (void)setModel:(CommentInfo *)model{
     _model = model;
-    [_userIconView sd_setImageWithURL:[NSURL URLWithString:model.tgusetimg]];
-    _nameLabel.text = model.tgusetname;
-    _contentLabel.text = model.commentscontext;
-    _timeLabel.text = [Utility getMomentTime:model.commentsdatetime];
+    [_userIconView sd_setImageWithURL:[NSURL URLWithString:model.commentsTgusetImg]];
+    _nameLabel.text = model.commentsTgusetName;
+    _contentLabel.text = model.commentsContext;
+    _timeLabel.text = [Utility getMomentTime:model.commentsDatetime];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

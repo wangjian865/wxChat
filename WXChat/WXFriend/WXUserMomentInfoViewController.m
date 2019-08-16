@@ -134,6 +134,7 @@
             NSString *code = [NSString stringWithFormat:@"%@",result[@"code"]];
             if ([code isEqualToString:@"200"]){
                 [MBProgressHUD showSuccess:@"删除成功"];
+                [WXChatService deleteAConversationWithId:self.userID completion:nil];
                 [self.navigationController popViewControllerAnimated:true];
             }
         } failure:^(NSError * error) {

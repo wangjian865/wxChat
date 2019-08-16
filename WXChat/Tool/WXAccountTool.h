@@ -27,6 +27,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUserName;
 ///获取头像
 + (NSString *)getUserImage;
+///获取职位
++ (NSString *)getUserPosition;
+///获取公司
++ (NSString *)getUserXCompany;
 /**
  本地保存对方聊天信息
  

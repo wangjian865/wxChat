@@ -191,7 +191,6 @@
 		2A8E7F0222B093540020BC57 /* EMGlobalVariables.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F0122B093540020BC57 /* EMGlobalVariables.m */; };
 		2A8E7F0522B093860020BC57 /* EMDemoOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F0422B093860020BC57 /* EMDemoOptions.m */; };
 		2A8E7F0822B093C90020BC57 /* EMConversationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F0622B093C90020BC57 /* EMConversationHelper.m */; };
-		2A8E7F1022B099080020BC57 /* WXWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F0F22B099080020BC57 /* WXWebViewController.m */; };
 		2A8E7F1322B0AE9E0020BC57 /* WXMessageAlertViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A8E7F1222B0AE9E0020BC57 /* WXMessageAlertViewCell.m */; };
 		2AC1F481229BEEA60041696E /* SDShortVideoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2AC1F47F229BEEA60041696E /* SDShortVideoProgressView.m */; };
 		2ACD5EB12271539400A24BF6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2ACD5EB02271539400A24BF6 /* AppDelegate.m */; };
@@ -345,6 +344,7 @@
 		F499B78922FF1B0E0020053E /* WXInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F499B78722FF1B0E0020053E /* WXInputCell.m */; };
 		F499B78A22FF1B0E0020053E /* WXInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499B78822FF1B0E0020053E /* WXInputCell.xib */; };
 		F499B78D22FFBAAE0020053E /* UIImage+WXGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */; };
+		F4A0E2F92306A96A00C2DD98 /* WXWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0E2F82306A96A00C2DD98 /* WXWebViewController.swift */; };
 		F4AC7BC92300F8C800B47084 /* WXSearchNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */; };
 		F4AC7BCB2300F8DF00B47084 /* WXSearchNormalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */; };
 		F4C28E6622D0A6F000606E6D /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */; };
@@ -645,8 +645,6 @@
 		2A8E7F0622B093C90020BC57 /* EMConversationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMConversationHelper.m; sourceTree = "<group>"; };
 		2A8E7F0722B093C90020BC57 /* EMConversationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMConversationHelper.h; sourceTree = "<group>"; };
 		2A8E7F0922B094770020BC57 /* EMMulticastDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EMMulticastDelegate.h; sourceTree = "<group>"; };
-		2A8E7F0E22B099080020BC57 /* WXWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXWebViewController.h; sourceTree = "<group>"; };
-		2A8E7F0F22B099080020BC57 /* WXWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXWebViewController.m; sourceTree = "<group>"; };
 		2A8E7F1122B0AE9E0020BC57 /* WXMessageAlertViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMessageAlertViewCell.h; sourceTree = "<group>"; };
 		2A8E7F1222B0AE9E0020BC57 /* WXMessageAlertViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMessageAlertViewCell.m; sourceTree = "<group>"; };
 		2AC1F47E229BEEA60041696E /* SDShortVideoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDShortVideoProgressView.h; sourceTree = "<group>"; };
@@ -797,6 +795,7 @@
 		F40E96F622E5FF5600EE8C60 /* SearchUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchUserModel.h; sourceTree = "<group>"; };
 		F40E96F722E5FF5600EE8C60 /* SearchUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchUserModel.m; sourceTree = "<group>"; };
 		F40E970122E6061900EE8C60 /* MomentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentViewModel.swift; sourceTree = "<group>"; };
+		F4167E3E2303ACC0003A650F /* WXChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WXChat.entitlements; sourceTree = "<group>"; };
 		F41B008D22FE57BA0087F129 /* WDXUsersListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WDXUsersListCell.h; sourceTree = "<group>"; };
 		F41B008E22FE57BA0087F129 /* WDXUsersListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDXUsersListCell.m; sourceTree = "<group>"; };
 		F4224AF122D9DDB5003DA311 /* WXAddOrMinusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXAddOrMinusView.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -907,6 +906,7 @@
 		F499B78822FF1B0E0020053E /* WXInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXInputCell.xib; sourceTree = "<group>"; };
 		F499B78B22FFBAAE0020053E /* UIImage+WXGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WXGroup.h"; sourceTree = "<group>"; };
 		F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WXGroup.m"; sourceTree = "<group>"; };
+		F4A0E2F82306A96A00C2DD98 /* WXWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXWebViewController.swift; sourceTree = "<group>"; };
 		F4AC7BC72300F8C800B47084 /* WXSearchNormalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSearchNormalView.h; sourceTree = "<group>"; };
 		F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSearchNormalView.m; sourceTree = "<group>"; };
 		F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXSearchNormalView.xib; sourceTree = "<group>"; };
@@ -1370,8 +1370,6 @@
 				F407FFE322ED84070090806E /* MailModel */,
 				F40E96F922E603C900EE8C60 /* WXMailService */,
 				CE5B9A1422BCD35A00B608E4 /* WXMailController */,
-				2A8E7F0E22B099080020BC57 /* WXWebViewController.h */,
-				2A8E7F0F22B099080020BC57 /* WXWebViewController.m */,
 			);
 			path = WXMailModule;
 			sourceTree = SOURCE_ROOT;
@@ -1427,6 +1425,7 @@
 		2ACD5EAE2271539400A24BF6 /* WXChat */ = {
 			isa = PBXGroup;
 			children = (
+				F4167E3E2303ACC0003A650F /* WXChat.entitlements */,
 				2ACD5EAF2271539400A24BF6 /* AppDelegate.h */,
 				2ACD5EB02271539400A24BF6 /* AppDelegate.m */,
 				2A8E781B22A8B3390020BC57 /* Tool */,
@@ -1759,6 +1758,7 @@
 				CE03C2EA22C0D8A800730371 /* GetPasswordViewController.swift */,
 				CE03C2EB22C0D8A800730371 /* RegisterViewController.swift */,
 				F4653EC722DB0AE600A77D49 /* WXLoginMainViewController.swift */,
+				F4A0E2F82306A96A00C2DD98 /* WXWebViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -2198,6 +2198,11 @@
 					2ACD5EAB2271539400A24BF6 = {
 						CreatedOnToolsVersion = 10.2.1;
 						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2ACD5EC32271539600A24BF6 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -2587,7 +2592,6 @@
 				2A28B16F22802B1100B224F4 /* MLLabelUtil.m in Sources */,
 				F42BC6BC22EC72BB004EFA02 /* WXGroupSettingViewController.swift in Sources */,
 				CE5B9A2B22BCD35B00B608E4 /* WXMailBottomCell.m in Sources */,
-				2A8E7F1022B099080020BC57 /* WXWebViewController.m in Sources */,
 				CE03C2F122C0D8A800730371 /* ZJTextField.swift in Sources */,
 				2A8E783322AE5D310020BC57 /* WXResultBottomCell.m in Sources */,
 				F4653ED722DB61C200A77D49 /* WXTwoBottomChooseView.swift in Sources */,
@@ -2656,6 +2660,7 @@
 				CE03C2ED22C0D8A800730371 /* VerficationButton.swift in Sources */,
 				2A28B17022802B1100B224F4 /* WKWebViewController.m in Sources */,
 				F4D2E16722F72F2600CFDBAE /* WXFriendMomentImageCell.swift in Sources */,
+				F4A0E2F92306A96A00C2DD98 /* WXWebViewController.swift in Sources */,
 				2A28B18422802C9500B224F4 /* JKDBHelper.m in Sources */,
 				2ADDBA2122A4D4E70006C42A /* EMBadgeLabel.m in Sources */,
 				F4C28E6822D0A6F000606E6D /* GroupChatVC.swift in Sources */,
@@ -2874,6 +2879,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WXChat/WXChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -2908,6 +2914,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = WXChat/WXChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;

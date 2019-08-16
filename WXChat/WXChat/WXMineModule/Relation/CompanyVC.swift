@@ -39,7 +39,7 @@ class CompanyVC: UITableViewController {
             let vc = WXAddCompanyViewController()
             self?.superVC?.navigationController?.pushViewController(vc, animated: true)
         }
-        tableView.rowHeight = 85
+        tableView.rowHeight = 75
     }
     func initMyData() {
         MineViewModel.searchUserCompanys(success: { (success) in

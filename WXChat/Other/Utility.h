@@ -18,5 +18,6 @@
 + (CGSize)getMomentImageSize:(CGSize)size;
 // 颜色转图片
 + (UIImage *)imageWithRenderColor:(UIColor *)color renderSize:(CGSize)size;
-
+//列表时间
++ (NSString *)getMomentListTime:(long long)timestamp;
 @end

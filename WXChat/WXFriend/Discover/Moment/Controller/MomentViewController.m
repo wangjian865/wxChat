@@ -150,6 +150,7 @@
     self.coverImageView = imageView;
     // 用户头像
     imageView = [[MMImageView alloc] initWithFrame:CGRectMake(k_screen_width-85, self.coverImageView.bottom-40, 75, 75)];
+    imageView.cornerRadius = 75/2;
     WS(wSelf);
     [imageView setClickHandler:^(MMImageView *imageView) {
         WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];

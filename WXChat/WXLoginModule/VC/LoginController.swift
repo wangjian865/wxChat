@@ -70,6 +70,7 @@ class LoginController: UIViewController {
             params["tgusetaccount"] = account
             params["tgusetpassword"] = pwd
         }
+        params["equipmentId"] = JPUSHService.registrationID()
         //    FIXME: 调用登录方法
         
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
@@ -87,6 +88,8 @@ class LoginController: UIViewController {
                 //环信登录成功后切换页面
                 AppDelegate.sharedInstance()?.loginStateChange(true, huanxinID: huanxinID)
                 self.getUserInfo()
+            }else if model!.code.elementsEqual("401"){
+                MBProgressHUD.showError("登录失败,请检查账号密码是否正确")
             }
         }) { (error) in
             
@@ -107,6 +110,8 @@ class LoginController: UIViewController {
                 UserDefaults.standard.set(model?.tgusetid, forKey: "userID")
                 UserDefaults.standard.set(model?.tgusetname, forKey: "userName")
                 UserDefaults.standard.set(model?.tgusetimg, forKey: "userImage")
+                UserDefaults.standard.set(model?.tgusetposition, forKey: "userPosition")
+                UserDefaults.standard.set(model?.tgusetcompany, forKey: "userCompany")
                 WXCacheTool.wx_saveModel(model as Any, key: "userInfo")
             }
         }) { (error) in

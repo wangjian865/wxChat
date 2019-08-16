@@ -249,19 +249,7 @@
 {
     return self.sectionTitles;
 }
-// delegate
-//- (void)userListViewController:(EaseUsersListViewController *)userListViewController
-//            didSelectUserModel:(id<IUserModel>)userModel{
-//    
-//}
-// dataSource
-//- (NSInteger)numberOfRowInUserListViewController:(EaseUsersListViewController *)userListViewController;{
-//    return 2;
-//}
-//- (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
-//                   userModelForIndexPath:(NSIndexPath *)indexPath{
-//
-//}
+
 //根据buddy,即id  从后台获取相关信息
 - (id<IUserModel>)userListViewController:(EaseUsersListViewController *)userListViewController
                            modelForBuddy:(NSString *)buddy

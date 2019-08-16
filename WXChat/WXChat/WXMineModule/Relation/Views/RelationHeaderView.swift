@@ -22,6 +22,10 @@ class RelationHeaderView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initFromXib()
+        iconImageView.sd_setImage(with: URL.init(string: WXAccountTool.getUserImage()), placeholderImage: UIImage.init(named: "normal_icon"))
+        nameLabel.text = WXAccountTool.getUserName()
+        positionLabel.text = WXAccountTool.getUserPosition()
+        companyLabel.text = WXAccountTool.getUserXCompany()
     }
     
     public func initFromXib() {
