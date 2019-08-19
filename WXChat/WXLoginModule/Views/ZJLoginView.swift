@@ -79,7 +79,11 @@ class ZJLoginView: UIView {
 //        }
         let urlString = WXApiManager.getRequestUrl("manKeep/checkPhone") 
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: ["tgusetaccount":num,"checktype":"2"], successBlock: { (result) in
-            MBProgressHUD.showSuccess("验证码已发送")
+            if let temp = result as? [String :Any]{
+                if let msg = temp["msg"] as? String {
+                    MBProgressHUD.showSuccess(msg)
+                }
+            }
         }) { (error) in
             print(error)
         }

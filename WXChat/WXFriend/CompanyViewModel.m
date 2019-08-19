@@ -56,7 +56,7 @@
             Enterprise *model = [Enterprise yy_modelWithJSON:responseBody[@"data"][@"enterprise"]];
             success(model);
         }else{
-            [MBProgressHUD showError: responseBody[@"msg"]];
+//            [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
         failure(error);
@@ -221,7 +221,7 @@
 //企业圈-查询消息列表  /替换userid  ==>ok
 +(void)getMomentMessageListWithPage:(int )page SuccessBlock:(void(^) (MomentMessageList *model))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/commentsListLook"];
-    NSDictionary *params = @{@"commentstguset":WXAccountTool.getUserID,@"page":[NSNumber numberWithInt:page]};
+    NSDictionary *params = @{@"page":[NSNumber numberWithInt:page]};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){

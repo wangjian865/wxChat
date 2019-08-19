@@ -159,11 +159,11 @@
     }];
     imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
     imageView.layer.borderWidth = 2;
-    imageView.image = [UIImage imageNamed:@"moment_head"];
+    [imageView sd_setImageWithURL:WXAccountTool.getUserImage];
     self.avatarImageView = imageView;
     //用户名
     UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"z奥特曼";
+    nameLabel.text = WXAccountTool.getUserName;
     nameLabel.textColor = rgb(255, 255, 255);
     nameLabel.font = [UIFont systemFontOfSize:18];
     nameLabel.width = 200;
@@ -174,7 +174,7 @@
     self.nameLabel = nameLabel;
     //公司
     UILabel *companyLabel = [[UILabel alloc] init];
-    companyLabel.text = @"这是某某某o";
+    companyLabel.text = WXAccountTool.getUserXCompany;
     companyLabel.textColor = rgb(153, 153, 153);
     companyLabel.width = 250;
     companyLabel.right = imageView.left - 15;

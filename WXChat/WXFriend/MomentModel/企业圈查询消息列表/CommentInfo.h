@@ -44,7 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, copy)NSString *enterpriseztgusetid;
 //@property (nonatomic, assign) int commentstgusetifcheck;
 
-
+///标记 1:点赞 0:评论
+@property (nonatomic, copy)NSString *verdictId;
 @property (nonatomic, copy)NSString *commentsId;
 @property (nonatomic, assign)long long commentsDatetime;
 @property (nonatomic, copy)NSString *commentsTguset;
@@ -55,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *commentsContext;
 @property (nonatomic, copy)NSString *commentsTgusetName;
 @property (nonatomic, copy)NSString *commentsTgusetHFName;
-
+@property (nonatomic, copy)NSString *commentszId;
 @end
 
 NS_ASSUME_NONNULL_END

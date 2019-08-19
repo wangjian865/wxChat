@@ -173,6 +173,35 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
             }
             let nav = WXPresentNavigationController.init(rootViewController: vc)
             present(nav, animated: true, completion: nil)
+        }else{
+            
+            let model = users![indexPath.row]
+            let userID = model.tgusetid
+            if userID == WXAccountTool.getUserID(){
+                let infoVC = WXUserMomentInfoViewController.init()
+                infoVC.userId = userID
+                self.navigationController?.pushViewController(infoVC, animated: true)
+            }else{
+                MineViewModel.judgeIsFriend(friendID: userID, success: { (msg) in
+                    if let temp = msg,temp == "是"{
+                        let infoVC = WXUserMomentInfoViewController.init()
+                        infoVC.userId = userID
+                        self.navigationController?.pushViewController(infoVC, animated: true)
+                    }else{
+                        MineViewModel.getUserInfo(userID, success: { (model) in
+                            let resultVC = WXfriendResultViewController()
+                            resultVC.model = model ?? UserInfoModel()
+                            self.navigationController?.pushViewController(resultVC, animated: true)
+                        }, failure: { (error) in
+                            
+                        })
+                    }
+                }) { (error) in
+                    
+                }
+            }
+            
+            
         }
     }
 }

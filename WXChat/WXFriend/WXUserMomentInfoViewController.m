@@ -32,13 +32,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviRightButton];
-    [self getRequestData];
+    
     UITapGestureRecognizer *iconTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showZoomImageView:)];
     self.iconView.userInteractionEnabled = YES;
     [self.iconView addGestureRecognizer:iconTap];
     UITapGestureRecognizer *momentViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(momentViewTapAction)];
     [self.momentView addGestureRecognizer:momentViewTap];
     
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self getRequestData];
 }
 - (void)getRequestData {
     [CompanyViewModel getPersonMomentDataWithUserIdL:self.userId successBlock:^(UserMomentInfoModel * _Nonnull model) {

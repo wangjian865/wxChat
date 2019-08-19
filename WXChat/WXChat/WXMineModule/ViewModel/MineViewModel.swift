@@ -550,6 +550,38 @@ class MineViewModel: NSObject {
             
         }
     }
+    ///获取申请加入公司的用户列表
+    @objc class func getApprovalList(userID: String,
+                               success: @escaping (_ response: [ApprovalModel]?) ->(),
+                               failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("company/getApproval")
+        let params:[String:Any] = ["approvalApprovalid":userID]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                //转换模型数组
+                if let successData = temp as? [String:Any] {
+                    if let datas = successData["data"] as? [[String:Any]]{
+                        var models :[ApprovalModel] = []
+                        for item in datas{
+                            let model = ApprovalModel.yy_model(with: item)
+                            if let mo = model{
+                                models.append(mo)
+                            }
+                            
+                        }
+                        //遍历结束回调
+                        success(models)
+                    }
+                }
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
     //个人人脉展示
     class func getPersonalInfo(userID: String,
                                    success: @escaping (_ response: UserMomentInfoModel?) ->(),
@@ -564,7 +596,6 @@ class MineViewModel: NSObject {
                 if let successData = temp as? [String:Any] {
                     if let datas = successData["data"] as? [String:Any]{
                         let model = UserMomentInfoModel.yy_model(with: datas)
-                        //遍历结束回调
                         success(model)
                     }
                 }
@@ -582,6 +613,43 @@ class MineViewModel: NSObject {
                                      failure: @escaping (_ error: NSError?) ->()) {
         let urlString =  WXApiManager.getRequestUrl("company/addComApproval")
         let params:[String:Any] = ["approvalTgusetid":WXAccountTool.getUserID(),"approvalTgusetname":WXAccountTool.getUserName(),"approvalCompanyid":companyId]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                success(result.msg)
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    ///通过用户加入公司的申请
+    @objc class func agreeUserForCompany(companyId: String,
+                                         userId: String,
+                                         success: @escaping (_ response: String?) ->(),
+                                         failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("company/updateComApproval")
+        let params:[String:Any] = ["approvalTgusetid":userId,"approvalCompanyid":companyId]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                success(result.msg)
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    ///删除用户加入公司的申请
+    @objc class func deleteUserForCompany(approvalId: String,
+                                          success: @escaping (_ response: String?) ->(),
+                                          failure: @escaping (_ error: NSError?) ->()) {
+        let urlString =  WXApiManager.getRequestUrl("company/deleteApproval")
+        let params:[String:Any] = ["approvalId":approvalId]
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
             let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
             guard let result = resultModel else {return }

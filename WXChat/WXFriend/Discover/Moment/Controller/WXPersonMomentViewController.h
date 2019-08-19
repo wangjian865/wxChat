@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WXPersonMomentViewController : UIViewController
 @property (nonatomic, copy) NSString *userId;
+@property (nonatomic, assign) BOOL refreshFlag;
 @end
 
 NS_ASSUME_NONNULL_END

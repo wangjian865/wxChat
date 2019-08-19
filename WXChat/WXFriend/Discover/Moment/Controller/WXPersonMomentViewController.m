@@ -42,8 +42,16 @@
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor clearColor]}];
     [self.navigationController.navigationBar setTranslucent:true];
     [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    if (self.refreshFlag){
+        self.page = 1;
+        [self getData];
+        self.refreshFlag = NO;
+    }
 }
 - (void)getData {
+    if (self.page == 1){
+        self.myModel = nil;
+    }
     [CompanyViewModel getMomentsListWithUserid:self.userId page:[NSString stringWithFormat:@"%d",_page] successBlock:^(FriendMomentInfoList * _Nonnull model) {
         if (self.myModel == nil){
             self.myModel = model;
@@ -71,12 +79,12 @@
     imageView = [[MMImageView alloc] initWithFrame:CGRectMake(k_screen_width-85, self.coverImageView.bottom-40, 75, 75)];
     imageView.layer.borderColor = [[UIColor whiteColor] CGColor];
     imageView.layer.borderWidth = 2;
-    imageView.image = [UIImage imageNamed:@"moment_head"];
+    [imageView sd_setImageWithURL:[WXAccountTool getUserImage]];
     imageView.cornerRadius = 75/2;
     self.avatarImageView = imageView;
     //用户名
     UILabel *nameLabel = [[UILabel alloc] init];
-    nameLabel.text = @"z奥特曼";
+    nameLabel.text = [WXAccountTool getUserName];
     nameLabel.textColor = rgb(255, 255, 255);
     nameLabel.font = [UIFont systemFontOfSize:18];
     nameLabel.width = 200;
@@ -87,7 +95,7 @@
     self.nameLabel = nameLabel;
     //公司
     UILabel *companyLabel = [[UILabel alloc] init];
-    companyLabel.text = @"这是某某某o";
+    companyLabel.text = [WXAccountTool getUserXCompany];
     companyLabel.textColor = rgb(153, 153, 153);
     companyLabel.width = 250;
     companyLabel.right = imageView.left - 15;
@@ -150,7 +158,7 @@
 //    [self.navigationController pushViewController:detailVC animated:true];
     WXSingleViewController *singleVC = [[WXSingleViewController alloc] init];
     singleVC.model = model;
-    
+    singleVC.parents = self;
     [self.navigationController pushViewController:singleVC animated:true];
 }
 #pragma mark - UIScrollViewDelegate

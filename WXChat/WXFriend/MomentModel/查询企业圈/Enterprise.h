@@ -49,6 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 ///缓存行高
 @property (nonatomic, assign) CGFloat rowHeight;
+///是否展开全文
+@property (nonatomic, assign) BOOL isFullText;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -10,12 +10,15 @@
 #import "WXMessageAlertViewCell.h"
 #import "WXMessageAlertListModel.h"
 #import "WXChatService.h"
+#import "ApprovalModel.h"
 @interface WXMessageAlertViewController ()
 /**
  * 模型数组
  */
 @property (nonatomic, strong) WXMessageAlertListModel *model;
 
+///公司申请列表数据
+@property (nonatomic, strong) NSArray<ApprovalModel *> *dataArr;
 @end
 
 @implementation WXMessageAlertViewController
@@ -41,10 +44,16 @@
 //    NSLog(@"1");
 }
 - (void)getdata{
-    [WXChatService getAllAddFriendRequestSuccessBlock:^(WXMessageAlertListModel * _Nonnull model) {
-        self.model = model;
+//    [WXChatService getAllAddFriendRequestSuccessBlock:^(WXMessageAlertListModel * _Nonnull model) {
+//        self.model = model;
+//        [self.tableView reloadData];
+//    } failBlock:^(NSError * _Nonnull error) {
+//
+//    }];
+    [MineViewModel getApprovalListWithUserID:[WXAccountTool getUserID] success:^(NSArray<ApprovalModel *> * data) {
+        self.dataArr = data;
         [self.tableView reloadData];
-    } failBlock:^(NSError * _Nonnull error) {
+    } failure:^(NSError * error) {
         
     }];
 }
@@ -65,7 +74,11 @@
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return _model.data.count;
+//    return _model.data.count;
+    if (self.dataArr){
+        return _dataArr.count;
+    }
+    return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
@@ -77,8 +90,10 @@
     return k_current_Height(30);
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    WXMessageAlertModel *model = _model.data[section];
-    return [Utility getMomentTime:model.friendshowktime];
+//    WXMessageAlertModel *model = _model.data[section];
+//    return [Utility getMomentTime:model.friendshowktime];
+    ApprovalModel *model = _dataArr[section];
+    return [Utility getMomentTime:model.approvalCreatetime];
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
@@ -87,8 +102,15 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete){
         //操作数据源
-        WXMessageAlertModel *model = _model.data[indexPath.section];
-        [MineViewModel deleteAddRequestWithShowId:model.friendshowid success:^(NSString * msg) {
+//        WXMessageAlertModel *model = _model.data[indexPath.section];
+        
+//        [MineViewModel deleteAddRequestWithShowId:model.friendshowid success:^(NSString * msg) {
+//            [self getdata];
+//        } failure:^(NSError * error) {
+//
+//        }];
+        ApprovalModel *model = _dataArr[indexPath.section];
+        [MineViewModel deleteUserForCompanyWithApprovalId:model.approvalId success:^(NSString * msg) {
             [self getdata];
         } failure:^(NSError * error) {
             
@@ -104,11 +126,19 @@
     if (cell == nil){
         cell = [[WXMessageAlertViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WXMessageAlertViewCell"];
     }
-    WXMessageAlertModel *model = _model.data[indexPath.section];
-    [cell setModel:model];
+    ApprovalModel *model = _dataArr[indexPath.section];
+    cell.comModel = model;
+//    WXMessageAlertModel *model = _model.data[indexPath.section];
+//    [cell setModel:model];
+    WS(wSelf);
+    cell.makeSureAction = ^{
+        [wSelf getdata];
+    };
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
+
 @end

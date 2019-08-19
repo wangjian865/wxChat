@@ -8,6 +8,7 @@
 
 #import "WXMessageAlertViewCell.h"
 #import "WXMessageAlertModel.h"
+#import "ApprovalModel.h"
 @interface WXMessageAlertViewCell ()
 /**
  * 头像
@@ -25,6 +26,8 @@
  * 功能按钮
  */
 @property (nonatomic, strong) UIButton *button;
+//模型
+@property (nonatomic, strong) WXMessageAlertModel *myModel;
 @end
 @implementation WXMessageAlertViewCell
 
@@ -43,11 +46,11 @@
     [self.contentView addSubview:_avatarView];
     
     _nameLabel = [[UILabel alloc] init];
-    _nameLabel.text = @"周杰伦";
+    _nameLabel.text = @"";
     [self.contentView addSubview:_nameLabel];
     
     _descriptionLabel = [[UILabel alloc] init];
-    _descriptionLabel.text = @"申请加入周杰伦唱片公司";
+    _descriptionLabel.text = @"";
     [self.contentView addSubview:_descriptionLabel];
     
     _button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -57,6 +60,7 @@
     _button.titleLabel.font = [UIFont systemFontOfSize:12];
     _button.layer.borderColor = rgb(48,134,191).CGColor;
     _button.layer.borderWidth = 1;
+    [_button addTarget:self action:@selector(makeSure) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_button];
 }
 
@@ -84,8 +88,9 @@
     }];
 }
 - (void)setModel: (WXMessageAlertModel *)model{
+    _myModel = model;
     [_avatarView sd_setImageWithURL:[NSURL URLWithString:model.tgusetImg]];
-    _nameLabel.text = model.friendshowtgusetname;
+    _nameLabel.text = model.tgusetName;
     _descriptionLabel.text = model.friendshowcontext;
     if ([model.friendshowifconsend isEqualToString:@"0"]){
         //申请中
@@ -103,5 +108,47 @@
         self.button.enabled = false;
         _button.layer.borderColor = [UIColor grayColor].CGColor;
     }
+}
+- (void)setComModel:(ApprovalModel *)comModel{
+    _comModel = comModel;
+//    [_avatarView sd_setImageWithURL:[NSURL URLWithString:comModel.]];
+    _nameLabel.text = comModel.approvalTgusetname;
+    _descriptionLabel.text = comModel.approvalContent;
+    if ([comModel.state isEqualToString:@"0"]){
+        //申请中
+        [self.button setTitle:@" 申请中 " forState:UIControlStateNormal];
+        self.button.enabled = true;
+        self.button.layer.borderColor = rgb(48,134,191).CGColor;
+    }else if ([comModel.state isEqualToString:@"1"]){
+        //已通过
+        [self.button setTitle:@" 已通过 " forState:UIControlStateDisabled];
+        self.button.enabled = false;
+        _button.layer.borderColor = [UIColor grayColor].CGColor;
+    }else{
+        //已拒绝
+        [self.button setTitle:@" 已拒绝 " forState:UIControlStateDisabled];
+        self.button.enabled = false;
+        _button.layer.borderColor = [UIColor grayColor].CGColor;
+    }
+}
+- (void)makeSure{
+    [MineViewModel agreeUserForCompanyWithCompanyId:_comModel.approvalCompanyid userId:_comModel.approvalTgusetid success:^(NSString * msg) {
+//        [MBProgressHUD showText:msg]
+        if (self.makeSureAction){
+            self.makeSureAction();
+        }
+
+    } failure:^(NSError * error) {
+
+    }];
+//    [MineViewModel handleFriendRequestWithIfAgree:@"1" showId:_myModel.friendshowid success:^(NSString * result) {
+//        [MBProgressHUD showText:result];
+//        if (self.makeSureAction){
+//            self.makeSureAction();
+//        }
+//    } failure:^(NSError * error) {
+//
+//    }];
+    
 }
 @end

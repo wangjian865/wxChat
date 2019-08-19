@@ -345,6 +345,7 @@
 		F499B78A22FF1B0E0020053E /* WXInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F499B78822FF1B0E0020053E /* WXInputCell.xib */; };
 		F499B78D22FFBAAE0020053E /* UIImage+WXGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */; };
 		F4A0E2F92306A96A00C2DD98 /* WXWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A0E2F82306A96A00C2DD98 /* WXWebViewController.swift */; };
+		F4A0E2FC230875E300C2DD98 /* ApprovalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F4A0E2FB230875E200C2DD98 /* ApprovalModel.m */; };
 		F4AC7BC92300F8C800B47084 /* WXSearchNormalView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */; };
 		F4AC7BCB2300F8DF00B47084 /* WXSearchNormalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */; };
 		F4C28E6622D0A6F000606E6D /* FriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C28E5322D0A6EF00606E6D /* FriendsVC.swift */; };
@@ -907,6 +908,8 @@
 		F499B78B22FFBAAE0020053E /* UIImage+WXGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WXGroup.h"; sourceTree = "<group>"; };
 		F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WXGroup.m"; sourceTree = "<group>"; };
 		F4A0E2F82306A96A00C2DD98 /* WXWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXWebViewController.swift; sourceTree = "<group>"; };
+		F4A0E2FA230875E200C2DD98 /* ApprovalModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApprovalModel.h; sourceTree = "<group>"; };
+		F4A0E2FB230875E200C2DD98 /* ApprovalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApprovalModel.m; sourceTree = "<group>"; };
 		F4AC7BC72300F8C800B47084 /* WXSearchNormalView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXSearchNormalView.h; sourceTree = "<group>"; };
 		F4AC7BC82300F8C800B47084 /* WXSearchNormalView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXSearchNormalView.m; sourceTree = "<group>"; };
 		F4AC7BCA2300F8DF00B47084 /* WXSearchNormalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXSearchNormalView.xib; sourceTree = "<group>"; };
@@ -2115,6 +2118,8 @@
 				F45BB50022F3245100F62019 /* GroupListModel.m */,
 				F45BB50222F325C600F62019 /* GroupModel.h */,
 				F45BB50322F325C600F62019 /* GroupModel.m */,
+				F4A0E2FA230875E200C2DD98 /* ApprovalModel.h */,
+				F4A0E2FB230875E200C2DD98 /* ApprovalModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2581,6 +2586,7 @@
 				F40E970222E6061900EE8C60 /* MomentViewModel.swift in Sources */,
 				F486ADF722D4588C0030D9F0 /* WXSettingViewController.swift in Sources */,
 				2A28B17622802B1100B224F4 /* Comment.m in Sources */,
+				F4A0E2FC230875E300C2DD98 /* ApprovalModel.m in Sources */,
 				2A8E7F1322B0AE9E0020BC57 /* WXMessageAlertViewCell.m in Sources */,
 				2ADDBA2022A4D4E70006C42A /* EMAvatarNameCell.m in Sources */,
 				2A8E7E7322B092A80020BC57 /* Call1v1AudioViewController.m in Sources */,

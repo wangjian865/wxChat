@@ -11,6 +11,7 @@ import UIKit
 class WXAddOrMinusView: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
+    weak var parents: UIViewController?
     var isEdit = false
     var addClosure: (()-> Void)?
     var newDeleteClosure: (()-> Void)?
@@ -66,7 +67,34 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
             collectionView.reloadData()
             newDeleteClosure?()
         }else{
-            //进入详情
+            if let data = dataArray{
+                let model = data[indexPath.item]
+                let userID = model.tgusetId
+                if userID == WXAccountTool.getUserID(){
+                    let infoVC = WXUserMomentInfoViewController.init()
+                    infoVC.userId = userID
+                    parents?.navigationController?.pushViewController(infoVC, animated: true)
+                }else{
+                    MineViewModel.judgeIsFriend(friendID: userID, success: { (msg) in
+                        if let temp = msg,temp == "是"{
+                            let infoVC = WXUserMomentInfoViewController.init()
+                            infoVC.userId = userID
+                            self.parents?.navigationController?.pushViewController(infoVC, animated: true)
+                        }else{
+                            MineViewModel.getUserInfo(userID, success: { (model) in
+                                let resultVC = WXfriendResultViewController()
+                                resultVC.model = model ?? UserInfoModel()
+                                self.parents?.navigationController?.pushViewController(resultVC, animated: true)
+                            }, failure: { (error) in
+                                
+                            })
+                        }
+                    }) { (error) in
+                        
+                    }
+                }
+            }
+            
         }
         
     }

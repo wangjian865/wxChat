@@ -51,11 +51,37 @@ class CompanyVC: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let personInfoView = WXUserMomentInfoViewController()
         let companyModel = companymodels![indexPath.section]
         let model = companyModel.users[indexPath.row]
-        personInfoView.userId = model.tgusetid
-        superVC?.navigationController?.pushViewController(personInfoView, animated: true)
+        let userID = model.tgusetid
+        if userID == WXAccountTool.getUserID(){
+            let infoVC = WXUserMomentInfoViewController.init()
+            infoVC.userId = userID
+            superVC?.navigationController?.pushViewController(infoVC, animated: true)
+        }else{
+            MineViewModel.judgeIsFriend(friendID: userID, success: { (msg) in
+                if let temp = msg,temp == "是"{
+                    let infoVC = WXUserMomentInfoViewController.init()
+                    infoVC.userId = userID
+                    self.navigationController?.pushViewController(infoVC, animated: true)
+                }else{
+                    MineViewModel.getUserInfo(userID, success: { (model) in
+                        let resultVC = WXfriendResultViewController()
+                        resultVC.model = model ?? UserInfoModel()
+                        self.superVC?.navigationController?.pushViewController(resultVC, animated: true)
+                    }, failure: { (error) in
+                        
+                    })
+                }
+            }) { (error) in
+                
+            }
+        }
+//        let personInfoView = WXUserMomentInfoViewController()
+//        let companyModel = companymodels![indexPath.section]
+//        let model = companyModel.users[indexPath.row]
+//        personInfoView.userId = model.tgusetid
+//        superVC?.navigationController?.pushViewController(personInfoView, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -154,11 +154,11 @@ CGFloat lineSpacing = 5;
         CGSize attrStrSize = [_linkLabel preferredSizeWithMaxWidth:kTextWidth];
         CGFloat labHeight = attrStrSize.height;
         if (labHeight > maxLimitHeight) {
-            if (!_moment.isFullText) {
+            if (!_model.isFullText) {
                 labHeight = maxLimitHeight;
             }
             _showAllBtn.hidden = NO;
-            _showAllBtn.selected = _moment.isFullText;
+            _showAllBtn.selected = _model.isFullText;
         }
         _linkLabel.frame = CGRectMake(_avatarImageView.left, bottom, attrStrSize.width, labHeight);
         _showAllBtn.frame = CGRectMake(_avatarImageView.left, _linkLabel.bottom + kArrowHeight, _showAllBtn.width, kMoreLabHeight);
@@ -441,16 +441,17 @@ CGFloat lineSpacing = 5;
     MMOperateType operateType = sender.tag;
     // 改变背景色
     sender.titleLabel.backgroundColor = kHLBgColor;
-    GCD_AFTER(0.3, ^{  // 延迟执行
+//    GCD_AFTER(0.3, ^{  // 延迟执行
         sender.titleLabel.backgroundColor = [UIColor clearColor];
         if (operateType == MMOperateTypeFull) {
-            self->_moment.isFullText = !_moment.isFullText;
-            [self->_moment update];
+            _model.isFullText = !_model.isFullText;
+//            self->_moment.isFullText = !self->_moment.isFullText;
+//            [self->_moment update];
         }
         if ([self.delegate respondsToSelector:@selector(didOperateMoment:operateType:)]) {
             [self.delegate didOperateMoment:self operateType:operateType];
         }
-    });
+//    });
     [self resetMenuView];
 }
 
@@ -597,12 +598,12 @@ CGFloat lineSpacing = 5;
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    GCD_AFTER(0.3, ^{  // 延迟执行
+//    GCD_AFTER(0.3, ^{  // 延迟执行
         self.backgroundColor = [UIColor clearColor];
         if (self.didClickText) {
             self.didClickText(_wxComment);
         }
-    });
+//    });
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event

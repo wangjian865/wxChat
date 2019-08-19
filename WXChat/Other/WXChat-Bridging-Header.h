@@ -35,3 +35,5 @@
 #import "WDXUserListViewController.h"
 #import "UIImage+WXGroup.h"
 #import "JPUSHService.h"
+#import "WXfriendResultViewController.h"
+#import "ApprovalModel.h"

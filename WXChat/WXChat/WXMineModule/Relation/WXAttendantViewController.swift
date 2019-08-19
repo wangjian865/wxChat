@@ -153,6 +153,7 @@ class WXAttendantViewController: UIViewController {
             self?.present(nav, animated: true, completion: nil)
         }
         contentView = tempView
+        tempView.parents = self
         tempView.dataArray = dataArr
         tempView.titleLabel.text = title
         view.addSubview(tempView)

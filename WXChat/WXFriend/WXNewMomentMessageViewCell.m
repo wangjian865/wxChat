@@ -18,7 +18,12 @@
     _model = model;
     [_userIconView sd_setImageWithURL:[NSURL URLWithString:model.commentsTgusetImg]];
     _nameLabel.text = model.commentsTgusetName;
-    _contentLabel.text = model.commentsContext;
+    if ([model.verdictId isEqualToString:@"1"]){
+        _contentLabel.text = @"点了个赞";
+    }else{
+        _contentLabel.text = model.commentsContext;
+    }
+    
     _timeLabel.text = [Utility getMomentTime:model.commentsDatetime];
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

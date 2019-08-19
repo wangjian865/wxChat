@@ -9,6 +9,8 @@
 #import "WXNewMomentMessageViewController.h"
 #import "WXNewMomentMessageViewCell.h"
 #import "CompanyViewModel.h"
+#import "FriendMomentInfo.h"
+#import "WXSingleViewController.h"
 @interface WXNewMomentMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) UITableView *myView;
 @property (nonatomic, strong) MomentMessageList *listModel;
@@ -30,6 +32,14 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cleanBtn];
     [self setupUI];
     [self getMessageList];
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (_refreshFlag){
+        _page = 1;
+        [self getMessageList];
+        _refreshFlag = NO;
+    }
 }
 - (void)cleanAll{
     NSLog(@"清空消息列表");
@@ -83,6 +93,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    CommentInfo *model = _listModel.data[indexPath.row];
+    FriendMomentInfo *temp = [[FriendMomentInfo alloc] init];
+    temp.enterprisezid = model.commentszId;
+    WXSingleViewController *singleVC = [[WXSingleViewController alloc] init];
+    singleVC.model = temp;
+    singleVC.anoParents = self;
+    [self.navigationController pushViewController:singleVC animated:true];
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
