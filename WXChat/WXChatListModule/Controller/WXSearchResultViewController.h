@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, weak) UISearchBar *searchBar;
 @property (nonatomic, weak) UITextField *searchBarTextField;
+@property (nonatomic, weak) UIView *searchDefaultView;
+@property (nonatomic, weak) UIViewController *parents;
 @end
 
 NS_ASSUME_NONNULL_END

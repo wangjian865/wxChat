@@ -111,7 +111,7 @@
 }
 - (void)setComModel:(ApprovalModel *)comModel{
     _comModel = comModel;
-//    [_avatarView sd_setImageWithURL:[NSURL URLWithString:comModel.]];
+    [_avatarView sd_setImageWithURL:[NSURL URLWithString:comModel.tgusetImg]];
     _nameLabel.text = comModel.approvalTgusetname;
     _descriptionLabel.text = comModel.approvalContent;
     if ([comModel.state isEqualToString:@"0"]){
@@ -126,7 +126,7 @@
         _button.layer.borderColor = [UIColor grayColor].CGColor;
     }else{
         //已拒绝
-        [self.button setTitle:@" 已拒绝 " forState:UIControlStateDisabled];
+        [self.button setTitle:@" 已过期 " forState:UIControlStateDisabled];
         self.button.enabled = false;
         _button.layer.borderColor = [UIColor grayColor].CGColor;
     }

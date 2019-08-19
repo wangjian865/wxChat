@@ -62,8 +62,6 @@ extension WXAddOrMinusView: UICollectionViewDelegate, UICollectionViewDataSource
             addClosure?()
         }else if indexPath.row > dataArray?.count ?? 0{
             //减号
-            
-            
             collectionView.reloadData()
             newDeleteClosure?()
         }else{

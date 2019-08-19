@@ -37,3 +37,4 @@
 #import "JPUSHService.h"
 #import "WXfriendResultViewController.h"
 #import "ApprovalModel.h"
+#import "HomePageSearchModel.h"

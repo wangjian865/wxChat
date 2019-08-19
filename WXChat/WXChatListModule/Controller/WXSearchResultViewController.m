@@ -10,12 +10,17 @@
 #import "WXResultViewCell.h"
 #import "WXResultSectionHeaderView.h"
 #import "WXResultBottomCell.h"
+#import "HomePageSearchModel.h"
+#import "WXChatViewController.h"
 @interface WXSearchResultViewController ()<UITableViewDelegate,UITableViewDataSource>
 /**
  * 搜索结果展示按钮
  */
 @property (nonatomic, strong) UITableView *resultView;
-
+/**
+ * 模型
+ */
+@property (nonatomic, strong) HomePageSearchModel *myModel;
 @end
 
 @implementation WXSearchResultViewController
@@ -46,45 +51,103 @@
 }
 #pragma mark -- UITableViewDelegate && Datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return 3;
-    return 0;
+    return 2;
+//    return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    if (!_myModel){
+        return 0;
+    }
+    if (section == 0 && _myModel.seanceshows.count > 0){
+//        if (_myModel.seanceshows.count > 3){
+//            return 4;
+//        }
+        return _myModel.seanceshows.count;
+    }else if (section == 1 && _myModel.friends.count > 0){
+//        if (_myModel.friends.count > 3){
+//            return 4;
+//        }
+        return _myModel.friends.count;
+    }
+    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row <= 2){
-        WXResultViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchResultCell"];
-        return cell;
+    if (indexPath.section == 0){
+//        if (indexPath.row <= _myModel.seanceshows.count - 1){
+            GroupModel *model = _myModel.seanceshows[indexPath.row];
+            WXResultViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchResultCell"];
+            [cell setGroupModel:model];
+            return cell;
+//        }else{
+//            WXResultBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchBottomCell"];
+//            return cell;
+//        }
     }else{
-        WXResultBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchBottomCell"];
-        return cell;
+//        if (indexPath.row <= _myModel.friends.count - 1){
+            WXResultViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchResultCell"];
+            UserInfoModel *userModel = _myModel.friends[indexPath.row];
+            [cell setUserModel:userModel];
+            return cell;
+//        }else{
+//            WXResultBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"searchBottomCell"];
+//            return cell;
+//        }
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return  36;
+    if (section == 0 && _myModel.seanceshows.count > 0){
+        return 36;
+    }else if (section == 1 && _myModel.friends.count > 0){
+        return 36;
+    }
+    
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 2;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row <= 2){
-        return 66;
+    if (indexPath.section == 0 && _myModel.seanceshows.count > 0){
+        if (indexPath.row <= _myModel.seanceshows.count - 1){
+            return 66;
+        }
+    }else if (indexPath.section == 1 && _myModel.friends.count > 0){
+        if (indexPath.row <= _myModel.friends.count - 1){
+            return 66;
+        }
     }
     return 40;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[WXResultSectionHeaderView alloc] init];
-    return headerView;
+    WXResultSectionHeaderView *headerView = [[WXResultSectionHeaderView alloc] init];
+    if (section == 0 && _myModel.seanceshows.count > 0){
+        headerView.titleLabel.text = @"群聊";
+        return headerView;
+    }else if (section == 1 && _myModel.friends.count > 0){
+        headerView.titleLabel.text = @"联系人";
+        return headerView;
+    }
+    
+    return nil;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"%ld",indexPath.row);
-    //可尝试更改resultView
-    [UIView animateWithDuration:0.2 animations:^{
-        self.searchBarTextField.left = self.searchBarTextField.left + 40;
-        self.searchBarTextField.width = self.searchBarTextField.width - 40;
-    }];
+    if (indexPath.section == 0){
+        if (indexPath.row <= _myModel.seanceshows.count - 1){
+            
+            GroupModel *model = _myModel.seanceshows[indexPath.row];
+            WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:model.seanceshowid conversationType:EMConversationTypeGroupChat];
+            viewController.title = model.seanceshowname;
+            [self.parents.navigationController pushViewController:viewController animated:YES];
+        }
+    }else if (indexPath.section == 1){
+        if (indexPath.row <= _myModel.friends.count - 1){
+            UserInfoModel *model = _myModel.friends[indexPath.row];
+            WXChatViewController *viewController = [[WXChatViewController alloc] initWithConversationChatter:model.tgusetid conversationType:EMConversationTypeChat];
+            viewController.title = model.tgusetname;
+            [self.parents.navigationController pushViewController:viewController animated:YES];
+        }
+    }
 }
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     [_searchBar endEditing:YES];
@@ -92,8 +155,12 @@
 #pragma mark - UISearchResultsUpdating
 //每输入一个字符都会执行一次
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController{
-    
-    NSLog(@"1");
-//    [self.tableView reloadData];
+    self.searchDefaultView.hidden = !(self.searchBarTextField.text.length == 0);
+    [MineViewModel homePageSearchRequestWithKeyword:self.searchBarTextField.text success:^(HomePageSearchModel * model) {
+        self.myModel = model;
+        [self.resultView reloadData];
+    } failure:^(NSError * error) {
+        
+    }];
 }
 @end

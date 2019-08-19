@@ -9,5 +9,9 @@
 #import "FriendModel.h"
 
 @implementation FriendModel
-
++ (NSDictionary *)modelCustomPropertyMapper {
+    
+    return @{@"tgusetId":@"tgusetid"};
+    
+}
 @end

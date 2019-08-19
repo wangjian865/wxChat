@@ -53,6 +53,7 @@
 - (UISearchController *)serachController{
     if (_serachController == nil){
         WXSearchResultViewController *resultVC = [[WXSearchResultViewController alloc] init];
+        resultVC.parents = self;
         _serachController = [[UISearchController alloc] initWithSearchResultsController:resultVC];
         self.definesPresentationContext = YES;
         _serachController.view.backgroundColor = UIColor.whiteColor;
@@ -66,6 +67,7 @@
         //searchController.view添加提示试图
         WXSearchNormalView *normalView = [[NSBundle mainBundle] loadNibNamed:@"WXSearchNormalView" owner:nil options:nil].lastObject;
         _searchNormalView = normalView;
+        resultVC.searchDefaultView = normalView;
         normalView.frame = CGRectMake(0, 100, k_screen_width, 250);
         [_serachController.view addSubview:normalView];
         UISearchBar *bar = _serachController.searchBar;

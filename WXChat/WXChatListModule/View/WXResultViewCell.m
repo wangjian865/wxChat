@@ -28,6 +28,7 @@
         _iconView = [[UIImageView alloc] init];
         //占位图
         _iconView.image = [UIImage imageNamed:@"normal_icon"];
+        _iconView.cornerRadius = 22;
     }
     return _iconView;
 }
@@ -51,16 +52,16 @@
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.contentView addSubview:self.iconView];
-    [self.contentView addSubview:self.nameLabel];
-    [self.contentView addSubview:self.promptLabel];
+//    [self.contentView addSubview:self.iconView];
+//    [self.contentView addSubview:self.nameLabel];
+//    [self.contentView addSubview:self.promptLabel];
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self){
         [self.contentView addSubview:self.iconView];
         [self.contentView addSubview:self.nameLabel];
-        [self.contentView addSubview:self.promptLabel];
+//        [self.contentView addSubview:self.promptLabel];
     }
     return self;
 }
@@ -76,6 +77,16 @@
         make.centerY.equalTo(self.contentView);
     }];
 }
-
+- (void)setGroupModel:(GroupModel *)groupModel{
+    _groupModel = groupModel;
+    _iconView.image = [UIImage imageNamed:@"myGroupIcon"];
+    _nameLabel.text = groupModel.seanceshowname;
+}
+- (void)setUserModel:(UserInfoModel *)userModel{
+    _userModel = userModel;
+    [_iconView sd_setImageWithURL:userModel.tgusetimg];
+    _nameLabel.text = userModel.tgusetname;
+    
+}
 
 @end

@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *approvalApprovaltime;
 
 @property (nonatomic, copy) NSString *state;
+
+@property (nonatomic, copy) NSString *tgusetImg;
 @end
 
 NS_ASSUME_NONNULL_END

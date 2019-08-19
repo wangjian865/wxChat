@@ -129,7 +129,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         memberViewHeight.constant = 10 + itemHeight * CGFloat(lines) + 18 * CGFloat(lines-1)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (users?.count ?? 0)+1
+        return (users?.count ?? 0)+2//加减号
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -139,6 +139,11 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
             //加号
             cell.nameLabel.text = ""
             cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "加"))
+            return cell
+        }else if indexPath.row > (users?.count ?? 0){
+            //减号
+            cell.nameLabel.text = ""
+            cell.iconView.sd_setImage(with: URL.init(string: ""), placeholderImage: UIImage.init(named: "减"))
             return cell
         }
         let model = users![indexPath.row];
@@ -173,6 +178,15 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
             }
             let nav = WXPresentNavigationController.init(rootViewController: vc)
             present(nav, animated: true, completion: nil)
+        }else if indexPath.item > (users?.count ?? 0){
+            print("减人啦")
+            let vc = WDXUserListViewController()
+            vc.chooseCompletion = { [weak self](idArray) in
+                
+            }
+            vc.users = users ?? []
+            let nav = WXPresentNavigationController.init(rootViewController: vc)
+            self.present(nav, animated: true, completion: nil)
         }else{
             
             let model = users![indexPath.row]

@@ -372,6 +372,7 @@
 		F4D2E16422F6F7D700CFDBAE /* WDXUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D2E16322F6F7D700CFDBAE /* WDXUserListViewController.m */; };
 		F4D2E16722F72F2600CFDBAE /* WXFriendMomentImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D2E16522F72F2500CFDBAE /* WXFriendMomentImageCell.swift */; };
 		F4D2E16822F72F2600CFDBAE /* WXFriendMomentImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D2E16622F72F2500CFDBAE /* WXFriendMomentImageCell.xib */; };
+		F4DE9935230A530800E43957 /* HomePageSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F4DE9934230A530800E43957 /* HomePageSearchModel.m */; };
 		F4FFBEF022DCBF43003FC0F3 /* UserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FFBEEF22DCBF43003FC0F3 /* UserInfoModel.m */; };
 		F4FFBEF322DDE0FD003FC0F3 /* FriendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F4FFBEF222DDE0FD003FC0F3 /* FriendModel.m */; };
 		F4FFBF1722DE18E9003FC0F3 /* WXMomentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FFBF1622DE18E9003FC0F3 /* WXMomentDetailViewController.swift */; };
@@ -939,6 +940,8 @@
 		F4D2E16322F6F7D700CFDBAE /* WDXUserListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WDXUserListViewController.m; sourceTree = "<group>"; };
 		F4D2E16522F72F2500CFDBAE /* WXFriendMomentImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXFriendMomentImageCell.swift; sourceTree = "<group>"; };
 		F4D2E16622F72F2500CFDBAE /* WXFriendMomentImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXFriendMomentImageCell.xib; sourceTree = "<group>"; };
+		F4DE9933230A530800E43957 /* HomePageSearchModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageSearchModel.h; sourceTree = "<group>"; };
+		F4DE9934230A530800E43957 /* HomePageSearchModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageSearchModel.m; sourceTree = "<group>"; };
 		F4FFBEEE22DCBF43003FC0F3 /* UserInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfoModel.h; sourceTree = "<group>"; };
 		F4FFBEEF22DCBF43003FC0F3 /* UserInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfoModel.m; sourceTree = "<group>"; };
 		F4FFBEF122DDE0FD003FC0F3 /* FriendModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FriendModel.h; sourceTree = "<group>"; };
@@ -2120,6 +2123,8 @@
 				F45BB50322F325C600F62019 /* GroupModel.m */,
 				F4A0E2FA230875E200C2DD98 /* ApprovalModel.h */,
 				F4A0E2FB230875E200C2DD98 /* ApprovalModel.m */,
+				F4DE9933230A530800E43957 /* HomePageSearchModel.h */,
+				F4DE9934230A530800E43957 /* HomePageSearchModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2622,6 +2627,7 @@
 				2A8E782722AE01140020BC57 /* WXSearchResultViewController.m in Sources */,
 				2ADDBA2722A4FF5A0006C42A /* WXPresentNavigationController.m in Sources */,
 				CE03C30A22C21A4900730371 /* WXMainHeaderView.m in Sources */,
+				F4DE9935230A530800E43957 /* HomePageSearchModel.m in Sources */,
 				F4C28E8822D33B0800606E6D /* WXEditPersonInfoViewController.swift in Sources */,
 				2A8E7E7722B092A80020BC57 /* Call1v1VideoViewController.m in Sources */,
 				F486AE0D22D6C6380030D9F0 /* WXNewMomentMessageViewCell.m in Sources */,

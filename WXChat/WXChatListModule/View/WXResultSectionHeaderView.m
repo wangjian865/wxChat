@@ -32,9 +32,8 @@
     return self;
 }
 - (void)setupUI{
-    self.backgroundColor = UIColor.redColor;
+    self.backgroundColor = UIColor.whiteColor;
     _titleLabel = [[UILabel alloc] init];
-    _titleLabel.text = @"section Title";
     _titleLabel.font = [UIFont fontWithName:@"PingFang-SC-Medium" size:12.0f];
     _titleLabel.textColor = rgb(102,102,102);
     [self addSubview:_titleLabel];

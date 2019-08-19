@@ -855,5 +855,24 @@ class MineViewModel: NSObject {
             
         }
     }
+    ///搜索好友和群聊 主页
+    @objc class func homePageSearchRequest(keyword: String,
+                                           success: @escaping (_ response: HomePageSearchModel?) ->(),
+                                           failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/selectTgAndSea")
+        let params:[String:Any] = ["tgusetname":keyword]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                let model = HomePageSearchModel.yy_model(with: result.data)
+                success(model)
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
 }
 
