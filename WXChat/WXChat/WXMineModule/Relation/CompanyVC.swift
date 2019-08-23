@@ -63,7 +63,7 @@ class CompanyVC: UITableViewController {
                 if let temp = msg,temp == "是"{
                     let infoVC = WXUserMomentInfoViewController.init()
                     infoVC.userId = userID
-                    self.navigationController?.pushViewController(infoVC, animated: true)
+                    self.superVC?.navigationController?.pushViewController(infoVC, animated: true)
                 }else{
                     MineViewModel.getUserInfo(userID, success: { (model) in
                         let resultVC = WXfriendResultViewController()

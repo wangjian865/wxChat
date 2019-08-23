@@ -18,8 +18,10 @@ class WXWebViewController: UIViewController {
         webView = WKWebView.init(frame: view.bounds, configuration: configuration)
         if title == "竹简服务协议"{
             webView.load(URLRequest.init(url: URL.init(string: "http://106.52.2.54/images/agreement.html")!))
+        }else if title == "提示"{
+            webView.load(URLRequest.init(url: URL.init(string: "http://106.52.2.54/images/emailproblem.html")!))
         }else{
-//            webView.load(URLRequest.init(url: URL.init(string: "http://106.52.2.54/images/privacy.html")!))
+            webView.load(URLRequest.init(url: URL.init(string: "http://106.52.2.54/images/privacy.html")!))
         }
         view.addSubview(webView)
     }

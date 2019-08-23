@@ -23,5 +23,10 @@ class WXPrivateViewController: UITableViewController {
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.elementsEqual(IndexPath.init(row: 0, section: 0)){
+            return 0
+        }
+        return 52
+    }
 }

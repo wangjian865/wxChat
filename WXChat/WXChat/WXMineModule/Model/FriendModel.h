@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy)NSString *friendfriendid;
 @property (nonatomic, copy)NSString *friendaddtime;
 @property (nonatomic, copy)NSString *friendrecord;
+@property (nonatomic, assign)BOOL seancedisturb;
 
 ///好友申请列表字段
 //@property (nonatomic, assign)long long friendshowktime;

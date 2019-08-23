@@ -727,6 +727,9 @@
                             <outlet property="delegate" destination="umh-G1-ztL" id="mnV-oI-aIv"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="newsPushSwitch" destination="uSh-9e-Ywa" id="d1H-Gd-TES"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SP5-y3-Ayl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1046,7 +1049,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="QHj-HE-eBp">
-                            <rect key="frame" x="0.0" y="483" width="414" height="80"/>
+                            <rect key="frame" x="0.0" y="450" width="414" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWb-Qk-6oU">
@@ -1118,10 +1121,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="300" id="mxr-uZ-ksI">
-                                        <rect key="frame" x="0.0" y="150" width="414" height="333"/>
+                                        <rect key="frame" x="0.0" y="150" width="414" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mxr-uZ-ksI" id="nWP-vT-s7w">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="332.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="299.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PWb-jx-DLU">
@@ -1140,25 +1143,25 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公司简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLG-Ja-I1Y">
-                                                    <rect key="frame" x="14" y="150.5" width="58" height="17"/>
+                                                    <rect key="frame" x="14" y="130.5" width="58" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所属行业" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd0-Zg-CZv">
-                                                    <rect key="frame" x="14" y="253.5" width="58" height="17"/>
+                                                    <rect key="frame" x="14" y="213.5" width="58" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所在地区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVO-KT-lga">
-                                                    <rect key="frame" x="14" y="304.5" width="58" height="17"/>
+                                                    <rect key="frame" x="14" y="264.5" width="58" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yqV-n4-F72">
-                                                    <rect key="frame" x="80" y="70" width="320" height="40"/>
+                                                    <rect key="frame" x="80" y="70" width="320" height="0.0"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" id="bMg-7p-hZW"/>
                                                     </constraints>
@@ -1167,7 +1170,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O8h-QS-Flz">
-                                                    <rect key="frame" x="80" y="242" width="320" height="40"/>
+                                                    <rect key="frame" x="80" y="202" width="320" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="rQc-FM-I1O"/>
                                                     </constraints>
@@ -1176,7 +1179,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9LY-QX-WD7">
-                                                    <rect key="frame" x="80" y="293" width="320" height="40"/>
+                                                    <rect key="frame" x="80" y="253" width="320" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="aI9-65-97D"/>
                                                     </constraints>
@@ -1185,13 +1188,13 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="公司编号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btA-wE-ENZ">
-                                                    <rect key="frame" x="14" y="81.5" width="58" height="17"/>
+                                                    <rect key="frame" x="14" y="61.5" width="58" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.08235294118" green="0.08235294118" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8X-LM-mGD" customClass="YYTextView">
-                                                    <rect key="frame" x="80" y="121" width="320" height="110"/>
+                                                    <rect key="frame" x="80" y="81" width="320" height="110"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="110" id="Bxm-Ya-NQJ"/>

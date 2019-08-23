@@ -63,7 +63,7 @@ NSString *cellID = @"userCellID";
     completeButton.size = CGSizeMake(52, 28);
     completeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     completeButton.backgroundColor = rgb(48, 134, 191);
-    [completeButton setTitle:@"移除" forState:UIControlStateNormal];
+    [completeButton setTitle:_rightTitle forState:UIControlStateNormal];
     [completeButton addTarget:self action:@selector(doneAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:completeButton];
 }
@@ -173,7 +173,11 @@ NSString *cellID = @"userCellID";
         }
     };
     NSArray *temp = _sortedUsers[indexPath.section];
+    
     SearchUserModel *model = temp[indexPath.row];
+    
+    cell.coverView.hidden = ![_selectedIDS containsObject:model.tgusetId];
+    
     cell.wxModel = model;
     return cell;
 }

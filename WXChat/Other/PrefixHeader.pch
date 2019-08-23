@@ -48,6 +48,7 @@
 #import "MailPageModel.h"
 #import "MailViewModel.h"
 #import "UIImage+WXGroup.h"
+#import "NSObject+Alert.h"
 /*
  颜色
  */

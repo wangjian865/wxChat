@@ -10,11 +10,12 @@
 #import "WXNavigationController.h"
 #import "WXChat-Swift.h"
 #import "WXUsersListViewController.h"
+
 #define Controller_First         @"WXConversationListViewController"
 #define Controller_Second        @"WXChooseMailTypeTableViewController"
 #define Controller_Third         @"DiscoverViewController"
 #define Controller_Fourth        @"RelationViewController"
-@interface WXTabBarController ()
+@interface WXTabBarController ()<EMChatManagerDelegate>
 /**
  * 控制器集合
  */
@@ -61,11 +62,19 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNewMessage:) name:@"moment_NewMessage" object:nil];
     self.tabBar.backgroundColor = [UIColor whiteColor];
     self.tabBar.translucent = NO;
     [self setUpAllChildVC];
+    [[EMClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
 }
-
+- (void)receiveNewMessage: (NSNotification *)noti{
+    NSDictionary *userInfo = noti.userInfo;
+    UITabBarItem *item = [[[self tabBar] items] objectAtIndex:2];
+    item.badgeValue = [NSString stringWithFormat:@"%@",userInfo[@"count"]];
+    NSLog(@"1");
+}
 - (void)setUpAllChildVC{
     
     for (NSInteger index = 0; index < 4; index++) {
@@ -107,4 +116,10 @@
     VC.navigationItem.title = navTitle;
     [self addChildViewController:navC];
 }
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    item.badgeValue = nil;
+}
+
+
+
 @end

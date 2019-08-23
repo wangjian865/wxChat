@@ -119,7 +119,7 @@
 +(void)likeMomentWithPriseid:(NSString *)enterpriseId successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"enterlike/enterpriselikeadd"];
     
-    NSDictionary *params = @{@"enterpriselikeenterid":enterpriseId,@"enterpriseliketid": WXAccountTool.getUserID,@"enterpricelikename": [WXAccountTool getUserName]};
+    NSDictionary *params = @{@"enterpriselikeenterid":enterpriseId,@"enterpriseliketid": WXAccountTool.getUserID};
     
 //    NSDictionary *params = @{@"enterprisezid":enterpriseId,@"enterpriseliketid": WXAccountTool.getUserID,@"enterpricelikename": [WXAccountTool getUserName]};//后两位参数就是userid和username
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
@@ -128,6 +128,7 @@
             //成功
             success(responseBody[@"msg"]);
         }else{
+            
             [MBProgressHUD showError: responseBody[@"msg"]];
         }
     } failureBlock:^(NSError * _Nonnull error) {
@@ -171,7 +172,7 @@
 /// 发表对评论的评论
 + (void)commentToPersonWithContent:(NSString *)content commentOwnerId: (NSString *)ownerId priseid: (NSString *)priseid beCommentId:(NSString *)beCommentId beCommentName: (NSString *)name successBlock:(void(^) (NSString *successMsg))success failBlock:(void(^) (NSError *error))failure{
     NSString *urlStr =  [WXApiManager getRequestUrl:@"comments/addHFComment"];
-    NSDictionary *params = @{@"commentszid": priseid,@"commentstgusethfid": beCommentId,@"commentstgusethfname": name,@"commentscontext": content,@"commentsTguset": ownerId};
+    NSDictionary *params = @{@"commentszid": priseid,@"commentstgusethfid": ownerId,@"commentstgusethfname": name,@"commentscontext": content,@"commentsTguset": beCommentId};
     [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
@@ -247,7 +248,7 @@
             //成功
             success(@"删除成功");
         }else{
-//            [MBProgressHUD showError: responseBody[@"msg"]];
+
         }
     } failureBlock:^(NSError * _Nonnull error) {
         failure(error);
@@ -281,6 +282,23 @@
         if ([code isEqualToString:@"200"]){
             //成功
             success( [NSString stringWithFormat:@"%@",responseBody[@"data"]]);
+        }else{
+            //            [MBProgressHUD showError: responseBody[@"msg"]];
+        }
+    } failureBlock:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+///查看企业圈外层未读消息
++(void)getMomentUnreadMessageWithSuccessBlock:(void(^) (NSDictionary *unreadDic))success
+                                    failBlock:(void(^) (NSError *error))failure{
+    NSString *urlStr =  [WXApiManager getRequestUrl:@"enterprisez/queryUnreadMessages"];
+    NSDictionary *params = @{};
+    [WXNetWorkTool requestWithType:WXHttpRequestTypePost urlString:urlStr parameters:params successBlock:^(id  _Nonnull responseBody) {
+        NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
+        if ([code isEqualToString:@"200"]){
+            //成功
+            success(responseBody[@"data"]);
         }else{
             //            [MBProgressHUD showError: responseBody[@"msg"]];
         }

@@ -10,4 +10,5 @@
 
 @interface MomentViewController : UIViewController
 @property (nonatomic, assign) BOOL isNeedRefresh;
+@property (nonatomic, strong) NSDictionary *unreadDic;
 @end

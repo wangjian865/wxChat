@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (Letter)
-
 // 获取字符的首字母
 - (NSString *)firstLetter;
-
+//string2json
+- (NSDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString;
 @end

@@ -23,6 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
  * 底部线
  */
 @property (nonatomic, strong) UIView *line;
+/**
+ * countLabel
+ */
+@property (nonatomic, strong) UILabel *countLabel;
+/**
+ * countLabel
+ */
+@property (nonatomic, strong) UIImageView *unreadIcon;
 @end
 
 NS_ASSUME_NONNULL_END

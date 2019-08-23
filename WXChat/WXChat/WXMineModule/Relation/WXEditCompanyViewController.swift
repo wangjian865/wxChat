@@ -54,7 +54,7 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
         //控件赋值
         companyIconView.sd_setImage(with: URL.init(string: myModel?.companylogo ?? ""), placeholderImage: UIImage.init(named: "normal_icon"))
         nameTF.text = myModel?.companyname
-        numberTF.text = myModel?.companysystem
+        numberTF.text = myModel?.companyid
         descTF.text = myModel?.companysynopsis
         indusTF.text = myModel?.companyindustry
         locationTF.text = myModel?.companyregion
@@ -64,6 +64,7 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     func getUserPositionOfCompany() {
         CompanyViewModel.getMyPosition(ofCompany: myModel?.companyid ?? "" , successBlock: { (data) in
             self.companyPositionStr = data
+            //底部按钮的判断
             if data == "2"{
                 self.deleteBtn.isHidden = false
                 self.outBtn.isHidden = true
@@ -71,6 +72,10 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
                 self.deleteBtn.isHidden = true
                 self.outBtn.isHidden = false
             }
+            self.nameTF.isUserInteractionEnabled = data != "0"
+            self.descTF.isUserInteractionEnabled = data != "0"
+            self.indusTF.isUserInteractionEnabled = data != "0"
+            self.locationTF.isUserInteractionEnabled = data != "0"
             self.tableView.reloadData()
         }) { (error) in
             
@@ -79,7 +84,15 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
     @objc func editCompany(){
         
         MineViewModel.updateCompanyInfo(companyid: myModel?.companyid ?? "", companyname: nameTF.text ?? "", logofiles: companyIconView.image!, companysynopsis: descTF.text, companyindustry: indusTF.text ?? "", companyregion: locationTF.text ?? "",companysystem: newAdminId, success: { (model) in
-            print(model)
+            let alert = UIAlertController.init(title: "修改成功", message: "该公司信息已修改", preferredStyle: .alert)
+            let action = UIAlertAction.init(title: "确认", style: .default, handler: { (action) in
+                
+            })
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: {
+                
+            })
+//            print(model)
         }) { (error) in
             
         }
@@ -162,9 +175,17 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
                     self?.showZoomImageView()
                 }else if tag == 1{
                     //相机
+                    if self?.companyPositionStr == "0"{
+                        MBProgressHUD.showError("您暂无权限更改公司图标")
+                        return
+                    }
                     self?.openCamera()
                 }else{
                     //相册
+                    if self?.companyPositionStr == "0"{
+                        MBProgressHUD.showError("您暂无权限更改公司图标")
+                        return
+                    }
                     self?.openAlbum()
                 }
             }

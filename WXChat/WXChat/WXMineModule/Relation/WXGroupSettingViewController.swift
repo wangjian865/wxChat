@@ -21,6 +21,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
     @IBOutlet weak var memberViewHeight: NSLayoutConstraint!
     
     var groupName = ""
+    var groupAdminID = ""
     @objc var groupID: String?
     var users: [FriendModel]?
     
@@ -44,6 +45,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         groupChatNameView.addGestureRecognizer(groupTap)
         let ownerTap = UITapGestureRecognizer.init(target: self, action: #selector(changeOwnerAction))
         transforOwnerView.addGestureRecognizer(ownerTap)
+        noDisturBtn.addTarget(self, action: #selector(setNoDisturbState), for: .valueChanged)
     }
     @objc func groupTapAction() {
         let settingVC = WXSettingViewController()
@@ -75,16 +77,31 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         let nav = WXPresentNavigationController.init(rootViewController: vc)
         present(nav, animated: true, completion: nil)
     }
+    @objc func setNoDisturbState() {
+        MineViewModel.updateSeancedisturbState(groupID: groupID ?? "", isNoDisturb: noDisturBtn.isOn, success: { (success) in
+            
+            EMClient.shared()?.groupManager.ignoreGroupPush(self.groupID ?? "", ignore: self.noDisturBtn.isOn)
+        }) { (error) in
+            self.noDisturBtn.isOn = !(self.noDisturBtn.isOn)
+        }
+    }
     ///request
     func getUsers() {
         MineViewModel.getChatGroupUsers(groupId: groupID ?? "", success: { (result) in
             self.users = result;
             self.memberView.reloadData()
             self.setCollectionViewHeight()
+            let mine = result?.filter({ (temp) -> Bool in
+                return temp.tgusetid == WXAccountTool.getUserID()
+            })
+            if let temp = mine?.first{
+                self.noDisturBtn.isOn = temp.seancedisturb
+            }
         }) { (error) in
             
         }
         MineViewModel.getGroupAdmin(groupID: groupID ?? "", success: { (adminID) in
+            self.groupAdminID = adminID ?? ""
             if adminID == WXAccountTool.getUserID(){
                 self.groupChatNameView.isHidden = false
                 self.transforOwnerView.isHidden = false
@@ -97,6 +114,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         }
     }
     func setCollectionViewHeight() {
+        
         let count = (users?.count ?? 0) + 1
         let lines = (count / 5) + ((count % 5 > 0) ? 1 : 0)
         if lines > 4{
@@ -129,7 +147,10 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         memberViewHeight.constant = 10 + itemHeight * CGFloat(lines) + 18 * CGFloat(lines-1)
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (users?.count ?? 0)+2//加减号
+        if groupAdminID == WXAccountTool.getUserID(){
+            return (users?.count ?? 0)+2//加减号
+        }
+        return (users?.count ?? 0)+1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -182,9 +203,24 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
             print("减人啦")
             let vc = WDXUserListViewController()
             vc.chooseCompletion = { [weak self](idArray) in
-                
+                MineViewModel.removePersonFromGroup(groupID: self?.groupID ?? "", IDs: idArray, success: { (success) in
+                    MBProgressHUD.showText(success ?? "")
+                    self?.getUsers()
+                }, failure: { (error) in
+                    
+                })
             }
-            vc.users = users ?? []
+            var tempArr: [SearchUserModel] = []
+            if let myUsers = users{
+                for user in myUsers {
+                    let model = SearchUserModel()
+                    model.tgusetImg = user.tgusetimg
+                    model.tgusetName = user.tgusetname
+                    model.tgusetId = user.tgusetid
+                    tempArr.append(model)
+                }
+            }
+            vc.users = tempArr
             let nav = WXPresentNavigationController.init(rootViewController: vc)
             self.present(nav, animated: true, completion: nil)
         }else{

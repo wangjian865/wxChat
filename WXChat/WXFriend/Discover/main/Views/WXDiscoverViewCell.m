@@ -34,6 +34,19 @@
     _line.backgroundColor = k_background_color;
     [self.contentView addSubview:_line];
     
+    _countLabel = [[UILabel alloc] init];
+    _countLabel.font = [UIFont systemFontOfSize:13];
+    _countLabel.textColor = UIColor.whiteColor;
+    _countLabel.backgroundColor = UIColor.redColor;
+    _countLabel.cornerRadius = 17/2;
+    [_countLabel sizeToFit];
+    _countLabel.hidden = YES;
+    _countLabel.textAlignment = NSTextAlignmentCenter;
+    [self.contentView addSubview:_countLabel];
+    
+    _unreadIcon = [[UIImageView alloc] init];
+    [self.contentView addSubview:_unreadIcon];
+    
 }
 - (void)layoutSubviews{
     [_iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -48,6 +61,17 @@
     [_line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.left.right.equalTo(self.contentView);
         make.height.mas_equalTo(1);
+    }];
+    [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel.mas_right).offset(20);
+        make.centerY.equalTo(self.iconView);
+        make.height.equalTo(@17);
+        make.width.greaterThanOrEqualTo(@17);
+    }];
+    [_unreadIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(-50);
+        make.centerY.equalTo(self.iconView);
+        make.width.height.equalTo(@35);
     }];
 }
 @end

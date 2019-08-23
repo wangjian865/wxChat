@@ -61,7 +61,7 @@ class RegisterViewController: InputViewController,UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
         if let operation = URL.scheme, operation.elementsEqual("http"){
             let vc = WXWebViewController.init()
-            if operation == "service"{
+            if URL.absoluteString.contains("service"){
                 vc.title = "竹简服务协议"
             }else{
                 vc.title = "隐私策略"

@@ -51,7 +51,9 @@
     [self.navigationController pushViewController:configVC animated:true];
 }
 - (IBAction)loginErrorAction:(UIButton *)sender {
-    NSLog(@"登录有问题");
+    WXWebViewController *vc = [[WXWebViewController alloc] init];
+    vc.title = @"提示";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

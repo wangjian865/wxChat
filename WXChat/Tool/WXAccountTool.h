@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getUserPosition;
 ///获取公司
 + (NSString *)getUserXCompany;
+///获取免打扰状态
++ (BOOL)getDisturbState;
 /**
  本地保存对方聊天信息
  

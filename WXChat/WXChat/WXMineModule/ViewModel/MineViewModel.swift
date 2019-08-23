@@ -874,5 +874,45 @@ class MineViewModel: NSObject {
             
         }
     }
+    ///移出群聊
+    @objc class func removePersonFromGroup(groupID: String,
+                                           IDs: [String],
+                                           success: @escaping (_ response: String?) ->(),
+                                           failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/deleteSeaTg")
+        let params:[String:Any] = ["seanceshowid":groupID,"seanceshowadmin":WXAccountTool.getUserID(),"tgusetids":IDs]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                
+                success(result.msg)
+            }else{
+                //code != 200的情况
+            }
+        }) { (error) in
+            
+        }
+    }
+    ///设置群聊免打扰
+    @objc class func updateSeancedisturbState(groupID: String,
+                                              isNoDisturb: Bool,
+                                              success: @escaping (_ response: String?) ->(),
+                                              failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("manKeepToken/updateSeancedisturb")
+        let params:[String:Any] = ["seanceshowid":groupID,"seancedisturb":isNoDisturb]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                success("success")
+            }else{
+                //code != 200的情况
+                failure(nil)
+            }
+        }) { (error) in
+            failure(nil)
+        }
+    }
 }
 

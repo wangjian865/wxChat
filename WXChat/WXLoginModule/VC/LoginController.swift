@@ -70,7 +70,8 @@ class LoginController: UIViewController {
             params["tgusetaccount"] = account
             params["tgusetpassword"] = pwd
         }
-        params["equipmentId"] = JPUSHService.registrationID()
+        
+        params["equipmentId"] = JPUSHService.registrationID() ?? ""
         //    FIXME: 调用登录方法
         
         WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (result) in
@@ -90,6 +91,10 @@ class LoginController: UIViewController {
                 self.getUserInfo()
             }else if model!.code.elementsEqual("401"){
                 MBProgressHUD.showError("登录失败,请检查账号密码是否正确")
+            }else{
+                if let msg = model?.msg{
+                    MBProgressHUD.showError(msg)
+                }
             }
         }) { (error) in
             

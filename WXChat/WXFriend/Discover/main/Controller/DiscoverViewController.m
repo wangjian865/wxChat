@@ -23,13 +23,21 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 @property (nonatomic, assign) CGFloat tabBarOriginalY;
 @property (nonatomic, assign) CGFloat tableViewOriginalY;
 @property (nonatomic, assign) BOOL tableViewIsHidden;
+@property (nonatomic, strong) NSDictionary *unreadDic;
 @end
 
 @implementation DiscoverViewController
 
+- (NSDictionary *)unreadDic{
+    if (!_unreadDic){
+        _unreadDic = [[NSDictionary alloc] init];
+    }
+    return _unreadDic;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.titles = [NSArray arrayWithObjects:
                    @[@"企业圈"],@[@"企业查询"],
                    @[@"简问百科",@"竹简招聘"],
@@ -53,6 +61,17 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     }
     
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [CompanyViewModel getMomentUnreadMessageWithSuccessBlock:^(NSDictionary * _Nonnull unreadDic) {
+        self.unreadDic = unreadDic;
+        [self.tableView reloadData];
+    } failBlock:^(NSError * _Nonnull error) {
+        
+    }];
+    
+}
+
 - (void)setupEyeAnimationView
 {
     SDEyeAnimationView *view = [SDEyeAnimationView new];
@@ -178,6 +197,18 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     }
     cell.iconView.image = [UIImage imageNamed:[NSString stringWithFormat:@"discover_%ld_%ld",indexPath.section,indexPath.row]];
     cell.titleLabel.text = [[self.titles objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    if (indexPath.section == 0 && indexPath.row == 0){
+        int count = [NSString stringWithFormat:@"%@",self.unreadDic[@"count"]].intValue;
+        if (count > 0){
+            cell.countLabel.hidden = NO;
+            cell.unreadIcon.hidden = NO;
+            cell.countLabel.text = [NSString stringWithFormat:@"%@",self.unreadDic[@"count"]];
+            [cell.unreadIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.unreadDic[@"image"]]]];
+        }else{
+            cell.countLabel.hidden = YES;
+            cell.unreadIcon.hidden = YES;
+        }
+    }
     return cell;
 }
 
@@ -200,6 +231,9 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
         MomentViewController * controller = [[MomentViewController alloc] init];
+        if (self.unreadDic){
+            controller.unreadDic = self.unreadDic;
+        }
         [self.navigationController pushViewController:controller animated:YES];
     }else if (indexPath.section == 1){
         //跳转天眼通

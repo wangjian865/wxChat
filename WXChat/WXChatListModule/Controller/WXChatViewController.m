@@ -58,11 +58,9 @@
 }
 //设置聊天会话样式
 - (void)setChatAppearance{
-//    [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"chat_sender_bg"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
     
     [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"蓝色对话框"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
     
-//    [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"chat_receiver_bg"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
     [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"白色对话框"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
     [[EaseBaseMessageCell appearance] setBubbleMaxWidth: k_screen_width - 100];
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];//设置头像大小
@@ -204,6 +202,7 @@
 
         return YES;
     }
+    
     return NO;
 }
 //文件选择器

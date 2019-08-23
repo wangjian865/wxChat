@@ -11,8 +11,12 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WDXUserListViewController : UIViewController
+///rightNavBtnTitle
+@property (nonatomic, copy)NSString *rightTitle;
 ///传入的用户数组
 @property (nonatomic, strong)NSArray *users;
+///已被选中的用户
+@property (nonatomic, strong)NSArray *selectedIDS;
 ///返回选中的
 @property (nonatomic, copy) void (^chooseCompletion)(NSArray <NSString *>*IDS);
 @end

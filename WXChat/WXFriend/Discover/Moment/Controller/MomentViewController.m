@@ -20,7 +20,7 @@
 #import "MomentComent.h"
 #import "UserCompanies.h"
 #import "WXUserMomentInfoViewController.h"
-
+#import "WXNewMomentPromptView.h"
 @interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
@@ -36,7 +36,7 @@
 @property (nonatomic, strong) MUser * loginUser; // 当前用户
 @property (nonatomic, strong) NSIndexPath * selectedIndexPath; // 当前评论indexPath
 @property (nonatomic, assign) CGFloat keyboardHeight; // 键盘高度
-
+@property (nonatomic, strong) WXNewMomentPromptView *promptView;
 //wdx's
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) CompanyMoment *totalModel;
@@ -183,8 +183,22 @@
     companyLabel.height = 14;
     companyLabel.textAlignment = NSTextAlignmentRight;
     self.companyLabel = companyLabel;
-    
-    //用户公司
+    //新消息提醒视图
+    _promptView = [[NSBundle mainBundle] loadNibNamed:@"WXNewMomentPromptView" owner:nil options:nil].lastObject;
+    _promptView.width = 120;
+    _promptView.height = 36;
+    _promptView.centerX = self.coverImageView.centerX;
+    _promptView.top = self.coverImageView.bottom + 20;
+    _promptView.userInteractionEnabled = YES;
+    _promptView.hidden = YES;
+    UITapGestureRecognizer *promptTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(newMessagePromptViewTap)];
+    [_promptView addGestureRecognizer:promptTap];
+    if (_unreadDic != nil){
+        
+        _promptView.hidden = [NSString stringWithFormat:@"%@",_unreadDic[@"count"]].intValue == 0;
+        _promptView.messageCountLabel.text = [NSString stringWithFormat:@"%@条新消息",self.unreadDic[@"count"]];
+        [_promptView.iconView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.unreadDic[@"image"]]]];
+    }
     // 表头
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, 240)];
     view.userInteractionEnabled = YES;
@@ -192,6 +206,7 @@
     [view addSubview:self.avatarImageView];
     [view addSubview:self.nameLabel];
     [view addSubview:self.companyLabel];
+    [view addSubview:_promptView];
     self.tableHeaderView = view;
     // 表格
     MMTableView * tableView = [[MMTableView alloc] initWithFrame:CGRectMake(0, 0, k_screen_width, k_screen_height-k_top_height)];
@@ -227,6 +242,12 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.bottom.offset(0);
     }];
+}
+#pragma mark - 新消息点击
+- (void)newMessagePromptViewTap {
+    _promptView.hidden = true;
+    WXNewMomentMessageViewController *vc = [[WXNewMomentMessageViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 #pragma mark - 更换头部图片
 - (void)changeHeaderCover

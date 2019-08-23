@@ -45,6 +45,10 @@
 @property (nonatomic, strong) NSArray<FriendModel *> *userListModel;
 ///群组列表数据
 @property (nonatomic, strong) NSArray<GroupModel *> *groupListModel;
+///顶部cell的数字
+@property (nonatomic, assign) int topCount;
+///顶部cell长持有
+@property (nonatomic, strong) WXChatListHeaderCell *topCell;
 @end
 
 @implementation WXConversationListViewController
@@ -68,7 +72,7 @@
         WXSearchNormalView *normalView = [[NSBundle mainBundle] loadNibNamed:@"WXSearchNormalView" owner:nil options:nil].lastObject;
         _searchNormalView = normalView;
         resultVC.searchDefaultView = normalView;
-        normalView.frame = CGRectMake(0, 100, k_screen_width, 250);
+        normalView.frame = CGRectMake(0, 100, k_screen_width, 1000);
         [_serachController.view addSubview:normalView];
         UISearchBar *bar = _serachController.searchBar;
         bar.delegate = self;
@@ -95,6 +99,7 @@
     [self tableViewDidTriggerHeaderRefresh];
     _isViewAppear = YES;
     [self getUserList];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -114,6 +119,17 @@
 ///好友回调
 - (void)friendRequestDidReceiveFromUser:(NSString *)aUsername message:(NSString *)aMessage{
     ///此处收到好友申请  WDX
+}
+///获取顶部cell的展示数字
+- (void)getTopCellCount{
+    [MineViewModel getApprovalListWithUserID:[WXAccountTool getUserID] success:^(NSArray<ApprovalModel *> * data) {
+        self.topCount = data.count;
+        if (self.topCell){
+            [self.topCell setBadge:data.count];
+        }
+    } failure:^(NSError * error) {
+        
+    }];
 }
 - (void)getUserList{
     [MineViewModel getFriendListWithNickName:@"" success:^(NSArray<FriendModel *> * list) {
@@ -197,6 +213,10 @@
         }
         cell.avatarView.image = [UIImage imageNamed:@"message_alert"];
         cell.titleLabel.text = @"系统消息";
+        _topCell = cell;
+        if (_topCount){
+            [cell setBadge:_topCount];
+        }
         return cell;
     }
 
@@ -235,6 +255,7 @@
 {
     return 64;
 }
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0){
         return false;

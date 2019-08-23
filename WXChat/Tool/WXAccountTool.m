@@ -60,6 +60,7 @@
     NSString *company = [userDefault stringForKey:@"userCompany"];
     return company;
 }
+///获取头像
 + (NSString *)getUserImage{
     NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
     NSString *img = [userDefault stringForKey:@"userImage"];
@@ -67,6 +68,10 @@
         img = @"奥特曼";
     }
     return img;
+}
++ (BOOL)getDisturbState{
+    NSUserDefaults *userDefault = [NSUserDefaults standardUserDefaults];
+    return [userDefault boolForKey:@"disturbState"];
 }
 + (void)saveToUserInfo:(NSString *)userId name:(NSString *)userName avatarURLPath:(NSString *)avatarURLPath {
     

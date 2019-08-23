@@ -63,6 +63,9 @@ NS_ASSUME_NONNULL_BEGIN
 +(void)getMyPositionOfCompany:(NSString *)companyID
                  successBlock:(void(^) (NSString *successMsg))success
                     failBlock:(void(^) (NSError *error))failure;
+///查看企业圈外层未读消息
++(void)getMomentUnreadMessageWithSuccessBlock:(void(^) (NSDictionary *unreadDic))success
+                                    failBlock:(void(^) (NSError *error))failure;
 @end
 
 NS_ASSUME_NONNULL_END

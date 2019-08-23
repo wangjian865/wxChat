@@ -47,4 +47,17 @@
     return letterString;
 }
 
+- (NSDictionary *)convert2DictionaryWithJSONString:(NSString *)jsonString{
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"%@",err);
+        return nil;
+    }
+    return dic;
+}
 @end
