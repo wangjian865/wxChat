@@ -139,6 +139,13 @@
             if ([code isEqualToString:@"200"]){
                 [MBProgressHUD showSuccess:@"删除成功"];
                 [WXChatService deleteAConversationWithId:self.userID completion:nil];
+                ///本地删除并发送一条透传消息给对象
+                EMCmdMessageBody *body = [[EMCmdMessageBody alloc] initWithAction:@"deleteFriedn"];
+                NSString *from = [WXAccountTool getUserID];
+                EMMessage *message = [[EMMessage alloc] initWithConversationID:self.userID from:from to:self.userID body:body ext:nil];
+                [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
+//                    [easeMessage _refreshAfterSentMessage:aMessage];
+                }];
                 [self.navigationController popViewControllerAnimated:true];
             }
         } failure:^(NSError * error) {

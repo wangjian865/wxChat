@@ -914,6 +914,9 @@
 		F499B78822FF1B0E0020053E /* WXInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WXInputCell.xib; sourceTree = "<group>"; };
 		F499B78B22FFBAAE0020053E /* UIImage+WXGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WXGroup.h"; sourceTree = "<group>"; };
 		F499B78C22FFBAAE0020053E /* UIImage+WXGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WXGroup.m"; sourceTree = "<group>"; };
+		F49C22D12310D3B4003B5751 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Login.strings"; sourceTree = "<group>"; };
+		F49C22D22310D3B4003B5751 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		F49C22D32310D3B5003B5751 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F4A0E2F82306A96A00C2DD98 /* WXWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WXWebViewController.swift; sourceTree = "<group>"; };
 		F4A0E2FA230875E200C2DD98 /* ApprovalModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApprovalModel.h; sourceTree = "<group>"; };
 		F4A0E2FB230875E200C2DD98 /* ApprovalModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApprovalModel.m; sourceTree = "<group>"; };
@@ -2244,8 +2247,8 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 2ACD5EA32271539400A24BF6;
 			productRefGroup = 2ACD5EAD2271539400A24BF6 /* Products */;
@@ -2761,6 +2764,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ACD5EB62271539400A24BF6 /* Base */,
+				F49C22D22310D3B4003B5751 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2769,6 +2773,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ACD5EBB2271539600A24BF6 /* Base */,
+				F49C22D32310D3B5003B5751 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2777,6 +2782,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE03C2E822C0D8A800730371 /* Base */,
+				F49C22D12310D3B4003B5751 /* zh-Hans */,
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";
@@ -2788,6 +2794,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2850,6 +2857,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3055,7 +3063,7 @@
 				2ACD5ED72271539600A24BF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2ACD5ED82271539600A24BF6 /* Build configuration list for PBXNativeTarget "WXChat" */ = {
 			isa = XCConfigurationList;
@@ -3064,7 +3072,7 @@
 				2ACD5EDA2271539600A24BF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2ACD5EDB2271539600A24BF6 /* Build configuration list for PBXNativeTarget "WXChatTests" */ = {
 			isa = XCConfigurationList;
@@ -3073,7 +3081,7 @@
 				2ACD5EDD2271539600A24BF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2ACD5EDE2271539600A24BF6 /* Build configuration list for PBXNativeTarget "WXChatUITests" */ = {
 			isa = XCConfigurationList;
@@ -3082,7 +3090,7 @@
 				2ACD5EE02271539600A24BF6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

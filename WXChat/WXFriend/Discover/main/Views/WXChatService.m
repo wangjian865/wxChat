@@ -63,6 +63,7 @@
 ///删除一条会话
 + (void)deleteAConversationWithId: (NSString *)ID completion:(void (^)(NSString *aConversationId, EMError *aError))aCompletionBlock{
     [[EMClient sharedClient].chatManager deleteConversation:ID isDeleteMessages:NO completion:aCompletionBlock];
+    
 }
 + (NSString *)getGroupChatText:(EMConversation *)conversationModel
 {

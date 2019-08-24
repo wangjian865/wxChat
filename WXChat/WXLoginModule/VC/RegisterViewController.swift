@@ -13,9 +13,6 @@ class RegisterViewController: InputViewController,UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         type = .register
-//        agreementLabel.text = "继续即表示您同意《竹简服务协议》和《隐私策略》"
-//        agreementLabel.textColor = UIColor.gray
-//        agreementLabel.font = UIFont.systemFont(ofSize: 13)
         
         let text = NSMutableAttributedString(string: "继续即表示您同意")
         text.addAttribute(NSAttributedString.Key.font,

@@ -371,7 +371,13 @@
         [self tableViewDidTriggerHeaderRefresh];
     }
 }
-
+//收到透传消息删除相关群聊
+- (void)didReceiveCmdMessages:(NSArray *)aCmdMessages
+{
+    EMMessage *message = aCmdMessages.firstObject;
+    NSString *fromID = message.from;
+    [WXChatService deleteAConversationWithId:fromID completion:nil];
+}
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
     if (self.isViewAppear) {

@@ -32,7 +32,6 @@ static NSString *channel = @"Publish channel";
     ///键盘设置
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [IQKeyboardManager sharedManager].toolbarDoneBarButtonItemText = @"完成";
-    
     ///easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
     //环信服务注册

@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; normalTitle = "找回密码"; ObjectID = "8P8-fW-Sya"; */
+"8P8-fW-Sya.normalTitle" = "找回密码";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "BQT-K3-sHj"; */
+"BQT-K3-sHj.normalTitle" = "注册";
+
+/* Class = "UILabel"; text = "更方便的企业社交"; ObjectID = "SiT-0z-4Gq"; */
+"SiT-0z-4Gq.text" = "更方便的企业社交";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "hcx-sk-QmF"; */
+"hcx-sk-QmF.normalTitle" = "登录";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "k5C-lb-AB5"; */
+"k5C-lb-AB5.normalTitle" = "登录";
+
+/* Class = "UIButton"; normalTitle = "密码登录"; ObjectID = "x6q-IG-Lmp"; */
+"x6q-IG-Lmp.normalTitle" = "密码登录";

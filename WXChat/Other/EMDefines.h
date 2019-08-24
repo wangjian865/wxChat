@@ -18,8 +18,8 @@ isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bo
 (isPhoneX);}\
 )
 
-#define EMVIEWTOPMARGIN (IS_iPhoneX ? 22.f : 0.f)
-#define EMVIEWBOTTOMMARGIN (IS_iPhoneX ? 34.f : 0.f)
+#define EMVIEWTOPMARGIN (IS_iPhoneX ? [[UIApplication sharedApplication] delegate].top : 0.f)
+#define EMVIEWBOTTOMMARGIN (IS_iPhoneX ? [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom : 0.f)
 
 //账号状态
 #define ACCOUNT_LOGIN_CHANGED @"loginSuccess"

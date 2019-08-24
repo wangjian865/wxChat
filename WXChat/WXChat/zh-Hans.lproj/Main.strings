@@ -1,0 +1,132 @@
+
+/* Class = "UITextField"; placeholder = "选填"; ObjectID = "1p5-qx-qze"; */
+"1p5-qx-qze.placeholder" = "选填";
+
+/* Class = "UILabel"; text = "端口"; ObjectID = "3Mh-m2-u7d"; */
+"3Mh-m2-u7d.text" = "端口";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "5yA-t8-Mxy"; */
+"5yA-t8-Mxy.text" = "无";
+
+/* Class = "UILabel"; text = "SSL"; ObjectID = "AfX-5p-5v2"; */
+"AfX-5p-5v2.text" = "SSL";
+
+/* Class = "UILabel"; text = "收信服务器"; ObjectID = "DJF-Zm-BiQ"; */
+"DJF-Zm-BiQ.text" = "收信服务器";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "EfT-Tq-gnF"; */
+"EfT-Tq-gnF.text" = "密码";
+
+/* Class = "UILabel"; text = "发信服务器"; ObjectID = "FIG-gs-ZmG"; */
+"FIG-gs-ZmG.text" = "发信服务器";
+
+/* Class = "UILabel"; text = "126邮箱"; ObjectID = "FKK-aR-xyY"; */
+"FKK-aR-xyY.text" = "126邮箱";
+
+/* Class = "UILabel"; text = "加密"; ObjectID = "G2j-C5-8iK"; */
+"G2j-C5-8iK.text" = "加密";
+
+/* Class = "UILabel"; text = "新浪邮箱"; ObjectID = "HMi-EG-ViM"; */
+"HMi-EG-ViM.text" = "新浪邮箱";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "Hht-kW-tPs"; */
+"Hht-kW-tPs.placeholder" = "必填";
+
+/* Class = "UILabel"; text = "账户"; ObjectID = "Hxf-mJ-xsb"; */
+"Hxf-mJ-xsb.text" = "账户";
+
+/* Class = "UILabel"; text = "其他邮箱"; ObjectID = "IRQ-oH-FSK"; */
+"IRQ-oH-FSK.text" = "其他邮箱";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "ITD-Md-qJj"; */
+"ITD-Md-qJj.placeholder" = "必填";
+
+/* Class = "UITextField"; text = "25"; ObjectID = "ITD-Md-qJj"; */
+"ITD-Md-qJj.text" = "25";
+
+/* Class = "UILabel"; text = "域"; ObjectID = "IsI-CX-Cpb"; */
+"IsI-CX-Cpb.text" = "域";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "NRU-Ja-bo0"; */
+"NRU-Ja-bo0.placeholder" = "user@example.com";
+
+/* Class = "UILabel"; text = "账号"; ObjectID = "Nbs-LB-XZT"; */
+"Nbs-LB-XZT.text" = "账号";
+
+/* Class = "UILabel"; text = "服务器"; ObjectID = "P2O-Ql-Gg6"; */
+"P2O-Ql-Gg6.text" = "服务器";
+
+/* Class = "UILabel"; text = "服务器"; ObjectID = "Pjz-r2-J1k"; */
+"Pjz-r2-J1k.text" = "服务器";
+
+/* Class = "UISegmentedControl"; QBS-kU-QdL.segmentTitles[0] = "IMAP"; ObjectID = "QBS-kU-QdL"; */
+"QBS-kU-QdL.segmentTitles[0]" = "IMAP";
+
+/* Class = "UISegmentedControl"; QBS-kU-QdL.segmentTitles[1] = "POP3"; ObjectID = "QBS-kU-QdL"; */
+"QBS-kU-QdL.segmentTitles[1]" = "POP3";
+
+/* Class = "UISegmentedControl"; QBS-kU-QdL.segmentTitles[2] = "Exchange"; ObjectID = "QBS-kU-QdL"; */
+"QBS-kU-QdL.segmentTitles[2]" = "Exchange";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "Sfm-VR-BoC"; */
+"Sfm-VR-BoC.placeholder" = "必填";
+
+/* Class = "UILabel"; text = "服务器配置"; ObjectID = "Tkd-H2-JR4"; */
+"Tkd-H2-JR4.text" = "服务器配置";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "TsO-3G-jHX"; */
+"TsO-3G-jHX.text" = "密码";
+
+/* Class = "UILabel"; text = "qq邮箱"; ObjectID = "UOf-TR-ze8"; */
+"UOf-TR-ze8.text" = "qq邮箱";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "Uij-PR-IQI"; */
+"Uij-PR-IQI.placeholder" = "必填";
+
+/* Class = "UITextField"; text = "143"; ObjectID = "Uij-PR-IQI"; */
+"Uij-PR-IQI.text" = "143";
+
+/* Class = "UILabel"; text = "账号"; ObjectID = "VQt-jj-NaX"; */
+"VQt-jj-NaX.text" = "账号";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "Yuw-KS-xHb"; */
+"Yuw-KS-xHb.placeholder" = "必填";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "ag3-59-IXf"; */
+"ag3-59-IXf.placeholder" = "user@example.com";
+
+/* Class = "UILabel"; text = "163邮箱"; ObjectID = "bVL-xJ-qfC"; */
+"bVL-xJ-qfC.text" = "163邮箱";
+
+/* Class = "UILabel"; text = "账号"; ObjectID = "cNH-uv-PGp"; */
+"cNH-uv-PGp.text" = "账号";
+
+/* Class = "UITextField"; placeholder = "选填"; ObjectID = "ca2-HZ-tqN"; */
+"ca2-HZ-tqN.placeholder" = "选填";
+
+/* Class = "UILabel"; text = "无"; ObjectID = "eba-iN-9tG"; */
+"eba-iN-9tG.text" = "无";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "kCH-la-Aqc"; */
+"kCH-la-Aqc.placeholder" = "必填";
+
+/* Class = "UILabel"; text = "端口"; ObjectID = "lD6-lG-X5Q"; */
+"lD6-lG-X5Q.text" = "端口";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "nIe-Cp-Z96"; */
+"nIe-Cp-Z96.placeholder" = "必填";
+
+/* Class = "UILabel"; text = "加密"; ObjectID = "qdv-lo-AAA"; */
+"qdv-lo-AAA.text" = "加密";
+
+/* Class = "UITextField"; placeholder = "user@example.com"; ObjectID = "wTD-ZD-hKF"; */
+"wTD-ZD-hKF.placeholder" = "user@example.com";
+
+/* Class = "UILabel"; text = "密码"; ObjectID = "xnG-qd-LcS"; */
+"xnG-qd-LcS.text" = "密码";
+
+/* Class = "UITextField"; placeholder = "必填"; ObjectID = "xpd-oZ-BBd"; */
+"xpd-oZ-BBd.placeholder" = "必填";
+
+/* Class = "UILabel"; text = "服务器"; ObjectID = "zmY-ye-nqg"; */
+"zmY-ye-nqg.text" = "服务器";

@@ -34,10 +34,12 @@ class ZJLoginView: UIView {
                 verfiTextField.isSecureTextEntry = true
                 verfiButton.isHidden = true
                 verfiTextFieldWidth.constant = 0
+                verfiTextField.keyboardType = .default
             case .verficationCode:
                 verfiTextFieldWidth.constant = 114
                 passwordLabel.text = "验 证 码"
-                verfiTextField.placeholder = "输入验证码"
+                verfiTextField.keyboardType = .phonePad
+                
             }
             layoutIfNeeded()
         }
@@ -61,6 +63,7 @@ class ZJLoginView: UIView {
         let nib = UINib(nibName: "ZJLoginView", bundle: nil)
         loginView = nib.instantiate(withOwner: self, options: nil).first as? UIView
         loginView.frame = bounds
+        
         accountTextField.addTarget(self, action: #selector(textFieldTextDidChange),
                                                  for: UIControl.Event.editingChanged)
         verfiTextField.addTarget(self, action: #selector(textFieldTextDidChange),
@@ -92,6 +95,7 @@ class ZJLoginView: UIView {
 }
 
 extension ZJLoginView: UITextFieldDelegate {
+    
     @objc private func textFieldTextDidChange(textField: UITextField) {
         accountText = accountTextField.text
         passwordText = verfiTextField.text

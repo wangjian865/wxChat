@@ -26,6 +26,7 @@ class LoginController: UIViewController {
         scrollerView.isPagingEnabled = true
         loginButton.isEnabled = false
         passwordView.type = .password
+        codeView.type = .verficationCode
         codeView.stateChanged = {[weak self](isEnable: Bool) in
             self?.loginButton.isEnabled = isEnable
         }
