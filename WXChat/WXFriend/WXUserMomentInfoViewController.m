@@ -129,11 +129,14 @@
 //popMenu
 //设置右边按钮
 - (void)setNaviRightButton{
+    if ([self.userId isEqualToString:WXAccountTool.getUserID]) {
+        return;
+    }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"椭圆4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn:)];
 }
 - (void)clickRightBarBtn: (UIButton *)sender{
     WS(weaklf);
-    YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"删除好友" image:[UIImage imageNamed:@"pop_groupChat"] handler:^(YCMenuAction *action) {
+    YCMenuAction *action1 = [YCMenuAction actionWithTitle:@"删除好友" image:[UIImage imageNamed:@"删除"] handler:^(YCMenuAction *action) {
         [MineViewModel deleteFriendWithFriendID:weaklf.userID success:^(NSDictionary<NSString *,id> * result) {
             NSString *code = [NSString stringWithFormat:@"%@",result[@"code"]];
             if ([code isEqualToString:@"200"]){
@@ -152,7 +155,29 @@
             
         }];
     }];
-    NSArray *arr = @[action1];
+    YCMenuAction *action2 = [YCMenuAction actionWithTitle:@"拉入黑名单" image:[UIImage imageNamed:@"黑名单"] handler:^(YCMenuAction *action) {
+        [MineViewModel deleteFriendWithFriendID:weaklf.userID success:^(NSDictionary<NSString *,id> * result) {
+            NSString *code = [NSString stringWithFormat:@"%@",result[@"code"]];
+            if ([code isEqualToString:@"200"]){
+                [MBProgressHUD showSuccess:@"删除成功"];
+                [WXChatService deleteAConversationWithId:self.userID completion:nil];
+                ///本地删除并发送一条透传消息给对象
+                EMCmdMessageBody *body = [[EMCmdMessageBody alloc] initWithAction:@"deleteFriedn"];
+                NSString *from = [WXAccountTool getUserID];
+                EMMessage *message = [[EMMessage alloc] initWithConversationID:self.userID from:from to:self.userID body:body ext:nil];
+                [[EMClient sharedClient].chatManager sendMessage:message progress:nil completion:^(EMMessage *aMessage, EMError *aError) {
+                    //                    [easeMessage _refreshAfterSentMessage:aMessage];
+                }];
+                [self.navigationController popViewControllerAnimated:true];
+            }
+        } failure:^(NSError * error) {
+            
+        }];
+    }];
+    YCMenuAction *action3 = [YCMenuAction actionWithTitle:@"举报" image:[UIImage imageNamed:@"举报"] handler:^(YCMenuAction *action) {
+        [MBProgressHUD showSuccess:@"我们已收到您的举报,将尽快对该用户进行审核处理"];
+    }];
+    NSArray *arr = @[action1,action2,action3];
     YCMenuView *view = [YCMenuView menuWithActions:arr width:140 relyonView:sender];
     view.textFont = [UIFont systemFontOfSize:14];
     view.textColor = UIColor.whiteColor;

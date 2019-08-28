@@ -10,11 +10,12 @@ import UIKit
 
 class RegisterViewController: InputViewController,UITextViewDelegate {
     var agreementLabel = UITextView()
+    var button = UIButton.init(type: .custom)
     override func viewDidLoad() {
         super.viewDidLoad()
         type = .register
         
-        let text = NSMutableAttributedString(string: "继续即表示您同意")
+        let text = NSMutableAttributedString(string: "勾选即表示您同意")
         text.addAttribute(NSAttributedString.Key.font,
                           value: UIFont.systemFont(ofSize: 13),
                           range: NSRange(location: 0, length: text.length))
@@ -43,6 +44,10 @@ class RegisterViewController: InputViewController,UITextViewDelegate {
         agreementLabel.delegate = self
         agreementLabel.isEditable = false
         view.addSubview(agreementLabel)
+        
+        button = UIButton.init(type: .custom)
+        button.setImage(UIImage.init(named: "userList_select"), for: .normal)
+        view.addSubview(button)
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -50,6 +55,11 @@ class RegisterViewController: InputViewController,UITextViewDelegate {
             make.left.right.equalTo(0)
             make.top.equalTo(icon.snp_bottom).offset(15)
             make.height.equalTo(30)
+        }
+        button.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(40)
+            make.centerY.equalTo(self.agreementLabel)
+            make.width.height.equalTo(14)
         }
     }
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {

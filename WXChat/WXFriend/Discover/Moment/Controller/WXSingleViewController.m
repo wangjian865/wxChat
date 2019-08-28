@@ -60,6 +60,7 @@
     _mine.tgusetName = [WXAccountTool getUserName];
     _mine.tgusetId = [WXAccountTool getUserID];
     _mine.tgusetImg = [WXAccountTool getUserImage];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     //    [self configData];
     [self configUI];
@@ -154,7 +155,9 @@
         rect = [self.tableView convertRect:rect toView:nil];
         CGFloat delta = self.commentInputView.ctTop - rect.origin.y - rect.size.height;
         CGFloat offsetY = self.tableView.contentOffset.y - delta;
-        [self.tableView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+        if (offsetY > 0){
+            [self.tableView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+        }
     } else {
         if(self.selectedIndexPath.section == self.momentList.count - 1){
             [UIView performWithoutAnimation:^{

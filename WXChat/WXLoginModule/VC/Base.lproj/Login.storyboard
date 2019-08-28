@@ -123,6 +123,7 @@
                     <navigationItem key="navigationItem" id="GB2-sQ-84p"/>
                     <connections>
                         <outlet property="codeView" destination="Lkq-1a-IHu" id="5pD-xD-DQi"/>
+                        <outlet property="icon" destination="0QT-0V-ago" id="bV2-ji-AzL"/>
                         <outlet property="loginButton" destination="hcx-sk-QmF" id="PFE-yZ-sA8"/>
                         <outlet property="methodButton" destination="x6q-IG-Lmp" id="ONe-nh-TAS"/>
                         <outlet property="passwordView" destination="Sbp-gv-Nx4" id="g6B-SY-dgr"/>

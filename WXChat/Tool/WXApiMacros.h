@@ -10,7 +10,7 @@
 #define WXApiMacros_h
 
 //#define MainURL @"http://106.52.2.54:8080/SMIMQ/"
-#define MainURL @"http://www.ubambook.cn:8080/SMIMQ/"
+#define MainURL @"http://www.ubambook.cn/SMIMQ/"
 
 //获取验证码
 #define API_LoginModule_getMessageCode @"manKeep/checkPhone"

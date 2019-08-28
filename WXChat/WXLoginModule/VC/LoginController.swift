@@ -8,20 +8,84 @@
 
 import UIKit
 
-class LoginController: UIViewController {
+class LoginController: UIViewController ,UITextViewDelegate{
     @IBOutlet weak var scrollerView: UIScrollView!
     @IBOutlet weak var codeView: ZJLoginView!
     @IBOutlet weak var passwordView: ZJLoginView!
     @IBOutlet weak var loginButton: ZJButton!
     @IBOutlet weak var methodButton: UIButton!
+    @IBOutlet weak var icon: UIImageView!
     
     private var isFirstPage = true
     
+    var agreementLabel = UITextView()
+    var button = UIButton.init(type: .custom)
     override func viewDidLoad() {
         super.viewDidLoad()
         defaultSetting()
+        let text = NSMutableAttributedString(string: "勾选即表示您同意")
+        text.addAttribute(NSAttributedString.Key.font,
+                          value: UIFont.systemFont(ofSize: 13),
+                          range: NSRange(location: 0, length: text.length))
+        
+        let serviceText = NSMutableAttributedString(string: "《竹简服务协议》")
+        serviceText.addAttribute(NSAttributedString.Key.font,
+                                 value: UIFont.systemFont(ofSize: 13),
+                                 range: NSRange(location: 0, length: serviceText.length))
+        
+        serviceText.addAttribute(NSAttributedString.Key.link,
+                                 value: "http://service",
+                                 range: NSRange(location: 0, length: serviceText.length))
+        let privateText = NSMutableAttributedString(string: "《隐私策略》")
+        privateText.addAttribute(NSAttributedString.Key.font,
+                                 value: UIFont.systemFont(ofSize: 13),
+                                 range: NSRange(location: 0, length: privateText.length))
+        
+        privateText.addAttribute(NSAttributedString.Key.link,
+                                 value: "http://private",
+                                 range: NSRange(location: 0, length: privateText.length))
+        // Adding it all together
+        text.append(serviceText)
+        text.append(privateText)
+        agreementLabel.attributedText = text
+        agreementLabel.textAlignment = .center
+        agreementLabel.delegate = self
+        agreementLabel.isEditable = false
+        view.addSubview(agreementLabel)
+        
+        button = UIButton.init(type: .custom)
+        button.setImage(UIImage.init(named: "userList_select"), for: .normal)
+        view.addSubview(button)
     }
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        agreementLabel.snp.makeConstraints { (make) in
+            make.left.right.equalTo(0)
+            make.top.equalTo(icon.snp_bottom).offset(15)
+            make.height.equalTo(30)
+        }
+        button.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(40)
+            make.centerY.equalTo(self.agreementLabel)
+            make.width.height.equalTo(14)
+        }
+    }
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return false
+    }
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        if let operation = URL.scheme, operation.elementsEqual("http"){
+            let vc = WXWebViewController.init()
+            if URL.absoluteString.contains("service"){
+                vc.title = "竹简服务协议"
+            }else{
+                vc.title = "隐私策略"
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        return false
+    }
     private func defaultSetting() {
         scrollerView.isPagingEnabled = true
         loginButton.isEnabled = false
@@ -37,7 +101,6 @@ class LoginController: UIViewController {
     
     @IBAction func getVerficationCode(_ sender: UIButton) {
         print("2")
-
     }
     
     @IBAction func loginAction(_ sender: UIButton) {

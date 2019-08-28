@@ -35,18 +35,18 @@ static NSString *channel = @"Publish channel";
     ///easeUI注册
     [[EaseSDKHelper shareHelper] hyphenateApplication:application didFinishLaunchingWithOptions:launchOptions];
     //环信服务注册
-//    EMOptions *options = [EMOptions optionsWithAppkey:@"1128190420216118#testdemo"];
+
     EMOptions *options = [EMOptions optionsWithAppkey:@"1111190604042820#bambooslip"];
-    // apnsCertName是证书名称，可以先传nil，等后期配置apns推送时在传入证书名称
+    
     options.apnsCertName = @"生产推送";
-//    options.apnsCertName = @"开发";
+
     [[EMClient sharedClient] initializeSDKWithOptions:options];
     [[EMClient sharedClient] addDelegate:self delegateQueue:nil];
     //极光
     [self _initJPushNotificationWithOptions:launchOptions];
     //默认登录的状态
     if ([WXAccountTool isLogin]){
-        //[WXAccountTool getHuanXinID]
+        
         EMError *error = [[EMClient sharedClient] loginWithUsername:WXAccountTool.getHuanXinID password:@"123456"];
         if (!error) {
             NSLog(@"登录成功");
