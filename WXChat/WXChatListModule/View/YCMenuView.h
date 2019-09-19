@@ -46,6 +46,7 @@
 @interface YCMenuAction : NSObject
 @property (nonatomic, readonly) NSString      *title;
 @property (nonatomic, readonly) UIImage       *image;
+@property (nonatomic, copy) NSString *count;
 @property (nonatomic,copy, readonly) void (^handler)(YCMenuAction *action);
 + (instancetype)actionWithTitle:(NSString *)title image:(UIImage *)image handler:(void (^)(YCMenuAction *action))handler;
 - (instancetype)init NS_UNAVAILABLE;

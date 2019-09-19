@@ -20,6 +20,7 @@
     
     return self;
 }
+
 - (void)_setupTitleLabelConstraints{
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.avatarView);

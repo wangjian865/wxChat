@@ -21,6 +21,7 @@
 #import "UserCompanies.h"
 #import "WXUserMomentInfoViewController.h"
 #import "WXNewMomentPromptView.h"
+#import <WebKit/WebKit.h>
 @interface MomentViewController ()<UITableViewDelegate,UITableViewDataSource,UUActionSheetDelegate,MomentCellDelegate,UIGestureRecognizerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray * momentList;  // 朋友圈动态列表
@@ -438,9 +439,28 @@
 }
 ///点击评论中的头像
 - (void)didClickCommentIcon:(MomentComent *)wxComment{
-    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
-    controller.userId = wxComment.commentsTguset;
-    [self.navigationController pushViewController:controller animated:YES];
+    NSString *userID = wxComment.commentsTguset;
+    [MineViewModel judgeIsFriendWithFriendID:userID success:^(NSString * msg) {
+        if ([msg isEqualToString:@"是"]){
+            WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+            controller.userId = userID;
+            [self.navigationController pushViewController:controller animated:YES];
+        }else{
+            [MineViewModel getUserInfo:userID success:^(UserInfoModel * model) {
+                WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+                resultVC.model = model;
+                [self.navigationController pushViewController:resultVC animated:true];
+            } failure:^(NSError * error) {
+                
+            }];
+        }
+    } failure:^(NSError * error) {
+        
+    }];
+
+//    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+//    controller.userId = wxComment.commentsTguset;
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 /// 选择评论
 - (void)didOperateWxMoment:(MomentCell *)cell selectWxComment:(MomentComent *)wxComment{
@@ -476,9 +496,28 @@
 //点击点赞头像
 - (void)didOperateMoment:(MomentCell *)cell selectLike:(LikeListModel *)like{
     /// 传一个id
-    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
-    controller.userId = like.enterpriseliketid;
-    [self.navigationController pushViewController:controller animated:YES];
+//    WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+//    controller.userId = like.enterpriseliketid;
+//    [self.navigationController pushViewController:controller animated:YES];
+    NSString *userID = like.enterpriseliketid;
+    [MineViewModel judgeIsFriendWithFriendID:userID success:^(NSString * msg) {
+        if ([msg isEqualToString:@"是"]){
+            WXUserMomentInfoViewController * controller = [[WXUserMomentInfoViewController alloc] init];
+            controller.userId = userID;
+            [self.navigationController pushViewController:controller animated:YES];
+        }else{
+            [MineViewModel getUserInfo:userID success:^(UserInfoModel * model) {
+                WXfriendResultViewController *resultVC = [[WXfriendResultViewController alloc] init];
+                resultVC.model = model;
+                [self.navigationController pushViewController:resultVC animated:true];
+            } failure:^(NSError * error) {
+                
+            }];
+        }
+    } failure:^(NSError * error) {
+        
+    }];
+
 }
 // 点击高亮文字
 - (void)didClickLink:(MLLink *)link linkText:(NSString *)linkText
@@ -527,6 +566,7 @@
         NSString * title = actionSheet.title;
         NSString * subString = [title substringWithRange:NSMakeRange(0, [title length] - 13)];
         if (buttonIndex == 0) { // 拨打电话
+//            WKWebView * webview = [[WKWebView alloc] initWithFrame:<#(CGRect)#> configuration:<#(nonnull WKWebViewConfiguration *)#>]
             UIWebView * webView = [[UIWebView alloc] init];
             NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",subString]];
             [webView loadRequest:[NSURLRequest requestWithURL:url]];

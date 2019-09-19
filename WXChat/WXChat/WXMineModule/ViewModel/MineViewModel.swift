@@ -54,6 +54,25 @@ class MineViewModel: NSObject {
             
         }
     }
+    //批量添加好友
+    @objc class func addFriendWithList(friendID: [String],
+                               success: @escaping (_ response: String?) ->(),
+                               failure: @escaping (_ error: NSError?) ->()) {
+        
+        let params = ["friendsFid":friendID]
+        WXNetWorkTool.request(with: .post, urlString: WXApiManager.getRequestUrl("userFriend/addUserFriendTos"), parameters: params, successBlock: { (result) in
+            
+            let resultModel = WXBaseModel.yy_model(with: result as! [String : Any])
+            guard let temp = resultModel else {return }
+            if temp.code.elementsEqual("200"){
+                let temp = result as! [String : Any]
+                //                let str = temp["data"] as! String
+                success("成功")
+            }
+        }) { (error) in
+            
+        }
+    }
     //删除好友
     @objc class func deleteFriend(friendID: String,
                             success: @escaping (_ response: [String: Any]?) ->(),
@@ -279,7 +298,7 @@ class MineViewModel: NSObject {
         let urlString =  WXApiManager.getRequestUrl("companyAdd/updateCompanyInfo")
         let params:[String:Any] = ["companyid":companyid,"companyname":companyname,"companysynopsis":companysynopsis,"companyindustry":companyindustry,"companyregion":companyregion,"companysystem":companysystem]
         
-        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["logofiles"], image: [logofiles], parameters: params, progressBlock: { (progress) in
+        WXNetWorkTool.uploadFile(withUrl: urlString, imageName: ["image"], image: [logofiles], parameters: params, progressBlock: { (progress) in
             print(progress)
         }, successBlock: { (result) in
             print(result)
@@ -914,5 +933,25 @@ class MineViewModel: NSObject {
             failure(nil)
         }
     }
+    @objc class func getAddFriendCount(success: @escaping (_ response: String) ->(),
+                                       failure: @escaping (_ error: NSError?) ->()){
+        let urlString =  WXApiManager.getRequestUrl("userFriend/underFriendCount")
+        let params:[String:Any] = [:]
+        WXNetWorkTool.request(with: .post, urlString: urlString, parameters: params, successBlock: { (temp) in
+            let resultModel = WXBaseModel.yy_model(with: temp as! [String : Any])
+            guard let result = resultModel else {return }
+            if result.code.elementsEqual("200"){
+                if let string = (temp as! [String : Any])["data"] as? NSNumber{
+                    success("\(string)")
+                }
+            }else{
+                //code != 200的情况
+                failure(nil)
+            }
+        }) { (error) in
+            failure(nil)
+        }
+    }
+    
 }
 

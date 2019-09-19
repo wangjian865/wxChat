@@ -30,6 +30,8 @@
     //设置导航栏右边按钮
     [self setNaviRightButton];
     [[EMClient sharedClient].callManager addDelegate:self delegateQueue:nil];
+    
+    self.showRefreshHeader = YES;
 }
 //设置右边按钮
 - (void)setNaviRightButton{
@@ -62,7 +64,9 @@
     [[EaseBaseMessageCell appearance] setSendBubbleBackgroundImage:[[UIImage imageNamed:@"蓝色对话框"] stretchableImageWithLeftCapWidth:5 topCapHeight:35]];//设置发送气泡
     
     [[EaseBaseMessageCell appearance] setRecvBubbleBackgroundImage:[[UIImage imageNamed:@"白色对话框"] stretchableImageWithLeftCapWidth:35 topCapHeight:35]];//设置接收气泡
+    
     [[EaseBaseMessageCell appearance] setBubbleMaxWidth: k_screen_width - 100];
+    [[EaseMessageCell appearance] setBubbleMaxWidth:k_screen_width - 100];
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];//设置头像大小
     
     [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];//设置头像圆角
@@ -121,7 +125,11 @@
 - (void)sendInfoViewWithModel:(FriendModel *)model{
     NSLog(@"发送名片");
     //WDX fix
-    NSDictionary *dic = @{@"userName":model.tgusetname,@"company":model.tgusetcompany,@"userIcon":model.tgusetimg,@"userID":model.tgusetid};
+    NSString *company = model.tgusetcompany;
+    if (company == nil){
+        company = @"";
+    }
+    NSDictionary *dic = @{@"userName":model.tgusetname,@"company":company,@"userIcon":model.tgusetimg,@"userID":model.tgusetid};
     [self sendTextMessage:@"[名片]" withExt:dic];
 
 }
@@ -260,7 +268,23 @@
     
     return model;
 }
-
+- (BOOL)messageViewController:(EaseMessageViewController *)viewController
+canLongPressRowAtIndexPath:(NSIndexPath *)indexPath{
+    return true;
+}
+- (void)resendMenuAction:(id)sender{
+    WXUsersListViewController *userListVC = [[WXUsersListViewController alloc] init];
+    userListVC.cardCallBack = ^(NSString * _Nonnull userID) {
+        EaseMessageModel *model = [self.dataArray objectAtIndex:self.menuIndexPath.row];
+        EMMessage *message = [EaseSDKHelper getTextMessage:model.text to:userID messageType:EMChatTypeChat messageExt:model.message.ext];
+            [self sendMessage:message isNeedUploadFile:YES];
+       
+    };
+    userListVC.isEditing = YES;
+    userListVC.isInfoCard = YES;
+    WXPresentNavigationController *nav = [[WXPresentNavigationController alloc] initWithRootViewController:userListVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
 //自定义cell
 - (UITableViewCell *)messageViewController:(UITableView *)tableView
                        cellForMessageModel:(id<IMessageModel>)messageModel{

@@ -212,6 +212,7 @@ class WXEditCompanyViewController: UITableViewController ,UUActionSheetDelegate{
             break
         case 3:
         //超级管理员设置
+            
             let vc = WXUsersListViewController.init()
             vc.cardCallBack = {[weak self] ID in
                 self?.newAdminId = ID

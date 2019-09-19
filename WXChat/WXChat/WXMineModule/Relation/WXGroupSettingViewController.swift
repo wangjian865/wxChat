@@ -62,20 +62,45 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         navigationController?.pushViewController(settingVC, animated: true)
     }
     @objc func changeOwnerAction() {
-        let vc = WXUsersListViewController.init()
-        vc.cardCallBack = {[weak self] ID in
-            MineViewModel.changeOwner(groupID: self?.groupID ?? "", newOwnerID: ID, success: { (msg) in
+        let vc = WDXUserListViewController()
+        vc.isSingle = true
+        vc.chooseCompletion = { [weak self](idArray) in
+            MineViewModel.changeOwner(groupID: self?.groupID ?? "", newOwnerID: idArray.first ?? "", success: { (msg) in
                 self?.getUsers()
                 MBProgressHUD.showSuccess(msg)
             }, failure: { (error) in
                 
             })
         }
-        
-        vc.isEditing = true
-        vc.isInfoCard = true
+        var tempArr: [SearchUserModel] = []
+        if let myUsers = users{
+            for user in myUsers {
+                let model = SearchUserModel()
+                model.tgusetImg = user.tgusetimg
+                model.tgusetName = user.tgusetname
+                model.tgusetId = user.tgusetid
+                tempArr.append(model)
+            }
+        }
+        vc.users = tempArr
         let nav = WXPresentNavigationController.init(rootViewController: vc)
-        present(nav, animated: true, completion: nil)
+        self.present(nav, animated: true, completion: nil)
+        
+        
+//        let vc = WXUsersListViewController.init()
+//        vc.cardCallBack = {[weak self] ID in
+//            MineViewModel.changeOwner(groupID: self?.groupID ?? "", newOwnerID: ID, success: { (msg) in
+//                self?.getUsers()
+//                MBProgressHUD.showSuccess(msg)
+//            }, failure: { (error) in
+//
+//            })
+//        }
+//
+//        vc.isEditing = true
+//        vc.isInfoCard = true
+//        let nav = WXPresentNavigationController.init(rootViewController: vc)
+//        present(nav, animated: true, completion: nil)
     }
     @objc func setNoDisturbState() {
         MineViewModel.updateSeancedisturbState(groupID: groupID ?? "", isNoDisturb: noDisturBtn.isOn, success: { (success) in
@@ -109,6 +134,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
                 self.groupChatNameView.isHidden = true
                 self.transforOwnerView.isHidden = true
             }
+            self.memberView.reloadData()
         }) { (error) in
             
         }
@@ -202,6 +228,7 @@ class WXGroupSettingViewController: UIViewController,UICollectionViewDelegate,UI
         }else if indexPath.item > (users?.count ?? 0){
             print("减人啦")
             let vc = WDXUserListViewController()
+            vc.rightTitle = "完成"
             vc.chooseCompletion = { [weak self](idArray) in
                 MineViewModel.removePersonFromGroup(groupID: self?.groupID ?? "", IDs: idArray, success: { (success) in
                     MBProgressHUD.showText(success ?? "")

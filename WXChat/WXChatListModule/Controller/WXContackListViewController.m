@@ -47,7 +47,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _itemCount = 10;
+    _itemCount = 0;
     [self setupUI];
     [self requestContactAuthorAfterSystemVersion];
 }
@@ -60,11 +60,28 @@
     _tableView.rowHeight = 70;
     [_tableView registerNib:[UINib nibWithNibName:@"WXContactCell" bundle:nil] forCellReuseIdentifier:@"WXContactCell"];
     _tableView.tableFooterView = self.bottomView;
+    [_makeSureButton addTarget:self action:@selector(makeSureAction) forControlEvents:UIControlEventTouchUpInside];
     _tableView.allowsMultipleSelection = YES;
     [self.view addSubview:self.topView];
     [self.view addSubview:_tableView];
     [_selectAllButton addTarget:self action:@selector(selectAllAction) forControlEvents:UIControlEventTouchUpInside];
     
+}
+- (void)makeSureAction {
+    if (self.selectIndexArr.count > 0){
+        NSMutableArray *arr = [NSMutableArray array];
+        
+        for (NSNumber *index in self.selectIndexArr) {
+            int temp = index.intValue;
+            FriendModel *model = self.modelArr[temp];
+            [arr addObject:model.tgusetid];
+        }
+        [MineViewModel addFriendWithListWithFriendID:arr success:^(NSString * msg) {
+            [MBProgressHUD showSuccess:@"邀请已发送"];
+        } failure:^(NSError * error) {
+            
+        }];
+    }
 }
 - (void)selectAllAction {
     if (self.selectIndexArr.count == _itemCount){
@@ -166,28 +183,19 @@
 //有通讯录权限-- 进行下一步操作
 - (void)openContact{
     // 获取指定的字段,并不是要获取所有字段，需要指定具体的字段
-    NSArray *keysToFetch = @[CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey];
+    NSArray *keysToFetch = @[CNContactPhoneNumbersKey];
     CNContactFetchRequest *fetchRequest = [[CNContactFetchRequest alloc] initWithKeysToFetch:keysToFetch];
     CNContactStore *contactStore = [[CNContactStore alloc] init];
     NSMutableArray *phones = [NSMutableArray array];
     [contactStore enumerateContactsWithFetchRequest:fetchRequest error:nil usingBlock:^(CNContact * _Nonnull contact, BOOL * _Nonnull stop) {
-        NSLog(@"-------------------------------------------------------");
-        
-        NSString *givenName = contact.givenName;
-        NSString *familyName = contact.familyName;
-        NSLog(@"givenName=%@, familyName=%@", givenName, familyName);
-        //拼接姓名
-        NSString *nameStr = [NSString stringWithFormat:@"%@%@",contact.familyName,contact.givenName];
-        
         NSArray *phoneNumbers = contact.phoneNumbers;
-        
         //        CNPhoneNumber  * cnphoneNumber = contact.phoneNumbers[0];
         
         //        NSString * phoneNumber = cnphoneNumber.stringValue;
         
         for (CNLabeledValue *labelValue in phoneNumbers) {
             //遍历一个人名下的多个电话号码
-            NSString *label = labelValue.label;
+            
             //   NSString *    phoneNumber = labelValue.value;
             CNPhoneNumber *phoneNumber = labelValue.value;
             
@@ -209,6 +217,7 @@
         
     }];
     [self getFriendswithContactList:phones];
+//    [self getFriendswithContactList:@[@"15608497699",@"17521574814",@"15608497659",@"15608497658",@"15755122783",@"15221027523",@"18917513635",@"17317322821",@"15755357580",@"18896702523",@"15067098209",@"13641920696",@"13162259222",@"13585527710",@"18818068610",@"15821199294",@"15021676019"]];
 }
 - (void)getFriendswithContactList:(NSArray *) phones{
     NSString *urlStr = [WXApiManager getRequestUrl:@"manKeepToken/selectUserFriends"];
@@ -217,13 +226,14 @@
         NSString *code = [NSString stringWithFormat:@"%@",responseBody[@"code"]];
         if ([code isEqualToString:@"200"]){
             //成功
-            NSArray *dataArray = (NSArray *)responseBody[@"friends"];
+            NSArray *dataArray = (NSArray *)responseBody[@"data"];
             NSMutableArray *resultArr = [NSMutableArray array];
             for (NSDictionary *dic in dataArray) {
                 FriendModel *model = [FriendModel yy_modelWithDictionary:dic];
                 [resultArr addObject:model];
             }
             self.modelArr = resultArr.copy;
+            self.itemCount = resultArr.count;
             [self.tableView reloadData];
         }else{
             [MBProgressHUD showError:[NSString stringWithFormat:@"%@",responseBody[@"msg"]]];

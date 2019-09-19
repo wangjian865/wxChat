@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *zhiweiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *makeSureButton;
 @property (strong, nonatomic) IBOutletCollection(UIImageView) NSArray *momentImages;
 @property (nonatomic, copy) NSString *userID;
 @property (weak, nonatomic) UIScrollView *scrollView;
@@ -129,9 +130,6 @@
 //popMenu
 //设置右边按钮
 - (void)setNaviRightButton{
-    if ([self.userId isEqualToString:WXAccountTool.getUserID]) {
-        return;
-    }
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"椭圆4"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarBtn:)];
 }
 - (void)clickRightBarBtn: (UIButton *)sender{

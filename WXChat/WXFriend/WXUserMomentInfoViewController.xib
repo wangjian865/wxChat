@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="companyLabel" destination="09D-Dl-xOp" id="Pkd-Wg-0vF"/>
                 <outlet property="iconView" destination="WRj-IP-31U" id="Hq0-KX-xd8"/>
+                <outlet property="makeSureButton" destination="XW4-yb-kcM" id="ikE-1P-EKk"/>
                 <outlet property="momentView" destination="0M9-Xf-5UZ" id="lKr-lJ-EjU"/>
                 <outlet property="nameLabel" destination="QAC-IA-Hpw" id="Vii-eg-10t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

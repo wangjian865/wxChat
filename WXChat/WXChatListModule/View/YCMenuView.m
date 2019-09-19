@@ -118,16 +118,43 @@
 @interface YCMenuCell : UITableViewCell
 @property (nonatomic,assign) BOOL         isShowSeparator;
 @property (nonatomic,strong) UIColor    * separatorColor;
+@property (nonatomic,strong) UILabel *countLabel;
 @end
 @implementation YCMenuCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _isShowSeparator = YES;
         _separatorColor = [UIColor lightGrayColor];
+        _countLabel.hidden = YES;
+        _countLabel = [[UILabel alloc] init];
+        _countLabel.backgroundColor = [UIColor redColor];
+        _countLabel.text = @"8";
+        _countLabel.textAlignment = NSTextAlignmentCenter;
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.cornerRadius = 7;
+        _countLabel.font = [UIFont systemFontOfSize:10];
+        [self.contentView addSubview:_countLabel];
+        [_countLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self).offset(-15);
+            make.centerY.equalTo(self);
+            make.height.equalTo(@14);
+            make.width.greaterThanOrEqualTo(@14);
+        }];
     }
     return self;
 }
-
+- (void)setBadgeCount:(NSString *)count{
+    if (count == nil){
+        _countLabel.hidden = YES;
+        return;
+    }
+    if (count.intValue <= 0){
+        _countLabel.hidden = YES;
+    }else{
+        _countLabel.hidden = NO;
+        _countLabel.text = count;
+    }
+}
 - (void)setSeparatorColor:(UIColor *)separatorColor{
     _separatorColor = separatorColor;
     [self setNeedsDisplay];
@@ -182,7 +209,7 @@
 @property(nonatomic,strong)UITableView              *tableView;
 @property(nonatomic,strong)UIView                   *contentView;
 @property(nonatomic,strong)UIView                   *bgView;
-
+@property(nonatomic,copy) NSString                  *countStr;
 @end
 
 static NSString *const menuCellID = @"YCMenuCell";
@@ -278,7 +305,6 @@ static NSString *const menuCellID = @"YCMenuCell";
 - (void)show{
     // 自定义设置统一在这边刷新一次
     if (_needReload) [self reloadData];
-    
     [kMainWindow addSubview: self.bgView];
     [kMainWindow addSubview: self];
     self.layer.affineTransform = CGAffineTransformMakeScale(0.1, 0.1);
@@ -286,6 +312,13 @@ static NSString *const menuCellID = @"YCMenuCell";
         self.layer.affineTransform = CGAffineTransformIdentity;
         self.alpha = 1.0f;
         self.bgView.alpha = 1.0f;
+    }];
+    self.countStr = @"0";
+    [MineViewModel getAddFriendCountWithSuccess:^(NSString * msg) {
+        self.countStr = msg;
+        [self.tableView reloadData];
+    } failure:^(NSError * error) {
+        
     }];
 }
 
@@ -415,15 +448,20 @@ static NSString *const menuCellID = @"YCMenuCell";
     return _actions.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     YCMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:menuCellID forIndexPath:indexPath];
     YCMenuAction *action = _actions[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
     cell.textLabel.font = _textFont;
     cell.textLabel.textColor = _textColor;
     cell.textLabel.text = action.title;
+    if (indexPath.row == 1){
+        [cell setBadgeCount:self.countStr];
+    }else{
+        [cell setBadgeCount:0];
+    }
     cell.separatorColor = _separatorColor;
     cell.imageView.image = action.image?action.image:nil;
-    
     if (indexPath.row == _actions.count - 1) {
         cell.isShowSeparator = NO;
     }

@@ -26,7 +26,6 @@
     _myLayer.position = CGPointMake(50, 50);
     _myLayer.anchorPoint = CGPointMake(0, 0);
     [self.view.layer addSublayer:_myLayer];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

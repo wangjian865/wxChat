@@ -137,7 +137,7 @@
         UIImagePickerController * _imagePickerController = [[UIImagePickerController alloc] init];
         _imagePickerController.delegate = self;
         _imagePickerController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        _imagePickerController.allowsEditing = YES;
+//        _imagePickerController.allowsEditing = YES;
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:_imagePickerController animated:YES completion:nil];
     }else{

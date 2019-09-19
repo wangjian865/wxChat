@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="奥特曼    M78创始人,奥特曼有限公司" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mLJ-aU-VQr">
-                        <rect key="frame" x="106" y="50.5" width="233.5" height="17"/>
+                        <rect key="frame" x="106" y="50.5" width="236" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -60,6 +60,7 @@
                     <constraint firstItem="mLJ-aU-VQr" firstAttribute="leading" secondItem="IXk-1M-X9H" secondAttribute="leading" id="WGW-Vt-Ryf"/>
                     <constraint firstItem="fYM-e5-EGe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bjV-Ed-J1A"/>
                     <constraint firstItem="8xA-Ww-3d9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cWP-kW-L4b"/>
+                    <constraint firstAttribute="trailing" secondItem="mLJ-aU-VQr" secondAttribute="trailing" constant="5" id="dfn-tI-ecw"/>
                     <constraint firstItem="IXk-1M-X9H" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-5" id="ev3-sd-has"/>
                     <constraint firstItem="IXk-1M-X9H" firstAttribute="leading" secondItem="8xA-Ww-3d9" secondAttribute="trailing" constant="17" id="thm-yJ-gAY"/>
                 </constraints>

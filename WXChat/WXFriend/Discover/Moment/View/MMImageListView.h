@@ -20,7 +20,7 @@
 @property (nonatomic,strong) Moment * moment;
 // 点击小图
 @property (nonatomic, copy) void (^singleTapHandler)(MMImageView *imageView);
-
+//长按大图
 @end
 
 //### 单个小图显示视图

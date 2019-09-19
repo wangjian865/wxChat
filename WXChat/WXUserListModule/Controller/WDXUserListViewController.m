@@ -60,6 +60,7 @@ NSString *cellID = @"userCellID";
 - (void)setNaviBar {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"close_gray"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(closeAction)];
     UIButton *completeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (_isSingle){return;}
     completeButton.size = CGSizeMake(52, 28);
     completeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     completeButton.backgroundColor = rgb(48, 134, 191);
@@ -177,9 +178,19 @@ NSString *cellID = @"userCellID";
     SearchUserModel *model = temp[indexPath.row];
     
     cell.coverView.hidden = ![_selectedIDS containsObject:model.tgusetId];
-    
+    cell.selectButton.hidden = self.isSingle;
     cell.wxModel = model;
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (self.isSingle){
+        NSArray *temp = _sortedUsers[indexPath.section];
+        SearchUserModel *model = temp[indexPath.row];
+        if (_chooseCompletion){
+            _chooseCompletion(@[model.tgusetId]);
+        }
+        [self closeAction];
+    }
 }
 //索引
 - (NSArray *)sectionTitlesAtIndexes:(NSIndexSet *)indexes{

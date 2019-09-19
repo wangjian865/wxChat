@@ -46,7 +46,10 @@
 /** 获取cell的reuseIdentifier */
 + (NSString *)cellIdentifierWithModel:(id<IMessageModel>)model
 {
-    return @"WXPersonInfoCell";
+    if (model.isSender){
+        return @"WXPersonInfoCellSend";
+    }
+    return @"WXPersonInfoCellReceiver";
 }
 
 /** 获取cell高度 */

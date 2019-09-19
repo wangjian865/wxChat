@@ -206,13 +206,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0 && [self existMessageAlert]){
         //我来组成头部
-        NSString *CellIdentifier = [WXChatListHeaderCell cellIdentifierWithModel:nil];
+//        NSString *CellIdentifier = [WXChatListHeaderCell cellIdentifierWithModel:nil];
+        NSString *CellIdentifier = @"topCell";
         WXChatListHeaderCell *cell = (WXChatListHeaderCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
             cell = [[WXChatListHeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.avatarView.image = [UIImage imageNamed:@"message_alert"];
         cell.titleLabel.text = @"系统消息";
+        
         _topCell = cell;
         if (_topCount){
             [cell setBadge:_topCount];
@@ -220,7 +222,8 @@
         return cell;
     }
 
-    NSString *CellIdentifier = [WXChatListTableViewCell cellIdentifierWithModel:nil];
+//    NSString *CellIdentifier = [WXChatListTableViewCell cellIdentifierWithModel:nil];
+    NSString *CellIdentifier = @"normalCell";
     WXChatListTableViewCell *cell = (WXChatListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     // Configure the cell...
     if (cell == nil) {

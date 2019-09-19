@@ -80,6 +80,12 @@ static AFHTTPSessionManager *aManager;
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             [MBProgressHUD hideHUD];
+            NSString *code = [NSString stringWithFormat:@"%@",responseObject[@"code"]];
+            if ([code isEqualToString:@"203"]){
+                //token失效
+                [WXAccountTool logout];
+                [[AppDelegate sharedInstance] loginStateChange:NO huanxinID:@""];
+            }
             if (successBlock)
             {
                 successBlock(responseObject);

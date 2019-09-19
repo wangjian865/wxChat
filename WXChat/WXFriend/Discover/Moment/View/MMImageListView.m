@@ -11,13 +11,14 @@
 
 #pragma mark - ------------------ 小图List显示视图 ------------------
 
-@interface MMImageListView ()
+@interface MMImageListView ()<UUActionSheetDelegate>
 
 // 图片视图数组
 @property (nonatomic, strong) NSMutableArray * imageViewsArray;
 // 预览视图
 @property (nonatomic, strong) MMImagePreviewView * previewView;
-
+// 长按保存的图片
+@property (nonatomic, strong) UIImage *longPressImg;
 @end
 
 @implementation MMImageListView
@@ -170,6 +171,7 @@
             [self singleTapBigViewCallback:scrollView];
         }];
         // 长按
+        
         [scrollView setLongPressBigView:^(MMScrollView *scrollView){
             [self longPresssBigViewCallback:scrollView];
         }];
@@ -205,9 +207,50 @@
 
 - (void)longPresssBigViewCallback:(MMScrollView *)scrollView
 {
+    self.longPressImg = scrollView.imageView.image;
+    UUActionSheet *sheet = [[UUActionSheet alloc] initWithTitle:@"保存图片" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"存入相册",nil];
+    sheet.tag = 1001;
+    [sheet showInView:self.window];
+}
+- (void)actionSheet:(UUActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    ///存储图片到相册
+    if (buttonIndex == 0){
+        UIImageWriteToSavedPhotosAlbum(self.longPressImg, self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), nil);
+    }
+//    UIImageWriteToSavedPhotosAlbum(self.img.image,self,@selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:),nil); }];
+}
+#pragma mark 保存图片后的回调
+- (void)imageSavedToPhotosAlbum:(UIImage*)image didFinishSavingWithError:  (NSError*)error contextInfo:(id)contextInfo
+{
+    
+    [MBProgressHUD showSuccess:@"保存成功"];
+//    NSString *message = @"提示";
+//    if(!error) {
+//        message =@"成功保存到相册";
+//        UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+//
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {  }];
+//
+//        [alertControl addAction:action];
+//
+//        [self presentViewController:alertControl animated:YES completion:nil];
+//
+//    }else
+//
+//    {
+//        message = [error description];
+//
+//        UIAlertController *alertControl = [UIAlertController alertControllerWithTitle:@"提示" message:message preferredStyle:UIAlertControllerStyleAlert];
+//
+//        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {   }];
+//
+//        [alertControl addAction:action];
+//
+//        [self presentViewController:alertControl animated:YES completion:nil];
+//
+//    }
     
 }
-
 @end
 
 #pragma mark - ------------------ 单个小图显示视图 ------------------

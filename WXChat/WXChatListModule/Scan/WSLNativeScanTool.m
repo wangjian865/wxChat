@@ -95,7 +95,7 @@
             self.scanFinishedBlock(feature.messageString);
         }
     }else{
-        NSLog(@"无法识别图中二维码");
+        [MBProgressHUD showError:@"无法识别图中二维码"];
     }
 }
 

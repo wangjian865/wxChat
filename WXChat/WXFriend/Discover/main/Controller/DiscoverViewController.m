@@ -11,6 +11,8 @@
 #import "SDEyeAnimationView.h"
 #import "SDShortVideoController.h"
 #import "WXDiscoverViewCell.h"
+#import "WXPersonMomentViewController.h"
+#import "WXScanViewController.h"
 #define kCraticalProgressHeight 80
 const CGFloat kHomeTableViewAnimationDuration = 0.25;
 @interface DiscoverViewController ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>
@@ -38,10 +40,13 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 {
     [super viewDidLoad];
     
+//    self.titles = [NSArray arrayWithObjects:
+//                   @[@"企业圈"],@[@"企业查询"],
+//                   @[@"简问百科",@"竹简招聘"],
+//                   @[@"购物",@"外卖"], nil];
     self.titles = [NSArray arrayWithObjects:
-                   @[@"企业圈"],@[@"企业查询"],
-                   @[@"简问百科",@"竹简招聘"],
-                   @[@"购物",@"外卖"], nil];
+                   @[@"企业圈",@"自己圈"],@[@"扫一扫"],
+                   @[@"竹简协议",@"隐私政策"], nil];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = k_background_color;
     [self.view addSubview:self.tableView];
@@ -180,6 +185,7 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [self.titles count];
+//    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -214,6 +220,7 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return 52;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -229,58 +236,89 @@ const CGFloat kHomeTableViewAnimationDuration = 0.25;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        MomentViewController * controller = [[MomentViewController alloc] init];
-        if (self.unreadDic){
-            controller.unreadDic = self.unreadDic;
-        }
-        [self.navigationController pushViewController:controller animated:YES];
-    }else if (indexPath.section == 1){
-        //跳转天眼通
-        BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sky20170605://"]];
-        if (!canOpen){
-            NSString *appID = @"1048918751";
-            NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-        }
-    }else if (indexPath.section == 2){
+    if (indexPath.section == 0 ) {
         if (indexPath.row == 0){
-            //百度
-            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"s3AgCR5i5L28k0lRVe0hsXMoYbcHPwCX://"]];
-            if (!canOpen){
-                NSString *appID = @"382201985";
-                 NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+            //企业圈
+            MomentViewController * controller = [[MomentViewController alloc] init];
+            if (self.unreadDic){
+                controller.unreadDic = self.unreadDic;
             }
+            [self.navigationController pushViewController:controller animated:YES];
         }else{
-            //智联
-            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
-            if (!canOpen){
-                NSString *appID = @"488033535";
-                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-            }
-        }
-    }else if (indexPath.section == 3){
-        if (indexPath.row == 0){
-            //淘宝
-            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"taobao://"]];
-            if (!canOpen){
-                NSString *appID = @"387682726";
-                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-            }
-        }else{
-            //外卖
-            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"eleme://"]];
-            if (!canOpen){
-                NSString *appID = @"507161324";
-                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
-            }
+            //我的企业圈
+            WXPersonMomentViewController *vc = [[WXPersonMomentViewController alloc] init];
+            vc.userId = [WXAccountTool getUserID];
+            [self.navigationController pushViewController:vc animated:true];
         }
         
+    }else if(indexPath.section == 1 ){
+        //扫一扫
+        WXScanViewController *scanVC = [[WXScanViewController alloc] init];
+        [self.navigationController pushViewController:scanVC animated:YES];
+    }else{
+        if (indexPath.row == 0){
+            //竹简服务协议
+            WXWebViewController *webVC = [[WXWebViewController alloc] init];
+            webVC.title = @"竹简服务协议";
+            [self.navigationController pushViewController:webVC animated:true];
+        }else{
+            //隐私政策
+            WXWebViewController *webVC = [[WXWebViewController alloc] init];
+            webVC.title = @"隐私策略";
+            [self.navigationController pushViewController:webVC animated:true];
+        }
     }
+//    }else if (indexPath.section == 1){
+//        //跳转天眼通
+//        BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sky20170605://"]];
+//        if (!canOpen){
+//            [MBProgressHUD showError:@"您尚未安装天眼通"];
+////            NSString *appID = @"1048918751";
+////            NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+////            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+//        }
+//    }else if (indexPath.section == 2){
+//        if (indexPath.row == 0){
+//            //百度
+//            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"s3AgCR5i5L28k0lRVe0hsXMoYbcHPwCX://"]];
+//            if (!canOpen){
+//                [MBProgressHUD showError:@"您尚未安装手机百度"];
+////                NSString *appID = @"382201985";
+////                 NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+////                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+//            }
+//        }else{
+//            //智联
+//            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"alisdkZhaopin://"]];
+//            if (!canOpen){
+//                [MBProgressHUD showError:@"您尚未安装智联招聘"];
+////                NSString *appID = @"488033535";
+////                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+////                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+//            }
+//        }
+//    }else if (indexPath.section == 3){
+//        if (indexPath.row == 0){
+//            //淘宝
+//            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"taobao://"]];
+//            if (!canOpen){
+//                [MBProgressHUD showError:@"您尚未安装淘宝"];
+////                NSString *appID = @"387682726";
+////                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+////                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+//            }
+//        }else{
+//            //外卖
+//            BOOL canOpen = [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"eleme://"]];
+//            if (!canOpen){
+//                [MBProgressHUD showError:@"您尚未安装饿了么"];
+////                NSString *appID = @"507161324";
+////                NSString *urlStr = [NSString stringWithFormat:@"https://itunes.apple.com/cn/app/id%@", appID];
+////                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
+//            }
+//        }
+    
+//    }
 }
 
 #pragma mark -

@@ -74,18 +74,20 @@
     [_nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView.mas_centerY).offset(-2);
         make.left.equalTo(self.avatarView.mas_right).offset(25);
-    }];
-    
-    [_descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.nameLabel);
-        make.top.equalTo(self.contentView.mas_centerY).offset(2);
+        make.width.lessThanOrEqualTo(@120);
     }];
     [_button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.offset(k_current_Width(-14));
         make.centerY.equalTo(self.contentView);
-//        make.width.equalTo(@38);
-//        make.height.equalTo(@24);
+        //        make.width.equalTo(@38);
+        //        make.height.equalTo(@24);
     }];
+    [_descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel);
+        make.top.equalTo(self.contentView.mas_centerY).offset(2);
+        make.right.equalTo(self.button.mas_left).offset(-2);
+    }];
+    
 }
 - (void)setModel: (WXMessageAlertModel *)model{
     _myModel = model;

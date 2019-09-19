@@ -156,8 +156,10 @@
 
 - (void)longPressGestureCallback:(UILongPressGestureRecognizer *)gesture
 {
-    if (self.longPressBigView) {
-        self.longPressBigView(self);
+    if (gesture.state == UIGestureRecognizerStateBegan){
+        if (self.longPressBigView) {
+            self.longPressBigView(self);
+        }
     }
 }
 

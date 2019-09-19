@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WDXUserListViewController : UIViewController
+///是否单选
+@property (nonatomic, assign)BOOL isSingle;
 ///rightNavBtnTitle
 @property (nonatomic, copy)NSString *rightTitle;
 ///传入的用户数组
